@@ -30,14 +30,14 @@ a{ text-decoration: none;
     clear:both;
 }
 .month{font-size: 30px;
-    display:block, ;
-    
+    display:block;
+    clear:both;
 }
 #gach{
     margin-left: 10px;
     margin-right: 10px;
     border-bottom: 1px solid #ccc;
-    padding-bottom:10px
+    padding-bottom: 1px
 }
 .content2{
     font-size: 1.5rem;
