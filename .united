@@ -1,0 +1,20 @@
+-div.card
+    -div.image
+        -image
+    -div.content
+        -h3
+        -p
+        -p
+-div.card 
+    -div.year
+        -p
+    -div.date
+        -h2
+        -p
+    -div.content
+        -h2
+        -p
+        -icon + p
+        -icon + p
+        -icon + p 
+        -link <a href="link" target="blank">nội dung</a>
