@@ -1,6 +1,11 @@
 * {    
     font-family: Roboto, sans-serif;
 }
+.card{
+    width: 500px;
+    box-shadow: 0px 4px 4px 4px #888888; 
+    border-radius: 10px 10px 10px 10px;
+}
 a{ text-decoration: none;
 }
 .link{
@@ -22,6 +27,7 @@ a{ text-decoration: none;
     padding: 50px 0 50px 0;
     color: rgb(255 248 245);
     border-radius: 0px 0px 0px 10px;
+    
 }
 .year{font-size: 40px;}
 .day{
@@ -39,7 +45,7 @@ a{ text-decoration: none;
     border-bottom: 1px solid #ccc;
     padding-bottom: 1px
 }
-.content2{
-    font-size: 1.5rem;
-    line-height: 2rem;
+.content3{
+   font-weight: 300;
+    
 }
