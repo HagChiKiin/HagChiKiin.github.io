@@ -1,0 +1,20 @@
+table{
+    border: 1px solid black;
+    font-size: 19px;
+    font-family: "Times New Roman", Times, serif;
+    width: 400px; 
+    height: 494px;
+}
+th{
+    padding: 10px;
+}
+th,tr,td{
+    border: 1px solid black;
+}
+#address{
+    padding: 10px;
+}
+.content1{
+    padding: 05px 80px 0 0;
+}  
+
