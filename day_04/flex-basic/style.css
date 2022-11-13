@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+display: flex;
+background-color: antiquewhite;
+flex-wrap: wrap-reverse;
+/* kích thước dòng container ko đủ sẽ đẩy xuống dưới; */
+}
+
+.item{
+    width: 100px;
+    height: 100px;
+    background-color:coral;
+    font-size: 20px;
+    border: 1px solid #000;
+    /* text-align: center; */
+    /* căn giữa thẻ block */
+    /* line-height: 100px;  */
+    /* độ cao dòng */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
