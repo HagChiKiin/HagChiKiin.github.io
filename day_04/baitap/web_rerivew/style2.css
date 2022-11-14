@@ -1,22 +1,43 @@
-* {
-    margin: 0;
-    padding: 0;
+*{
+    margin:0;
+    padding:0;
     box-sizing: border-box;
+    
 }
-
 body {
     font-family: "Roboto", sans-serif;
     background-color: #ced9ea;
+    
 }
 
 img {
     max-width: 100%;
 }
 
-.container {
+.container .container1 {
     width: 1320px;
     margin: auto;
+   
 }
+.button{
+    font-size:15px;
+    background-color: green;
+    color:white;
+    border: none;
+    padding:5px;
+}
+.footer{
+    padding:0px 50px;}
+.row2 h3{
+    display:flex;
+    justify-content: center;
+    font-size: 30px;
+    margin:30px;
+}
+.row2 ul li{
+    list-style: square;
+}
+
 
 .row {
     display: flex;
@@ -88,13 +109,18 @@ div ul li {
 .owner {
     margin-top: 50px;
 }
-a {
+.container1{padding:50px}
+
+
+.container a{
+    color: #fff;
     text-decoration: none;
-    color: #fff;}
+}
 a>i{
     padding: 10px;
     font-size: 30px;
 }
+
 
 
 
