@@ -1,0 +1,33 @@
+/* đặt biến để lưu trữ giá trị màu */
+
+:root{
+    font-size: 14px;
+ /* hệ số tính toán */
+ --color-text: #CC5500;
+--color-heading: #107dac;
+}
+
+.text{
+    font-size: 2rem;
+    /* 1rem=16px mặc đinh của trình duyệt hoặc theo  r:root */
+    color: var(--color-text)
+}
+.parent{
+    font-size: 20px;
+}
+.child{
+    font-size: 2em;
+    /* dựa trên hệ số của thằng cha */
+}
+.box{
+    width: 50vw;
+    height: 50vh;
+    background-color: violet;
+}
+.box-child{
+    width:80%;
+    height:80%;
+    background-color: orange;
+    /* % dựa theo kích thước của thẻ cha */
+}
+
