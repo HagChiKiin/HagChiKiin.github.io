@@ -1,0 +1,17 @@
+div.header
+    div.logo
+        img
+    div.sidebar
+        div.menu
+            ul
+                li
+                li
+                li 
+                    ul
+                        li
+                        li   menu con
+        div.card
+            span.cart-icon
+            span.cart-count
+        div.avatar
+            img
