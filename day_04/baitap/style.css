@@ -16,6 +16,7 @@ img {
 .container {
     width: 1320px;
     margin: auto;
+    margin-top: 40px;
 }
 
 .row {
@@ -70,6 +71,7 @@ img {
     padding-bottom: 70px;
     color: #fff;
     background-color: #30598c;
+
 }
 
 h4 {
