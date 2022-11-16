@@ -90,12 +90,11 @@ cursor: pointer;
     display: inline-block;
     color: #f36d00;
 }
-
-
-
-
-i{
-    padding-left: 50px;
+.menu-item-diffirent span i{
+    padding-left: 75px;
+}
+.sub-menu-item-diffirent span i{
+    padding-left: 82px;
 }
 
 
