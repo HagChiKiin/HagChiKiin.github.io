@@ -85,14 +85,17 @@ ul{
     
 }
 .cart-count{
-    left: 20px;
+    left: 29px;
     position: absolute;
-    bottom: 20px;
+    bottom: 23px;
     background-color: #26a69a;
-    padding: 5px;
+    padding: 0px 4px 0 4px;
+    font-size: 14px;
     
 }
-.cart-icon{font-size:25px}
+.cart-icon a i{
+    font-size: 20px;
+}
 .menu-item span{
     margin-left: 4px;
 }
