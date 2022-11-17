@@ -13,7 +13,7 @@ body{
     
 }
 .menu-root{
-    padding: 8px 12px;
+    padding: 8px 0px;
     list-style: none;
     height: 344px;
     width: 220px;
@@ -33,7 +33,7 @@ ul, li{
     position:absolute;
     left:210px;
     top:0px;
-    padding: 8px 12px;
+    padding: 8px 0px;
     height: 344px;
     width: 220px;
     background-color: #fff;
@@ -54,53 +54,43 @@ ul, li{
     display: inline-block;
     text-align: left;
 }
-.menu-item, .menu-item-diffirent, .sub-menu-item, .sub-menu-item-child{
-    cursor: pointer;
+
+.sub-menu, .sub-menu-child, .fa-solid{
+    display: none;
 }
-.menu-item:hover{
-color:#f36d00;
+.menu-item:hover {
+    color: #f36d00;  
+}
+.menu-item:hover >.icon .fa-solid {
+    display: flex; 
+    position: absolute;
+    
+}
+.sub-menu-item:hover .fa-solid{
+    display: flex;
+}
+.menu-item:hover .sub-menu{
+color :#757575;
 cursor: pointer;
-}
-.menu-item-diffirent:hover{
-    cursor: pointer;
-   
+display:flex;
+flex-direction: column;
+
 }
 .sub-menu-item:hover {
+    color:#f36d00
+}
+.sub-menu-item:hover .sub-menu-child{
+    color :#757575;
+cursor: pointer;
+display:flex;
+flex-direction: column;
+}
+.sub-menu-item-child:hover {
+    color:#f36d00
+}
+.fa-solid{
+    display:none;
+}
+.sub-menu-item:hover .sub-menu-child-item{
     color:#f36d00;
-    cursor: pointer;
-}
-.sub-menu-item-child:hover{
-    color:#f36d00;  
-    cursor: pointer;
-}
-.sub-menu{
-    display: none;
-}
-.menu-item-diffirent:hover .sub-menu{
-    display: block;
-    
-}
-.sub-menu-child{
-    display: none;
-}
-.sub-menu-item-diffirent:hover .sub-menu-child{
-    display: block;
-}
-.menu-item-diffirent:hover > span {
-    display: inline-block;
-    color: #f36d00;
-}
-.menu-item-diffirent span i{
-    padding-left: 75px;
-}
-.sub-menu-item-diffirent span i{
-    padding-left: 82px;
-}
-
-
-
-
-
-
-    
-
+    cursor: pointer;}

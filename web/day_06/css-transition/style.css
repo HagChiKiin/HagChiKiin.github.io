@@ -1,0 +1,41 @@
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: blueviolet;
+    /* transition-property: width, height;
+    transition-duration: 4s, 5s; */
+    transition: all 1s ;
+}
+.box:hover{
+    width: 400px;
+    height: 300px;
+}
+.content{
+    width: 500px;
+    color: #f36d00;
+    background-color: #000;
+    margin:auto;
+    overflow: hidden;
+    /* ra khỏi vị trí là ẩn đi */
+}
+.content h3{
+    position: relative;
+    left: 550px; 
+    opacity: 0;
+    transition: all 1s;  
+    
+}
+.content p{
+    position: relative;
+    right: 250px; 
+   
+    transition: all 1s; 
+}
+.content:hover h3{
+    left:0;
+    opacity: 1;
+
+}
+.content:hover p{
+    right:0;
+}
