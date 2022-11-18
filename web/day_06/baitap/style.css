@@ -26,9 +26,24 @@ img{
     max-width: 50%;
     position: absolute;
     top: 10px;
-    left:0px;
+    left:1em;
 }
-
+.icon{
+    max-width: 50%;
+    position: absolute;
+    bottom:0px;
+    left:1em;
+    z-index: 1;
+    font-size: 1.5em;
+    color: #fff
+}
+.icon2{
+    max-width: 50%;
+    position: absolute;
+    bottom:0px;
+    right:1em;
+    z-index: 1;
+    font-size: 1.5em;}
 .content{
     background-color: rgb(194, 193, 144);
     position: relative; 
