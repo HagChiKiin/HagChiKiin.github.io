@@ -1,0 +1,48 @@
+.container{
+    width: 500px;
+    height: 500px;
+}
+i{
+    font-size: 300px;
+    color:red;
+    display: flex;
+    position: relative;
+    margin: 150px;
+    animation: heart 1s infinite 1s reverse ;
+    
+}
+@keyframes heart {
+    0% { scale: 1;
+        
+
+    }
+    100%{
+        scale: 1.2;
+    }
+}
+.box1
+{width: 200px;
+    height: 320px;
+background-color: red;
+position: relative;
+border-radius: 100px;
+
+}
+
+.box2{
+    position: absolute;
+    width: 320px;
+    height: 200px;
+    background-color: red;
+    border-radius: 100px 100px 100px 0;
+    bottom:0px;
+    
+    
+}
+.container2{
+    transform: rotate(-45deg);
+    position: absolute;
+    margin:50px 200px 50px 200px;
+    animation: heart 1s infinite 1s reverse; 
+    display: inline-block;
+}
