@@ -8,14 +8,17 @@ body{
     
 }
 .container{
-    width: 100%;
+    width: 1200px;
     position: relative;
     
 }
-
-img{
-    max-width: 80%;
+.image{
     overflow: hidden;
+}
+img{
+    max-width: 100%;
+    overflow: hidden;
+    
 }
 .wavy{
     position:absolute;
@@ -28,11 +31,14 @@ img{
 }
 .wish{
     position:absolute;
-    top:100px;
-    left:-50px;
+    top:121px;
+    left:-10px;
     color: green;
-    font-size: 25px;
+    font-size: 27px;
     text-shadow: none;
+}
+.wish .dear{
+    text-align: center;
 }
 .wavy span{
     position: relative;
@@ -200,10 +206,10 @@ border-radius: 100px 100px 100px 0;
     left:70%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s
   }
   .snowflake:nth-of-type(15){
-    left:75%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s
+    left:72%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s
   }
   .snowflake:nth-of-type(16){
-    left:80%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s
+    left:66%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s
   }
   .snowflake:nth-of-type(17){
     left:2%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s
@@ -215,13 +221,13 @@ border-radius: 100px 100px 100px 0;
     left:16%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s
   }
   .snowflake:nth-of-type(20){
-    left:26%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s
+    left:26%;-webkit-animation-delay:1s,8s;animation-delay:8s,3.5s
   }
   .snowflake:nth-of-type(21){
-    left:37%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s
+    left:37%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,4.5s
   }
   .snowflake:nth-of-type(22){
-    left:48%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s
+    left:48%;-webkit-animation-delay:2s,0s;animation-delay:2.5s,2.1s
   }
   .snowflake:nth-of-type(23){
     left:59%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s
