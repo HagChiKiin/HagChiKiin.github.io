@@ -9,6 +9,7 @@ body{
 }
 .container{
     width: 1200px;
+    height: 800px;
     position: relative;
     
 }
@@ -17,8 +18,7 @@ body{
 }
 img{
     max-width: 100%;
-    overflow: hidden;
-    
+    max-height: 100%;   
 }
 .wavy{
     position:absolute;
@@ -72,8 +72,8 @@ span:nth-child(13) { animation-delay: 1.4s; }
 }
 .footer{
     position:relative;
-    bottom:180px;
-    left:250px;
+    bottom:250px;
+    left:300px;
     
 }
 .name span{
@@ -206,19 +206,19 @@ border-radius: 100px 100px 100px 0;
     left:70%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s
   }
   .snowflake:nth-of-type(15){
-    left:72%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s
+    left:75%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s
   }
   .snowflake:nth-of-type(16){
-    left:66%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s
+    left:80%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s
   }
   .snowflake:nth-of-type(17){
-    left:2%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s
+    left:85%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s
   }
   .snowflake:nth-of-type(18){
-    left:6%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s
+    left:88%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s
   }
   .snowflake:nth-of-type(19){
-    left:16%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s
+    left:78%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s
   }
   .snowflake:nth-of-type(20){
     left:26%;-webkit-animation-delay:1s,8s;animation-delay:8s,3.5s
