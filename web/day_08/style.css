@@ -7,6 +7,7 @@
 }
 #container{
     background-color: #111;
+    padding-top:50px;
 }
 .logo{
     background-color: #111
@@ -39,7 +40,7 @@ a {
     justify-content: space-between;
     align-items: center;
     color: #f9f9f9;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 120%;
     letter-spacing: .08em;
@@ -114,8 +115,10 @@ a {
     background-color: #2795c7;
     padding:10px;
     border-radius: 20px;
-    color:black;
     cursor: pointer;
+}
+.cart a{
+    color: #fff;
 }
 
 #container{
