@@ -5,6 +5,13 @@
     box-sizing: border-box;
     
 }
+#container{
+    background-color: #111;
+}
+.logo{
+    background-color: #111
+
+}
 .logo img{
     height: 30px;
     object-fit: cover;
@@ -40,6 +47,7 @@
     display:flex;
     align-items: center; 
     flex-direction: row;
+    background-color: rgb(18 18 18);
 }
 .menu{
     display:flex;
@@ -107,21 +115,82 @@
     background-color: #2795c7;
     padding:10px;
     border-radius: 20px;
-    color: black;
+    color: 
 }
 
-.container{
+#container{
     background-color: #12171a;
+    color:#c4b998;
+    position:relative;
+
 }
 .image img{
 height: 400px;
 object-fit: cover;
 object-position: 20% 10px;
+padding-left:30px;
+
 }
-.intro{
+.champ-main{
     display: flex;
     flex-basis: 50%;
+    position: relative;
+    left:1600px;
+    transition: all 2s ease-in-out ;
+
 }
+.champ-main .content h3{
+    text-transform: uppercase;
+    display: flex;
+    padding :50px;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+.champ-main .content span{
+    padding:30px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+body:hover .champ-main{
+left:0;
+cursor: pointer;
+}
+#champ{
+    background-color: #12171a;
+    color:#c4b998
+}
+.champ1{
+    display: flex;
+    flex-wrap: wrap;
+} 
+
+.note{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding-top:50px;
+    padding-bottom: 50px;
+}
+.shurina p{
+    font-size: 16px;
+}
+.shurina{
+    flex-basis: 25%;
+    margin-bottom: 50px;
+    padding: 20px;
+}
+.shurina img{
+    object-fit: cover;
+    height: 190px;
+    display: flex;
+    text-align: center;
+    
+
+}
+
 
 
  
