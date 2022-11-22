@@ -72,33 +72,27 @@
 }
 .menu-item:hover{
     background-color: #808080;
-   
     border-radius: 2px;
 }
  .sub-menu{
-    display:none;
     position:absolute;
     background-color: #808080;
     width: 180px;
     box-shadow: 0 0 10px rgb(0 0 0 / 15%);
-    display:none;
     right: 0;
-    top: 100%;
+    top:100%;
+    z-index: 2;
+    display: none;
     
-
     
-   
 } 
 .sub-menu-item{
     position: relative;
     text-align: center;
     padding: 20px;
     text-transform: capitalize; 
-
-    z-index: 0;
-
     padding: 16px;
-    color: #464646;
+    color: black;
     cursor: pointer;
     /* hình bàn tay */  
     background-color: #fff; 
@@ -214,10 +208,11 @@ span:nth-child(13) { animation-delay: 1.4s; }
 }
 .shurina p{
     font-size: 16px;
+    margin: 10px 0;
 }
 .shurina{
     flex-basis: 25%;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     padding: 20px;
 }
 .shurina img{
@@ -230,8 +225,50 @@ span:nth-child(13) { animation-delay: 1.4s; }
     text-align: center;
     text-transform: uppercase;
     font-size:20px;
+    padding: 10px;
 }
 
+
+
+#footer{
+    background-color: #111;
+    text-align: center;
+    color:#FFFF;
+}
+.name{
+    font-size: 25px;
+    font-weight: 900;
+}
+.name i{
+    color:red;
+    padding: 0 10px;
+    position: relative;
+    animation: name 1s infinite ;
+}
+#footer p{
+    text-transform: uppercase;
+    padding:20px;
+
+}
+.welcome{
+    color:#c4b998; 
+    font-weight: 700;
+    font-size: 20px;
+}
+.welcome i{
+    color:#ffc83d;
+    padding:0 10px;
+    
+}
+@keyframes name {
+    0% { scale: 1;
+        
+
+    }
+    100%{
+        scale: 1.8;
+    }
+}
 
 
  
