@@ -1,17 +1,14 @@
 *{
-    font-family: "roboto";
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
-#container{
-    background-color: #111;
-    padding-top:50px;
+body{
+    font-family: "Roboto", sans-serif;
+    background-color:  #12171a;
 }
-.logo{
-    background-color: #111
-
+img{
+    max-width: 100%;   
 }
 .logo img{
     height: 30px;
@@ -51,7 +48,7 @@ a {
     display:flex;
     align-items: center; 
     flex-direction: row;
-    background-color: rgb(18 18 18);
+    
 }
 .menu{
     display:flex;
@@ -76,8 +73,7 @@ a {
     margin-left: 5px;
 }
 .menu-item:hover{
-    background-color: #808080;
-    border-radius: 2px;
+
     cursor: pointer;
 }
  .sub-menu{
@@ -101,7 +97,7 @@ a {
     color: black;
     cursor: pointer;
     /* hình bàn tay */  
-    background-color: #fff; 
+    background-color: #808080;
 
 }
 .menu-item:hover .sub-menu{
@@ -113,7 +109,7 @@ a {
 }
 .cart{
     background-color: #2795c7;
-    padding:10px;
+    padding: 5px 10px;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -121,27 +117,8 @@ a {
     color: #fff;
 }
 
-#container{
-    background-color: #12171a;
-    color:#c4b998;
-    position:relative;
 
-}
-.image img{
-height: 400px;
-object-fit: cover;
-object-position: 20% 10px;
-padding-left:30px;
 
-}
-.champ-main{
-    display: flex;
-    flex-basis: 50%;
-    position: relative;
-    left:1600px;
-    transition: all 2s ease-in-out ;
-
-}
 .champ-main .content h3{
     text-transform: uppercase;
     display: flex;
@@ -163,11 +140,94 @@ left:0;
 #champ{
     background-color: #12171a;
     color:#c4b998;
+    width: 1320px;
+    margin: auto;
 }
-.champ1{
+
+.row {
     display: flex;
     flex-wrap: wrap;
-} 
+    transition: all 2s;
+}
+
+.col{
+    flex-basis: 25%;
+    padding: 15px;
+}
+.col img{
+    object-fit: cover;
+    max-width: 100%;
+}
+.col p{
+    font-size: 16px;
+    margin: 10px 0; 
+    display: none;
+}
+.col h4{
+    text-align: center;
+    text-transform: uppercase;
+    font-size:20px;
+    padding: 10px;
+    
+}
+
+.col:hover img{
+    animation: zoom 2s forwards; 
+}
+
+.col:hover p{
+   display: inline-block;   
+
+}
+.content img:hover{
+    animation: ima 3s infinite; 
+}
+@keyframes ima{
+    0% { scale: 1;
+        opacity: 0.1;
+    }
+    100%{
+        scale: 1.1;
+        opacity: 1;
+    }
+}
+
+
+
+    
+
+@keyframes zoom {
+    0% { scale: 1;
+        opacity: 0;
+    }
+    100%{
+        scale: 1.2;
+        opacity: 1;
+    }
+}
+#container{
+    background-color: #12171a;
+    color:#c4b998;
+    overflow: hidden;
+    margin: 0 60px;
+    width: 1320px;
+    margin: auto;
+    margin-top:50px;   
+}
+.champ-main{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    left:1600px;
+    transition: all 2s ease-in-out ;
+}
+.content{
+    flex-basis: 50%;
+    padding: 0 15px;
+}
+.F{
+    padding-left: 20px;
+}
 
 .note{
     font-size: 30px;
@@ -176,6 +236,8 @@ left:0;
     padding-top:50px;
     padding-bottom: 50px;
     letter-spacing: 5px;
+    text-shadow: 2px 2px 0px #d5d5d5, 2px 2px 0px rgba(0, 0, 0, 0.2); 
+    -webkit-box-reflect: below 0 linear-gradient(transparent, rgba(0,0,0,0.2))
 }
 .note span{
 position: relative;
@@ -211,30 +273,7 @@ span:nth-child(13) { animation-delay: 1.4s; }
         color:red;
     }
 }
-.F{
-    padding-left: 20px;
-}
-.shurina p{
-    font-size: 16px;
-    margin: 10px 0;
-}
-.shurina{
-    flex-basis: 25%;
-    margin-bottom: 30px;
-    padding: 20px;
-}
-.shurina img{
-    object-fit: cover;
-    height: 190px;
-    display: flex;
-    text-align: center;   
-}
-.shurina h4{
-    text-align: center;
-    text-transform: uppercase;
-    font-size:20px;
-    padding: 10px;
-}
+
 
 
 
