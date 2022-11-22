@@ -1,0 +1,127 @@
+*{
+    font-family: "roboto";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.logo img{
+    height: 30px;
+    object-fit: cover;
+    /* đảm bảo k vỡ ảnh */
+    width: 30px; 
+}
+.logo a{
+    color:#f9f9f9;
+    text-decoration: none;
+    /* bỏ gạch chân */
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#header{
+    height: 66px;
+    background-color: #111;
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f9f9f9;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: color 1s cubic-bezier(0.06, 0.81, 0, 0.98),border-color .5s cubic-bezier(0.06, 0.81, 0, 0.98);
+}   
+.sidebar{
+    display:flex;
+    align-items: center; 
+    flex-direction: row;
+}
+.menu{
+    display:flex;
+    align-items: center; 
+    flex-direction: row;
+    margin: 50px; 
+    padding: 50px;                
+}
+.menu-item{
+    margin:50px;
+    position: relative;
+    color:#fff;
+    text-transform: uppercase;
+    margin-right: 24px;
+    position: relative;
+    height: 66px;
+    display: flex;
+    align-items: center;
+}
+.menu-item i{
+    margin-left: 5px;
+}
+.menu-item:hover{
+    background-color: #808080;
+   
+    border-radius: 2px;
+}
+ .sub-menu{
+    display:none;
+    position:absolute;
+    background-color: #808080;
+    width: 200px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 15%);
+    display:none;
+    right: 0;
+    top: 100%;
+    
+
+    
+   
+} 
+.sub-menu-item{
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    text-transform: capitalize; 
+
+    z-index: 0;
+
+    padding: 16px;
+    color: #464646;
+    cursor: pointer;
+    /* hình bàn tay */  
+    background-color: #fff; 
+
+}
+.menu-item:hover .sub-menu{
+    display: inline-block;
+}
+.sub-menu-item:hover{
+    background-color: #c4c4c4;
+    color: #fff;
+}
+.cart{
+    background-color: #2795c7;
+    padding:10px;
+    border-radius: 20px;
+    color: black;
+}
+
+.container{
+    background-color: #12171a;
+}
+.image img{
+height: 400px;
+object-fit: cover;
+object-position: 20% 10px;
+}
+.intro{
+    display: flex;
+    flex-basis: 50%;
+}
+
+
+ 
