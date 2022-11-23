@@ -1,6 +1,7 @@
 img{
     width: 100%;
     object-fit: cover;
+    opacity: 0.9;
 }
 .image{
     position: relative;
@@ -11,27 +12,31 @@ img{
     background-color: #ffff;
     right:500px;
     border:none;
+    
 }
 .icon{
     display: flex;
     justify-content: space-evenly;
     
 }
-button{
-    padding: 2px 10px;
+i{
+    padding:10px;
     font-size: 30px;
-    background-color:black;
- 
+    background-color:#1877f2;
+    margin:10px;
 }
 .fa-facebook{
     color: #fff;
-    padding: 2px 10px;
-}
-.fa-apple, .fa-solid{
-    color:#fff;
-    
-}
 
+}
+.fa-apple{
+    color:#fff;
+    background-color: black;
+}
+.fa-solid{
+    color:#fff;
+    background-color:green;
+}
 
 
 
@@ -42,9 +47,12 @@ table{
     font-family: "Roboto", sans-serif;
     width: 400px; 
     height: 200px;
+    
+    margin:20px;
 }
 th{
     padding: 10px;
+    color:red;
 }
 
 #address{
@@ -53,4 +61,6 @@ th{
 .content1{
     padding: 05px 80px 0 0;
 }  
+
+
 
