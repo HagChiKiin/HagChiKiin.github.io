@@ -23,9 +23,12 @@ public class MethodDemo {
 
     }
     public static void sayHello() {
+
         System.out.println("Xin chào các bạn");
     }
     public  void sayHelloWithName(String name) {   //1tham số
+
         System.out.println("Xin chào " + name);
     }
+
 }
