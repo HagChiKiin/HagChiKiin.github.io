@@ -5,17 +5,18 @@ public class baitap1 {
         String name = "mọi người";
         System.out.println("Xin chào "+ name);
         System.out.println("Xin chào \"" + name + "\"");
-        double sum = tong2so(3.5 , 8);
-        System.out.println(sum);
 
-        double data = binhPhuong(5.5);
-        System.out.println(data);
-
-       int the_ky = theKy(2022);
-        System.out.println(the_ky);
-
-        double data3 = bmi(70.5 ,1.68);
-        System.out.println(data3);
+//        double sum = tong2so(3.5 , 8);
+//        System.out.println(sum);
+//
+//        double data = binhPhuong(5.5);
+//        System.out.println(data);
+//
+//       int the_ky = theKy(2022);
+//        System.out.println(the_ky);
+//
+//        double data3 = bmi(70.5 ,1.68);
+//        System.out.println(data3);
 
     }
     public static double tong2so(double a, double b){
