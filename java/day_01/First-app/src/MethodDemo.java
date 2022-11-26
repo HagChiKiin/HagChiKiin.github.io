@@ -6,6 +6,7 @@ public class MethodDemo {
         // thực hiện cv A 10 lần: tốn 200 dòng code
         // có method: tốn thêm 10 dòng để gọi
         int data = sumTwoNumber( 3, 4);
+//        3 và 4 là argument
         System.out.println(data);
         System.out.println(sumTwoNumber(7 , 9));
         sayHello();
@@ -20,7 +21,7 @@ public class MethodDemo {
         // Đối sô : argument ( giá trị thật khi thực thi method)
     public static int sumTwoNumber(int a, int b){
         return a + b;
-
+//        a và b là parameter
     }
     public static void sayHello() {
 
