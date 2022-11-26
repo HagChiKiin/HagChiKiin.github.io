@@ -23,7 +23,7 @@ public class StringDemo {
         System.out.println("In hoa : " + text.toUpperCase());
         System.out.println("In thường : " + text.toLowerCase());
         System.out.println("Độ dài : " + text.length());
-        System.out.println("Cắt chuỗi : " + text.substring(0,8));  // lấy đến vị trí 7
+        System.out.println("Cắt chuỗi : " + text.substring(0,8));  // lấy đến vị trí 8
         System.out.println("vị trí 10 là ký tự : " + text.charAt(9));
         System.out.println("Ký tự đầu tiên : " + text.indexOf(15));
         System.out.println("So sánh : " + text.equals(text1));

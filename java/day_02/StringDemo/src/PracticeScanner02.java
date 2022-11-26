@@ -1,22 +1,17 @@
 public class PracticeScanner02 {
     public static void main(String[] args) {
-        System.out.println("Xin chào các bạn");
-        int a = 10;
-        int b = 20;
+        String text = "Xin Chào Các Bạn";
+        String text1 = "hello";
+        System.out.println("Nhập vào chuỗi : " + text);
+        System.out.println("Chuỗi in hoa của chuỗi \"" + text +"\"" + " là:  " + text.toUpperCase());
+        System.out.println("Chuỗi in thường của chuỗi \"" + text +"\"" + " là:  " + text.toLowerCase());
+        System.out.println("Số ký tự của chuỗi \"" + text +"\"" + " là: " + text.length());
+        System.out.println("Ký tự cuối cùng của chuỗi \"" + text +"\"" + " là: " + text.charAt(15));
+        System.out.println("5 ký tự đầu tiên của chuỗi \"" + text +"\"" + " là: " + text.substring(0,5));
 
-        int c = a++;// c = 10, a = 11 vì dấu = thực hiện lệnh trước + trước là tăng lên mới thực hiện biểu thức.. + sau là thực hiện biểu thức mới tăng lên
-//        System.out.println(c);
-//        System.out.println(a);
-        int d = ++a;// a=12 , d = 12
-//        System.out.println(a);
-//        System.out.println(d);
-        int e = a++ + ++b;// b = 21, e = a+b = 12+21 = 33, a=13
-//        System.out.println(b);
-//        System.out.println(e);
-//        System.out.println(a);
-        int f = ++a + ++b;// a=14, b=22, f= 36
-//        System.out.println(a);
-//        System.out.println(b);
-//        System.out.println(f);
+        System.out.println("Chuỗi \"" + text +"\"" + " có chứa chuỗi " + "\""+ text1 + "\"" + " hay không : " + text.contains(text1));
+
+
+
     }
 }
