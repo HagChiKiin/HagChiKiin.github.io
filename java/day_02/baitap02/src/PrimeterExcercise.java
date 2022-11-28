@@ -8,8 +8,8 @@ public class PrimeterExcercise {
         System.out.println("Nhập chiều dài : ");
         double l = sc.nextDouble();
 
-        System.out.println("Chu vi hình chữ nhật = " + ((w + l)*2));
-        System.out.println("Diện tích hình chữ nhật = "+ (w * l));
+        System.out.println("Chu vi hình chữ nhật : " + ((w + l)*2));
+        System.out.println("Diện tích hình chữ nhật : "+ (w * l));
     }
 
 }
