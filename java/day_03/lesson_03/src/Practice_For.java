@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Practice_For {
     public static void main(String[] args) {
 
-      System.out.println(repeatString1("a"));;  // bài 1
-      System.out.println(repeatString2("a"));   // bài 2
-      System.out.println(repeatString3("a",5)); // bài 3
-      System.out.println(sumCaculator());   // bài 4
-      System.out.println(sphericalVolumer(5));  // bài 5
+      System.out.println(repeatString1("a"));;
+      System.out.println(repeatString2("b"));
+      System.out.println(repeatString3("c",5));
+      System.out.println(sumCaculator());   
+      System.out.println(sphericalVolumer(5));
       number(); // bài 6
     }
     // Bài 1
