@@ -6,7 +6,7 @@ public class Practice_For {
       System.out.println(repeatString1("a"));;
       System.out.println(repeatString2("b"));
       System.out.println(repeatString3("c",5));
-      System.out.println(sumCaculator());   
+      System.out.println(sumCaculator());
       System.out.println(sphericalVolumer(5));
       number(); // bài 6
     }

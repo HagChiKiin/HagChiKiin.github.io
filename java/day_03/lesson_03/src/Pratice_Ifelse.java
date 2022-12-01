@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Pratice_Ifelse {
     public static void nhapMark(){
         Scanner sc = new Scanner(System.in);
+        System.out.println("Nhập mark : ");
         int mark = sc.nextInt();
         if( mark >= 85){
             System.out.println("A");
