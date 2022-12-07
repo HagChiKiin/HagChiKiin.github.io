@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Practice_day04_01 {
@@ -13,6 +14,7 @@ public class Practice_day04_01 {
             name1 = name1 + (name2.substring(0, 1).toUpperCase() + name2.substring(1));
             name1 = name1 + " ";
         }
-        System.out.println(name1.trim());
+        System.out.println("After : " +name1);
+
     }
 }
