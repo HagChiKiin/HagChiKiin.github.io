@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Array2D {
+public class Array2D_practice {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập số dòng :");
