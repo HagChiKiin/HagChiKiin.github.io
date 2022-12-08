@@ -36,7 +36,7 @@ public class Array2D_practice {
                 }
 
             }
-            System.out.println(" phần tử lowns nhât của hàng là " + max1);
+            System.out.println(" phần tử lớn nhât của hàng là " + max1);
         }
     }
 }
