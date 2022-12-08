@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class bai2 {
     public static void main(String[] args) {
-        countText("Nguyễn Tho Kiên  ");
+        countText("Con gà gáy o o o  ");
 
     }
 
@@ -14,7 +14,7 @@ public class bai2 {
                 count += 0;
             } else {
                 if (text.charAt(i) == ' ') {
-                    if ((text.charAt(i + 1) == '\n') || (text.charAt(i + 1) == ' ')) {
+                    if (text.charAt(i + 1) == ' ') {
                         count += 0;
                     } else {
                         count++;
@@ -38,7 +38,6 @@ public class bai2 {
         }
         System.out.println();
         System.out.println("Số ký tự \"o\" trong chuỗi là: " + counto);
-
 
     }
 }
