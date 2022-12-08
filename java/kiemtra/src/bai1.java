@@ -3,6 +3,8 @@ public class bai1 {
         printSquare(4);
         System.out.println();
         printTriangle(4);
+        System.out.println();
+        printTriangle1(4);
     }
 
     public static void printSquare(int a) {
@@ -17,8 +19,21 @@ public class bai1 {
         for (int i=0;i< b;i++){
             for (int j=0;j< b;j++) {
                 if (i<j) {
-                    System.out.print(" ");
+                    System.out.print("  ");
                 } else {
+                    System.out.print("* ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static void printTriangle1 (int c) {
+        for (int i=0;i< c;i++){
+            for (int j=0;j< c;j++) {
+                if (i+j<c-1 ) {
+                    System.out.print("  ");
+                }
+                else {
                     System.out.print("* ");
                 }
             }
