@@ -1,12 +1,12 @@
 public class bai4 {
     public static void main(String[] args) {
-        int i=0, n=0;
+        int i=0, count=0;
         int j=0;
         System.out.println("10 số nguyên tố đầu tiên là: ");
-        while(n<10) {
+        while(count <10) {
             if (isPrimeNumber(i)) {
                 System.out.print(i + " ");
-                n++;
+                count++;
             }
             i++;
         }
