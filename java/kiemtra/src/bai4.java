@@ -1,7 +1,8 @@
 public class bai4 {
     public static void main(String[] args) {
-        int i=0, count=0;
+        int i=0;
         int j=0;
+        int count=0;
         System.out.println("10 số nguyên tố đầu tiên là: ");
         while(count <10) {
             if (isPrimeNumber(i)) {

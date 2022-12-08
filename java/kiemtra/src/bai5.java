@@ -10,16 +10,14 @@ public class bai5 {
         int[][] array2d = new int[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                System.out.print(" Nhập phần tử mảng 1:[" + i + "][" + j + "]");
+                System.out.print("Nhập phần tử mảng 1:[" + i + "][" + j + "] ");
                 array2d[i][j] = sc.nextInt();
-
             }
-            System.out.println();
         }
         System.out.println("Mảng 1 vừa nhập là :");
         for (int[] subArray : array2d) {
             for (int number2 : subArray) {
-                System.out.print(number2 + " ");// in hàng 1
+                System.out.print(number2 + "\t");// in hàng 1
             }
             System.out.println();// xuống dòng
         }
@@ -27,7 +25,7 @@ public class bai5 {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i == j) {
-                    System.out.print(array2d[i][j] + " ");
+                    System.out.print(array2d[i][j] + "\t");
                 }
             }
         }
@@ -35,9 +33,16 @@ public class bai5 {
         int[][] array = new int[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                System.out.print(" Nhập phần tử mảng 2:[" + i + "][" + j + "]");
+                System.out.print("Nhập phần tử mảng 2:[" + i + "][" + j + "] ");
                 array[i][j] = sc.nextInt();
             }
+        }
+        System.out.println("Mảng 2 vừa nhập là :");
+        for (int[] subArray1 : array) {
+            for (int number3 : subArray1) {
+                System.out.print(number3 + "\t");
+            }
+            System.out.println();
         }
         int [][] sumArray = new int[n][m];
         for (int i = 0; i < n; i++) {
@@ -46,7 +51,7 @@ public class bai5 {
             }
         }
 
-        System.out.print("Mảng sau khi công là: \n");
+        System.out.print("Mảng sau khi cộng là: \n");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 System.out.print(sumArray[i][j] + "\t");
