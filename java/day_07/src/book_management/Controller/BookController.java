@@ -1,10 +1,7 @@
 package book_management.controller;
 
 import book_management.service.BookService;
-
-import java.lang.invoke.CallSite;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Scanner;
 
 // Lấy thông tin người dùng tương tác với hệ thống --> gọi các hàm sử lý tương ứng ở trong service
@@ -43,6 +40,7 @@ public class BookController {
                 }
                 case 4: {
                     isQuit = true;
+                    System.out.println("^.^ GoodBye ^.^");
                     break;
                 }
                 default: {
