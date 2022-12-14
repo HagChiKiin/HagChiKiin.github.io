@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6b0baf1e-09c3-41d8-9350-1efa275237c3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/btvn.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/src/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/src/controller/FilmController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/src/model/Film.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/src/model/Movie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/src/model/Serial.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/btvn/src/service/FilmService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/day_08.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EncapsulationDemo/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EncapsulationDemo/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Encapsulation_Practice/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Encapsulation_Practice/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InheritanceDemo/Animal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InheritanceDemo/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InheritanceDemo/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/inheritance_practice/Developer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/inheritance_practice/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/inheritance_practice/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/inheritance_practice/Tester.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/student_management/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/student_management/model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/student_management/sevice/StudentSevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../day_07/src/book_management/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../day_07/src/book_management/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IrFOsQqK9krehJP3Ilgs5za7Jr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/github/HagChiKiin.github.io/java/day_08/btvn/src"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b0baf1e-09c3-41d8-9350-1efa275237c3" name="Changes" comment="" />
+      <created>1670931769668</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670931769668</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
