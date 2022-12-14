@@ -9,7 +9,6 @@ public class Film {
 
     public Film() {
     }
-
     public Film(int id, String title, String category, String director, String day) {
         this.id = id;
         this.title = title;
