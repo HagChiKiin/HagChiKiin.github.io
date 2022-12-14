@@ -6,7 +6,7 @@ import model.Serial;
 public class FilmDatabase {
     public static Movie[] movies = {
             new Movie(1, "Con mèo con","hoạt hình","Kiên nguyễn","15 tháng 12 năm 1993",180),
-            new Movie(2, "Con vịt con","người lớn","Kiên con","15 tháng 12 năm 2000",185),
+            new Movie(2, "Con vịt con","người lớn","Kiên con","06 tháng 12 năm 2000",185),
             new Movie(3, "Con lợn con","viễn thông","Kiên to","05 tháng 12 năm 2001",190),
             new Movie(4, "Con ngan con","chính trị","Kiên béo","15 tháng 12 năm 2022",200),
     };
