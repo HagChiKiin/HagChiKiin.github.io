@@ -19,7 +19,6 @@ public class FilmService {
 
         }
     }
-
     // Tìm kiếm phim theo tiêu đề
     public void findByTitle(String title) {
         int count = 0;
