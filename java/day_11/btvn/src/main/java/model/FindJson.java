@@ -1,22 +1,19 @@
 package model;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class FindJson {
-    public static void main(String[] args) {
-        List<Book> books = getListObjectFromJsonFile("list-book.json");
-        System.out.println("Đọc thông tin từ file Json");
-        for (Book s : books
-        ) {
-            System.out.println(s);
-        }
-    }
-    public static List<Book> getListObjectFromJsonFile(String fileName) {
+
+    public static ArrayList<Book> getListObjectFromJsonFile(String fileName) {
         try {
             // Khởi tạo đối tượng gson
             Gson gson = new Gson();
@@ -25,12 +22,13 @@ public class FindJson {
             Reader reader = Files.newBufferedReader(Paths.get(fileName));
 
             // Đọc thông tin từ file và binding và class
-            List<Book> bookss = Arrays.asList(gson.fromJson(reader, Book[].class));
+            Type type = new TypeToken<ArrayList<Book >>(){}.getType();
+            ArrayList<Book > books = gson.fromJson(reader, type);
 
             // Đọc file xong thì đóng lại
             // Và trả về kết quả
             reader.close();
-            return bookss;
+            return books;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -2,6 +2,8 @@ package model;
 
 import lombok.*;
 
+import java.util.Arrays;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -10,9 +12,18 @@ import lombok.*;
 public class Book {
     private int id;
     private String title;
-    private String[] category = {"Action", "Drama", "Romance", "War", "Crime",
-            "Adventure", "Comedy", "Horror", "Mystery", "Thriller", "Sci-Fi"};
+    private String[] category ;
     private String author;
     private int page_number;
     private int release_year;
+
+    @Override
+    public String toString() {
+
+        System.out.printf("%-5d %-40s %-30s %-25s %-10d %-5d", this.getId(), this.getTitle(),
+                Arrays.toString(this.getCategory()), this.getAuthor(), this.getPage_number(), this.getRelease_year());
+        return "";
+    }
+
+
 }
