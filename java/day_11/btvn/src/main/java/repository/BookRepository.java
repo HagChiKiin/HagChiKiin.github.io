@@ -13,7 +13,7 @@ import static model.FindJson.getListObjectFromJsonFile;
 public class BookRepository {
     ArrayList<Book> books = BookDatabase.books;
     public static void findAll() {
-        ArrayList<Book> books = getListObjectFromJsonFile("list-book.json");
+        ArrayList<Book> books = BookDatabase.books;
         for (Book s :books
              ) {
             System.out.println(s);

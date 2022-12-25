@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5d188c22-7caa-44e0-9ec6-a18ae2e66574" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../btvn/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../btvn/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../btvn/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../btvn/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../btvn/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../btvn/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../btvn/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/book.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/controller/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/database/BookDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/repository/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/request/CreateBookRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/request/UpdateBookRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/service/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/backend/utils/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/book_management/frontend/BookUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/kiemtra_so2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__cheshire_cheshire_5_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_aliyun_aliyun_java_sdk_core_4_5_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_aliyun_aliyun_java_sdk_kms_2_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_aliyun_aliyun_java_sdk_ram_3_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_aliyun_oss_aliyun_sdk_oss_3_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_carrotsearch_thirdparty_simple_xml_safe_2_7_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_10_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_10_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_10_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_cbor_2_10_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_smile_2_10_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_github_javafaker_javafaker_1_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_github_mifmif_generex_1_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_github_spotbugs_spotbugs_annotations_4_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_google_code_gson_gson_2_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_google_guava_guava_25_1_jre.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_14_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_squareup_okio_okio_1_17_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_typesafe_netty_netty_reactive_streams_2_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__com_typesafe_netty_netty_reactive_streams_http_2_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__dk_brics_automaton_automaton_1_11_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_minio_minio_7_1_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_buffer_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_codec_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_codec_http2_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_codec_http_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_common_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_handler_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_resolver_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_transport_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_transport_native_epoll_linux_x86_64_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_netty_netty_transport_native_unix_common_4_1_46_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_opentracing_opentracing_api_0_33_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_opentracing_opentracing_noop_0_33_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__io_opentracing_opentracing_util_0_33_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__net_jcip_jcip_annotations_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_12_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_4_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_checkerframework_checker_qual_2_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_clojure_clojure_1_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_clojure_core_specs_alpha_0_2_44.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_clojure_spec_alpha_0_2_176.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_clojure_tools_logging_0_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_codehaus_jettison_jettison_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_ini4j_ini4j_0_5_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_jacoco_org_jacoco_agent_runtime_0_8_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_jdom_jdom2_2_0_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__org_yaml_snakeyaml_android_1_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_annotations_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_apache_client_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_arns_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_auth_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_aws_core_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_aws_query_protocol_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_aws_xml_protocol_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_http_client_spi_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_netty_nio_client_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_profiles_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_protocol_core_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_regions_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_s3_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_sdk_core_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_awssdk_utils_2_13_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__software_amazon_eventstream_eventstream_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__storage_backend_storage_backend_0_1_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__tigris_tigris_0_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/libraries/Maven__yogthos_config_1_1_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/account.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/btvn.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/controller/AccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/database/AccountDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/exception/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/model/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/request/ChangeUserNameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/request/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/service/AccountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/utils/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/frontend/AccountUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/frontend/ProgramUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_11/btvn/src/main/java/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_11/btvn/src/main/java/repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_11/btvn/target/classes/repository/BookRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_11/btvn/target/classes/repository/BookRepository.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2JGfcELL7DeoriFYNHlb4RtFHJD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/github/HagChiKiin.github.io/java/kiemtra_so2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\github\HagChiKiin.github.io\java\day_12\lesson12\src\main\java\book_management\backend\controller\database\model" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5d188c22-7caa-44e0-9ec6-a18ae2e66574" name="Changes" comment="" />
+      <created>1671709418106</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671709418106</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
