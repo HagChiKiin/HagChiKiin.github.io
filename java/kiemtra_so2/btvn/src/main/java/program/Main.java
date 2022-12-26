@@ -1,6 +1,5 @@
 package program;
 
-import program.frontend.AccountUI;
 import program.frontend.ProgramUI;
 
 public class Main {

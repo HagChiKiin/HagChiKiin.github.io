@@ -1,38 +1,24 @@
 package program.frontend;
 
 import program.backend.controller.AccountController;
+import program.backend.exception.NotFoundException;
 import program.backend.model.Account;
-import program.backend.request.ChangeUserNameRequest;
+import program.backend.request.ChangeRequest;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AccountUI {
     private final AccountController accountController = new AccountController();
-    Account  account = new Account();
+    Account account = new Account();
 
     public void run() {
         Scanner sc = new Scanner(System.in);
         int option = 0;
-        boolean isQuit = false;
-        System.out.println("Nhập email: ");
-        String email = sc.nextLine();
-        System.out.println("Nhập password: ");
-        String passWord = sc.nextLine();
-        ArrayList<Account> accounts = accountController.findAll();
-        boolean choise = false;
-        for (int i = 0; i <accounts.size() ; i++) {
-            if(accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassWord().equals(passWord)){
-                System.out.println("Chúc mừng " + accounts.get(i).getUserName()+", bạn có thể thực hiện các công việc sau: ");
-                choise = true;
-            }
-        }
-        if(!choise){
-            System.out.println("Tài khoản hoặc mật khẩu không chính xác");
-        }
+        boolean isQuit1 = false;
 
 
-        while (!isQuit) {
+        while (!isQuit1) {
             showMenu();
             try {
                 System.out.println("Nhập lựa chọn: ");
@@ -41,47 +27,95 @@ public class AccountUI {
                 System.out.println("Chỉ được lựa chọn từ 1 đến 5");
                 continue;
             }
-
             switch (option) {
                 case 1: {
-                    System.out.println("Nhập vào tên mới");
+                    System.out.println("Nhập vào tên username mới");
                     String userName = sc.nextLine();
-                    ChangeUserNameRequest request = new ChangeUserNameRequest(userName);
-                    Account account = accountController.changeUserName(request);
-                    System.out.println(request);
+                    System.out.println("Nhập email của bạn: ");
+                    String email = sc.nextLine();
+                    ChangeRequest request = new ChangeRequest(userName);
 
+                    try {
+                        Account account = accountController.changeUserName(email, request);
+                        System.out.println("Thay đổi username thành công");
+                        System.out.println(account);
 
+                    } catch (NotFoundException e) {
+                        {
+                            System.out.println(e.getMessage());
+                        }
+                    }
                 }
                 break;
 
                 case 2: {
+                    ArrayList<Account> accounts = accountController.findAll();
+                    System.out.println("Nhập vào tên email mới");
+                    String newEmail = sc.nextLine();
+                    boolean isExists = false;
+                    for (Account a : accounts
+                    ) {
+                        if (a.getEmail().equalsIgnoreCase(newEmail)) {
+                            isExists = true;
+                        }
+                    }
+                    if (!isExists) {
+                        System.out.println("Nhập email cũ của bạn: ");
+                        String email = sc.nextLine();
+                        ChangeRequest request = new ChangeRequest(newEmail, account.getUserName());
+                        try {
+                            Account account = accountController.changeEmail(email, request);
+                            System.out.println("Thay đổi email thành công");
+                            System.out.println(account);
 
-                    break;
+                        } catch (NotFoundException e) {
+                            {
+                                System.out.println(e.getMessage());
+                            }
+                        }
+                    } else {
+                        System.out.println("Email đã bị trùng, vui lòng nhập lại");
+                    }
+
+                break;
+            }
+
+            case 3: {
+                System.out.println("Nhập vào mật khẩu mới ");
+                String newPassWord = sc.nextLine();
+                System.out.println("Nhập email của bạn: ");
+                String email = sc.nextLine();
+                ChangeRequest request = new ChangeRequest(newPassWord, account.getUserName(), account.getEmail());
+                try {
+                    Account account = accountController.changePassWord(email, request);
+                    System.out.println("Thay đổi password thành công");
+                    System.out.println(account);
+
+                } catch (NotFoundException e) {
+                    {
+                        System.out.println(e.getMessage());
+                    }
                 }
 
-                case 3: {
+                break;
+            }
+            case 4: {
+                isQuit1 = true;
+                break;
+            }
 
+            case 5: {
 
-                    break;
-                }
-
-
-                case 4: {
-
-
-                    break;
-                }
-
-                case 5: {
-                    isQuit = true;
-                    break;
-                }
-                default: {
-                    System.out.println("Lựa chọn không hợp lệ");
-                }
+                break;
+            }
+            default: {
+                System.out.println("Lựa chọn không hợp lệ");
             }
         }
     }
+
+
+}
 
     public void showMenu() {
         System.out.println("1 - Thay đổi username");

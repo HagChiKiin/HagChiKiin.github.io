@@ -1,24 +1,13 @@
 [
   {
-    "id": 1,
-    "title": "Heaven\u0027s Burning",
-    "category": [
-      "Action",
-      "Drama"
-    ],
-    "author": "Shawn Calvey",
-    "page_number": 61,
-    "release_year": 2009
-  },
-  {
     "id": 2,
-    "title": "Operator 13",
+    "title": "kien",
     "category": [
       "Drama",
       "Romance",
       "War"
     ],
-    "author": "Daisi Richold",
+    "author": "kien",
     "page_number": 131,
     "release_year": 2009
   },

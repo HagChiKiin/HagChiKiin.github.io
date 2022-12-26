@@ -34,11 +34,6 @@
             <artifactId>gson</artifactId>
             <version>2.10</version>
         </dependency>
-        <dependency>
-            <groupId>storage-backend</groupId>
-            <artifactId>storage-backend</artifactId>
-            <version>0.1.10</version>
-        </dependency>
     </dependencies>
     <repositories>
         <repository>
