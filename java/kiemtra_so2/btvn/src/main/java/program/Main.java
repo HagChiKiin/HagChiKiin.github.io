@@ -1,10 +1,10 @@
 package program;
 
-import program.frontend.ProgramUI;
+import program.frontend.AccountUI;
 
 public class Main {
     public static void main(String[] args) {
-        ProgramUI programUI = new ProgramUI();
-        programUI.run();
+        AccountUI accountUI = new AccountUI();
+        accountUI.run();
     }
 }

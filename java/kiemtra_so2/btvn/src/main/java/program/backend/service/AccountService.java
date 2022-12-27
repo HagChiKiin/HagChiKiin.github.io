@@ -33,4 +33,9 @@ public class AccountService {
         accountRepository.save(account);
         return account;
     }
+
+    public Account forgotPassWord(String email, ChangeRequest request) {
+        return accountRepository.forgotPassWord(email,request);
+    }
+
 }

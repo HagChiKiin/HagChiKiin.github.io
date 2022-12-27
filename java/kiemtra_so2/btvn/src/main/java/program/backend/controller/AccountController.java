@@ -28,4 +28,8 @@ public class AccountController {
     public Account register(ChangeRequest request) {
         return accountService.register(request);
     }
+
+    public Account forgotPassWord(String email, ChangeRequest request) {
+        return accountService.forgotPassWord(email,request);
+    }
 }

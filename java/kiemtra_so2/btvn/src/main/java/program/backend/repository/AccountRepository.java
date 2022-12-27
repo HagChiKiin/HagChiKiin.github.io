@@ -11,9 +11,6 @@ import java.util.ArrayList;
 public class AccountRepository {
     private final AccountDatabase accountDatabase = new AccountDatabase();
     ArrayList<Account> accounts = AccountDatabase.accounts;
-
-
-
     public Account findByEmail(String email) {
         for (Account a : AccountDatabase.accounts
         ) {
@@ -35,24 +32,26 @@ public class AccountRepository {
         FileUtils.setDataToFile("account.json", AccountDatabase.accounts);
         return account;
     }
-
     public Account changeEmail(String email, ChangeRequest request) {
         Account account = findByEmail(email);
         account.setEmail(request.getEmail());
         FileUtils.setDataToFile("account.json", AccountDatabase.accounts);
         return account;
     }
-
     public Account changePassWord(String email, ChangeRequest request) {
         Account account = findByEmail(email);
         account.setPassWord(request.getPassWord());
         FileUtils.setDataToFile("account.json", AccountDatabase.accounts);
         return account;
     }
-
-
     public void save(Account account) {
         AccountDatabase.accounts.add(account);
-        FileUtils.setDataToFile("account.json",AccountDatabase.accounts);
+        FileUtils.setDataToFile("account.json", AccountDatabase.accounts);
+    }
+    public Account forgotPassWord(String email, ChangeRequest request) {
+        Account account = findByEmail(email);
+        account.setPassWord(request.getPassWord());
+        FileUtils.setDataToFile("account.json", AccountDatabase.accounts);
+        return account;
     }
 }
