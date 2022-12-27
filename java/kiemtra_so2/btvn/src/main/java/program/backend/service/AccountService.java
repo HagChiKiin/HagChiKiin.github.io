@@ -8,23 +8,25 @@ import java.util.ArrayList;
 
 public class AccountService {
     private final AccountRepository accountRepository = new AccountRepository();
+
     public Account changeUserName(String email, ChangeRequest request) {
-       return accountRepository.changeUserName(email,request);
+        return accountRepository.changeUserName(email, request);
 
     }
 
     public ArrayList<Account> findAll() {
-       return accountRepository.findAll();
+        return accountRepository.findAll();
     }
 
 
     public Account changeEmail(String email, ChangeRequest request) {
-        return accountRepository.changeEmail(email,request);
+        return accountRepository.changeEmail(email, request);
     }
 
     public Account changPassWord(String email, ChangeRequest request) {
-        return accountRepository.changePassWord(email,request);
+        return accountRepository.changePassWord(email, request);
     }
+
     public Account register(ChangeRequest request) {
         Account account = new Account();
         account.setUserName(request.getUserName());
@@ -35,7 +37,7 @@ public class AccountService {
     }
 
     public Account forgotPassWord(String email, ChangeRequest request) {
-        return accountRepository.forgotPassWord(email,request);
+        return accountRepository.forgotPassWord(email, request);
     }
 
 }

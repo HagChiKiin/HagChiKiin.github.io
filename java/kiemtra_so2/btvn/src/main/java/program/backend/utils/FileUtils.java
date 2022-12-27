@@ -25,8 +25,9 @@ public class FileUtils {
             Reader reader = Files.newBufferedReader(Paths.get(fileName));
 
             // Đọc thông tin từ file và binding và class
-            Type type = new TypeToken<ArrayList<Account >>(){}.getType();
-            ArrayList<Account > accounts = gson.fromJson(reader, type);
+            Type type = new TypeToken<ArrayList<Account>>() {
+            }.getType();
+            ArrayList<Account> accounts = gson.fromJson(reader, type);
 
             // Đọc file xong thì đóng lại
             // Và trả về kết quả
@@ -38,6 +39,7 @@ public class FileUtils {
 
         return null;
     }
+
     public static void setDataToFile(String fileName, Object obj) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

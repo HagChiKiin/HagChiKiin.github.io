@@ -16,20 +16,17 @@ public class ChangeRequest {
         this.userName = userName;
 
     }
-    public ChangeRequest(String email, String userName){
+
+    public ChangeRequest(String email, String userName) {
         this.userName = userName;
         this.email = email;
     }
-    public ChangeRequest(String passWord,String userName,String email){
+
+    public ChangeRequest(String passWord, String userName, String email) {
         this.passWord = passWord;
         this.email = email;
         this.userName = userName;
     }
-
-
-
-
-
 
 
 }

@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 public class AccountController {
     private final AccountService accountService = new AccountService();
+
     public Account changeUserName(String email, ChangeRequest request) {
-        return accountService.changeUserName(email,request);
+        return accountService.changeUserName(email, request);
     }
 
     public ArrayList<Account> findAll() {
@@ -18,11 +19,11 @@ public class AccountController {
 
 
     public Account changeEmail(String email, ChangeRequest request) {
-        return accountService.changeEmail(email,request);
+        return accountService.changeEmail(email, request);
     }
 
     public Account changePassWord(String email, ChangeRequest request) {
-        return accountService.changPassWord(email,request);
+        return accountService.changPassWord(email, request);
     }
 
     public Account register(ChangeRequest request) {
@@ -30,6 +31,6 @@ public class AccountController {
     }
 
     public Account forgotPassWord(String email, ChangeRequest request) {
-        return accountService.forgotPassWord(email,request);
+        return accountService.forgotPassWord(email, request);
     }
 }

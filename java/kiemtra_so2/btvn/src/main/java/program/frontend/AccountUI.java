@@ -135,7 +135,7 @@ public class AccountUI {
                             }
                         }
                     }
-                    if(!iXists) {
+                    if (!iXists) {
                         System.out.println("Tài khoản hoặc mật khẩu không chính xác");
                         break;
                     }
