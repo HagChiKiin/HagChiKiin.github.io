@@ -5,66 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="513e2ec2-d13b-469f-89ed-a42e20bead83" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../day_11/lesson_11/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/day_12.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/libraries/Maven__com_github_javafaker_javafaker_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/libraries/Maven__com_github_mifmif_generex_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/libraries/Maven__com_google_code_gson_gson_2_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/libraries/Maven__dk_brics_automaton_automaton_1_11_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_12_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/libraries/Maven__org_yaml_snakeyaml_android_1_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/btvn/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/btvn/btvn.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_12/lesson12/lesson12.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/products.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/database/ProductDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/exception/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/repository/ProductRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/service/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/backend/utils/FileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frontend/ProductUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/collection_demo/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/collection_demo/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/functional_interface/Greeting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/functional_interface/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/functional_interface_build_in/ConsumerDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/functional_interface_build_in/PredicateDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/generic/Generic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/generic/GenericClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/generic/GenericMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson_14/src/main/java/method_reference/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/.idea/aws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_12/btvn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_12/btvn/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_12/lesson12/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_12/lesson12/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_12/lesson12/src/main/java/book_management/frontend/BookUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_12/lesson12/src/main/java/book_management/frontend/BookUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/database/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/database/AccountDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/database/AccountDatabase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/repository/AccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/repository/AccountRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/request/ChangeRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/request/ChangeRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/service/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/utils/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/utils/FileUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/repository/ProductRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/repository/ProductRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/backend/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/backend/repository/ProductRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/repository/ProductRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/backend/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/service/ProductService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -16,6 +16,6 @@ public class ProductService {
     }
 
     public void findByPrice(int price) {
-        productRepo.findByPrice();
+        productRepo.findByPrice(price);
     }
 }
