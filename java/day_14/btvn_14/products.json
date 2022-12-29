@@ -1,0 +1,72 @@
+[
+  {
+    "code": "Ip 11",
+    "name": "Iphone11-128",
+    "describe": "4 mắt, 128 gb",
+    "price": 12000000,
+    "quanlity": 5,
+    "salenumber": 2,
+    "firm": "Apple",
+    "category": ["Apple","Phone"]
+  },
+  {
+    "code": "A13",
+    "name": "Galaxy A13",
+    "describe": "Giá rẻ- 128 gb",
+    "price": 3700000,
+    "quanlity": 4,
+    "salenumber": 1,
+    "firm": "SamSung",
+    "category": ["Phone"]
+  },
+  {
+    "code": "Pro 13",
+    "name": "MacBook Pro",
+    "describe": "13 Touch Bar M1 256GB 2020",
+    "price": 28000000,
+    "quanlity": 10,
+    "salenumber": 5,
+    "firm": "Apple",
+    "category": ["Apple","Laptop"]
+  },
+  {
+    "code": "a-pro",
+    "name": "AirPod Pro",
+    "describe": "màu đen nhám",
+    "price": 4600000,
+    "quanlity": 5,
+    "salenumber": 2,
+    "firm": "Tenma",
+    "category": ["Phone"]
+  },
+  {
+    "code": "DC",
+    "name": "Dây chuyền",
+    "describe": "Vàng mạ, mĩ ký",
+    "price": 1500000,
+    "quanlity": 15,
+    "salenumber": 8,
+    "firm": "Tông lào",
+    "category": ["Assessory"]
+  },
+  {
+    "code": "N63",
+    "name": "Nokia N63",
+    "describe": "Ném chó chết chó",
+    "price": 6696969,
+    "quanlity": 5,
+    "salenumber": 2,
+    "firm": "Nokia",
+    "category": ["Phone"]
+  },
+  {
+    "code": "1200",
+    "name": "Nokia 1200",
+    "describe": "Vào mạng nhanh hơn cơn gió",
+    "price": 9999999,
+    "quanlity": 2,
+    "salenumber": 1,
+    "firm": "Nokia",
+    "category": ["Phone"]
+  }
+]

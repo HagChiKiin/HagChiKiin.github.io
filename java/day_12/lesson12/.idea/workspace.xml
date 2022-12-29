@@ -6,21 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5d188c22-7caa-44e0-9ec6-a18ae2e66574" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/account.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/account.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/repository/AccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/request/LoginRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/backend/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/frontend/AccountUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/frontend/AccountUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/src/main/java/program/frontend/ProgramUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/repository/AccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/repository/AccountRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/request/LoginRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/backend/service/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/frontend/AccountUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/frontend/AccountUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../kiemtra_so2/btvn/target/classes/program/frontend/ProgramUI.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
