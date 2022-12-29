@@ -34,9 +34,7 @@ public class ProductUI {
                 }
 
                 case 3: {
-                    System.out.println("Nhập vào mức giá cần tìm: ");
-                    int price = Integer.parseInt(sc.nextLine());
-                    productController.findByPrice(price);
+                    productController.findByPrice();
 
                     break;
                 }

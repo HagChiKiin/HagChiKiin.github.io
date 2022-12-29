@@ -15,7 +15,7 @@ public class ProductService {
         productRepo.sorByBrand();
     }
 
-    public void findByPrice(int price) {
-        productRepo.findByPrice(price);
+    public void findByPrice() {
+        productRepo.findByPrice();
     }
 }

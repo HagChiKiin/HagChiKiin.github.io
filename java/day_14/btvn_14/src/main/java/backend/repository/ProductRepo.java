@@ -29,17 +29,24 @@ public class ProductRepo {
         }
     }
 
-    public void findByPrice( int price) {
+    public void findByPrice() {
         List<Product> products = ProductDatabase.products;
+        Collections.sort(products, (o1, o2) -> Arrays.toString(o1.getCategory()).compareTo(Arrays.toString(o2.getCategory()))+
+                o1.getPrice()-o2.getPrice());
+
         for (Product p : products
         ) {
-            if (price < 2_000_000) {
+            if (p.getPrice() < 2_000_000) {
+                System.out.println("Danh sách sản phẩm có giá dưới 2tr là: ");
                 System.out.println(p);
-            } else if (price >= 2_000_000 && price < 4_000_000) {
+            } else if (p.getPrice() >= 2_000_000 && p.getPrice() < 4_000_000) {
+                System.out.println("Danh sách sản phẩm có giá từ 2tr đến 4tr là: ");
                 System.out.println(p);
-            } else if (price >= 4_000_000 && price < 7_000_000) {
+            } else if (p.getPrice() >= 4_000_000 && p.getPrice() < 7_000_000) {
+                System.out.println("Danh sách sản phẩm có giá từ 4tr đến 7tr là: ");
                 System.out.println(p);
-            } else if (price >= 7_000_000 && price < 13_000_000) {
+            } else if (p.getPrice() >= 7_000_000 && p.getPrice() < 13_000_000) {
+                System.out.println("Danh sách sản phẩm có giá trên 13tr là: ");
                 System.out.println(p);
             } else {
                 System.out.println(p);

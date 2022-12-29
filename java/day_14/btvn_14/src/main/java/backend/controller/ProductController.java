@@ -12,7 +12,7 @@ public class ProductController {
         productService.sortByBrand();
     }
 
-    public void findByPrice(int price) {
-        productService.findByPrice(price);
+    public void findByPrice() {
+        productService.findByPrice();
     }
 }
