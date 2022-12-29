@@ -15,4 +15,8 @@ public class ProductController {
     public void findByPrice() {
         productService.findByPrice();
     }
+
+    public void findByName() {
+        productService.findByName();
+    }
 }

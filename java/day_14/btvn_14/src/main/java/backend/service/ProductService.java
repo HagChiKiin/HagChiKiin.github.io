@@ -18,4 +18,8 @@ public class ProductService {
     public void findByPrice() {
         productRepo.findByPrice();
     }
+
+    public void findByName() {
+        productRepo.findByName();
+    }
 }

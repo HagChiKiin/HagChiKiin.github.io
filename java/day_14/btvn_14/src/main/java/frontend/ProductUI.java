@@ -41,6 +41,7 @@ public class ProductUI {
 
 
                 case 4: {
+                    productController.findByName();
                     break;
 
 
