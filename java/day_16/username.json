@@ -1,0 +1,77 @@
+[
+  {
+    "username": "kien",
+    "email": "kien@gmail.com",
+    "password": "nguyenkien"
+  },
+  {
+    "username": "trang",
+    "email": "trang@gmail.com",
+    "password": "nguyentrang"
+  },
+  {
+    "username": "tai",
+    "email": "tai@gmail.com",
+    "password": "daubatai"
+  },
+  {
+    "username": "hang",
+    "email": "hang@gmail.com",
+    "password": "thuhang"
+  },
+  {
+    "username": "chi",
+    "email": "chi@gmail.com",
+    "password": "quynhchi"
+  },
+  {
+    "username": "tan",
+    "email": "tan@gmail.com",
+    "password": "tantran10x"
+  },
+  {
+    "username": "hoang",
+    "email": "hoang@gmail.com",
+    "password": "vuminhhoang"
+  },
+  {
+    "username": "thinh",
+    "email": "thinh@gmail.com",
+    "password": "trungvanthinh"
+  },
+  {
+    "username": "son",
+    "email": "son@gmail.com",
+    "password": "sonlippong"
+  },
+  {
+    "username": "luan",
+    "email": "luan@gmail.com",
+    "password": "luan123456"
+  },
+  {
+    "username": "tuyen",
+    "email": "tuyen@gmail.com",
+    "password": "phamthituyen"
+  },
+  {
+    "username": "long",
+    "email": "long@gmail.com",
+    "password": "longtrandz"
+  },
+  {
+    "username": "phuong",
+    "email": "phuong@gmail.com",
+    "password": "phuongkute"
+  },
+  {
+    "username": "thanh",
+    "email": "thanh@gmail.com",
+    "password": "thanhthanh"
+  },
+  {
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "khongcopass"
+  }
+]

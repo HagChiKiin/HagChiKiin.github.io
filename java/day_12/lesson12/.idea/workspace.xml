@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d188c22-7caa-44e0-9ec6-a18ae2e66574" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../day_14/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_14/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_14/.idea/day_14.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_14/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_14/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/.idea/aws.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_15/.idea/day_15.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/.idea/encodings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/.idea/jarRepositories.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml" afterDir="false" />
@@ -21,6 +27,7 @@
       <change afterPath="$PROJECT_DIR$/../../day_15/lesson_15/.idea/jarRepositories.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/lesson_15/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/lesson_15/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_15/lesson_15/lesson_15.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/lesson_15/pom.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/lesson_15/src/main/java/optional_demo/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_15/lesson_15/src/main/java/practice/Main.java" afterDir="false" />

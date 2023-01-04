@@ -1,0 +1,211 @@
+[
+  {
+    "idstudent": 1,
+    "subjectname": "Maths",
+    "point": 8
+  },
+  {
+    "idstudent": 1,
+    "subjectname": "Literatue",
+    "point": 6
+  },
+  {
+    "idstudent": 1,
+    "subjectname": "English",
+    "point": 9
+  },
+  {
+    "idstudent": 2,
+    "subjectname": "Maths",
+    "point": 8.5
+  },
+  {
+    "idstudent": 2,
+    "subjectname": "Literatue",
+    "point": 8
+  },
+  {
+    "idstudent": 2,
+    "subjectname": "English",
+    "point": 9.5
+  },{
+  "idstudent": 3,
+  "subjectname": "Maths",
+  "point": 9
+},
+  {
+    "idstudent": 3,
+    "subjectname": "Literatue",
+    "point": 6.5
+  },
+  {
+    "idstudent": 3,
+    "subjectname": "English",
+    "point": 8
+  },
+  {
+    "idstudent": 4,
+    "subjectname": "Maths",
+    "point": 7
+  },
+  {
+    "idstudent": 4,
+    "subjectname": "Literatue",
+    "point": 7
+  },
+  {
+    "idstudent": 4,
+    "subjectname": "English",
+    "point": 6
+  },
+  {
+    "idstudent": 5,
+    "subjectname": "Maths",
+    "point": 7.5
+  },
+  {
+    "idstudent": 5,
+    "subjectname": "Literatue",
+    "point": 6.5
+  },
+  {
+    "idstudent": 5,
+    "subjectname": "English",
+    "point": 9.5
+  },
+  {
+    "idstudent": 6,
+    "subjectname": "Maths",
+    "point": 10
+  },
+  {
+    "idstudent": 6,
+    "subjectname": "Literatue",
+    "point": 7
+  },
+  {
+    "idstudent": 6,
+    "subjectname": "English",
+    "point": 10
+  },
+  {
+    "idstudent": 7,
+    "subjectname": "Maths",
+    "point": 9.5
+  },
+  {
+    "idstudent": 7,
+    "subjectname": "Literatue",
+    "point": 5.5
+  },
+  {
+    "idstudent": 7,
+    "subjectname": "English",
+    "point": 7
+  },
+  {
+    "idstudent": 8,
+    "subjectname": "Maths",
+    "point": 9
+  },
+  {
+    "idstudent": 8,
+    "subjectname": "Literatue",
+    "point": 8
+  },
+  {
+    "idstudent": 8,
+    "subjectname": "English",
+    "point": 7
+  },
+  {
+    "idstudent": 9,
+    "subjectname": "Maths",
+    "point": 7
+  },
+  {
+    "idstudent": 9,
+    "subjectname": "Literatue",
+    "point": 7.5
+  },
+  {
+    "idstudent": 9,
+    "subjectname": "English",
+    "point": 9.5
+  },
+  {
+    "idstudent": 10,
+    "subjectname": "Maths",
+    "point": 8
+  },
+  {
+    "idstudent": 10,
+    "subjectname": "Literatue",
+    "point": 5
+  },
+  {
+    "idstudent": 10,
+    "subjectname": "English",
+    "point": 5
+  },
+  {
+    "idstudent": 11,
+    "subjectname": "Maths",
+    "point": 6
+  },
+  {
+    "idstudent": 11,
+    "subjectname": "Literatue",
+    "point": 6
+  },
+  {
+    "idstudent": 11,
+    "subjectname": "English",
+    "point": 5
+  },
+  {
+    "idstudent": 12,
+    "subjectname": "Maths",
+    "point": 7
+  },
+  {
+    "idstudent": 12,
+    "subjectname": "Literatue",
+    "point": 5
+  },
+  {
+    "idstudent": 12,
+    "subjectname": "English",
+    "point": 6
+  },
+  {
+    "idstudent": 13,
+    "subjectname": "Maths",
+    "point": 9
+  },
+  {
+    "idstudent": 13,
+    "subjectname": "Literatue",
+    "point": 8
+  },
+  {
+    "idstudent": 13,
+    "subjectname": "English",
+    "point": 8
+  },
+  {
+    "idstudent": 14,
+    "subjectname": "Maths",
+    "point": 7
+  },
+  {
+    "idstudent": 14,
+    "subjectname": "Literatue",
+    "point": 7
+  },
+  {
+    "idstudent": 14,
+    "subjectname": "English",
+    "point": 6
+  }
+]
