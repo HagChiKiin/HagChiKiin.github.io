@@ -1,5 +1,6 @@
 package backend.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Student {
     private int id;
+    @SerializedName("fullname")
     private String fullName;
     private String birthday;
     private String gender;

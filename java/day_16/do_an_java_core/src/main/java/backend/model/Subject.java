@@ -19,7 +19,7 @@ public class Subject {
 
     @Override
     public String toString() {
-        System.out.printf("%-10d %-10s %-5d ", this.getSubjectName(), this.getPoint());
+        System.out.printf("%-15d %-15s %-15d ", this.getSubjectName(), this.getPoint());
         return "";
     }
 }

@@ -24,9 +24,8 @@ public class UserUtils {
             Reader reader = Files.newBufferedReader(Paths.get(fileName));
 
             // Đọc thông tin từ file và binding và class
-            Type type = new TypeToken<ArrayList<User>>() {
-            }.getType();
-            ArrayList<User> users = gson.fromJson(reader, type);
+            Type type = new TypeToken<ArrayList<User >>(){}.getType();
+            ArrayList<User > users = gson.fromJson(reader, type);
 
             // Đọc file xong thì đóng lại
             // Và trả về kết quả
@@ -35,13 +34,13 @@ public class UserUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
-    }
 
+        return new ArrayList<>();
+    }
     public static void setDataToFile(String fileName, Object obj) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            Writer writer = newBufferedWriter(Paths.get(fileName));
+            Writer writer = Files.newBufferedWriter(Paths.get(fileName));
 
             gson.toJson(obj, writer);
 

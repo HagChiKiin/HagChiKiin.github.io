@@ -1,5 +1,6 @@
 package backend.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class User {
-    private String email;
-    private String passWord;
+    @SerializedName("username")
     private String userName;
+    private String email;
+    @SerializedName("password")
+    private String passWord;
+
     @Override
     public String toString() {
-        System.out.printf("%-5s %-5s %-5s ", this.getEmail(), this.getPassWord(),this.getUserName());
+        System.out.printf("%-20s %-20s %-20s\n",getUserName(),getEmail(),getPassWord());
         return "";
     }
 }

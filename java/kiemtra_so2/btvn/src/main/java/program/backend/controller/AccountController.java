@@ -26,7 +26,7 @@ public class AccountController {
         return accountService.changPassWord(email, request);
     }
 
-    public Account register(ChangeRequest request) {
+    public Account register(ChangeRequest request)   {
         return accountService.register(request);
     }
 
