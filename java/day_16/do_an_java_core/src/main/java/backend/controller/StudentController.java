@@ -11,4 +11,12 @@ public class StudentController {
         return studentService.findAll();
 
     }
+
+    public void showInfo() {
+
+    }
+
+    public ArrayList<Student> getStudentById(String name, int id) {
+        return studentService.getStudentById(name,id);
+    }
 }

@@ -124,12 +124,12 @@ public class BookUI {
 
     public void showMenu() {
         System.out.println("\n------------MENU------------");
-        System.out.println("1 - In thông tin sản phẩm theo danh mục");
-        System.out.println("2 - In thông tin sản phẩm theo hãng và số sản phẩm");
-        System.out.println("3 - In thông tin sản phẩm theo mức gia");
-        System.out.println("4 - Thay đổi thông tin của book");
-        System.out.println("5 - Tạo thêm sách mới");
-        System.out.println("6 - Thoát");
+        System.out.println("1- Xem danh sách books");
+        System.out.println("2- Tìm sách theo tên ");
+        System.out.println("3- Xóa sách theo id ");
+        System.out.println("4- Nhập id cần chỉnh sửa  ");
+        System.out.println("5- Thêm sách mới ");
+        System.out.println("6 - Thoát\n");
     }
 }
 

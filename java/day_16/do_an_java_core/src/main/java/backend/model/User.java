@@ -19,7 +19,7 @@ public class User {
 
     @Override
     public String toString() {
-        System.out.printf("%-20s %-20s %-20s\n",getUserName(),getEmail(),getPassWord());
+        System.out.printf("%-20s %-20s %-20s\n",this.getUserName(),this.getEmail(),this.getPassWord());
         return "";
     }
 }

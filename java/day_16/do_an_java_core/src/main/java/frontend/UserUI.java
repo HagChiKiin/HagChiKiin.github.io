@@ -1,7 +1,9 @@
 package frontend;
 
 import backend.controller.UserController;
+import backend.database.UserDB;
 import backend.exception.NotFoundException;
+import backend.model.Student;
 import backend.model.User;
 import backend.request.ChangePassword;
 import backend.request.ChangeUsername;
@@ -135,18 +137,18 @@ public class UserUI {
     public void run1() {
         Scanner sc = new Scanner(System.in);
         int option = 0;
-        boolean isQuit = false;
+        boolean isQuit1 = false;
         System.out.println("Nhập email: ");
         String email = sc.nextLine();
         System.out.println("Nhập password: ");
         String passWord = sc.nextLine();
-        ArrayList<User> users = userController.findAll();
+        ArrayList<User> users = UserDB.users;
         boolean iXists = false;
         for (User a : users) {
-            if (a.getEmail().equals(email) && a.getPassWord().equals(passWord)) {
+            if (a.getEmail().equalsIgnoreCase(email) && a.getPassWord().equalsIgnoreCase(passWord)) {
                 System.out.println("Chào mừng " + a.getUserName());
                 iXists = true;
-                while (!isQuit) {
+                while (!isQuit1) {
                     showMenu1();
                     try {
                         System.out.println("Nhập lựa chọn: ");
@@ -157,21 +159,26 @@ public class UserUI {
                     }
                     switch (option) {
                         case 1: {
-                            if(a.getUserName()!="admin"){
+                            studentUI.run();
 
-                            }
 
+                            break;
 
                         }
                         case 2: {
-                            if(a.getUserName()=="admin") {
+                            if (a.getUserName() == "admin") {
+                                studentUI.run();
 
+                            }else {
+                                System.out.println("không đủ thẩm quyền, vui lòng chọn lại");
+                                isQuit1 = true;
+                                break;
                             }
                             break;
                         }
                         case 3: {
                             System.out.println("Nhập email của bạn");
-                            String email1 =sc.nextLine();
+                            String email1 = sc.nextLine();
                             System.out.println("Nhập vào username mới:  ");
                             String newUsername = sc.nextLine();
                             ChangeUsername request = new ChangeUsername(newUsername);
@@ -189,7 +196,7 @@ public class UserUI {
                             break;
                         }
                         case 4: {
-                            isQuit = true;
+                            isQuit1 = true;
                             break;
                         }
                         default: {
@@ -198,10 +205,11 @@ public class UserUI {
                     }
                 }
             }
-            if (!iXists) {
-                System.out.println("Tài khoản hoặc mật khẩu không chính xác");
-                break;
-            }
+
+        }
+        if (!iXists) {
+            System.out.println("Tài khoản hoặc mật khẩu không chính xác");
+
         }
     }
 

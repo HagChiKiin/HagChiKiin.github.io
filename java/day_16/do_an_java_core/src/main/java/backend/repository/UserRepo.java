@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserRepo {
+
     ArrayList<User> users = UserDB.users;
     Scanner sc = new Scanner(System.in);
     User user = new User();

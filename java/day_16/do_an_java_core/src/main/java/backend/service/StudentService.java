@@ -10,4 +10,8 @@ public class StudentService {
     public ArrayList<Student> findAll() {
         return studentRepo.findAll();
     }
+
+    public ArrayList<Student> getStudentById(String name, int id) {
+        return studentRepo.getStudentById(name,id);
+    }
 }

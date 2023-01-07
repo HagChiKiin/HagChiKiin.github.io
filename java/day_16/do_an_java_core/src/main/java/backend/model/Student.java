@@ -21,7 +21,7 @@ public class Student {
     @Override
     public String toString() {
 
-        System.out.printf("%-5d %-10s %-10s %-5s %-10s", this.getId(), this.getFullName(), this.getBirthday(),
+        System.out.printf("%-5d %-25s %-15s %-8s %-20s ", this.getId(), this.getFullName(), this.getBirthday(),
                 this.getGender(), this.getAddress());
         return "";
     }

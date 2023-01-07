@@ -189,7 +189,7 @@ public class AccountUI {
                             isExists = true;
                         }
                     }
-                    if (!isExists) {
+                     if (!isExists) {
                         System.out.println("Email không tồn tại\n");
                     } else {
                         System.out.print("Nhập mật khẩu mới: ");

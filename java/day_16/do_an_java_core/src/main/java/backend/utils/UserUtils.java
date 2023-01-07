@@ -32,7 +32,7 @@ public class UserUtils {
             reader.close();
             return users;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         return new ArrayList<>();
