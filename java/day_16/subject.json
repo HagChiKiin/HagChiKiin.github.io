@@ -1,86 +1,100 @@
 [
   {
     "idstudent": 1,
+    "name": "kiên",
     "mathpoint": 8,
     "literaturepoint": 6,
     "englishpoint": 9
   },
   {
     "idstudent": 2,
+    "name": "trang",
     "mathpoint": 8.5,
     "literaturepoint": 8,
     "englishpoint": 9.5
   },
   {
     "idstudent": 3,
+    "name": "tài",
     "mathpoint": 9,
     "literaturepoint": 6.5,
     "englishpoint": 8
   },
   {
     "idstudent": 4,
+    "name": "hằng",
     "mathpoint": 7,
     "literaturepoint": 7,
     "englishpoint": 6
   },
   {
     "idstudent": 5,
+    "name": "chi",
     "mathpoint": 7.5,
     "literaturepoint": 6.5,
     "englishpoint": 9.5
   },
   {
     "idstudent": 6,
+    "name": "tân",
     "mathpoint": 10,
     "literaturepoint": 7,
     "englishpoint": 10
   },
   {
     "idstudent": 7,
+    "name": "hoàng",
     "mathpoint": 9.5,
     "literaturepoint": 5.5,
     "englishpoint": 7
   },
   {
     "idstudent": 8,
+    "name": "thịnh",
     "mathpoint": 9,
     "literaturepoint": 8,
     "englishpoint": 7
   },
   {
     "idstudent": 9,
+    "name": "sơn",
     "mathpoint": 7,
     "literaturepoint": 7.5,
     "englishpoint": 9.5
   },
   {
     "idstudent": 10,
+    "name": "luân",
     "mathpoint": 8,
     "literaturepoint": 5,
     "englishpoint": 5
   },
   {
     "idstudent": 11,
+    "name": "tuyền",
     "mathpoint": 6,
     "literaturepoint": 6,
     "englishpoint": 5
   },
   {
     "idstudent": 12,
+    "name": "long",
     "mathpoint": 7,
     "literaturepoint": 5,
     "englishpoint": 6
   },
   {
     "idstudent": 13,
+    "name": "phương",
     "mathpoint": 9,
     "literaturepoint": 8,
     "englishpoint": 8
   },
   {
     "idstudent": 14,
+    "name": "thanh",
     "mathpoint": 7,
-    "literature point": 7,
+    "literaturepoint": 7,
     "englishpoint": 6
   }
 ]
