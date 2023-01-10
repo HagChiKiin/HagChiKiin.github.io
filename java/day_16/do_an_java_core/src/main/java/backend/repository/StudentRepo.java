@@ -11,11 +11,11 @@ public class StudentRepo {
     ArrayList<Student> students = StudentDB.students;
     User user = new User();
     Scanner sc = new Scanner(System.in);
-
+// In ra danh sách học sinh
     public ArrayList<Student> findAll() {
         return StudentDB.students;
     }
-
+// In ra học sinh theo id và name
     public ArrayList<Student> getStudentById(String name, int id) {
         ArrayList<Student> students1 = StudentDB.students;
         ArrayList<Student> rs = new ArrayList<>();

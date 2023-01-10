@@ -58,7 +58,7 @@ public class UserUI {
         }
     }
 
-
+    // In ra Menu 1
     public void showMenu() {
         System.out.println("\n-----CHÀO MỪNG ĐẾN VỚI TRANG QUẢN LÝ TUYỂN SINH CẤP 3 TRƯỜNG PTTH LIÊN HÀ-----");
         System.out.println("1 - Đăng nhập");
@@ -66,7 +66,7 @@ public class UserUI {
         System.out.println("3 - Quên mật khẩu");
         System.out.println("4 - Thoát");
     }
-
+    // Method đăng ký username, email, password mới
     public void register() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập username mới : ");
@@ -77,6 +77,7 @@ public class UserUI {
         ArrayList<User> users1 = userController.findAll();
         boolean isExists = false;
         for (User a : users1) {
+            // Kiểm tra trùng email trong file json
             if (a.getEmail().equalsIgnoreCase(newEmail)) {
                 isExists = true;
             }
@@ -84,12 +85,14 @@ public class UserUI {
         if (isExists) {
             System.out.println("Email đã tồn tại!\n");
         } else {
+            // Kiểm tra định dạng email
             String EMAIL_PATTERN =
                     "^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$";
 
             if (Pattern.matches(EMAIL_PATTERN, newEmail) == true) {
                 System.out.print("Nhập mật khẩu mới: ");
                 String newPassword = sc.nextLine();
+                // Kiểm tra điều kiện password >= 8 ký ự
                 if (newPassword.length() >= 8) {
                     CreateUser rq = new CreateUser(newUserName, newEmail, newPassword);
                     User user1 = userController.register(rq);
@@ -105,7 +108,7 @@ public class UserUI {
             }
         }
     }
-
+    // Method quên mật khẩu
     private void forgotPassword() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập email cần đổi mật khẩu : ");
@@ -133,7 +136,7 @@ public class UserUI {
             }
         }
     }
-
+    // Method menu 2
     public void run1() {
         Scanner sc = new Scanner(System.in);
         int option = 0;
@@ -145,6 +148,7 @@ public class UserUI {
         ArrayList<User> users = UserDB.users;
         boolean iXists = false;
         for (User a : users) {
+            // Sau khi đăng nhập thành công thì thực hiên tiếp các chức năng
             if (a.getEmail().equalsIgnoreCase(email) && a.getPassWord().equalsIgnoreCase(passWord)) {
                 System.out.println("Chào mừng " + a.getUserName());
                 iXists = true;
@@ -170,6 +174,7 @@ public class UserUI {
                                 studentUI.run();
 
                             }else {
+                                // Username phải là admin mới chọn được chức năng 2
                                 System.out.println("không đủ thẩm quyền, vui lòng chọn lại");
                                 isQuit1 = true;
                                 break;
@@ -183,11 +188,12 @@ public class UserUI {
                             String newUsername = sc.nextLine();
                             ChangeUsername request = new ChangeUsername(newUsername);
                             try {
+                                // changeUsername - method đổi tên username dựa trên email của tài khoản
                                 User user1 = userController.changeUsername(email1, request);
                                 System.out.println("Thông tin sách sau khi thay đổi là: ");
                                 System.out.printf("%-20s %-20s %-20s\n", "username", "email", "password");
                                 System.out.println(user1);
-
+                                // Xử lý lỗi notfoundException
                             } catch (NotFoundException e) {
                                 {
                                     System.out.println(e.getMessage());
@@ -212,7 +218,7 @@ public class UserUI {
 
         }
     }
-
+    // In ra menu2
     public void showMenu1() {
         System.out.println("\n-----Vui lòng chọn các chức năng sau-----");
         System.out.println("1 - Học sinh");

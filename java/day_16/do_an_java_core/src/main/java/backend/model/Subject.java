@@ -13,13 +13,18 @@ import lombok.Setter;
 public class Subject {
     @SerializedName("idstudent")
     private int idStudent;
-    @SerializedName("subjectname")
-    private String subjectName;
-    private double point;
+    @SerializedName("mathpoint")
+    private double mathPoint;
+    @SerializedName("literaturepoint")
+    private double literaturePoint;
+    @SerializedName("englishpoint")
+    private double englishPoint;
+
 
     @Override
     public String toString() {
-        System.out.printf("%-15d %-15s %-15d ", this.getSubjectName(), this.getPoint());
+        System.out.printf("%-5d %-12.2f %-12.2f %-12.2f",this.getIdStudent(), this.getMathPoint(),
+                this.getLiteraturePoint(), this.getEnglishPoint());
         return "";
     }
 }

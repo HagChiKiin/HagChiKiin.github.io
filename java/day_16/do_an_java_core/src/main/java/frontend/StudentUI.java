@@ -13,6 +13,7 @@ public class StudentUI {
     StudentController studentController = new StudentController();
     UserController userController = new UserController();
     Subject subject = new Subject();
+    SubjectUI subjectUI = new SubjectUI();
 
     public void run() {
         Scanner sc = new Scanner(System.in);
@@ -45,11 +46,11 @@ public class StudentUI {
                             System.out.println(b);
                         }
                     }
-
-
-
+                    break;
                 }
                 case 2: {
+                    subjectUI.run();
+                    break;
 
                 }
                 case 3: {
@@ -65,10 +66,6 @@ public class StudentUI {
             }
         }
     }
-
-
-
-
 
     public void showMenu() {
         System.out.println("\n-----Vui lòng chọn các chức năng sau-----");

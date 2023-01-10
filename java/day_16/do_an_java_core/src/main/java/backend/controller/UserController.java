@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class UserController {
     private final UserService userService = new UserService();
+
     public ArrayList<User> findAll() {
         return userService.findAll();
     }

@@ -12,10 +12,8 @@ public class StudentController {
 
     }
 
-    public void showInfo() {
 
-    }
-
+// UI thao tác đến controller
     public ArrayList<Student> getStudentById(String name, int id) {
         return studentService.getStudentById(name,id);
     }
