@@ -31,7 +31,7 @@ public class StudentRepo {
             }
         }
         if (!ixist) {
-            System.out.println("Nhập chưa đúng, vui lòng kiểm tra lại thông tin cá nhân");
+            System.out.println("Nhập chưa đúng id và name, vui lòng kiểm tra lại");
         }
         return rs;
     }
@@ -48,7 +48,7 @@ public class StudentRepo {
                 return b;
             }
         }
-        throw new NotFoundException("Không tìm thấy học sinh có id = "+id);
+        throw new NotFoundException("Không tìm thấy học sinh có id = "+id); // Sử dụng exception tự định nghĩa
     }
 // Xóa trong biến và lưu lại trên file json
     public void delete(Student id) {

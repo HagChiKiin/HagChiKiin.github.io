@@ -4,7 +4,6 @@ import backend.controller.UserController;
 import backend.database.UserDB;
 import backend.exception.NotFoundException;
 
-import java.io.Console;
 
 import backend.model.User;
 import backend.request.ChangePassword;
@@ -27,11 +26,12 @@ public class UserUI {
         boolean isQuit = false;
         while (!isQuit) {
             showMenu();
+            // Xử lý lỗi có thể xảy ra khi ép kiểu ( Nhập sai định dạng cho phép )  - Numberformatexception
             try {
                 System.out.println("Nhập lựa chọn: ");
                 option = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Chỉ được lựa chọn từ 1 đến 4\n");
+                System.out.println("CHỈ ĐƯỢC LỰA CHỌN 1 ĐẾN 4\n"); // Code xử lý ngoại lệ
                 continue;
             }
             switch (option) {
@@ -55,7 +55,7 @@ public class UserUI {
                     break;
                 }
                 default: {
-                    System.out.println("Lựa chọn không hợp lệ");
+                    System.out.println("LỰA CHỌN KHÔNG HỢP LỆ");
                 }
             }
         }
@@ -63,7 +63,7 @@ public class UserUI {
 
     // In ra Menu 1
     public void showMenu() {
-        System.out.println("\n-----CHÀO MỪNG ĐẾN VỚI TRANG QUẢN LÝ TUYỂN SINH CẤP 3 TRƯỜNG PTTH LIÊN HÀ-----");
+        System.out.println("\n☺☺☺☺☺☺☺CHÀO MỪNG ĐẾN VỚI TRANG QUẢN LÝ TUYỂN SINH CẤP 3 TRƯỜNG PTTH LIÊN HÀ☺☺☺☺☺☺☺");
         System.out.println("1 - Đăng nhập");
         System.out.println("2 - Đăng ký");
         System.out.println("3 - Quên mật khẩu");
@@ -89,7 +89,7 @@ public class UserUI {
                 }
             }
             if (isExists) {
-                System.out.println("Email đã tồn tại!\n");
+                System.out.println("EMAIL ĐÃ TỒN TẠI\n");
             } else {
                 // Kiểm tra định dạng email
                 String EMAIL_PATTERN =
@@ -103,24 +103,24 @@ public class UserUI {
                         CreateUser rq = new CreateUser(newUserName, newEmail, newPassword);
                         try {
                             User user1 = userController.register(rq);
-                            System.out.println("Đăng ký thành công!");
+                            System.out.println("ĐĂNG KÝ THÀNH CÔNG☻");
                             System.out.printf("%-20s %-20s %-20s\n", "Username", "Email", "Password");
                             System.out.println(user1);
-                        } catch (NotFoundException e) {
+                        } catch (NotFoundException e) { // Xử lý ngoại lệ khi k tìm thấy user
                             {
                                 System.out.println(e.getMessage());
                             }
                         }
 
                     } else {
-                        System.out.println("Mật khẩu phải có độ dài từ 8 ký tự trở lên, hãy nhập lại mật khẩu!");
+                        System.out.println("MẬT KHẨU PHẢI CÓ TRÊN 8 KÝ TỰ");
                     }
                 } else {
-                    System.out.println("Email không hợp lệ, hãy nhập lại email!\n");
+                    System.out.println("EMAIL KHÔNG HỢP LỆ\n");
                 }
             }
         } else {
-            System.out.println("Không được tạo username trùng với admin");
+            System.out.println("KHÔNG ĐƯỢC TẠO USERNAME TRÙNG VỚI ADMIN");
         }
 
     }
@@ -138,7 +138,7 @@ public class UserUI {
             }
         }
         if (!isExists) {
-            System.out.println("Email không tồn tại\n");
+            System.out.println("EMAIL KHÔNG TỒN TẠI\n");
         } else {
             System.out.print("Nhập mật khẩu mới: ");
             String newPassword = sc.nextLine();
@@ -146,7 +146,7 @@ public class UserUI {
                 ChangePassword rq = new ChangePassword(newPassword);
                 try {
                     User user3 = userController.forgotPassWord(email, rq);
-                    System.out.println("Đổi mật khẩu thành công!");
+                    System.out.println("ĐỔI MẬT KHẨU THÀNH CÔNG☻");
                     System.out.printf("%-20s %-20s %-20s\n", "Username", "Email", "Password");
                     System.out.println(user3);
                 } catch (NotFoundException e) {
@@ -155,7 +155,7 @@ public class UserUI {
                     }
                 }
             } else {
-                System.out.println("Mật khẩu phải có độ dài từ 7 đến 15 ký tự!");
+                System.out.println("MẬT KHẨU PHẢI CÓ TRÊN 8 KÝ TỰ☻");
             }
         }
     }
@@ -174,7 +174,7 @@ public class UserUI {
         for (User a : users) {
             // Sau khi đăng nhập thành công thì thực hiên tiếp các chức năng
             if (a.getEmail().equalsIgnoreCase(email) && a.getPassWord().equalsIgnoreCase((passWord))) {
-                System.out.println("Chào mừng " + a.getUserName());
+                System.out.println("♥♥♥CHÚC MỪNG " + a.getUserName().toUpperCase()+" ĐÃ ĐĂNG NHẬP THÀNH CÔNG♥♥♥");
                 iXists = true;
                 while (!isQuit1) {
                     showMenu1();
@@ -182,15 +182,15 @@ public class UserUI {
                         System.out.println("Nhập lựa chọn: ");
                         option = Integer.parseInt(sc.nextLine());
                     } catch (NumberFormatException e) {
-                        System.out.println("Chỉ được chọn từ 1 đến 4\n");
+                        System.out.println("CHỈ ĐƯỢC LỰA CHỌN 1 ĐẾN 4\n");
                         continue;
                     }
                     switch (option) {
                         case 1: {
-                            if(!a.getUserName().equalsIgnoreCase("admin")){
+                            if (!a.getUserName().equalsIgnoreCase("admin")) {
                                 studentUI.run();
-                            }else {
-                                System.out.println("Vui lòng chọn phần admin");
+                            } else {
+                                System.out.println("★★★ VUI LÒNG CHỌN ADMIN ★★★");
                             }
                             break;
                         }
@@ -199,30 +199,35 @@ public class UserUI {
                                 studentUI.run1();
                             } else {
                                 // Username phải là admin mới chọn được chức năng 2
-                                System.out.println("không đủ thẩm quyền, vui lòng phần học sinh");
-                                isQuit1 = true;
-                                break;
+                                System.out.println("★★★ KHÔNG ĐỦ THẨM QUYỀN, VUI LÒNG CHỌN HỌC SINH ★★★");
                             }
                             break;
                         }
                         case 3: {
                             System.out.println("Nhập email của bạn");
                             String email1 = sc.nextLine();
-                            System.out.println("Nhập vào username mới:  ");
+                            System.out.println("Nhập vào username mới của bạn");
                             String newUsername = sc.nextLine();
-                            ChangeUsername request = new ChangeUsername(newUsername);
-                            try {
-                                // changeUsername - method đổi tên username dựa trên email của tài khoản
-                                User user1 = userController.changeUsername(email1, request);
-                                System.out.println("Thông tin sách sau khi thay đổi là: ");
-                                System.out.printf("%-20s %-20s %-20s\n", "Username", "Email", "Password");
-                                System.out.println(user1);
-                                // Xử lý lỗi notfoundException
-                            } catch (NotFoundException e) {
-                                {
-                                    System.out.println(e.getMessage());
+                            newUsername = newUsername.replaceAll(" ", "");
+                            ArrayList<User> users1 = userController.findAll();
+                            if (!newUsername.equalsIgnoreCase("admin")){
+                                ChangeUsername request = new ChangeUsername(newUsername);
+                                try {
+                                    // changeUsername - method đổi tên username dựa trên email của tài khoản
+                                    User user1 = userController.changeUsername(email1, request);
+                                    System.out.println("THÔNG TIN USER SAU KHI THAY ĐỔI LÀ ");
+                                    System.out.printf("%-20s %-20s %-20s\n", "Username", "Email", "Password");
+                                    System.out.println(user1);
+                                    // Xử lý ngoại lệ
+                                } catch (NotFoundException e) {
+                                    {
+                                        System.out.println(e.getMessage());
+                                    }
                                 }
+                            }else {
+                                System.out.println("★★★ KHÔNG ĐƯỢC TẠO USERNAME TRÙNG VỚI ADMIN ★★★");
                             }
+
                             break;
                         }
                         case 4: {
@@ -230,24 +235,23 @@ public class UserUI {
                             break;
                         }
                         default: {
-                            System.out.println("Lựa chọn không hợp lệ");
+                            System.out.println("LỰA CHỌN KHÔNG HỢP LỆ");
                         }
                     }
                 }
             }
         }
         if (!iXists) {
-            System.out.println("Tài khoản hoặc mật khẩu không chính xác");
-
+            System.out.println("★★★ TÀI KHOẢN HOẶC MẬT KHẨU KHÔNG CHÍNH XÁC ★★★");
         }
     }
 
     // In ra menu2
     public void showMenu1() {
-        System.out.println("\n-----Vui lòng chọn các chức năng sau-----");
+        System.out.println("\n☺☺☺☺CHỌN CÁC CHỨC NĂNG DƯỚI ĐÂY☺☺☺☺");
         System.out.println("1 - Học sinh");
         System.out.println("2 - Admin");
         System.out.println("3 - Thay đổi username");
-        System.out.println("4 - Thoát");
+        System.out.println("4 - Trở về");
     }
 }

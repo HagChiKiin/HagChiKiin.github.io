@@ -26,34 +26,34 @@ public class SubjectRepo {
         return rs;
     }
 
-    // Kiểm tra kết quả thi dựa trên id và name
+    // Kiểm tra kết quả thi dựa trên id và name của học sinh
     public ArrayList<Subject> examResult(int id, String name) {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         boolean iXist = false;
         for (Subject s : subjects
         ) {
-            if (s.getIdStudent() == id && s.getName().equalsIgnoreCase(name)) {
+            if (s.getIdStudent() == id && s.getName().toLowerCase().contains(name.toLowerCase())) {
                 iXist = true;
                 double a = (s.getMathPoint() + s.getLiteraturePoint() + s.getEnglishPoint() * 2) / 4;
                 if (a >= 9) {
-                    System.out.println("Bạn đạt chỉ tiêu vào lớp A1");
+                    System.out.println("CHÚC MỪNG BẠN ĐÃ ĐỦ CHỈ TIÊU VÀO LỚP A1☀");
                 } else if (a >= 8) {
-                    System.out.println("Bạn đạt chỉ tiêu vào lớp A2");
+                    System.out.println("CHÚC MỪNG BẠN ĐÃ ĐỦ CHỈ TIÊU VÀO LỚP A2☀");
                 } else if (a >= 7) {
-                    System.out.println("Bạn đạt chỉ tiêu vào lớp A3 -> A5");
+                    System.out.println("CHÚC MỪNG BẠN ĐÃ ĐỦ CHỈ TIÊU VÀO LỚP A3 -> A5☀");
                 } else if (a >= 6) {
-                    System.out.println("Bạn đạt chỉ tiêu vào lớp A6 -> A10");
+                    System.out.println("CHÚC MỪNG BẠN ĐÃ ĐỦ CHỈ TIÊU VÀO LỚP A6 -> A10☀");
                 } else {
                     System.out.println("Bạn không đạt chỉ tiêu tuyển sinh");
                 }
             }
             if (!iXist) {
-                System.out.println("Không có học sinh " + name + " có id là " + id + " ,vui lòng kiểm tra lại");
+                System.out.println("KHÔNG CÓ HỌC SINH " + name + " CÓ ID LÀ " + id );
             }
         }
         return subjects;
     }
-
+    // In ra danh sách học sinh đủ tiêu chí vào lớp A1
     public void showListStudentA1() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         for (Subject s : subjects
@@ -64,7 +64,7 @@ public class SubjectRepo {
             }
         }
     }
-
+    // In ra danh sách học sinh đủ tiêu chí vào lớp A2
     public void showListStudentA2() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         for (Subject s : subjects
@@ -75,6 +75,7 @@ public class SubjectRepo {
             }
         }
     }
+    // In ra danh sách học sinh đủ tiêu chí vào lớp A3>A5
     public void showListStudentA3() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         for (Subject s : subjects
@@ -85,6 +86,7 @@ public class SubjectRepo {
             }
         }
     }
+    // In ra danh sách học sinh đủ tiêu chí vào lớp A6>A10
     public void showListStudentA6() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         for (Subject s : subjects
@@ -95,6 +97,7 @@ public class SubjectRepo {
             }
         }
     }
+    // In ra danh sách trượt(có điểm trung bình <6)
     public void showListStudentFail() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         for (Subject s : subjects

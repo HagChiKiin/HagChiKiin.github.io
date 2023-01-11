@@ -27,7 +27,7 @@ public class UserRepo {
                 return a;
             }
         }
-        throw new NotFoundException("Không tìm thấy email : " + email);
+        throw new NotFoundException("Không tìm thấy email : " + email);// Xử lý ngoại lệ unchecked exception
     }
 // Lưu user vào biến và lưu vào file json
     public void save(User user) {
@@ -48,12 +48,5 @@ public class UserRepo {
         UserUtils.setDataToFile("username.json", UserDB.users);
         return user;
     }
-
-//    public void changePassword() {
-//        System.out.println("Nhập Password mới: ");
-//        String newPassword = scanner.nextLine();
-//        account.setPassword(newPassword);
-//        FileUtils.setDataToFile("accounts.json", AccountDB.accounts);
-//    }
 }
 
