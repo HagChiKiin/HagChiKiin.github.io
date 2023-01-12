@@ -58,16 +58,7 @@ public class StudentUI {
                     break;
                 }
                 case 2: {
-                    System.out.println("Nhập vào name của bạn");
-                    String name = sc.nextLine();
-                    try {
-                        System.out.println("Nhập vào id của bạn");
-                        int id = Integer.parseInt(sc.nextLine());
-                        SubjectRepo subjectRepo = new SubjectRepo();
-                        subjectRepo.examResult(id, name);
-                    } catch (NumberFormatException e) {
-                        System.out.println("ID CHỈ ĐƯỢC NHẬP SỐ NGUYÊN \n");
-                    }
+                    subjectUI.run();
                     break;
                 }
                 case 3: {
@@ -81,13 +72,15 @@ public class StudentUI {
         }
     }
 
+    // Menu 2 khi gọi chức năng học sinh
     public void showMenu() {
-        System.out.println("\n-----CHỌN CHỨC NĂNG DƯỚI ĐÂY-----");
-        System.out.println("1 - Thông tin học sinh ");
-        System.out.println("2 - Tra cứu kết quả thi ");
+        System.out.println("☺☺☺☺CHỌN CHỨC NĂNG DƯỚI ĐÂY☺☺☺☺");
+        System.out.println("1 - Kiểm tra thông tin cá nhân ");
+        System.out.println("2 - Kiểm tra kết quả thi ");
         System.out.println("3 - Quay lại");
     }
 
+    // Menu 2 khi gọi chức năng admin
     public void run1() {
         Scanner sc = new Scanner(System.in);
         int option = 0;
@@ -253,10 +246,10 @@ public class StudentUI {
 
     // In ra menu chức năng của user admin
     private void showMenu1() {
-        System.out.println("\n-----CHỌN CÁC CHỨC NĂNG DƯỚI ĐÂY-----");
+        System.out.println("\n☺☺☺☺CHỌN CÁC CHỨC NĂNG DƯỚI ĐÂY☺☺☺☺");
         System.out.println("1 - In ra thông tin các học sinh dự tuyển ");
         System.out.println("2 - Thêm thông tin học sinh dự tuyển ");
-        System.out.println("3 - Xóa toàn bộ thông tin học sinh dự tuyển");
+        System.out.println("3 - Xóa thông tin học sinh dự tuyển");
         System.out.println("4 - Sửa thông tin học sinh dự tuyển");
         System.out.println("5 - In ra danh sách học sinh đạt chỉ tiêu vào lớp A1");
         System.out.println("6 - In ra danh sách học sinh đạt chỉ tiêu vào lớp A2");

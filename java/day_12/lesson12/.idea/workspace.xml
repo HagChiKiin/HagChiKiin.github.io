@@ -6,26 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5d188c22-7caa-44e0-9ec6-a18ae2e66574" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/database/UserDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/database/UserDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/exception/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/exception/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/repository/StudentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/repository/StudentRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/repository/SubjectRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/repository/SubjectRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/repository/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/repository/UserRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/request/Update.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/utils/UserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/backend/utils/UserUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/frontend/StudentUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/frontend/StudentUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/frontend/SubjectUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/frontend/SubjectUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/frontend/UserUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/src/main/java/frontend/UserUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/database/UserDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/database/UserDB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/repository/StudentRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/repository/StudentRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/repository/SubjectRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/repository/SubjectRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/request/Update.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/utils/UserUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/backend/utils/UserUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/frontend/StudentUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/frontend/StudentUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/frontend/SubjectUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/frontend/SubjectUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/frontend/UserUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/do_an_java_core/target/classes/frontend/UserUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/student.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_16/username.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_16/username.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,7 +1,6 @@
 package frontend;
 
 import backend.controller.SubjectController;
-import backend.exception.NotFoundException;
 import backend.model.Subject;
 
 import java.util.ArrayList;
@@ -32,9 +31,9 @@ public class SubjectUI {
                         String name = sc.nextLine();
                         ArrayList<Subject> subjects = subjectController.pointLookUp(id, name);
                         if (subjects.isEmpty()) {
-                            System.out.println("KHÔNG CÓ HỌC SINH NÀO CÓ TÊN VÀ ID LÀ: " + name + "-" + id);
+                            System.out.println("KHÔNG CÓ HỌC SINH NÀO CÓ TÊN LÀ: " + name.toUpperCase() + " VÀ CÓ ID LÀ: " + id);
                         } else {
-                            System.out.println("ĐIỂM CỦA HỌC SIN CÓ NAME " + name + " VÀ CÓ ID: " + id + " NHƯ SAU: ");
+                            System.out.println("ĐIỂM CỦA HỌC SINH CÓ NAME " + name.toUpperCase() + " VÀ CÓ ID: " + id + " NHƯ SAU: ");
                             System.out.printf("%-5s %-10s %-12s %-12s %-12s\n",
                                     "Id", "Name", "Math point", "Literature point", "English point");
                             for (Subject s : subjects
@@ -55,7 +54,7 @@ public class SubjectUI {
                         String name = sc.nextLine();
                         ArrayList<Subject> subjects = subjectController.examResult(id, name);
                         if (subjects.isEmpty()) {
-                            System.out.println("Không có học sinh nào có tên và id là: " + name + "-" + id);
+                            System.out.println("KHÔNG CÓ HỌC SINH NÀO CÓ TÊN LÀ: " + name.toUpperCase() + " VÀ CÓ ID LÀ: " + id);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("ID CHỈ ĐƯỢC NHẬP SỐ NGUYÊN\n");
@@ -73,10 +72,11 @@ public class SubjectUI {
         }
     }
 
+    // Menu 3
     private void showMenu() {
-        System.out.println("\n-----CHỌN CÁC CHỨC NĂNG DƯỚI ĐÂY-----");
+        System.out.println("\n☺☺☺☺CHỌN CÁC CHỨC NĂNG DƯỚI ĐÂY☺☺☺☺");
         System.out.println("1 - Tra cứu điểm thi ");
-        System.out.println("2 - Kiểm tra kết quả phân lớp");
+        System.out.println("2 - Kết quả phân lớp");
         System.out.println("3 - Quay lại");
     }
 }
