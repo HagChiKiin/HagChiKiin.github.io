@@ -174,7 +174,7 @@ public class UserUI {
         for (User a : users) {
             // Sau khi đăng nhập thành công thì thực hiên tiếp các chức năng
             if (a.getEmail().equalsIgnoreCase(email) && a.getPassWord().equalsIgnoreCase((passWord))) {
-                System.out.println("♥♥♥CHÚC MỪNG " + a.getUserName().toUpperCase()+" ĐÃ ĐĂNG NHẬP THÀNH CÔNG♥♥♥");
+                System.out.println("♥♥♥CHÚC MỪNG " + a.getUserName().toUpperCase() + " ĐÃ ĐĂNG NHẬP THÀNH CÔNG♥♥♥");
                 iXists = true;
                 while (!isQuit1) {
                     showMenu1();
@@ -210,7 +210,7 @@ public class UserUI {
                             String newUsername = sc.nextLine();
                             newUsername = newUsername.replaceAll(" ", "");
                             ArrayList<User> users1 = userController.findAll();
-                            if (!newUsername.equalsIgnoreCase("admin")){
+                            if (!newUsername.equalsIgnoreCase("admin")) {
                                 ChangeUsername request = new ChangeUsername(newUsername);
                                 try {
                                     // changeUsername - method đổi tên username dựa trên email của tài khoản
@@ -224,7 +224,7 @@ public class UserUI {
                                         System.out.println(e.getMessage());
                                     }
                                 }
-                            }else {
+                            } else {
                                 System.out.println("★★★ KHÔNG ĐƯỢC TẠO USERNAME TRÙNG VỚI ADMIN ★★★");
                             }
 

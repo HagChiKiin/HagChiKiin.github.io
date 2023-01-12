@@ -31,7 +31,7 @@ public class StudentRepo {
             }
         }
         if (!ixist) {
-            System.out.println("Nhập chưa đúng id và name, vui lòng kiểm tra lại");
+            System.out.println("Vui lòng kiểm tra lại");
         }
         return rs;
     }

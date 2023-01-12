@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class UserService {
     private final UserRepo userRepo = new UserRepo();
+
     public ArrayList<User> findAll() {
         return userRepo.findAll();
     }
@@ -23,11 +24,12 @@ public class UserService {
         return user;
 
     }
+
     public User forgotPassWord(String email, ChangePassword rq) {
         return userRepo.forgotPassWord(email, rq);
     }
 
     public User changeUsername(String email, ChangeUsername request) {
-        return userRepo.changeUsername(email,request);
+        return userRepo.changeUsername(email, request);
     }
 }

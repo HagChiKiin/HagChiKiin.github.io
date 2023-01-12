@@ -15,13 +15,13 @@ public class SubjectRepo {
         boolean iXist = false;
         for (Subject s : subjects
         ) {
-            if (s.getIdStudent() == id && s.getName().equalsIgnoreCase(name)) {
+            if (s.getIdStudent() == id && s.getName().toLowerCase().contains(name.toLowerCase())) {
                 rs.add(s);
                 iXist = true;
             }
         }
         if (!iXist) {
-            System.out.println("Không có học sinh " + name + " có id là " + id + " ,vui lòng kiểm tra lại");
+            System.out.println("Vui lòng kiểm tra lại");
         }
         return rs;
     }
@@ -47,10 +47,11 @@ public class SubjectRepo {
                     System.out.println("Bạn không đạt chỉ tiêu tuyển sinh");
                 }
             }
-            if (!iXist) {
-                System.out.println("KHÔNG CÓ HỌC SINH " + name + " CÓ ID LÀ " + id );
-            }
+
         }
+         if (!iXist) {
+             System.out.println("KHÔNG CÓ HỌC SINH NÀO CÓ TÊN " + name.toUpperCase() + " VÀ CÓ ID LÀ " + id);
+         }
         return subjects;
     }
     // In ra danh sách học sinh đủ tiêu chí vào lớp A1
