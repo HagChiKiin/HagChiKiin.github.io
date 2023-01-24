@@ -1,0 +1,22 @@
+[
+  {
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "khongcopass"
+  },
+  {
+    "username": "admin1",
+    "email": "admin1@gmail.com",
+    "password": "khongcopass"
+  },
+  {
+    "username": "admin2",
+    "email": "admin2@gmail.com",
+    "password": "khongcopass"
+  },
+  {
+    "username": "admin3",
+    "email": "admin3@gmail.com",
+    "password": "khongcopass"
+  }
+]

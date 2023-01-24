@@ -48,7 +48,7 @@ public class StudentRepo {
                 return b;
             }
         }
-        throw new NotFoundException("Không tìm thấy học sinh có id = "+id); // Sử dụng exception tự định nghĩa
+        throw new NotFoundException("Không tìm thấy học sinh có id = "+id+"\n"); // Sử dụng exception tự định nghĩa
     }
 // Xóa trong biến và lưu lại trên file json
     public void delete(Student id) {

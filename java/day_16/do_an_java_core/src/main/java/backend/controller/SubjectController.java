@@ -28,8 +28,8 @@ public class SubjectController {
         subjectService.showListStudentA3();
     }
 
-    public void showListStudentA6() {
-        subjectService.showListStudentA6();
+    public void showListStudentA4() {
+        subjectService.showListStudentA4();
     }
 
     public void showListStudentFail() {

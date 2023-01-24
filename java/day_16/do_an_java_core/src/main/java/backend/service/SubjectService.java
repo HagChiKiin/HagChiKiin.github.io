@@ -27,8 +27,8 @@ public class SubjectService {
         subjectRepo.showListStudentA3();
     }
 
-    public void showListStudentA6() {
-        subjectRepo.showListStudentA6();
+    public void showListStudentA4() {
+        subjectRepo.showListStudentA4();
     }
 
     public void showListStudentFail() {

@@ -46,7 +46,7 @@ public class Practice {
         numbers.stream().skip(2).limit(3).forEach(System.out::print);
         System.out.println();
 //        Lấy phần tử đầu tiên > 5
-        List<Integer> list = numbers.stream().filter(i->i>15).limit(1).toList();
+        List<Integer> list = numbers.stream().filter(i->i>5).limit(1).toList();
         if(list.size()>0){
             System.out.println(list.get(0));
         }

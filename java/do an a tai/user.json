@@ -1,0 +1,26 @@
+[
+  {
+    "userName": "Đào Tài",
+    "email": "tai123@gmail.com",
+    "password": "Tai92@",
+    "phone": "0969957697",
+    "address": {
+      "city": "Hn",
+      "district": "BTL",
+      "street": "-",
+      "detail": "-"
+    }
+  },
+  {
+    "userName": "abc",
+    "email": "abc@gmail.com",
+    "password": "Abc123@",
+    "phone": "0987654321",
+    "address": {
+      "city": "HN",
+      "district": "",
+      "street": "",
+      "detail": ""
+    }
+  }
+]

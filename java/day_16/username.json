@@ -70,8 +70,23 @@
     "password": "thanhthanh"
   },
   {
-    "username": "admin",
-    "email": "admin@gmail.com",
-    "password": "khongcopass"
+    "username": "tung",
+    "email": "tung@gmail.com",
+    "password": "tungdeptrai"
+  },
+  {
+    "username": "dai",
+    "email": "daicaca@gmail.com",
+    "password": "daicadeptrai"
+  },
+  {
+    "username": "quan",
+    "email": "quancaca@gmail.com",
+    "password": "quandeptrai"
+  },
+  {
+    "username": "bien",
+    "email": "bienkute@gmail.com",
+    "password": "bienbien"
   }
 ]

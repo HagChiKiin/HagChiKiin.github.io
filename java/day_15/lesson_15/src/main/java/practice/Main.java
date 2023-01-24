@@ -111,6 +111,7 @@ public class Main {
     }
     //        Lấy ra 2 sản phẩm bất kỳ trong giỏ hàng
     public static List<Product> getRandom(List<Product> products){
+
          Collections.shuffle(products);
          return products.stream().limit(2).collect(Collectors.toList());
 
