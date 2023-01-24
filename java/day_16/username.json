@@ -1,8 +1,8 @@
 [
   {
-    "username": "kiendeptrai",
+    "username": "kiendaica",
     "email": "kien@gmail.com",
-    "password": "kienkien"
+    "password": "kienkien1"
   },
   {
     "username": "trang",
@@ -88,5 +88,10 @@
     "username": "bien",
     "email": "bienkute@gmail.com",
     "password": "bienbien"
+  },
+  {
+    "username": "kien",
+    "email": "kien1@gmail.com",
+    "password": "kienkien"
   }
 ]

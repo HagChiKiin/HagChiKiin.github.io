@@ -478,7 +478,7 @@ public class UserUI {
                         }
                         case 7: {
                             SubjectController subjectController = new SubjectController();
-                            System.out.println("DANH SÁCH HỌC SINH ĐỦ CHỈ TIÊU VÀO LỚP A3->A5: ");
+                            System.out.println("DANH SÁCH HỌC SINH ĐỦ CHỈ TIÊU VÀO LỚP A3: ");
                             System.out.printf("%-5s %-10s %-12s %-20s %-15s\n",
                                     "Id", "Name", "Math point", "Literature point", "English point");
                             subjectController.showListStudentA3();
@@ -486,7 +486,7 @@ public class UserUI {
                         }
                         case 8: {
                             SubjectController subjectController = new SubjectController();
-                            System.out.println("DANH SÁCH HỌC SINH ĐỦ CHỈ TIÊU VÀO LỚP A6->A10: ");
+                            System.out.println("DANH SÁCH HỌC SINH ĐỦ CHỈ TIÊU VÀO LỚP A4: ");
                             System.out.printf("%-5s %-10s %-12s %-20s %-15s\n",
                                     "Id", "Name", "Math point", "Literature point", "English point");
                             subjectController.showListStudentA4();
