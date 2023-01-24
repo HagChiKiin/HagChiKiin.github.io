@@ -2,30 +2,30 @@
   {
     "idstudent": 1,
     "name": "Kiên",
-    "mathpoint": 8.0,
-    "literaturepoint": 6.0,
-    "englishpoint": 9.0
+    "mathpoint": 8,
+    "literaturepoint": 6,
+    "englishpoint": 9
   },
   {
     "idstudent": 2,
     "name": "Trang",
     "mathpoint": 8.5,
-    "literaturepoint": 8.0,
+    "literaturepoint": 8,
     "englishpoint": 9.5
   },
   {
     "idstudent": 3,
     "name": "Tài",
-    "mathpoint": 9.0,
+    "mathpoint": 9,
     "literaturepoint": 6.5,
-    "englishpoint": 8.0
+    "englishpoint": 8
   },
   {
     "idstudent": 4,
     "name": "Hằng",
-    "mathpoint": 7.0,
-    "literaturepoint": 7.0,
-    "englishpoint": 6.0
+    "mathpoint": 7,
+    "literaturepoint": 7,
+    "englishpoint": 6
   },
   {
     "idstudent": 5,
@@ -37,92 +37,92 @@
   {
     "idstudent": 6,
     "name": "Tân",
-    "mathpoint": 10.0,
-    "literaturepoint": 7.0,
-    "englishpoint": 10.0
+    "mathpoint": 10,
+    "literaturepoint": 7,
+    "englishpoint": 10
   },
   {
     "idstudent": 7,
     "name": "Hoàng",
     "mathpoint": 9.5,
     "literaturepoint": 5.5,
-    "englishpoint": 7.0
+    "englishpoint": 7
   },
   {
     "idstudent": 8,
     "name": "Thịnh",
-    "mathpoint": 9.0,
-    "literaturepoint": 8.0,
-    "englishpoint": 7.0
+    "mathpoint": 9,
+    "literaturepoint": 8,
+    "englishpoint": 7
   },
   {
     "idstudent": 9,
     "name": "Sơn",
-    "mathpoint": 7.0,
+    "mathpoint": 7,
     "literaturepoint": 7.5,
     "englishpoint": 9.5
   },
   {
     "idstudent": 10,
     "name": "Luân",
-    "mathpoint": 8.0,
-    "literaturepoint": 5.0,
-    "englishpoint": 5.0
+    "mathpoint": 8,
+    "literaturepoint": 5,
+    "englishpoint": 5
   },
   {
     "idstudent": 11,
     "name": "Tuyền",
-    "mathpoint": 6.0,
-    "literaturepoint": 6.0,
-    "englishpoint": 5.0
+    "mathpoint": 6,
+    "literaturepoint": 6,
+    "englishpoint": 5
   },
   {
     "idstudent": 12,
     "name": "Long",
-    "mathpoint": 7.0,
-    "literaturepoint": 5.0,
-    "englishpoint": 6.0
+    "mathpoint": 7,
+    "literaturepoint": 5,
+    "englishpoint": 6
   },
   {
     "idstudent": 13,
     "name": "Phương",
-    "mathpoint": 9.0,
-    "literaturepoint": 8.0,
-    "englishpoint": 8.0
+    "mathpoint": 9,
+    "literaturepoint": 8,
+    "englishpoint": 8
   },
   {
     "idstudent": 14,
     "name": "Thanh",
-    "mathpoint": 7.0,
-    "literaturepoint": 7.0,
-    "englishpoint": 6.0
+    "mathpoint": 7,
+    "literaturepoint": 7,
+    "englishpoint": 6
   },
   {
     "idstudent": 15,
     "name": "Tùng",
-    "mathpoint": 8.0,
-    "literaturepoint": 8.0,
-    "englishpoint": 8.0
+    "mathpoint": 8,
+    "literaturepoint": 8,
+    "englishpoint": 8
   },
   {
     "idstudent": 16,
     "name": "Đại",
-    "mathpoint": 9.0,
-    "literaturepoint": 8.0,
+    "mathpoint": 9,
+    "literaturepoint": 8,
     "englishpoint": 7.5
   },
   {
     "idstudent": 17,
     "name": "Quân",
-    "mathpoint": 6.0,
-    "literaturepoint": 8.0,
+    "mathpoint": 6,
+    "literaturepoint": 8,
     "englishpoint": 8.5
   },
   {
     "idstudent": 18,
     "name": "Biên",
-    "mathpoint": 8.0,
-    "literaturepoint": 5.0,
-    "englishpoint": 7.0
+    "mathpoint": 8,
+    "literaturepoint": 5,
+    "englishpoint": 7.5
   }
 ]

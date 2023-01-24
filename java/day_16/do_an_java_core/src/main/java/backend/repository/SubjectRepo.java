@@ -96,7 +96,7 @@ public class SubjectRepo {
         subjects1.stream().skip(4).limit(4).forEach(System.out::println);
     }
 
-    // In ra danh sách học sinh đủ tiêu chí vào lớp A3>A5
+    // In ra danh sách học sinh đủ tiêu chí vào lớp A3
     public void showListStudentA3() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         List<Subject> subjects1 = subjects.stream().sorted((o1, o2) -> (int) (((o2.getMathPoint() + o2.getLiteraturePoint() + o2.getEnglishPoint() * 2) / 4)*1000 -
@@ -104,7 +104,7 @@ public class SubjectRepo {
         subjects1.stream().skip(8).limit(4).forEach(System.out::println);
     }
 
-    // In ra danh sách học sinh đủ tiêu chí vào lớp A6>A10
+    // In ra danh sách học sinh đủ tiêu chí vào lớp A4
     public void showListStudentA4() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         List<Subject> subjects1 = subjects.stream().sorted((o1, o2) -> (int) (((o2.getMathPoint() + o2.getLiteraturePoint() + o2.getEnglishPoint() * 2) / 4)*1000 -
@@ -112,7 +112,7 @@ public class SubjectRepo {
         subjects1.stream().skip(12).limit(4).forEach(System.out::println);
     }
 
-    // In ra danh sách trượt(có điểm trung bình <6)
+    // In ra danh sách trượt
     public void showListStudentFail() {
         ArrayList<Subject> subjects = SubjectDB.subjects;
         List<Subject> subjects1 = subjects.stream().sorted((o1, o2) -> (int) (((o2.getMathPoint() + o2.getLiteraturePoint() + o2.getEnglishPoint() * 2) / 4)*1000 -
