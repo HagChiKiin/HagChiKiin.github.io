@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4ea56c1d-423b-4b81-a4b5-96425bf9ce57" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../java_core/day_04/lesson_04/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/day_05.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/day_01.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc136_SingleNumber.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc1_TwoSum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc27_RemoveElement.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc485_MaxConsecutiveOnes.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/LeetCode99_MergeSorterArray.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson_2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/lesson_2/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lc1662.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lc1672.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lc1816_TruncateSentence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lc344_ReverseString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lc387.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/String_Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc136_SingleNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc136_SingleNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc27_RemoveElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc27_RemoveElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java_dsa.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc136_SingleNumber.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc1_TwoSum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc27_RemoveElement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc485_MaxConsecutiveOnes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/LeetCode99_MergeSorterArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Main.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LBIyfP8deRximNfvBonjnhGdVo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/github/HagChiKiin.github.io/java_dsa/day_02/lesson_2",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.editor"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Lc344_ReverseString">
+    <configuration name="Lc1816_TruncateSentence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lc1816_TruncateSentence" />
+      <module name="lesson_2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Lc344_ReverseString" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lc344_ReverseString" />
+      <module name="lesson_2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="lesson_2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="String_Character" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="String_Character" />
+      <module name="lesson_2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Lc344_ReverseString" />
+        <item itemvalue="Application.Lc1816_TruncateSentence" />
+        <item itemvalue="Application.String_Character" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ea56c1d-423b-4b81-a4b5-96425bf9ce57" name="Changes" comment="" />
+      <created>1675338304471</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675338304471</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/lesson_2$Lc1816_TruncateSentence.ic" NAME="Lc1816_TruncateSentence Coverage Results" MODIFIED="1675486124097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

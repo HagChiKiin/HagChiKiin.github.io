@@ -16,9 +16,20 @@ public class Lc27_RemoveElement {
         }
         return n;
     }
+    public static int removeElement1(int[] nums, int val) { // Bài mr Tài
+        int k = 0;
+        int n = nums.length;
+        for (int i = 0; i <n ; i++) {
+            if(nums[i] != val ){
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k;
+    }
 
     public static void main(String[] args) {
-        int[] arr = {3,2,2,3,4};
-        System.out.println(removeElement(arr,2));
+        int[] arr = {3,2,2,3,4,4,1};
+        System.out.println(removeElement1(arr,2));
     }
 }
