@@ -19,7 +19,7 @@ public class Lc344_ReverseString {
     }
 
     public static void main(String[] args) {
-      char [] s = {'H','a','n','n','a','h'};
+      char [] s = {'h','e','l','l','o'};
         reverseString(s);
     }
 }
