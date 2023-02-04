@@ -1,54 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ea56c1d-423b-4b81-a4b5-96425bf9ce57" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../java_core/day_04/lesson_04/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../java_core/day_05/src/day_05.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/day_01.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc136_SingleNumber.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc1_TwoSum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc27_RemoveElement.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc485_MaxConsecutiveOnes.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/LeetCode99_MergeSorterArray.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lesson_2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/lesson_2/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc1662.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc1672.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc1816_TruncateSentence.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc344_ReverseString.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc387.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/String_Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc136_SingleNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc136_SingleNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc27_RemoveElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc27_RemoveElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java_dsa.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc136_SingleNumber.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc1_TwoSum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc27_RemoveElement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Lc485_MaxConsecutiveOnes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/LeetCode99_MergeSorterArray.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/java_dsa/Main.class" beforeDir="false" />
-    </list>
+    <list default="true" id="4ea56c1d-423b-4b81-a4b5-96425bf9ce57" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

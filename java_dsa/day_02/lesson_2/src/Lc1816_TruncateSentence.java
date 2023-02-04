@@ -5,7 +5,7 @@ public class Lc1816_TruncateSentence {
         int n = s.length();
         int count = 0;
         for (int i = 0; i < n; i++) {
-            if (s.charAt(i) == ' ') {  // nếu ký tự tại index i == 1 từ  thì biến count tăng 1
+            if (s.charAt(i) == ' ') {  // nếu  index i == khoảng trắng thì biến count tăng 1
                 count++;
             }
             if(count == k){
