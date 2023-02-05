@@ -19,5 +19,30 @@ public class Lc387 {
         }
         return -1;
     }
-
+    public int firstUniqChar1(String s) {
+        int minIndex = Integer.MAX_VALUE;
+        for (char c = 'a'; c <='z' ; c++) {
+            int index = s.indexOf(c);
+            if(index != -1 && index == s.lastIndexOf(c)){
+                minIndex = Math.min(index, minIndex);
+            }
+        }
+        if(minIndex == Integer.MAX_VALUE){
+            return -1;
+        }
+        return minIndex;
+    }
+    public int firstUniqChar2(String s) {
+        Map<Character,Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            int x = map.getOrDefault(s.charAt(i),0)+1;
+            map.put(s.charAt(i),x);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if(map.get(s.charAt(i))== 1){
+                return i;
+            }
+        }
+        return -1;
+    }
 }

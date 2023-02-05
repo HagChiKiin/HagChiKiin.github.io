@@ -18,8 +18,7 @@ public class Lc1816_TruncateSentence {
         String[] s1 = s.split(" "); // tạo mảng s1 sau khi bỏ dấu cách
         StringBuilder s2 = new StringBuilder();
         for (int i = 0; i < k; i++) {
-            s2.append(s1[i]);
-            s2.append(" ");                 // nối chuỗi các giá trị s1 tại i và thêm dấu cách
+            s2.append(s1[i]).append(" "); // nối chuỗi các giá trị s1 tại i và thêm dấu cách
         }
         return s2.toString().trim();  // trả về mảng String và bỏ khoảng trắng đầu và cuối
 

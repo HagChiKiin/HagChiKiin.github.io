@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ea56c1d-423b-4b81-a4b5-96425bf9ce57" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc136_SingleNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_01/lesson1/src/Lc136_SingleNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc136_SingleNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_01/out/production/day_01/Lc136_SingleNumber.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/lesson_03/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/lesson_03/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/lesson_03/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/lesson_03/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/lesson_03/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/lesson_03/lesson_03.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/lesson_03/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lesson_2/Lc344_ReverseString.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lesson_2/Lc344_ReverseString.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lc344_ReverseString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lc344_ReverseString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lc1662.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lc1662.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lc1816_TruncateSentence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lc1816_TruncateSentence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lc387.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lc387.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,19 +40,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/github/HagChiKiin.github.io/java_dsa/day_02/lesson_2",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/github/HagChiKiin.github.io/java_dsa/day_02/lesson_2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Lc344_ReverseString">
     <configuration name="Lc1816_TruncateSentence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lc1816_TruncateSentence" />
