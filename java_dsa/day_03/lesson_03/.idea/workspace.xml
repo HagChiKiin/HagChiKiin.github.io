@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e2a42b0-cf36-48f1-9d2b-8f97fc577755" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../day_02/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_02/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_02/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_02/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_02/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_02/day_02.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lesson_03.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc1051_HeightChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc1859_SortingtheSentence.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc217_ContainsDuplicate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_02/lesson_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_02/lesson_2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_02/lesson_2/src/Lc1662.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_02/lesson_2/src/Lc1662.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_02/lesson_2/src/Lc1816_TruncateSentence.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_02/lesson_2/src/Lc1816_TruncateSentence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_02/lesson_2/src/Lc387.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_02/lesson_2/src/Lc387.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,10 +37,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/github/HagChiKiin.github.io/java_dsa/day_02"
+    "last_opened_file_path": "C:/github/HagChiKiin.github.io/java_dsa/day_03/lesson_03"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Lc1859_SortingtheSentence">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Lc1859_SortingtheSentence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lc1859_SortingtheSentence" />
       <module name="lesson_03" />
@@ -76,6 +55,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="lesson_03" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="sort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sort" />
       <module name="lesson_03" />
@@ -85,6 +71,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Lc1859_SortingtheSentence" />
         <item itemvalue="Application.sort" />
         <item itemvalue="Application.Main" />
