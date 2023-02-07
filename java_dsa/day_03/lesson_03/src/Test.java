@@ -2,7 +2,8 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
-        Student[] students = { new Student("A Thành Kiên",16 ,8),
+        Student[] students = { new Student("E Văn Kiên",26 ,10),
+                new Student("A Thành Kiên",16 ,8),
                 new Student("A Thành Kiên",18 ,9),
                 new Student("B Trần Anh",20 ,7),
                 new Student("C Phan Công",20 ,10)};
@@ -31,7 +32,15 @@ public class Test {
         }
         System.out.println("-----------------");
         System.out.println("3.Sắp xếp theo tên. (Ví dụ là Hoàng Văn A, thì chỉ xét A thôi)");
-        Arrays.sort(students, Comparator.comparing(o ->o.fullName.substring(o.fullName.lastIndexOf(" ")+1)));
+        Arrays.sort(students, (o1, o2) -> {
+            if (o1.fullName.substring(o1.fullName.lastIndexOf(" ") ).
+                    equals(o2.fullName.substring(o2.fullName.lastIndexOf("") ))) {      // nếu trùng tên
+                return o1.fullName.substring(0, o1.fullName.indexOf(" ")).                  // thì sắp xếp theo họ
+                        compareTo(o2.fullName.substring(0, o2.fullName.indexOf(" ")));
+            }
+            return o1.fullName.substring(o1.fullName.lastIndexOf(" ")).                  // lấy phần tử sau dấu cách cuối cùng
+                    compareTo(o2.fullName.substring(o2.fullName.lastIndexOf(" ")));      // sắp xếp theo tên   
+        });
         for (Student p :students
         ) {
             System.out.println(p);
