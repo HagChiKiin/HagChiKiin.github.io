@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) {
-        Student[] students = { new Student("E Văn Kiên",26 ,10),
+        Student[] students = { new Student("E Đắc Kiên",26 ,10),
                 new Student("A Thành Kiên",16 ,8),
                 new Student("A Thành Kiên",18 ,9),
                 new Student("B Trần Anh",20 ,7),
@@ -39,7 +39,7 @@ public class Test {
                         compareTo(o2.fullName.substring(0, o2.fullName.indexOf(" ")));
             }
             return o1.fullName.substring(o1.fullName.lastIndexOf(" ")).                  // lấy phần tử sau dấu cách cuối cùng
-                    compareTo(o2.fullName.substring(o2.fullName.lastIndexOf(" ")));      // sắp xếp theo tên   
+                    compareTo(o2.fullName.substring(o2.fullName.lastIndexOf(" ")));      // sắp xếp theo tên
         });
         for (Student p :students
         ) {
