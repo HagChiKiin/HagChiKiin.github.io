@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="654c27e7-3643-42d2-ad96-3542133b519d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Lc344_DQ.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lc509_DQ.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lesson_4/Lc344_DQ.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lesson_4/Lc344_DQ.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lc344_DQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lc344_DQ.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +41,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Lc344_DQ">
+  <component name="RunManager">
     <configuration name="Lc344_DQ" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lc344_DQ" />
       <module name="lesson_4" />

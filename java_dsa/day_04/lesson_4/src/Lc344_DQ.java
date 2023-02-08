@@ -18,7 +18,7 @@ public class Lc344_DQ {
     }
 
     public static void main(String[] args) {
-        char[] s ={'h','a','n','n','a','H'};
+        char[] s ={'h','e','l','l','o'};
         swap(s,0,s.length-1);
     }
 }
