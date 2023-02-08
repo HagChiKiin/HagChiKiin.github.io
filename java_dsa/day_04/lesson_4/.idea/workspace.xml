@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e2a42b0-cf36-48f1-9d2b-8f97fc577755" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_04/lesson_4/lesson_4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_04/lesson_4/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="654c27e7-3643-42d2-ad96-3542133b519d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson_4.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/arr2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_03/lesson_03/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_03/lesson_03/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +31,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2LGpGwCbd5lwQZPF4LsciIU5oJV" />
+  <component name="ProjectId" id="2LPX9Cux50NVFrm2GRRdzoGbPWx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -42,44 +44,27 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/github/HagChiKiin.github.io/java_dsa/day_03/lesson_03&quot;
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Test">
-    <configuration name="Lc1859_SortingtheSentence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Lc1859_SortingtheSentence" />
-      <module name="lesson_03" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.arr2D">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="lesson_03" />
+      <module name="lesson_4" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="lesson_03" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="sort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sort" />
-      <module name="lesson_03" />
+    <configuration name="arr2D" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="arr2D" />
+      <module name="lesson_4" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Lc1859_SortingtheSentence" />
-        <item itemvalue="Application.sort" />
+        <item itemvalue="Application.arr2D" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -87,11 +72,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0e2a42b0-cf36-48f1-9d2b-8f97fc577755" name="Changes" comment="" />
-      <created>1675507181776</created>
+      <changelist id="654c27e7-3643-42d2-ad96-3542133b519d" name="Changes" comment="" />
+      <created>1675773538183</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1675507181776</updated>
+      <updated>1675773538183</updated>
     </task>
     <servers />
   </component>
@@ -108,5 +93,28 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="n==6" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>5</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/arr2D.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="j==4" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/arr2D.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
