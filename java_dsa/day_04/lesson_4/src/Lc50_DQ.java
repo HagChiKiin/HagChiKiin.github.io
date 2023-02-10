@@ -1,16 +1,12 @@
 public class Lc50_DQ {
     public static double myPow(double x, int n) {
-        if (x == 1) {
-            return 1;
-        }
-        if (x == 0) {
-            return 0;
+        if (x == 1 || x ==0) {
+            return x;
         }
         if (n < 0) {
             return 1 / pow(x, n);
         }
         return pow(x, n);
-
     }
     public static double pow(double x, int n) {
         if (n == 0) {
@@ -26,4 +22,5 @@ public class Lc50_DQ {
     public static void main(String[] args) {
         System.out.println(myPow(2,3));
     }
+
 }
