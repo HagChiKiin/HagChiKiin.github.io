@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5af68e58-907f-4e17-aa1a-6692591a3704" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lesson_5.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LC35.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lc69.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_04/lesson_4/out/production/lesson_4/Lc50_DQ.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_04/lesson_4/out/production/lesson_4/Lc50_DQ.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_04/lesson_4/src/Lc50_DQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_04/lesson_4/src/Lc50_DQ.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LC278.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LC374.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LC35.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LC35.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

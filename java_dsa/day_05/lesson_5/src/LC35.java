@@ -1,5 +1,5 @@
 public class LC35 {
-    public int searchInsert(int[] nums, int target) { // tự làm
+    public int searchInsert(int[] nums, int target) { //  k tham khảo
         int left = 0, right = nums.length - 1;
         while (left <= right) { // leff==right -> mảng con chỉ chứa duy nhất 1 phần tử: a[l] = a[mid] = a[r]
             int mid = (left + right) / 2;
