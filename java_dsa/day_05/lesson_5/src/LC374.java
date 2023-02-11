@@ -3,7 +3,7 @@ public class LC374 {
         int left = 1;
         int right = n;
         int mid = 0;
-        while (left <= right) {         
+        while (left <= right) {
             mid = left + (right - left) / 2;
             if (guess(mid) == 0) {
                 return mid;

@@ -12,7 +12,7 @@ public class LC278  {
         }
         return left;  // nêu left = right thì trả về left =1
     }
-    public static boolean  isBadVersion(int version){  // trả về true nếu mid>=4
+    public static boolean  isBadVersion(int version){  
         return version >=4;
     }
 
