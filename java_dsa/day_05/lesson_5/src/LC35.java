@@ -13,9 +13,7 @@ public class LC35 {
                 // range : left -> mid-1
                 right = mid - 1;
             }
-
         }
         return right+1;
     }
-
 }
