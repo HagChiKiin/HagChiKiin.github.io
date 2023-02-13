@@ -18,13 +18,13 @@ public class LC_912_Quicksort {
         int pivot = arr[high];
         int left = low;
         int right = high-1;
-        while (true){
+        while (left<=right){
             // tìm  phần tử phía trái mà lớn hơn pivot
             while (left <=right && arr[left]< pivot ){
                 left++; // tim duoc arr[left] > pivot
             }
-            while (left <=right && arr[right]>pivot  ){
-                right --;
+            while (right>=0 && arr[right]>pivot){
+                right --; // tim duoc arr[right] < pivot
             }
             if(left>=right){
                 break;
@@ -33,7 +33,6 @@ public class LC_912_Quicksort {
             left++;
             right--;
         }
-        System.out.println("pivot= "+pivot+" index= "+low+" right= "+right);
         swap(arr,left,high);
         return left;
     }
