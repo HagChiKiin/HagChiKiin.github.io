@@ -13,4 +13,4 @@ public class LC283 {
         }
     }  // vòng for 1. tìm kiếm tuần tự từ i = 0 đến i <n ... có wostcase n
 }      // vòng for 2.  có wostcase cũng bằng n
-        // độ phức tạp thuật toán O(n)+O(n) = O(2n) = O(n)
+        // tổng thời gian thực hiện là: O(n)+O(n) = O(2n) = O(n)
