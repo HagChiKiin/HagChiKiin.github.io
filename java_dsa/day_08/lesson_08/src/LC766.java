@@ -12,4 +12,4 @@ public class LC766 {
 }
 //       vòng for 1 thực hiện n-1 lần vs n là số phần tử của i(hàng)
 //       vòng for 2 thực hiện m-1 lần vs m là số phần tử của j(cột)
-// tổng thời gian thực hiện là O((n-1) * C(m-1))= 0((n-1)*(m-1)) = O(nm)
+// tổng thời gian thực hiện là  0((n-1)*(m-1)) = O(nm)
