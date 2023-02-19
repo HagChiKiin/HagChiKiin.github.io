@@ -8,7 +8,7 @@ public class LC283 {
                 index++;
             }
         }
-        for (int i = index; i < n ; i++) {   // duyệt từ index đến cuối mảng , các phần tử 0 sẽ ở cuối
+        for (int i = index; i < n ; i++) {   // duyệt từ index đến cuối mảng , các phần tử 0 sẽ sau index
             nums[i] = 0;
         }
     }  // vòng for 1. tìm kiếm tuần tự từ i = 0 đến i <n ... có wostcase n

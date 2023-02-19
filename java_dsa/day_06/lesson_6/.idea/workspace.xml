@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7e22db5-dc7e-4ece-8d5d-c9941bfd7488" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/lesson_08.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/out/production/lesson_08/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/src/LC283.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/src/LC766.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/lesson_08/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_04/lesson_4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c7e22db5-dc7e-4ece-8d5d-c9941bfd7488" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
