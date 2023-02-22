@@ -1,10 +1,10 @@
 public class Lc21 {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode fakeNode = new ListNode(0); // Tạo node giả
-        ListNode  current = fakeNode;  // con trỏ current trỏ toi node giả
+        ListNode  current = fakeNode;  // curren trỏ tới node giả
         while (list1 != null && list2 != null) { // break vòng lặp khi 1 trong 2 vòng null
             if (list1.val < list2.val) {
-                current.next = list1;// nếu giá trị list 1 < list 2 thì gán ta sẽ gán newList.next = list1,
+                current.next = list1;// nếu giá trị list 1 < list 2 thì gán ta sẽ gán curren.next = list1,
                 list1 = list1.next; // và di chuyển list1 đến phần tử kế tiếp của nó
             } else  {
                 current.next = list2;
