@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="388f9ba7-cc93-47c3-be74-6c820afbdc8e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LC21.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Lc155.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lesson_10/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lesson_10/MyLinkListStack$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lesson_10/MyLinkListStack$Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lesson_10/MyLinkListStack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lesson_10/MyLinkListStack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StackJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StackJava.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
