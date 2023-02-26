@@ -2,7 +2,7 @@ import java.util.Stack;
 
 public class Lc155 {
     class MinStack {
-        Stack<Node> stack = new Stack<>();
+        static Stack<Node> stack = new Stack<>();
 
         static class Node {
             int val;
@@ -17,7 +17,7 @@ public class Lc155 {
         public MinStack() {
         }
 
-        public void push(int val) {
+        public static void push(int val) {
             if (stack.isEmpty()) {   // nếu stack rỗng thì thêm vào phần tử có giá trị val và min la val
                 stack.push(new Node(val, val));
             } else {  //  lấy min của phần tử trên cùng stack so sánh vs val
@@ -26,15 +26,15 @@ public class Lc155 {
             }
         }
 
-        public void pop() {
+        public static void pop() {
             stack.pop();
         }
 
-        public int top() {
+        public static int top() {
             return stack.peek().val;
         }
 
-        public int getMin() {
+        public static int getMin() {
             return stack.peek().min;
         }
     }
