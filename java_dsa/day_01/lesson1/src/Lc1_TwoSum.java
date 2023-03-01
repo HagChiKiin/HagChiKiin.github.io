@@ -13,9 +13,11 @@ public class Lc1_TwoSum {
                return result;
            }
             map.put(nums[i], i);  // them vao map
+
         }
         return result;
     }
+    
 
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5};
