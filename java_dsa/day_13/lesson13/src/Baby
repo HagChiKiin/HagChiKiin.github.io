@@ -1,0 +1,9 @@
+đơn đồ thị : có 1 đường giữa 2 điểm
+đa đồ thị : giữa 2 điểm có thể có 2 đường đi nối nhau
+tính có hướng của cạnh : đồ thị vô hướng
+đồ thị có hướng <=> đường 1 chiều
+* trọng số: khoảng cách giữa 2 điểm vs nhau
+ - đồ thị không có trọng số
+ - đồ thị có trọng số
+* Biểu diễn đồ thị
+- Ma trận kề
