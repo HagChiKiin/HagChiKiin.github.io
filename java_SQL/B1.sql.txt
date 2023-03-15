@@ -1,5 +1,15 @@
-1.  SELECT * FROM scores WHERE diemToan = (SELECT MAX(diemToan) FROM scores);
-2.  SELECT * FROM scores WHERE diemVan = (SELECT MIN(diemVan) FROM scores);
-3.  SELECT * FROM scores WHERE diemVan = (SELECT MIN(diemVan) FROM scores) 
-OR diemToan = (SELECT MIN(diemToan) FROM scores) 
-OR diemAnh = (SELECT MIN(diemAnh) FROM scores) ;
+1.  SELECT `students`.*,scores.diemToan FROM students,scores 
+WHERE students.id = scores.sinhvien_id AND diemToan = ( SELECT MAX(diemToan) FROM scores);
+
+2.  SELECT `students`.*,scores.diemVan FROM students,scores
+WHERE students.id = scores.sinhvien_id AND diemVan = ( SELECT MIN(diemVan) FROM scores);
+
+3.  SELECT `students`.*,scores.diemToan,scores.diemVan,scores.diemAnh FROM students,scores 
+WHERE students.id = scores.sinhvien_id 
+AND (
+diemToan = ( SELECT MIN(diemVan) FROM scores) 
+OR 
+diemVan = ( SELECT MIN(diemVan) FROM scores)
+OR 
+diemAnh = ( SELECT MIN(diemAnh) FROM scores)
+);
