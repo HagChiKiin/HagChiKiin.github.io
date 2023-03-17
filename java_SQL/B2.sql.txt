@@ -1,0 +1,8 @@
+1. SELECT sinhvien_id FROM tbl_diem GROUP BY sinhvien_id ORDER BY SUM(diem_toan) DESC LIMIT 1;
+
+2. SELECT tbl_sinhvien.email SUM(tbl.diem.diem_van) FROM tbl_sinhvien, tbl_diem WHERE id = 
+(SELECT sinhvien_id FROM tbl_diem GROUP BY sinhvien_id ORDER BY SUM(diem_van) DESC LIMIT 1);
+
+3. SELECT ten_lop FROM tbl_lop WHERE id =
+( SELECT lop_id FROM tbl_sinhvien WHERE id = 
+(SELECT sinhvien_id FROM tbl_diem GROUP BY sinhvien_id ORDER BY SUM(diem_anh) DESC LIMIT 1));
