@@ -1,0 +1,82 @@
+1  SELECT Magv,Hotengv, Makhoa FROM tblgiangvien ;
+
+2  SELECT Magv, Hotengv, Makhoa	
+FROM tblgiangvien 
+WHERE Makhoa='Geo';
+ 
+3  SELECT COUNT(Makhoa) AS SoSinhVien
+FROM tblsinhvien
+WHERE Makhoa ='Bio';
+
+4  SELECT tblsinhvien.Masv,tblsinhvien.Hotensv,tblsinhvien.Namsinh 
+FROM tblsinhvien INNER JOIN tblkhoa ON tblsinhvien.Makhoa = tblkhoa.Makhoa 
+WHERE tblkhoa.Tenkhoa = 'Toan';
+
+5  SELECT tblgiangvien.Magv,tblgiangvien.Hotengv
+FROM tblgiangvien INNER JOIN tblkhoa ON tblgiangvien.Makhoa = tblkhoa.Makhoa 
+WHERE tblkhoa.Tenkhoa = 'Cong nghe Sinh hoc';
+
+6  SELECT * FROM tblsinhvien
+WHERE NOT EXISTS(
+    SELECT * FROM tblhuongdan
+    WHERE tblsinhvien.Masv = tblhuongdan.Masv);
+
+7  SELECT tblkhoa.Makhoa, tblkhoa.Tenkhoa,tblgiangvien.Magv,tblgiangvien.Hotengv 
+FROM tblkhoa INNER JOIN tblgiangvien ON tblgiangvien.Makhoa = tblkhoa.Makhoa;
+
+8  SELECT tblkhoa.Dienthoai 
+FROM tblkhoa INNER JOIN tblsinhvien ON tblsinhvien.Makhoa = tblkhoa.Makhoa 
+WHERE tblsinhvien.Hotensv = 'Le Van Son';
+
+9  SELECT tbldetai.Madt, tbldetai.Tendt 
+FROM tbldetai INNER JOIN tblhuongdan ON tbldetai.Madt = tblhuongdan.Madt INNER JOIN tblgiangvien ON tblhuongdan.Magv = tblgiangvien.Magv 
+WHERE tblgiangvien.Hotengv = 'Tran Son';
+
+10  SELECT* FROM tbldetai
+WHERE NOT EXISTS(
+    SELECT* FROM tblhuongdan
+    WHERE tbldetai.Madt = tblhuongdan.Madt);
+
+11  SELECT tblgiangvien.Magv, tblgiangvien.Hotengv, tblkhoa.Tenkhoa 
+FROM tblhuongdan 
+JOIN tblgiangvien ON tblhuongdan.Magv = tblgiangvien.Magv 
+JOIN tblsinhvien ON tblhuongdan.Masv = tblsinhvien.Masv 
+JOIN tblkhoa ON tblgiangvien.Makhoa = tblkhoa.Makhoa 
+GROUP BY tblgiangvien.Magv, tblgiangvien.Hotengv, tblkhoa.Tenkhoa 
+HAVING COUNT(tblhuongdan.Masv) >= 3;
+
+12  SELECT * FROM tbldetai
+WHERE Kinhphi=(
+    SELECT MAX(Kinhphi) 
+    FROM tbldetai);
+
+13  SELECT tbldetai.Madt, tbldetai.Tendt 
+FROM tbldetai 
+JOIN tblhuongdan ON tbldetai.Madt = tblhuongdan.Madt 
+GROUP BY tbldetai.Madt, tbldetai.Tendt 
+HAVING COUNT(tblhuongdan.Masv) > 2;
+
+14 SELECT tblsinhvien.Masv, tblsinhvien.Hotensv, tblhuongdan.KetQua 
+FROM tblsinhvien JOIN tblhuongdan On tblsinhvien.Masv = tblhuongdan.Masv
+JOIN tblkhoa ON tblsinhvien.Makhoa = tblkhoa.Makhoa
+WHERE tblkhoa.Tenkhoa LIKE 'Dia ly va QLTN';
+
+15 SELECT Tenkhoa, COUNT(tblsinhvien.Makhoa) AS SoSinhVien 
+FROM tblsinhvien 
+JOIN tblkhoa ON tblsinhvien.Makhoa=tblkhoa.Makhoa 
+GROUP BY tblkhoa.Tenkhoa;
+
+16 SELECT tblsinhvien.* FROM tblsinhvien
+JOIN tblhuongdan ON tblsinhvien.Masv = tblhuongdan.Masv
+JOIN tbldetai ON tblhuongdan.Madt = tbldetai.Madt
+WHERE tblsinhvien.Quequan = tbldetai.Noithuctap;
+
+17 SELECT tblsinhvien.*
+FROM tblsinhvien 
+JOIN tblhuongdan ON tblsinhvien.Masv=tblhuongdan.Masv
+WHERE tblhuongdan.KetQua IS NULL;	
+
+18 SELECT tblsinhvien.Masv,Hotensv 
+FROM tblsinhvien
+JOIN tblhuongdan ON tblsinhvien.Masv = tblhuongdan.Masv
+WHERE tblhuongdan.KetQua = 0;
