@@ -1,0 +1,52 @@
+20 Trị giá trung bình của tất cả các hóa đơn được bán ra trong năm 2021 là bao nhiêu?
+
+SELECT AVG(total) AS giatritrungbinh 
+FROM invoices 
+WHERE purchase_day LIKE '%2021%';
+
+21 Tính doanh thu bán hàng trong năm 2021
+
+SELECT sum(total) as tongdoanhthu
+FROM invoices 
+WHERE purchase_day LIKE '%2021%';
+
+22 Tìm số hóa đơn có trị giá cao nhất trong năm 2021
+
+SELECT invoice_id, MAX(total) AS giatrihoadon 
+FROM invoices;
+
+23 Tìm họ tên khách hàng đã mua hóa đơn có trị giá cao nhất trong năm 2021.
+
+SELECT customers.name 
+FROM customers 
+JOIN invoices ON customers.id = invoices.customer_id
+WHERE invoices.total = (SELECT Max(total) FROM invoices);
+
+24 In ra danh sách 3 khách hàng (MAKH, HOTEN) có doanh số cao nhất.
+
+SELECT id,name FROM customers GROUP by doanhSo DESC LIMIT 3;
+
+25 In ra danh sách các sản phẩm (MASP, TENSP) có giá bán bằng 1 trong 3 mức giá cao nhất.
+
+SELECT product_id, product_name FROM products GROUP by unit_price DESC LIMIT 3;
+
+26 In ra danh sách các sản phẩm (MASP, TENSP) do “Trung Quốc” sản xuất có giá bằng 1 trong 3 mức giá thấp nhất (của tất cả các sản phẩm).
+
+
+
+27 In ra danh sách các sản phẩm (MASP, TENSP) do “Trung Quốc” sản xuất có giá bằng 1 trong 3 mức iá thấp nhất (của sản phẩm do “Trung Quốc” sản xuất).
+
+SELECT product_id, product_name FROM products WHERE country ='Trung Quốc'
+GROUP by unit_price ASC LIMIT 3;
+
+28 In ra danh sách 3 khách hàng (MAKH, HOTEN) có doanh số cao nhất (sắp xếp theo kiểu xếp hạng).
+
+SELECT id,name FROM customers GROUP by doanhSo DESC LIMIT 3;
+
+29 Tính tổng số sản phẩm do “Trung Quốc” sản xuất.
+
+SELECT COUNT(*) AS tongsanpham FROM products WHERE country='Trung quốc';
+
+30 Tính tổng số sản phẩm của từng nước sản xuất.
+
+SELECT country, COUNT(*) as tongsanpham FROM products GROUP BY country;
