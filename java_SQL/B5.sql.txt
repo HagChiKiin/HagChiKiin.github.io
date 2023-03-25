@@ -1,0 +1,7 @@
+Bảng 1: Hồ sơ và CV : id , tên cv,  
+Bảng 2: cv chi tiết : cv_id, nội dung cv 
+Bảng 3: cty tuyển dụng : id, tên, giới thiệu
+Bảng 4: chi tiết nhà tuyển dụng : cty_id , địa chỉ, id tuyển dụng, thông tin tuyển dụng
+Bảng 5: chi tiết tuyển dụng: cty_id, id tuyển dụng,  mô tả công việc,  yêu cầu ứng viên, quyền lơi, cách thức ứng tuyển
+Bảng 6: Review : id cty, bình luận, đánh giá, 
+Bảng 7 Tìm việc làm: ngành nghề, địa điểm,tên cty,mức lương,hình thức làm việc,phúc lợi,cấp bậc
