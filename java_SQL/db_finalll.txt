@@ -1,0 +1,79 @@
+thầy ơi. cái file DBdiagram PDF có cái student_id trong bảng students mình đã sửa lại thành user_id 
+				       teacher_id trong bảng teachers mình đã sửa lại thành user_id 
+đã cập nhật trong file sql nhưng file PDF thì chưa sửa lại thầy nhé
+
+**************Mô tả hệ thống*******************
+
+	Bảng 1: users
+id: khóa chính, ID của người dùng
+name: Tên của người dùng
+email : duy nhất
+password  dùng kiểu MD5
+role: phân quyền (học sinh và giáo viên)
+status : trạng thái users: bình thường, bị band...
+creater_at, updated_at, deleted_at: tgian tạo, sửa, và xóa
+	
+	Bảng 2: teachers
+id : khóa chính, ID của giáo viên
+teacher_id: khóa ngoại, tham chiếu đến bảng Users
+subject: Môn học mà giáo viên giảng dạy
+status : trạng thái : còn dạy, thôi việc...
+creater_at, updated_at, deleted_at: tgian tạo, sửa, và xóa
+
+	Bảng 3: students
+id: khóa chính, ID của học sinh
+student_id: khóa ngoại, tham chiếu đến bảng Users
+class_id: khóa ngoại, tham chiếu đến bảng classes
+status : trạng thái : đang học, thôi học, tốt nghiệp....
+creater_at, updated_at, deleted_at: tgian tạo, sửa, và xóa
+
+	Bảng 4: classes
+id: khóa chính, ID của lớp học
+class_name: tên của lớp học ( ví dụ Java17)
+status : trạng thái : đang học, chuẩn bị học, đã tốt nghiệp,...
+creater_at, updated_at, deleted_at: tgian tạo, sửa, và xóa
+
+	Bảng 5: lessons
+id: khóa chính, ID của môn học, học phần
+class_id: khóa ngoại, tham chiếu đến bảng classes
+lesson_name: tên của môn học, học phần
+content: nội dung môn học,học phần
+status : trạng thái : đang học, sắp khai giảng, đã kết thúc,...
+creater_at, updated_at, deleted_at: tgian tạo, sửa, và xóa
+
+	Bảng 6: marks
+id: khóa chính, ID của bảng chấm điểm
+teacher_id: khóa ngoại, tham chiếu đến bảng teachers
+student_id: khóa ngoại, tham chiếu đến bảng students,
+class_id: khóa ngoại, tham chiếu đến bảng classes,
+lesson_id: khóa ngoại, tham chiếu đến bảng lessons,
+point: điểm chấm của giáo viên( dạng thập phân)
+creater_at, updated_at, deleted_at: tgian tạo, sửa, và xóa
+
+	Bảng 7: roll_calls
+id: khóa chính, ID của bảng điểm danh
+teacher_id: khóa ngoại, tham chiếu đến bảng teachers
+student_id: khóa ngoại, tham chiếu đến bảng students,
+class_id: khóa ngoại, tham chiếu đến bảng classes,
+lesson_id: khóa ngoại, tham chiếu đến bảng lessons,
+day: ngày điểm danh( ngày đang học)
+creater_at, updated_at, deleted_at: tgian tạo, sửa, và xóa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
