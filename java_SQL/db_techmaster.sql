@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 31, 2023 lúc 05:00 PM
+-- Thời gian đã tạo: Th3 31, 2023 lúc 05:20 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -269,7 +269,8 @@ ALTER TABLE `marks`
 ALTER TABLE `roll_calls`
   ADD CONSTRAINT `fk_roll_call_classes` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`),
   ADD CONSTRAINT `fk_roll_call_students` FOREIGN KEY (`student_id`) REFERENCES `students` (`user_id`),
-  ADD CONSTRAINT `fk_roll_call_teachers` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`user_id`);
+  ADD CONSTRAINT `fk_roll_call_teachers` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`user_id`),
+  ADD CONSTRAINT `fk_roll_calls_lessons` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`id`);
 
 --
 -- Các ràng buộc cho bảng `students`

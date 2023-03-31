@@ -1,6 +1,8 @@
 thầy ơi. cái file DBdiagram PDF có cái student_id trong bảng students mình đã sửa lại thành user_id 
 				       teacher_id trong bảng teachers mình đã sửa lại thành user_id 
+				       lesson_id trong bảng roll_calls mình chưa vẽ liên kết đến bảng lessons
 đã cập nhật trong file sql nhưng file PDF thì chưa sửa lại thầy nhé
+
 
 **************Mô tả hệ thống*******************
 
