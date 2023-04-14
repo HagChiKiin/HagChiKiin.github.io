@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day04</title>
+</head> 
+<body>
+    <p id="text" style="color: #777; font-size: 2rem;">
+        Tôi có thể làm <em> bất cứ điều gì</em> tôi muốn với JavaScript
+    </p>
+    <ul id="item">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+    </ul>
+
+    <script>    
+        let list_items = document.querySelectorAll('#item li'); 
+        for ( const x of list_items) x.style.color = 'blue' 
+        
+        let list = document.getElementById('list')
+        for (let i = 8; i < 11; i++) list.insertAdjacentHTML('beforeend', '<li>Item '+i+'</li>')
+
+        list.querySelector("li").style.color = 'red'
+        list.querySelector('li:nth-child(3)').style.backgroundColor = 'blue' 
+        let card4 = list.querySelector('li:nth-child(4)')
+        card4.parentNode.removeChild(card4)
+    </script>           
+
+</body>                                                                         
+</html>                             
