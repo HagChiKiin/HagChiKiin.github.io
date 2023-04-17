@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id = "text">
+        Hello xin chào các bạn
+    </p>
+    <button id="btn-1" onclick="changeContent()">Change content</button>
+    <button id = "btn-2">Change color    </button>
+    <button id = "btn-3">Change background    </button>
+
+    <script>
+        // random text
+        let btn = document.getElementById("btn-1")
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
+        const x = characters.length;
+        function random_text(text_length){
+            let rel = "";
+            let count = 0;
+            while(count < text_length){
+                rel += characters.charAt(Math.floor(Math.random()* x));
+                count +=1;
+            }
+            return rel;
+        }
+        function changeContent(){
+            document.getElementById("text").innerText = random_text(Math.floor(Math.random()*100))
+        }
+
+        // random color
+        const hex_characters = '0123456789ABCDEF'
+        function generate_hex_code(){
+            let hexCode ='#';
+            for (let i = 0; i < 6; i++) {
+                hexCode += hex_characters[Math.floor(Math.random()*16)];   
+            }
+            return hexCode;
+        }
+        let btn_2 = document.getElementById("btn-2")
+        btn_2.onclick = function(){
+            document.getElementById("text").style.color = generate_hex_code()
+        }
+
+        //random background
+        let btn_3 = document.getElementById("btn-3")
+        function random_RGB() {
+            const r = Math.floor(Math.random() * 256); 
+            const g = Math.floor(Math.random() * 256); 
+            const b = Math.floor(Math.random() * 256); 
+            return `rgb(${r}, ${g}, ${b})`; 
+        }
+
+        btn_3.addEventListener('click', function(event){
+            document.getElementById("text").style.backgroundColor = random_RGB()
+        })
+
+
+    </script>
+</body>
+</html>
