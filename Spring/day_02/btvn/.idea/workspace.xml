@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fc0abc41-cdbf-47c3-a56b-19e809309640" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/Worker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/entity/Factory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/entity/InputInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/entity/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/entity/TimeSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/entity/TimeSheetDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/entity/Worker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/logic_handle/FactoryManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/logic_handle/MenuManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/logic_handle/TimeSheetManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/logic_handle/WorkerManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_01/src/main/java/statics/WorkerLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Bill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/BillDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/InputInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/BillManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/CustomerManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/MenuManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/ServiceManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/statics/CustomerType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/statics/Number.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/entity/Bill.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/entity/BillDetail.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/entity/Customer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/entity/InputInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/entity/Person.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/entity/Service.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/logic_handle/BillManagement.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/logic_handle/CustomerManagement.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/logic_handle/MenuManagement.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/logic_handle/ServiceManagement.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/statics/CustomerType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/statics/Number.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/lesson_1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/src/entity/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lesson_1/src/entity/Teacher.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="3" />
+  </component>
+  <component name="ProjectId" id="2P8ghlM8x7o0Wx84HthfxsFuoMS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../day_01/lesson_01" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="entity" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="btvn" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fc0abc41-cdbf-47c3-a56b-19e809309640" name="Default Changelist" comment="" />
+      <created>1682844246911</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682844246911</updated>
+      <workItem from="1682844248320" duration="14091000" />
+      <workItem from="1682908933234" duration="5835000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/btvn$Main.ic" NAME="Main Coverage Results" MODIFIED="1682867475253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
