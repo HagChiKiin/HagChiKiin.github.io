@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ebc83a95-3aa9-4882-82af-bf89c9bfdb3e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/day_02.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/homework-01.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Factory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/InputInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/TimeSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/TimeSheetDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Worker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/FactoryManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/MenuManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/TimeSheetManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/logic_handle/WorkerManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/statics/WorkerLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/lesson_01.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/OOP/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/OOP/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/OOP/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/demo_sort/Main01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/demo_sort/Main02.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/demo_sort/Main03.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/demo_sort/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/demo_sort/staticccc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/demo_static/MainStatic01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_03/java_core/lesson_01/src/demo_static/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_01/lesson_01/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_01/lesson_01/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../btvn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../btvn/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../btvn/src/main/java/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../btvn/src/main/java/entity/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../btvn/src/main/java/logic_handle/BillManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../btvn/src/main/java/logic_handle/BillManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../btvn/src/main/java/logic_handle/ServiceManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../btvn/src/main/java/logic_handle/ServiceManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../btvn/target/classes/logic_handle/BillManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/../btvn/target/classes/logic_handle/BillManagement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../btvn/target/classes/logic_handle/MenuManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/../btvn/target/classes/logic_handle/MenuManagement.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2PKZsqwXVem6oGtl3UMBwCdLF72" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ebc83a95-3aa9-4882-82af-bf89c9bfdb3e" name="Default Changelist" comment="" />
+      <created>1683207946105</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683207946105</updated>
+      <workItem from="1683207948281" duration="1798000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -17,6 +17,7 @@ public class ServiceManagement {
     public void inputInfo() {
         System.out.println("Ban muon nhap bao nhiu dich vu:");
         int serviceNumber;
+
         do{
             try{
                 serviceNumber = new Scanner(System.in).nextInt();
@@ -28,7 +29,7 @@ public class ServiceManagement {
                 System.out.println("vui long nhap so :");
             }
         }while (true);
-        for (int i = 0; i < serviceNumber; i++) {
+        for (int i = 0; i < 2; i++) {
             Service service = new Service();
             service.inputInfo();
             services.add(service);

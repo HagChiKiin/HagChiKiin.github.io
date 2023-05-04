@@ -94,11 +94,13 @@ public class BillManagement {
                         System.out.println("vui long nhap so :");
                     }
                 }while (true);
+
                 BillDetail billDetail = new BillDetail(service, serviceTotal);
                 billDetails.add(billDetail);
             }
 
             Bill bill = new Bill(customer,billDetails);
+
             bills.add(bill);
 
         }

@@ -76,7 +76,7 @@ public class Main {
         Collections.sort(time, Comparator.comparing(o -> o.getInjection().getTenXuong()));
         for (TimeKeeping tk : time) {
             System.out.println(tk);
-        }
+        }   
 
         //5. Lập bảng kê thu nhập cho mỗi công nhân
 

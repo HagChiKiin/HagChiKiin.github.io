@@ -1,12 +1,12 @@
 package entity;
 
-
 import java.util.Scanner;
 
 public class Person implements InputInfo {
+
     protected String name;
     protected String address;
-    protected String  phone;
+    protected String phone;
 
     public String getName() {
         return name;
@@ -41,24 +41,16 @@ public class Person implements InputInfo {
                 '}';
     }
 
-    public Person(String name, String address, String phone) {
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-    }
-
-    public Person() {
-    }
-
     @Override
-    public void inputInfo(){
-        System.out.println("Nhap ho ten: ");
+    public void inputInfo() {
+        System.out.println("Nhập tên công nhân: ");
         this.setName(new Scanner(System.in).nextLine());
 
-        System.out.println("Nhap dia chi: ");
+        System.out.println("Nhập địa chỉ: ");
         this.setAddress(new Scanner(System.in).nextLine());
 
-        System.out.println("Nhap sdt: ");
+        System.out.println("Nhập SĐT: ");
         this.setPhone(new Scanner(System.in).nextLine());
     }
+
 }
