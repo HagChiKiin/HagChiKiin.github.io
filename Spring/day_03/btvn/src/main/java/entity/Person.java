@@ -1,5 +1,7 @@
 package entity;
 
+
+
 import java.util.Scanner;
 
 public class Person implements InputInfo {

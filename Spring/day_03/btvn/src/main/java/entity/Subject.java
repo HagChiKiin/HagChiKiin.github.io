@@ -1,15 +1,12 @@
 package entity;
 
-import lombok.*;
+
 import statics.TypeOfSubject;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+
 public class Subject implements InputInfo {
     private int id;
     private String name;
@@ -22,8 +19,64 @@ public class Subject implements InputInfo {
         AUTO_ID++;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    public TypeOfSubject getType() {
+        return type;
+    }
+
+    public void setType(TypeOfSubject type) {
+        this.type = type;
+    }
+
+    public static int getAutoId() {
+        return AUTO_ID;
+    }
+
+    public static void setAutoId(int autoId) {
+        AUTO_ID = autoId;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", credit=" + credit +
+                ", type=" + type +
+                '}';
+    }
+
     @Override
     public void inputInfo() {
+        System.out.println("Nhập vào tên môn học: ");
+        this.setName(new Scanner(System.in).nextLine());
+
+        System.out.println("Nhập vào số đơn vị học trình: ");
+        this.setCredit(new Scanner(System.in).nextInt());
+
         System.out.println("Nhập loại môn học: ");
         System.out.println("1. Đại cương");
         System.out.println("2. Cơ sở ngành");
