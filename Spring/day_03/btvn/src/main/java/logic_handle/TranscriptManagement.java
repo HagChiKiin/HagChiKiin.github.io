@@ -87,7 +87,7 @@ public class TranscriptManagement {
                 } while (true);
 
                 System.out.println("Sinh viên này có số điểm môn vừa nhập là: ");
-                int point;
+                float point;
                 do {
                     try {
                         point = new Scanner(System.in).nextInt();
