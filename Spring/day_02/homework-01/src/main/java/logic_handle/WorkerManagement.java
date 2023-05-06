@@ -54,7 +54,8 @@ public class WorkerManagement {
         }
         return null;
     }
-    public boolean isEmptyWorker(){
+
+    public boolean isEmptyWorker() {
         return this.workers.isEmpty();
     }
 

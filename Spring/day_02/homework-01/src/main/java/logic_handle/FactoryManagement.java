@@ -55,9 +55,9 @@ public class FactoryManagement {
         }
         return null;
     }
-    public boolean isEmptyFactory(){
+
+    public boolean isEmptyFactory() {
         return this.factories.isEmpty();
     }
-
 
 }

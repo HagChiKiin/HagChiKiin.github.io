@@ -4,36 +4,35 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuManagement {
-
-    private WorkerManagement workerManagement;
-    private FactoryManagement factoryManagement;
-    private TimeSheetManagement timeSheetManagement;
+    private StudentManagement studentManagement;
+    private SubjectManagement subjectManagement;
+    private TranscriptManagement transcriptManagement;
 
     public MenuManagement() {
-        this.workerManagement = new WorkerManagement();
-        this.factoryManagement = new FactoryManagement();
-        this.timeSheetManagement = new TimeSheetManagement(workerManagement, factoryManagement);
+        this.studentManagement =new StudentManagement();
+        this.subjectManagement = new SubjectManagement();
+        this.transcriptManagement = new TranscriptManagement(studentManagement, subjectManagement);
     }
 
-    public void menu() {
+    public void menu(){
         while (true) {
             printMenu();
             int functionChoice = functionChoice();
             switch (functionChoice) {
                 case 1:
-                    workerManagement.inputInfo();
+                    studentManagement.inputInfo();
                     break;
                 case 2:
-                    // TODO - factoryManagement
+                    subjectManagement.inputInfo();
                     break;
                 case 3:
-                    timeSheetManagement.logTimeSheet();
+                    transcriptManagement.enterTranscript();
                     break;
                 case 4:
-                    timeSheetManagement.sortMenu();
+                    transcriptManagement.sortMenu();
                     break;
                 case 5:
-                    timeSheetManagement.calculateSalary();
+                    transcriptManagement.calculateTotalPoint();
                     break;
                 case 6:
                     return;
@@ -41,14 +40,13 @@ public class MenuManagement {
         }
     }
 
-
     private void printMenu() {
-        System.out.println("------------PHẦN MỀM QUẢN LÝ TÍNH LƯƠNG CHO CÔNG NHÂN--------------");
-        System.out.println("1. Nhập danh sách công nhân mới và in ra màn hình");
-        System.out.println("2. Nhập danh sách phân xương mới và in ra màn hình");
-        System.out.println("3. Lập bảng tính công cho nhân viên");
-        System.out.println("4. Sắp xếp bảng tính công");
-        System.out.println("5. Lập bảng kê thu nhập");
+        System.out.println("------------PHẦN MỀM QUẢN LÝ SINH VIÊN--------------");
+        System.out.println("1. Nhập danh sách sinh viên mới và in ra màn hình");
+        System.out.println("2. Nhập danh sách môn học mới và in ra màn hình");
+        System.out.println("3. Nhập điểm cho mỗi sinh viên đã có và in ra màn hình");
+        System.out.println("4. Sắp xếp danh sách bảng điểm");
+        System.out.println("5. Điểm tổng kết theo môn học và đơn vị học trình");
         System.out.println("6. Thoát");
         System.out.println("Xin mời chọn chức năng: ");
     }
