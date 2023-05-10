@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf4e10e1-5366-4250-9090-d0f7e03db16e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../New folder/SpringThymeleaf/SpringThymeleaf.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_05/thymeleaf_01/src/main/java/com/example/thymeleaf_01/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_05/thymeleaf_01/src/main/java/com/example/thymeleaf_01/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../btvn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../btvn/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_03/btvn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_03/btvn/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/SubjectDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/SubjectDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Transcript.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_03/btvn/src/main/java/entity/Transcript.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +35,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../btvn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demo-web-01" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -55,12 +54,26 @@
       <updated>1683205095051</updated>
       <workItem from="1683205096863" duration="3788000" />
       <workItem from="1683335629647" duration="3027000" />
-      <workItem from="1683339085916" duration="629000" />
+      <workItem from="1683339085916" duration="896000" />
+      <workItem from="1683560020293" duration="643000" />
+      <workItem from="1683635852518" duration="385000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

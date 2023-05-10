@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc0abc41-cdbf-47c3-a56b-19e809309640" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/target/classes/logic_handle/BillManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logic_handle/BillManagement.class" afterDir="false" />
-    </list>
+    <list default="true" id="fc0abc41-cdbf-47c3-a56b-19e809309640" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +82,7 @@
       <workItem from="1683007558897" duration="3055000" />
       <workItem from="1683034697929" duration="1187000" />
       <workItem from="1683200830817" duration="3032000" />
-      <workItem from="1683339474423" duration="319000" />
+      <workItem from="1683339474423" duration="508000" />
     </task>
     <servers />
   </component>
