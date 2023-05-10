@@ -59,8 +59,7 @@ public class TeacherService {
 
     public void deleteTeacher(int id) {
         teachers.removeIf(a -> a.getId() == id);
-       
-    }
+           }
 
 
 }
