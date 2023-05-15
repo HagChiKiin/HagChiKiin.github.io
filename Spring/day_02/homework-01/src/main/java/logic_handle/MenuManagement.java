@@ -12,7 +12,7 @@ public class MenuManagement {
     public MenuManagement() {
         this.workerManagement = new WorkerManagement();
         this.factoryManagement = new FactoryManagement();
-        this.timeSheetManagement = new TimeSheetManagement(workerManagement, factoryManagement);
+        this.timeSheetManagement = new TimeSheetManagement(workerManagement,factoryManagement);
     }
 
     public void menu() {

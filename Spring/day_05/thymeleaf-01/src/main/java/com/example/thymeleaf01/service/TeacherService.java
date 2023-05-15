@@ -19,6 +19,7 @@ public class TeacherService {
                     .id(i)
                     .name("Nguyễn Thij " + i)
                     .address("Hà Nội " + i)
+                    .phone("01234567"+i)
                     .dob(LocalDate.now())
                     .specialization("môn" + i)
                     .build();

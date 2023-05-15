@@ -12,7 +12,7 @@ public class FactoryManagement {
 
     private List<Factory> factories;
 
-    public FactoryManagement() {
+    public FactoryManagement()   {
         this.factories = new ArrayList<>();
     }
 
@@ -48,9 +48,9 @@ public class FactoryManagement {
 //    }
 
     public Factory findById(int id) {
-        for (int i = 0; i < factories.size(); i++) {
-            if (factories.get(i).getId() == id) {
-                return factories.get(i);
+        for (Factory factory : factories) {
+            if (factory.getId() == id) {
+                return factory;
             }
         }
         return null;

@@ -29,12 +29,13 @@
         <div class="col">
             <table class="table table-bordered table-hover table-striped">
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Date of birth</th>
-                    <th>GPA</th>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Address</th>
+                    <th class="text-center">Phone</th>
+                    <th class="text-center">Date of birth</th>
+                    <th class="text-center">GPA</th>
+                    <th class="text-center">Actions</th>
                 </tr>
                 <tr th:each="sinhVien: ${danhSachSinhVien}">
                     <td th:text="${sinhVien.id}"/>
@@ -43,6 +44,14 @@
                     <td th:text="${sinhVien.phone}"/>
                     <td th:text="${sinhVien.dob}"/>
                     <td th:text="${sinhVien.gpa}"/>
+                    <td class="d-flex justify-content-center">
+                        <a role="button" class="mr-3 text-primary">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a role="button" class="text-danger" th:ref="@{'/students/'+${sinhVien.id}+'/delete/'}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
                 </tr>
             </table>
         </div>

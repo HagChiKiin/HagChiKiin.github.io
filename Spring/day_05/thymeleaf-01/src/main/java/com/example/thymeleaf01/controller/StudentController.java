@@ -5,16 +5,12 @@ import com.example.thymeleaf01.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@AllArgsConstructor
-@RequestMapping("/students")
+
+
 public class StudentController {
 
     //    @Autowired
@@ -33,7 +29,8 @@ public class StudentController {
     }
 
     @GetMapping("/create-form")
-    public String forwardToCreateForm(Model model, Student student) {
+    public String forwardToCreateForm(Model model) {
+        Student student = new Student();
         model.addAttribute("sinhVienToiMuonTaoMoi", student);
         return "create-student";
     }
@@ -44,5 +41,10 @@ public class StudentController {
         return "redirect:/students";
     }
 
-
+    @GetMapping("/{id}/delete")
+    public String deleteStudent(@PathVariable String id) {
+        studentService.delete(id);
+        return "redirect:/students";
+    }
 }
+

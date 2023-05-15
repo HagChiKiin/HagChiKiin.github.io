@@ -18,4 +18,5 @@ public class Teacher {
     String phone;
     LocalDate dob;
     String specialization;
+    int publishedYear;
 }

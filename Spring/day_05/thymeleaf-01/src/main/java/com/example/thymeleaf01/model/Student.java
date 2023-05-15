@@ -16,6 +16,7 @@ public class Student {
     String name;
     String address;
     String phone;
+
     LocalDate dob;
     float gpa;
 
