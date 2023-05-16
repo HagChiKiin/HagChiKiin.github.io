@@ -73,3 +73,9 @@ body {
     left:-30px;
     position:absolute;
 }
+
+h2{
+    font-family: "Poppins";
+    font-weight: 700;
+    line-height: 1.4;
+}
