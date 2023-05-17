@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tạo mới sách</title>
+    <title>Create New Reader</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
   <!-- jQuery library -->
@@ -21,7 +21,7 @@
   <div class="row px-5">
     <div class="col">
       <div class="row justify-content-center">
-        <h1>Create New Book</h1>
+        <h1>Create New Reader</h1>
       </div>
       <div class="row justify-content-center mb-4">
         <div class="col">
@@ -41,9 +41,9 @@
             </div>
 
             <div class="form-group">
-              <label for="readerType">readerType</label>
+              <label for="readerType">ReaderType</label>
               <select type="text" th:field="*{readerType}" class="form-control" id="readerType">
-                <option th:each="bandoc: ${danhSachBanDoc}" th:value="${bandoc.id}" th:text="${bandoc.name}">
+                <option th:each="bandoc: ${dsBanDoc}" th:value="${bandoc}" th:text="${bandoc}">
                 </option>
               </select>
 

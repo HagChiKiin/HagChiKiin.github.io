@@ -21,37 +21,43 @@
   <div class="row px-5">
     <div class="col">
       <div class="row justify-content-center">
-        <h1>Edit book</h1>
+        <h1>Edit student</h1>
       </div>
       <div class="row justify-content-center mb-4">
         <div class="col">
-          <form action="#" th:action="@{/books/update}" th:object="${bookCapNhatMoi}" method="post">
+          <form action="#" th:action="@{/students/update}" th:object="${studentCapNhatMoi}" method="post">
             <input type="text" th:field="*{id}" th:hidden ="true"/>
             <div class="form-group">
               <label for="name">name</label>
               <input type="text" th:field="*{name}" class="form-control" id="name"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
             </div>
             <div class="form-group">
-              <label for="author">author</label>
-              <input type="text" th:field="*{author}" class="form-control" id="author"/>
-            </div>
-
-            <div class="form-group">
-              <label for="publishedYear">publishedYear</label>
-              <input type="text" th:field="*{publishedYear}" class="form-control" id="publishedYear"/>
+              <label for="address">address</label>
+              <input type="text" th:field="*{address}" class="form-control" id="address"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
             </div>
 
             <div class="form-group">
-              <label for="specialization">Specialization</label>
-              <select type="text" th:field="*{specialization}" class="form-control" id="specialization">
-                <option th:each="sach: ${dsChuyenNganh}" th:value="${sach}" th:text="${sach}">
-                </option>
-              </select>
+              <label for="phone">phone</label>
+              <input type="text" th:field="*{phone}" class="form-control" id="phone"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+            </div>
 
+            <div class="form-group">
+              <label for="gpa">gpa</label>
+              <input type="text" th:field="*{gpa}" class="form-control" id="gpa"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('gpa')}" th:errors="*{gpa}"></div>
+            </div>
+            <div class="form-group">
+              <label for="dob">date of birth</label>
+              <input type="date" th:field="*{dob}" class="form-control"
+                     id="dob"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>
-            <a role="button" class="btn btn-secondary" th:href="@{/books}">Back</a>
+            <a role="button" class="btn btn-secondary" th:href="@{/students}">Back</a>
           </form>
         </div>
       </div>

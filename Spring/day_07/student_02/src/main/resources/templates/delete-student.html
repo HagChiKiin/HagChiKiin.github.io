@@ -21,18 +21,23 @@
   <div class="row px-5">
     <div class="col">
       <div class="row justify-content-center">
-        <h1>Delete book</h1>
+        <h1>Create New User</h1>
       </div>
       <div class="row justify-content-center mb-4">
         <div class="col">
-          <form action="#" th:action="@{/readers/delete}" th:object="${readerdelete}" method="delete">
+          <form action="#" th:action="@{/users/delete}" th:object="${userTaoMoi}" method="delete">
             <div class="form-group">
-              <label for="name">name</label>
-              <input type="text" th:field="*{name}" class="form-control" id="name"/>
+              <label for="userName">userName</label>
+              <input type="text" th:field="*{userName}" class="form-control" id="userName"/>
             </div>
             <div class="form-group">
-              <label for="address">address</label>
-              <input type="text" th:field="*{address}" class="form-control" id="address"/>
+              <label for="passWord">passWord</label>
+              <input type="text" th:field="*{passWord}" class="form-control" id="passWord"/>
+            </div>
+
+            <div class="form-group">
+              <label for="email">email</label>
+              <input type="text" th:field="*{email}" class="form-control" id="email"/>
             </div>
 
             <div class="form-group">
@@ -40,17 +45,8 @@
               <input type="text" th:field="*{phone}" class="form-control" id="phone"/>
             </div>
 
-            <div class="form-group">
-              <label for="readerType">readerType</label>
-              <select type="text" th:field="*{readerType}" class="form-control" id="readerType">
-                <option th:each="sach: ${danhSachLoaiSach}" th:value="${sach.id}" th:text="${sach.name}">
-                </option>
-              </select>
-
-            </div>
-
             <button type="submit" class="btn btn-primary">Save</button>
-            <a role="button" class="btn btn-secondary" th:href="@{/readers}">Back</a>
+            <a role="button" class="btn btn-secondary" th:href="@{/users}">Back</a>
           </form>
         </div>
       </div>

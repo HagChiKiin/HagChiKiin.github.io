@@ -17,12 +17,17 @@ public class BookService {
         books.add(book);
     }
 
-    public void delete(String id) {
-        books.removeIf(a->a.getId() == Integer.parseInt(id));
+    public void delete(int id) {
+        books.removeIf(a->a.getId() == id);
     }
 
-    public Book findById(String id) {
-        return books.stream().filter(s->s.getId() == Integer.parseInt(id)).findFirst().get();
+    public Book findById(int id) {
+        for (Book b: books) {
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        return null;
     }
 
     public void updateBook(Book book) {
@@ -34,6 +39,7 @@ public class BookService {
             s.setName(book.getName());
             s.setAuthor(book.getAuthor());
             s.setPublishedYear(book.getPublishedYear());
+            s.setSpecialization(book.getSpecialization());
         });
     }
 }

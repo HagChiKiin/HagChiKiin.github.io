@@ -21,7 +21,7 @@
   <div class="row px-5">
     <div class="col">
       <div class="row justify-content-center">
-        <h1>Create New User</h1>
+        <h1>Edit Reader</h1>
       </div>
       <div class="row justify-content-center mb-4">
         <div class="col">
@@ -44,7 +44,7 @@
             <div class="form-group">
               <label for="readerType">readerType</label>
               <select type="text" th:field="*{readerType}" class="form-control" id="readerType">
-                <option th:each="sach: ${danhSachLoaiSach}" th:value="${sach.id}" th:text="${sach.name}">
+                <option th:each="bandoc: ${dsBanDoc}" th:value="${bandoc}" th:text="${bandoc}">
                 </option>
               </select>
 

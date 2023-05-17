@@ -19,12 +19,15 @@ public class ReaderService {
         readers.add(reader);
     }
 
-    public void delete(String id) {
-        readers.removeIf(a->a.getId() == Integer.parseInt(id));
+    public void delete(int id) {
+        readers.removeIf(a->a.getId() == id);
     }
 
-    public Reader findById(String id) {
-        return readers.stream().filter(s->s.getId() == Integer.parseInt(id)).findFirst().get();
+    public Reader findById(int id) {
+        for (Reader r: readers
+             ) {if(r.getId() == id) return r;
+        }
+        return null;
     }
 
     public void updateReader(Reader reader) {
@@ -36,6 +39,7 @@ public class ReaderService {
             s.setName(reader.getName());
             s.setAddress(reader.getAddress());
             s.setPhone(reader.getPhone());
+            s.setReaderType(reader.getReaderType());
         });
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý bạn đọc</title>
+    <title>Quản lý mượn sách</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -35,9 +35,10 @@
 
 </div>
 <div class="container">
+
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/readers/create-form">Tạo mới</a>
+            <a class="btn btn-primary" href="/borrowBooks/create-form">Tạo mới</a>
         </div>
     </div>
     <div class="row mt-4">
@@ -45,29 +46,24 @@
             <table class="table table-bordered table-hover table-striped">
                 <tr>
                     <th class="text-center">ID</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Address</th>
-                    <th class="text-center">Phone</th>
-                    <th class="text-center">ReaderType</th>
-                    <th class="text-center">Actions</th>
+                    <th class="text-center">Họ Và Tên</th>
+                    <th class="text-center">Tên đầu sách</th>
+                    <th class="text-center">Số lượng mượn</th>
+                    <th class="text-center">Thể loại sách</th>
+                    <th class="text-center">Loại người đọc</th>
+                    <th class="text-center">Sửa</th>
                 </tr>
-                <tr th:each="u: ${danhSachReader}">
+                <tr th:each="u: ${danhSachBook}">
                     <td th:text="${u.id}"/>
                     <td th:text="${u.name}"/>
-                    <td th:text="${u.address}"/>
-                    <td th:text="${u.phone}"/>
-                    <td th:text="${u.readerType}"/>
+                    <td th:text="${u.author}"/>
+                    <td th:text="${u.publishedYear}"/>
+                    <td th:text="${u.specialization}"/>
                     <td class="d-flex justify-content-center">
                         <a role="button" class="mr-3 text-primary"
-                           th:href="@{'/readers/'+${u.id}+'/edit'}">
-                            <i class="fas fa-pencil-alt "></i>
+                           th:href="@{'/borrowBooks/'+${u.id}+'/edit'}">
+                            <i class="fas fa-pencil-alt"></i>
                         </a>
-                        <form th:action="@{'/readers/'+${u.id}+'/delete'}"
-                              onsubmit="return confirm('Bạn có chắc chắn muốn xóa bạn đọc này không?');">
-                            <button  type="submit" class="btn btn-link p-0 mr-2 fa-lg text-danger">
-                                <i class="fa-solid fa-trash "></i>
-                            </button>
-                        </form>
 
                     </td>
                 </tr>

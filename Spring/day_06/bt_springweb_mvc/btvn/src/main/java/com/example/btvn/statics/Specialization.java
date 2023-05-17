@@ -1,16 +1,24 @@
 package com.example.btvn.statics;
 
 public enum Specialization {
-    KHOA_HOC_TU_NHIEN(0,"Khoa hoc tu nhien"),
-    VAN_HOC_NGHE_THUAT(1,"Van hoc nghe thuat"),
-    DIEN_TU_VIEN_THONG(2,"Dien tu vien thong"),
-    CONG_NGHE_THONG_TIN(3,"Cong nghe thong tin");
+    KHOA_HOC_TU_NHIEN("Khoa hoc tu nhien"),
+    VAN_HOC_NGHE_THUAT("Van hoc nghe thuat"),
+    DIEN_TU_VIEN_THONG("Dien tu vien thong"),
+    CONG_NGHE_THONG_TIN("Cong nghe thong tin");
 
-    public int id;
+
     public String name;
 
-    Specialization(int id, String name) {
-        this.id = id;
+
+    Specialization(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 }

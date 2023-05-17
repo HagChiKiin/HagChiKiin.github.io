@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -31,15 +32,10 @@ public class ReaderController {
     }
 
     @GetMapping("/create-form")
-    public String forwardToCreateForm(Model model) {
-        Reader reader = new Reader();
-        List<ReaderTypeDto> readerTypeDtos = new ArrayList<>();
-        readerTypeDtos.add(new ReaderTypeDto(ReaderType.SINH_VIEN.id, ReaderType.SINH_VIEN.name));
-        readerTypeDtos.add(new ReaderTypeDto(ReaderType.GIANG_VIEN.id, ReaderType.GIANG_VIEN.name));
-        readerTypeDtos.add(new ReaderTypeDto(ReaderType.HOCVIEN_CAOHOC.id, ReaderType.HOCVIEN_CAOHOC.name));
-        model.addAttribute("danhSachBanDoc", readerTypeDtos);
+    public String forwardToCreateForm( Model model ,Reader reader  ) {
+        List<ReaderType> readerTypes = Arrays.asList(ReaderType.values());
+        model.addAttribute("dsBanDoc",readerTypes);
         model.addAttribute("banDocTaoMoi", reader);
-
         return "create-reader";
     }
 
@@ -50,17 +46,20 @@ public class ReaderController {
     }
 
     @GetMapping("/{id}/delete")
-    public String deleteReader(@PathVariable("id") String id) {
+    public String deleteReader(@PathVariable int id) {
         readerService.delete(id);
         return "redirect:/readers";
     }
 
     @GetMapping("/{id}/edit")
-    public String forwardToEditForm(@PathVariable("id") String id, Model model) {
+    public String forwardToEditForm(@PathVariable int id, Model model){
         Reader reader = readerService.findById(id);
-        model.addAttribute("banDocCapNhatMoi", reader);
+        List<ReaderType> readerTypes = Arrays.asList(ReaderType.values());
+        model.addAttribute("dsBanDoc",readerTypes);
+        model.addAttribute("banDocCapNhatMoi",reader);
         return "edit-reader";
     }
+
 
     @PostMapping("/update")
     public String updateReader(@ModelAttribute("reader") Reader reader) {

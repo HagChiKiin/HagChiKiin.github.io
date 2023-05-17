@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 @Controller
 @AllArgsConstructor
@@ -28,16 +30,10 @@ public class BookController {
     }
 
     @GetMapping("/create-form")
-    public String forwardToCreateForm(Model model) {
-        Book book = new Book();
-        List<SpecializationDto> specializationDtos = new ArrayList<>();
-        specializationDtos.add(new SpecializationDto(Specialization.KHOA_HOC_TU_NHIEN.id, Specialization.KHOA_HOC_TU_NHIEN.name));
-        specializationDtos.add(new SpecializationDto(Specialization.VAN_HOC_NGHE_THUAT.id, Specialization.VAN_HOC_NGHE_THUAT.name));
-        specializationDtos.add(new SpecializationDto(Specialization.DIEN_TU_VIEN_THONG.id, Specialization.DIEN_TU_VIEN_THONG.name));
-        specializationDtos.add(new SpecializationDto(Specialization.CONG_NGHE_THONG_TIN.id, Specialization.CONG_NGHE_THONG_TIN.name));
-        model.addAttribute("danhSachLoaiSach" , specializationDtos);
+    public String forwardToCreateForm( Model model ,Book book  ) {
+        List<Specialization> specializations = Arrays.asList(Specialization.values());
+        model.addAttribute("dsChuyenNganh",specializations);
         model.addAttribute("bookTaoMoi", book);
-
         return "create-book";
     }
     @PostMapping
@@ -46,13 +42,15 @@ public class BookController {
         return "redirect:/books";
     }
     @GetMapping("/{id}/delete")
-    public String deleteBook(@PathVariable("id") String id){
+    public String deleteBook(@PathVariable int id ){
         bookService.delete(id);
         return "redirect:/books";
     }
     @GetMapping("/{id}/edit")
-    public String forwardToEditForm(@PathVariable("id") String id, Model model){
+    public String forwardToEditForm(@PathVariable int id, Model model){
         Book book = bookService.findById(id);
+        List<Specialization> specializations = Arrays.asList(Specialization.values());
+        model.addAttribute("dsChuyenNganh",specializations);
         model.addAttribute("bookCapNhatMoi",book);
         return "edit-book";
     }

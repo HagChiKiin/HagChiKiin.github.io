@@ -27,23 +27,23 @@
         <div class="col">
           <form action="#" th:action="@{/books}" th:object="${bookTaoMoi}" method="post">
             <div class="form-group">
-              <label for="name">name</label>
+              <label for="name">Name</label>
               <input type="text" th:field="*{name}" class="form-control" id="name"/>
             </div>
             <div class="form-group">
-              <label for="author">author</label>
+              <label for="author">Author</label>
               <input type="text" th:field="*{author}" class="form-control" id="author"/>
             </div>
 
             <div class="form-group">
-              <label for="publishedYear">publishedYear</label>
+              <label for="publishedYear">PublishedYear</label>
               <input type="text" th:field="*{publishedYear}" class="form-control" id="publishedYear"/>
             </div>
 
             <div class="form-group">
-              <label for="specialization">specialization</label>
+              <label for="specialization">Specialization</label>
               <select type="text" th:field="*{specialization}" class="form-control" id="specialization">
-                <option th:each="sach: ${danhSachLoaiSach}" th:value="${sach.id}" th:text="${sach.name}">
+                <option th:each="sach: ${dsChuyenNganh}" th:value="${sach}" th:text="${sach}">
                 </option>
               </select>
 

@@ -17,7 +17,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
+<div class="container my-3 py-3">
+    <div class="row">
+        <div class="col">
+            <ul class="second-menu d-flex justify-content-center " style="list-style: none; font-size: 25px; ">
+                <li class="link-text px-4 mx-4 " ><a href="/books">Quản lý sách</a>
+                </li>
+                <li class="link-text px-4 mx-4 " >
+                    <a href="/readers">Quản lý bạn đọc</a>
+                </li>
+                <li class="link-text px-4 mx-4 " >
+                    <a href="/borrowBooks">Quản lý mượn sách</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
 <div class="container">
+
     <div class="row">
         <div class="col">
             <a class="btn btn-primary" href="/books/create-form">Tạo mới</a>
@@ -45,8 +63,11 @@
                            th:href="@{'/books/'+${u.id}+'/edit'}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
-                        <a role="button" class="text-danger" th:href="@{'/books/'+${u.id}+'/delete'}">
-                            <i class="fa-solid fa-trash"></i>
+                        <a role="button" class="text-danger"
+                           th:href="@{'/books/'+${u.id}+'/delete'}"
+                           th:data-confirm-delete="|Bạn có chắc chắn muốn xóa đầu sách này không?|"
+                           onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                            <i class="fas fa-trash"></i>
                         </a>
                     </td>
                 </tr>
