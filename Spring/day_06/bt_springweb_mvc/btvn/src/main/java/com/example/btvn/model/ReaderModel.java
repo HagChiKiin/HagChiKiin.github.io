@@ -1,10 +1,7 @@
-package com.example.btvn.entity;
+package com.example.btvn.model;
 
 import com.example.btvn.statics.ReaderType;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.InputMismatchException;
@@ -14,7 +11,7 @@ import java.util.Scanner;
 @Builder
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Reader {
+public class ReaderModel {
     int id;
     String name;
     String address;
@@ -23,7 +20,7 @@ public class Reader {
 
     private static int AUTO_ID =10000;
 
-    public Reader() {
+    public ReaderModel() {
         this.id = AUTO_ID;
         AUTO_ID++;
     }

@@ -1,19 +1,13 @@
 package com.example.btvn.controller;
 
-import com.example.btvn.dto.ReaderTypeDto;
-import com.example.btvn.dto.SpecializationDto;
-import com.example.btvn.entity.Book;
-import com.example.btvn.entity.Reader;
-import com.example.btvn.service.BookService;
+import com.example.btvn.model.ReaderModel;
 import com.example.btvn.service.ReaderService;
 import com.example.btvn.statics.ReaderType;
-import com.example.btvn.statics.Specialization;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,22 +20,22 @@ public class ReaderController {
 
     @GetMapping
     public String getReader(Model model) {
-        List<Reader> readers = readerService.getAlReader();
-        model.addAttribute("danhSachReader", readers);
+        List<ReaderModel> readerModels = readerService.getAlReader();
+        model.addAttribute("danhSachReader", readerModels);
         return "reader-list";
     }
 
     @GetMapping("/create-form")
-    public String forwardToCreateForm( Model model ,Reader reader  ) {
+    public String forwardToCreateForm(Model model , ReaderModel readerModel) {
         List<ReaderType> readerTypes = Arrays.asList(ReaderType.values());
         model.addAttribute("dsBanDoc",readerTypes);
-        model.addAttribute("banDocTaoMoi", reader);
+        model.addAttribute("banDocTaoMoi", readerModel);
         return "create-reader";
     }
 
     @PostMapping
-    public String createNewReader(@ModelAttribute("reader") Reader reader) {
-        readerService.saveReader(reader);
+    public String createNewReader(@ModelAttribute("reader") ReaderModel readerModel) {
+        readerService.saveReader(readerModel);
         return "redirect:/readers";
     }
 
@@ -53,17 +47,17 @@ public class ReaderController {
 
     @GetMapping("/{id}/edit")
     public String forwardToEditForm(@PathVariable int id, Model model){
-        Reader reader = readerService.findById(id);
+        ReaderModel readerModel = readerService.findById(id);
         List<ReaderType> readerTypes = Arrays.asList(ReaderType.values());
         model.addAttribute("dsBanDoc",readerTypes);
-        model.addAttribute("banDocCapNhatMoi",reader);
+        model.addAttribute("banDocCapNhatMoi", readerModel);
         return "edit-reader";
     }
 
 
     @PostMapping("/update")
-    public String updateReader(@ModelAttribute("reader") Reader reader) {
-        readerService.updateReader(reader);
+    public String updateReader(@ModelAttribute("reader") ReaderModel readerModel) {
+        readerService.updateReader(readerModel);
         return "redirect:/readers";
     }
 }

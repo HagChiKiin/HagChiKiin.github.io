@@ -1,6 +1,6 @@
 package com.example.btvn.controller;
 
-import com.example.btvn.entity.BorrowBook;
+import com.example.btvn.model.BorrowBookModel;
 import com.example.btvn.service.BorrowBookService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,8 +18,8 @@ public class BorrowBookController {
 
     @GetMapping
     public String getAllBorrow(Model model) {
-        List<BorrowBook> borrowBooks = borrowBookService.getAllBorrows();
-        model.addAttribute("danhSachMuonBook", borrowBooks);
+        List<BorrowBookModel> borrowBookModels = borrowBookService.getAllBorrows();
+        model.addAttribute("danhSachMuonBook", borrowBookModels);
         return "borrowBook-list";
     }
 }

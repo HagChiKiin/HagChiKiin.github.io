@@ -1,9 +1,9 @@
 package com.example.btvn.service;
 
-import com.example.btvn.entity.Book;
-import com.example.btvn.entity.BorrowBook;
-import com.example.btvn.entity.BorrowBookDetails;
-import com.example.btvn.entity.Reader;
+import com.example.btvn.model.BookModel;
+import com.example.btvn.model.BorrowBookModel;
+import com.example.btvn.model.BorrowBookDetailsModel;
+import com.example.btvn.model.ReaderModel;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BorrowBookManagement {
-    private List<BorrowBook> borrowBooks;
+    private List<BorrowBookModel> borrowBookModels;
     private ReaderManagement readerManagement;
     private BookManagement bookManagement;
 
     public BorrowBookManagement(ReaderManagement readerManagement,BookManagement bookManagement ) {
-        this.borrowBooks = new ArrayList<>();
+        this.borrowBookModels = new ArrayList<>();
         this.bookManagement = bookManagement;
         this.readerManagement = readerManagement;
     }
@@ -42,12 +42,12 @@ public class BorrowBookManagement {
         for (int i = 1; i <= readerNumber; i++) {
             System.out.println("Nhập id của bạn đọc thứ "+i+"mà bạn muốn lập bảng QL");
             int readerId;
-            Reader reader;
+            ReaderModel readerModel;
             do{
                 try{
                     readerId = new Scanner(System.in).nextInt();
-                    reader = readerManagement.findById(readerId);
-                    if(reader !=null){
+                    readerModel = readerManagement.findById(readerId);
+                    if(readerModel !=null){
                         break;
                     }
                     System.out.println("ID của bạn đọc không tồn tại trong hệ thống, vui lòng nhập lại: ");
@@ -70,11 +70,11 @@ public class BorrowBookManagement {
                 }
             } while (true);
 
-            List<BorrowBookDetails> borrowBookDetails = new ArrayList<>();
+            List<BorrowBookDetailsModel> borrowBookDetailModels = new ArrayList<>();
             for (int j = 1; j <= bookNumber; j++) {
                 System.out.println("Nhập mã id của đầu sách "+j+" mà bạn đọc này đã mượn");
                 int bookId;
-                Book book;
+                BookModel book;
                 do {
                     try {
                         bookId = new Scanner(System.in).nextInt();
@@ -102,18 +102,18 @@ public class BorrowBookManagement {
                     }
                 } while (true);
 
-                BorrowBookDetails borrowBookDetail = new BorrowBookDetails(book,totalBook );
-                borrowBookDetails.add(borrowBookDetail);
+                BorrowBookDetailsModel borrowBookDetail = new BorrowBookDetailsModel(book,totalBook );
+                borrowBookDetailModels.add(borrowBookDetail);
             }
 
-            BorrowBook borrowBook = new BorrowBook(reader, borrowBookDetails);
-            borrowBooks.add(borrowBook);
+            BorrowBookModel borrowBookModel = new BorrowBookModel(readerModel, borrowBookDetailModels);
+            borrowBookModels.add(borrowBookModel);
         }
         showInfo();
     }
 
     private void showInfo() {
-        borrowBooks.forEach(System.out::println);
+        borrowBookModels.forEach(System.out::println);
     }
 
 }

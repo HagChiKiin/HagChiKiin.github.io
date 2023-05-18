@@ -1,6 +1,6 @@
 package com.example.btvn.service;
 
-import com.example.btvn.entity.Book;
+import com.example.btvn.model.BookModel;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BookManagement {
-    private List<Book> books;
+    private List<BookModel> books;
 
     public BookManagement() {
         this.books = new ArrayList<>();
     }
-    public Book findById(int id){
-        for (Book a : books) {
+    public BookModel findById(int id){
+        for (BookModel a : books) {
             if (a.getId() == id) {
                 return a;
             }
@@ -43,7 +43,7 @@ public class BookManagement {
         } while (true);
 
         for (int i = 0; i < bookNumber; i++) {
-            Book book = new Book();
+            BookModel book = new BookModel();
             book.inputInfo();
             books.add(book);
         }

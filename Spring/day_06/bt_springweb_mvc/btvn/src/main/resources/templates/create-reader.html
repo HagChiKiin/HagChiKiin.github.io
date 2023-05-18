@@ -25,19 +25,22 @@
       </div>
       <div class="row justify-content-center mb-4">
         <div class="col">
-          <form action="#" th:action="@{/readers}" th:object="${banDocTaoMoi}" method="post">
+          <form action="#" th:action="@{/readerModels}" th:object="${banDocTaoMoi}" method="post">
             <div class="form-group">
               <label for="name">name</label>
               <input type="text" th:field="*{name}" class="form-control" id="name"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
             </div>
             <div class="form-group">
               <label for="address">address</label>
               <input type="text" th:field="*{address}" class="form-control" id="address"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
             </div>
 
             <div class="form-group">
               <label for="phone">phone</label>
               <input type="text" th:field="*{phone}" class="form-control" id="phone"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
             </div>
 
             <div class="form-group">
@@ -50,7 +53,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>
-            <a role="button" class="btn btn-secondary" th:href="@{/readers}">Back</a>
+            <a role="button" class="btn btn-secondary" th:href="@{/readerModels}">Back</a>
           </form>
         </div>
       </div>

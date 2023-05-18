@@ -1,6 +1,6 @@
 package com.example.btvn.service;
 
-import com.example.btvn.entity.Reader;
+import com.example.btvn.model.ReaderModel;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReaderManagement {
-    private List<Reader> readers;
+    private List<ReaderModel> readerModels;
 
     public ReaderManagement() {
-        this.readers = new ArrayList<>();
+        this.readerModels = new ArrayList<>();
 
     }
 
@@ -31,19 +31,19 @@ public class ReaderManagement {
         } while (true);
 
         for (int i = 0; i < readerNumber; i++) {
-            Reader reader = new Reader();
-            reader.inputInfo();
-            readers.add(reader);
+            ReaderModel readerModel = new ReaderModel();
+            readerModel.inputInfo();
+            readerModels.add(readerModel);
         }
         showSubject();
     }
 
     private void showSubject() {
-        readers.forEach(System.out::println);
+        readerModels.forEach(System.out::println);
     }
 
-    public Reader findById(int id) {
-        for (Reader a : readers ) {
+    public ReaderModel findById(int id) {
+        for (ReaderModel a : readerModels) {
             if (a.getId() == id) {
                 return a;
             }
@@ -52,7 +52,7 @@ public class ReaderManagement {
     }
 
     public boolean isEmptyReader() {
-        return this.readers.isEmpty();
+        return this.readerModels.isEmpty();
     }
 }
 

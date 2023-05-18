@@ -24,10 +24,10 @@
                 <li class="link-text px-4 mx-4 " ><a href="/books">Quản lý sách</a>
                 </li>
                 <li class="link-text px-4 mx-4 " >
-                    <a href="/readers">Quản lý bạn đọc</a>
+                    <a href="/readerModels">Quản lý bạn đọc</a>
                 </li>
                 <li class="link-text px-4 mx-4 " >
-                    <a href="/borrowBooks">Quản lý mượn sách</a>
+                    <a href="/borrowBookModels">Quản lý mượn sách</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
 
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/borrowBooks/create-form">Tạo mới</a>
+            <a class="btn btn-primary" href="/borrowBookModels/create-form">Tạo mới</a>
         </div>
     </div>
     <div class="row mt-4">
@@ -61,7 +61,7 @@
                     <td th:text="${u.specialization}"/>
                     <td class="d-flex justify-content-center">
                         <a role="button" class="mr-3 text-primary"
-                           th:href="@{'/borrowBooks/'+${u.id}+'/edit'}">
+                           th:href="@{'/borrowBookModels/'+${u.id}+'/edit'}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
 
