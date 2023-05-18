@@ -34,8 +34,10 @@ public class BookController {
         return "create-book";
     }
     @PostMapping
-    public String createNewBook(@ModelAttribute("bookTaoMoi") @Valid  BookModel book, Errors errors) {
-        if (null != errors && errors.getErrorCount() > 0) { //@Valid - dữ liệu truyền vào phải chuẩn
+    public String createNewBook(@ModelAttribute("bookTaoMoi") @Valid  BookModel book, Errors errors, Model model) {
+        if (null != errors && errors.getErrorCount() > 0) {
+            List<Specialization> specializations = Arrays.asList(Specialization.values());
+            model.addAttribute("dsChuyenNganh",specializations);
             return "create-book";
         } else {
             bookService.saveBook(book);
@@ -52,12 +54,14 @@ public class BookController {
         BookModel book = bookService.findById(id);
         List<Specialization> specializations = Arrays.asList(Specialization.values());
         model.addAttribute("dsChuyenNganh",specializations);
-            model.addAttribute("bookCapNhatMoi",book);
+        model.addAttribute("bookCapNhatMoi",book);
         return "edit-book";
     }
     @PostMapping("/update")
-    public String updateBook(@ModelAttribute("bookCapNhatMoi") @Valid  BookModel book , Errors errors){
-        if (null != errors && errors.getErrorCount() > 0) { //@Valid - dữ liệu truyền vào phải chuẩn
+    public String updateBook(@ModelAttribute("bookCapNhatMoi") @Valid  BookModel book , Errors errors, Model model){
+        if (null != errors && errors.getErrorCount() > 0) {
+            List<Specialization> specializations = Arrays.asList(Specialization.values());
+            model.addAttribute("dsChuyenNganh",specializations);
             return "edit-book";
         } else {
             bookService.updateBook(book);

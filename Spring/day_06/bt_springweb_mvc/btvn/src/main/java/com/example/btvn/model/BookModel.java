@@ -7,10 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,7 +26,7 @@ public class BookModel {
 
     Specialization specialization;
     @NotNull(message = "Please enter publishedYear")
-    @Past(message = "Birth date should be less than current date!!")
+    @Max(value = 2023 ,message = "Birth date should be less than current date!!")
     int publishedYear;
 
     private static int AUTO_ID =10000;
