@@ -60,10 +60,10 @@
                     <td th:text="${u.readerType}"/>
                     <td class="d-flex justify-content-center">
                         <a role="button" class="mr-3 text-primary"
-                           th:href="@{'/readerModels/'+${u.id}+'/edit'}">
+                           th:href="@{'/readers/'+${u.id}+'/edit'}">
                             <i class="fas fa-pencil-alt "></i>
                         </a>
-                        <form th:action="@{'/readerModels/'+${u.id}+'/delete'}"
+                        <form th:action="@{'/readers/'+${u.id}+'/delete'}"
                               onsubmit="return confirm('Bạn có chắc chắn muốn xóa bạn đọc này không?');">
                             <button  type="submit" class="btn btn-link p-0 mr-2 fa-lg text-danger">
                                 <i class="fa-solid fa-trash "></i>
