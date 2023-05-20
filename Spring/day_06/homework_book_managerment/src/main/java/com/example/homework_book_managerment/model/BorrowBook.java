@@ -1,35 +1,32 @@
-package com.example.btvn.model;
+package com.example.homework_book_managerment.model;
 
-import com.example.btvn.statics.Status;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import com.example.homework_book_managerment.statics.Status;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
-import java.util.List;
 
-@Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PUBLIC)
-public class BorrowBookModel {
-     int id;
-     Integer idSach;
-     String tenSach;
-     Integer idBanDoc;
-     String tenBanDoc;
+@NoArgsConstructor
+@Data
+public class BorrowBook {
+    private int id;
+    private Reader reader;
+    private Book book;
 
     @NotNull(message = "Số lượng mượn không được trống!")
     @Range(min = 1, max = 3, message = "Số lượng trong khoảng từ 1 đến 3")
-     int quantity;
-     Status status;
+    private int quantity;
+    private Status status;
 
     @NotNull(message = "Ngày mượn không được trống!")
     @PastOrPresent(message = "Ngày mượn phải trước bằng ngày hôm nay!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-     LocalDate date;
+    private LocalDate date;
 }

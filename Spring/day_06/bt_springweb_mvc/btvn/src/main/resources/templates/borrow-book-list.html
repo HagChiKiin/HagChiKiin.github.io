@@ -27,7 +27,7 @@
                     <a href="/readers">Quản lý bạn đọc</a>
                 </li>
                 <li class="link-text px-4 mx-4 " >
-                    <a href="/borrowBooks">Quản lý mượn sách</a>
+                    <a href="/borrows">Quản lý mượn sách</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
 
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/borrowBooks/create-form">Tạo mới</a>
+            <a class="btn btn-primary" href="/borrows/create-form">Tạo mới</a>
         </div>
     </div>
     <div class="row mt-4">
@@ -49,19 +49,20 @@
                     <th class="text-center">Họ Và Tên</th>
                     <th class="text-center">Tên đầu sách</th>
                     <th class="text-center">Số lượng mượn</th>
-                    <th class="text-center">Thể loại sách</th>
-                    <th class="text-center">Loại người đọc</th>
+                    <th class="text-center">Tình trạng</th>
+                    <th class="text-center">Ngày mượn</th>
                     <th class="text-center">Sửa</th>
                 </tr>
-                <tr th:each="u: ${danhSachBook}">
+                <tr th:each="u: ${danhSachMuonBook}">
                     <td th:text="${u.id}"/>
-                    <td th:text="${u.name}"/>
-                    <td th:text="${u.author}"/>
-                    <td th:text="${u.publishedYear}"/>
-                    <td th:text="${u.specialization}"/>
+                    <td th:text="${u.tenBanDoc}"/>
+                    <td th:text="${u.tenSach}"/>
+                    <td th:text="${u.quantity}"/>
+                    <td th:text="${u.status}"/>
+                    <td th:text="${u.date}"/>
                     <td class="d-flex justify-content-center">
                         <a role="button" class="mr-3 text-primary"
-                           th:href="@{'/borrowBookModels/'+${u.id}+'/edit'}">
+                           th:href="@{'/borrows/'+${u.id}+'/edit'}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
 

@@ -1,13 +1,12 @@
-package com.example.btvn.controller;
+package com.example.homework_book_managerment.controller;
 
-import com.example.btvn.model.BookModel;
-import com.example.btvn.model.BorrowBookModel;
-import com.example.btvn.model.ReaderModel;
-
-import com.example.btvn.service.BookService;
-import com.example.btvn.service.BorrowBookService;
-import com.example.btvn.service.ReaderService;
-import com.example.btvn.statics.Status;
+import com.example.homework_book_managerment.model.Book;
+import com.example.homework_book_managerment.model.BorrowBook;
+import com.example.homework_book_managerment.model.Reader;
+import com.example.homework_book_managerment.service.BookService;
+import com.example.homework_book_managerment.service.BorrowBookService;
+import com.example.homework_book_managerment.service.ReaderService;
+import com.example.homework_book_managerment.statics.Status;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,15 +30,15 @@ public class BorrowBookController {
 
     @GetMapping
     public String getAllBorrow(Model model) {
-        List<BorrowBookModel> borrowBooks = borrowBookService.getAllBorrows();
+        List<BorrowBook> borrowBooks = borrowBookService.getAllBorrows();
         model.addAttribute("danhSachMuonBook", borrowBooks);
         return "borrow-book-list";
     }
 
     @GetMapping("/create-form")
-    public String forwardCreateBorrowForm(Model model, BorrowBookModel borrowBook) {
-        List<BookModel> books = bookService.getAlBook();
-        List<ReaderModel> readers = readerService.getAlReader();
+    public String forwardCreateBorrowForm(Model model, BorrowBook borrowBook) {
+        List<Book> books = bookService.getAllBooks();
+        List<Reader> readers = readerService.getAllReaders();
         List<Status> statusList = Arrays.asList(Status.values());
 
         model.addAttribute("dsBook", books);
@@ -51,7 +50,7 @@ public class BorrowBookController {
     }
 
     @PostMapping
-    public String createNewBorrow(@ModelAttribute("themLuotMuon") @Valid BorrowBookModel borrowBook, Errors errors, Model model) {
+    public String createNewBorrow(@ModelAttribute("themLuotMuon") @Valid BorrowBook borrowBook, Errors errors, Model model) {
 //        if (errors != null && errors.getErrorCount() > 0) {
 //            List<Book> books = bookService.getAllBooks();
 //            List<Reader> readers = readerService.getAllReaders();

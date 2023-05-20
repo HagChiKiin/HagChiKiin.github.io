@@ -21,13 +21,5 @@ public class Book {
     Specialization specialization;
     int publishedYear;
 
-    private static int AUTO_ID =10000;
-
-    public Book() {
-        this.id = AUTO_ID;
-        AUTO_ID++;
-    }
-
-
 
 }
