@@ -29,12 +29,12 @@
             <div class="form-group">
               <label for="distance">Khoảng cách </label>
               <input type="text" th:field="*{distance}" class="form-control" id="distance"/>
-              <div class="alert alert-warning" th:if="${#fields.hasErrors('distance')}" th:errors="*{distancedistance}"></div>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}"></div>
             </div>
             <div class="form-group">
               <label for="stopover">Số điểm dừng</label>
-              <input type="text" th:field="*{address}" class="form-control" id="stopover"/>
-              <div class="alert alert-warning" th:if="${#fields.hasErrors('stopover')}" th:errors="*{stopoverstopover}"></div>
+              <input type="text" th:field="*{stopover}" class="form-control" id="stopover"/>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('stopover')}" th:errors="*{stopover}"></div>
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>
