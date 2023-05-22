@@ -35,9 +35,7 @@ public class StudentModel {
 
     @Min(value = 0, message = "GPA cannot be less than 0")  // số
     @Max(value = 10, message = "GPA cannot be greater than 0") // hoặc dùng @Range(min=0, max =10)
-
-            //email thì có @email
-
+           //email thì có @email
     float gpa;
 
 

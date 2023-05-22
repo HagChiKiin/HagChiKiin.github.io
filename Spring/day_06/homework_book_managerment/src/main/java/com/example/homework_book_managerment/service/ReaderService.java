@@ -18,12 +18,12 @@ public class ReaderService {
     private static final List<ReaderEntity> readers = new ArrayList<>();
     private static int AUTO_ID = 10005;
 
-    static {
-        for (int i = 10000; i < 10005; i++) {
-            ReaderEntity reader = new ReaderEntity(i, "Nguyen Van " + i, "HN", "09000" + (i + 1), ReaderType.TEACHER);
-            readers.add(reader);
-        }
-    }
+//    static {
+//        for (int i = 10000; i < 10005; i++) {
+//            ReaderEntity reader = new ReaderEntity(i, "Nguyen Van " + i, "HN", "09000" + (i + 1), ReaderType.TEACHER);
+//            readers.add(reader);
+//        }
+//    }
 
     public List<Reader> getAllReaders() {
         List<Reader> rs = new ArrayList<>();
