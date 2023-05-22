@@ -4,8 +4,6 @@ import com.example.bt_driver.statics.Level;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor

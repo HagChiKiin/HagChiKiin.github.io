@@ -21,10 +21,10 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <ul class="navbar-nav pl-5">
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/drives}">Quản lý tài xế</a>
+                <a class="nav-link" th:href="@{/drivers}">Quản lý tài xế</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/buslines}">Quản lý tuyến xe</a>
+                <a class="nav-link" th:href="@{/bus}">Quản lý tuyến xe</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/assignments}">Quản lý phân công lái xe</a>
@@ -33,10 +33,9 @@
     </nav>
 </div>
 <div class="container">
-
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/drivers/create-form">Tạo mới</a>
+            <a class="btn btn-primary" href="/bus/create-form">Tạo mới</a>
         </div>
     </div>
     <div class="row mt-4">
@@ -48,17 +47,17 @@
                     <th class="text-center">Số điểm dừng</th>
                     <th class="text-center">Actions</th>
                 </tr>
-                <tr th:each="u: ${danhSachDriver}">
+                <tr th:each="u: ${danhSachBusline}">
                     <td th:text="${u.id}"/>
                     <td th:text="${u.distance}"/>
-                    <td th:text="${u.s}"/>
+                    <td th:text="${u.stopover}"/>
                     <td class="d-flex justify-content-center">
                         <a role="button" class="mr-3 text-primary"
-                           th:href="@{'/buslines/'+${u.id}+'/edit'}">
+                           th:href="@{'/bus/'+${u.id}+'/edit'}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         <a role="button" class="text-danger"
-                           th:href="@{'/buslines/'+${u.id}+'/delete'}"
+                           th:href="@{'/bus/'+${u.id}+'/delete'}"
                            th:data-confirm-delete="|Bạn có chắc chắn muốn xóa tài xế này không?|"
                            onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
                             <i class="fas fa-trash"></i>

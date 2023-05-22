@@ -5,28 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf4e10e1-5366-4250-9090-d0f7e03db16e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/config/BeanConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/config/WebConfiguration.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/controller/BuslineController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/controller/DriverAssignmmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/controller/DriverController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/entity/Busline.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/entity/Driver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/entity/DriverAssignment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/entity/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/model/BuslineModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/model/DriverAssignmentModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/model/DriverModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/model/PersonModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/service/BuslineService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/service/DriverAssignmentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/service/DriverService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/statics/Level.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/create-driver.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/driver-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/edit-driver.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../day_06/homework_book_managerment/src/main/java/com/example/homework_book_managerment/service/ReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_06/homework_book_managerment/src/main/java/com/example/homework_book_managerment/service/ReaderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/edit-busline.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/controller/DriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_08/src/main/java/com/example/bt_driver/controller/DriverController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/busline-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/busline-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/create-busline.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/create-busline.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/driver-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../day_08/src/main/resources/templates/driver-list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +64,7 @@
       <workItem from="1684031558024" duration="9528000" />
       <workItem from="1684680529501" duration="162000" />
       <workItem from="1684763019407" duration="6000" />
+      <workItem from="1684771351473" duration="45000" />
     </task>
     <servers />
   </component>

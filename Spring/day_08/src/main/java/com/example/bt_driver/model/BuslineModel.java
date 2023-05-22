@@ -15,7 +15,6 @@ import javax.validation.constraints.Size;
 public class BuslineModel {
     int id;
 
-
     @NotBlank(message = "distance cannot be blank!")
     @Min(value = 0, message = "distance cannot be less than 0")
     String distance;

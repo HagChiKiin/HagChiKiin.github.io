@@ -22,7 +22,7 @@ public class DriverController {
 
     DriverService driverService;
     @GetMapping
-    public String getBook(Model model) {
+    public String getAllDriver(Model model) {
         List<DriverModel> driverModels = driverService.getAllDriver();
         model.addAttribute("danhSachDriver", driverModels);
         return "driver-list";
