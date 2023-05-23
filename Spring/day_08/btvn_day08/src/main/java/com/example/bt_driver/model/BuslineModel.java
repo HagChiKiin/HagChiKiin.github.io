@@ -16,10 +16,10 @@ public class BuslineModel {
     int id;
 
     @NotBlank(message = "distance cannot be blank!")
-    @Min(value = 0, message = "distance cannot be less than 0")
+
     String distance;
 
-    @NotBlank(message = "Name cannot be blank!")
+
     @Min(value = 0, message = "stopover cannot be less than 0")
     int stopover;
 

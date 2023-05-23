@@ -20,7 +20,7 @@ public class BuslineController {
     @GetMapping
     public String getAllBusLine(Model model) {
         List<BuslineModel> buslineModels = buslineService.getAllBusLine();
-        model.addAttribute("danhSachBusline", buslineModels);
+        model.addAttribute("danhsachBusline", buslineModels);
         return "busline-list";
     }
 
