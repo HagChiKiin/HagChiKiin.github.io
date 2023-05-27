@@ -27,7 +27,7 @@ public class BorrowBookService {
 
 
     public List<BorrowBookModel> getAllBorrows() {  // do entity và model của borrowbook khác nhau nên phải convert bằng tay
-        List<BorrowBookModel> rs = new ArrayList<>();
+        List<BorrowBookModel> rs =  new ArrayList<>();
         borrowBooks.forEach(s->{
             BorrowBookModel borrowBookModel = BorrowBookModel.builder()
                     .id(s.getId())
@@ -73,9 +73,9 @@ public class BorrowBookService {
                 .status(borrowBookModel.getStatus())
                 .build();
 
-        borrowBook.setId(AUTO_ID);
-        AUTO_ID++;
-        borrowBooks.add(borrowBook);
+            borrowBook.setId(AUTO_ID);
+            AUTO_ID++;
+            borrowBooks.add(borrowBook);
     }
 
 }

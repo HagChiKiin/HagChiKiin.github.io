@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -44,15 +43,10 @@ public class DriverService {
     }
 
     public DriverModel findById(int id) {
-        Optional<Driver> driverOptional = drivers
-                .stream()
-                .filter(s->s.getId() == id)
-                .findFirst();  // lay thang dau tien
-        if(driverOptional.isEmpty()){
-            return null;
+        for (Driver driver : drivers) {
+            if (driver.getId() == id) return objectMapper.convertValue(driver, DriverModel.class);
         }
-        Driver driver = driverOptional.get();
-        return objectMapper.convertValue(driver, DriverModel.class);
+        return null;
 
     }
 

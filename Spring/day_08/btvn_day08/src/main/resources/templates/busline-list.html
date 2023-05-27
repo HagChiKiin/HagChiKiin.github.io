@@ -43,12 +43,14 @@
             <table class="table table-bordered table-hover table-striped">
                 <tr>
                     <th class="text-center">ID</th>
+                    <th class="text-center">Tên tuyến</th>
                     <th class="text-center">Khoảng cách</th>
                     <th class="text-center">Số điểm dừng</th>
                     <th class="text-center">Actions</th>
                 </tr>
                 <tr th:each="u: ${danhsachBusline}">
                     <td th:text="${u.id}"/>
+                    <td th:text="${u.name}"/>
                     <td th:text="${u.distance}"/>
                     <td th:text="${u.stopover}"/>
                     <td class="d-flex justify-content-center">

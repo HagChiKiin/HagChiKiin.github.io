@@ -16,6 +16,9 @@ public class BuslineModel {
     int id;
 
     @NotBlank(message = "distance cannot be blank!")
+    String name;
+
+    @NotBlank(message = "distance cannot be blank!")
 
     String distance;
 

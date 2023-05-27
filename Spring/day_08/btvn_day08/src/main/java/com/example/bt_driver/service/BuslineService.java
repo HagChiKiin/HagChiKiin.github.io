@@ -2,7 +2,6 @@ package com.example.bt_driver.service;
 
 import com.example.bt_driver.entity.Busline;
 import com.example.bt_driver.model.BuslineModel;
-import com.example.bt_driver.model.DriverModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
