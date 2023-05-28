@@ -1,14 +1,17 @@
 package com.example.bt_driver.service;
 
 import com.example.bt_driver.entity.Busline;
-import com.example.bt_driver.model.BuslineModel;
+import com.example.bt_driver.model.request.BuslineCreateRequest;
+import com.example.bt_driver.model.request.BuslineUpdateRequest;
+import com.example.bt_driver.model.responce.BuslineResponce;
+import com.example.bt_driver.validation.ObjectNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,21 +20,16 @@ import java.util.Optional;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BuslineService {
     ObjectMapper objectMapper;
-    List<Busline> buslines = new ArrayList<>();
+    List<Busline> buslines;
     private static int AUTO_ID = 1;
 
 
-    public List<BuslineModel> getAllBusLine() {
-        List<BuslineModel> result = new ArrayList<>();
-        for (Busline b : buslines) {
-            BuslineModel buslineModel = objectMapper.convertValue(b, BuslineModel.class);
-            result.add(buslineModel);
-        }
-        return result;
+    public List<Busline> getAllBusLine() {
+        return buslines;
     }
 
-    public void saveBusLine(BuslineModel buslineModel) {
-        Busline busline = objectMapper.convertValue(buslineModel, Busline.class);
+    public void saveBusLine(BuslineCreateRequest buslineCreateRequest) {
+        Busline busline = objectMapper.convertValue(buslineCreateRequest, Busline.class);
         busline.setId(AUTO_ID);
         buslines.add(busline);
         AUTO_ID++;
@@ -42,27 +40,39 @@ public class BuslineService {
         buslines.removeIf(a -> a.getId() == id);
     }
 
-    public BuslineModel findById(int id) {
+    public BuslineUpdateRequest findById(Integer id) {
         Optional<Busline> buslineOptional = buslines
                 .stream()
                 .filter(s -> s.getId() == id)
-                .findFirst();  // lay thang dau tien
+                .findFirst();
         if (buslineOptional.isEmpty()) {
-            return null;
+            throw new ObjectNotFoundException("Không tìm thấy tuyến mang mã " + id);
         }
         Busline busline = buslineOptional.get();
-        return objectMapper.convertValue(busline, BuslineModel.class);
+        return objectMapper.convertValue(busline, BuslineUpdateRequest.class);
 
     }
 
-    public void updateBusline(BuslineModel buslineModel) {
+    public void updateBusline(@Valid BuslineUpdateRequest buslineUpdateRequest) {
         buslines.forEach(s -> {
-            if (s.getId() != buslineModel.getId()) {
+            if (s.getId() != buslineUpdateRequest.getId()) {
                 return;
             }
-            s.setId(buslineModel.getId());
-            s.setDistance(buslineModel.getDistance());
-            s.setStopover(buslineModel.getStopover());
+            s.setId(buslineUpdateRequest.getId());
+            s.setName(buslineUpdateRequest.getName());
+            s.setDistance(buslineUpdateRequest.getDistance());
+            s.setStopover(buslineUpdateRequest.getStopover());
         });
+    }
+
+    public BuslineResponce findByIdVer2(Integer id) {
+        Optional<Busline> buslineOptional = buslines.stream()
+                .filter(s -> s.getId() == id)
+                .findFirst();
+        if (buslineOptional.isEmpty()) {
+            throw new ObjectNotFoundException("Không tìm thấy tuyến xe mang mã " + id);
+        }
+        Busline busline = buslineOptional.get();
+        return objectMapper.convertValue(busline, BuslineResponce.class);
     }
 }

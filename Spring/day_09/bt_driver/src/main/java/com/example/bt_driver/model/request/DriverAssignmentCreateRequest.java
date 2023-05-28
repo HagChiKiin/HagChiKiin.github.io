@@ -1,4 +1,4 @@
-package com.example.bt_driver.model;
+package com.example.bt_driver.model.request;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DriverAssignmentModel {
+public class DriverAssignmentCreateRequest {
     int id;
 
     Integer driverId;
@@ -31,4 +31,6 @@ public class DriverAssignmentModel {
     @PastOrPresent(message = "Date should be less than current date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate date;
+
+
 }

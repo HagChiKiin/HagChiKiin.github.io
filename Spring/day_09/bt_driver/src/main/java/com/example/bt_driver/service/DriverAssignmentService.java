@@ -3,80 +3,87 @@ package com.example.bt_driver.service;
 import com.example.bt_driver.entity.Busline;
 import com.example.bt_driver.entity.Driver;
 import com.example.bt_driver.entity.DriverAssignment;
-import com.example.bt_driver.model.BuslineModel;
-import com.example.bt_driver.model.DriverAssignmentModel;
-import com.example.bt_driver.model.request.DriverCreateRequest;
-import com.example.bt_driver.model.request.DriverUpdateRequest;
+import com.example.bt_driver.model.request.*;
+import com.example.bt_driver.model.responce.BuslineResponce;
+import com.example.bt_driver.model.responce.DriverAssignmentResponce;
+import com.example.bt_driver.validation.ObjectNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class DriverAssignmentService {
     ObjectMapper objectMapper;
     DriverService driverService;
     BuslineService buslineService;
+     static List<DriverAssignment> driverAssignments = new ArrayList<>();
+     static int AUTO_ID = 1;
 
-    private static List<DriverAssignment> driverAssignments = new ArrayList<>();
-    private static int AUTO_ID = 1;
-
-    public List<DriverAssignmentModel> getAllDriverAssignment() {
-        List<DriverAssignmentModel> rs = new ArrayList<>();
-        driverAssignments.forEach(s -> {
-            DriverAssignmentModel driverAssignmentModel = DriverAssignmentModel.builder()
+    public List<DriverAssignmentCreateRequest> getAllDriverAssignment() {
+        List<DriverAssignmentCreateRequest> rs =  new ArrayList<>();
+        driverAssignments.forEach(s->{
+            DriverAssignmentCreateRequest driverAssignmentCreateRequest = DriverAssignmentCreateRequest.builder()
                     .id(s.getId())
                     .driverId(s.getDriver().getId())
                     .driverName(s.getDriver().getName())
                     .buslineId(s.getBusline().getId())
                     .buslineName(s.getBusline().getName())
                     .quantity(s.getQuantity())
+                    .date(s.getDate())
                     .build();
-            rs.add(driverAssignmentModel);
+            rs.add(driverAssignmentCreateRequest);
         });
         return rs;
     }
 
-    public void createNewDriverAssignment(DriverAssignmentModel driverAssignmentModel) {
-        if (driverAssignmentModel == null) {
+    public void createNewDriverAssignment(DriverAssignmentCreateRequest driverAssignmentCreateRequest) {
+        if (driverAssignmentCreateRequest == null) {
             return;
         }
-        Integer idDriver = driverAssignmentModel.getDriverId();
+        Integer idDriver = driverAssignmentCreateRequest.getDriverId();
         DriverUpdateRequest driverCreateRequest = driverService.findById(idDriver);
         Driver driver = objectMapper.convertValue(driverCreateRequest, Driver.class);
-        if(driver == null){
+        if (driver == null) {
             return;
         }
-        Integer idBusline = driverAssignmentModel.getBuslineId();
-        BuslineModel buslineModel = buslineService.findById(idBusline);
-        Busline busline = objectMapper.convertValue(buslineModel, Busline.class);
-        if(busline == null){
+        Integer idBusline = driverAssignmentCreateRequest.getBuslineId();
+        BuslineUpdateRequest buslineCreateRequest = buslineService.findById(idBusline);
+        Busline busline = objectMapper.convertValue(buslineCreateRequest, Busline.class);
+        if (busline == null) {
             return;
         }
         DriverAssignment driverAssignment = DriverAssignment.builder()
                 .driver(driver)
                 .busline(busline)
-                .quantity(driverAssignmentModel.getQuantity())
+                .quantity(driverAssignmentCreateRequest.getQuantity())
                 .build();
         driverAssignment.setId(AUTO_ID);
         AUTO_ID++;
         driverAssignments.add(driverAssignment);
     }
-    public DriverAssignmentModel findDriverAssignmentById(int id) {
+
+    public DriverAssignmentCreateRequest findDriverAssignmentById(int id) {
 
         for (DriverAssignment d : driverAssignments) {
             if (d.getId() == id) {
-                return DriverAssignmentModel.builder()
+                return DriverAssignmentCreateRequest.builder()
                         .id(d.getId())
                         .driverId(d.getDriver().getId())
                         .driverName(d.getDriver().getName())
                         .buslineId(d.getBusline().getId())
                         .buslineName(d.getBusline().getName())
                         .quantity(d.getQuantity())
+                        .date(d.getDate())
                         .build();
             }
         }
@@ -84,20 +91,33 @@ public class DriverAssignmentService {
 
     }
 
-    public void update(DriverAssignmentModel driverAssignmentModel) {
+    public void update(@Valid DriverAssignmentUpdateRequest driverAssignmentUpdateRequest) {
         driverAssignments.forEach(s -> {
-            if (s.getId() != driverAssignmentModel.getId()) {
+            if (s.getId() != driverAssignmentUpdateRequest.getId()) {
                 return;
             }
-            DriverUpdateRequest driverCreateRequest = driverService.findById(driverAssignmentModel.getDriverId());
-            Driver driver = objectMapper.convertValue(driverCreateRequest, Driver.class);
+            DriverUpdateRequest driverUpdateRequest = driverService.findById(driverAssignmentUpdateRequest.getDriverId());
+            Driver driver = objectMapper.convertValue(driverUpdateRequest, Driver.class);
 
-            BuslineModel buslineModel = buslineService.findById(driverAssignmentModel.getDriverId());
-            Busline busline = objectMapper.convertValue(buslineModel, Busline.class);
-
+            BuslineUpdateRequest buslineUpdateRequest = buslineService.findById(driverAssignmentUpdateRequest.getBuslineId());
+            Busline busline = objectMapper.convertValue(buslineUpdateRequest, Busline.class);
+//            s.setId(driverAssignmentUpdateRequest.getId());
             s.setDriver(driver);
             s.setBusline(busline);
-            s.setQuantity(driverAssignmentModel.getQuantity());
+            s.setQuantity(driverAssignmentUpdateRequest.getQuantity());
+            s.setDate(driverAssignmentUpdateRequest.getDate());
         });
+    }
+
+
+    public DriverAssignmentResponce findByIdVer2(Integer id) {
+        Optional<DriverAssignment> driverAssignmentOptional = driverAssignments.stream()
+                .filter(s -> s.getId() == id)
+                .findFirst();
+        if (driverAssignmentOptional.isEmpty()) {
+            throw new ObjectNotFoundException("Không tìm thấy lượt phân công mang mã " + id);
+        }
+        DriverAssignment driverAssignment = driverAssignmentOptional.get();
+        return objectMapper.convertValue(driverAssignment, DriverAssignmentResponce.class);
     }
 }

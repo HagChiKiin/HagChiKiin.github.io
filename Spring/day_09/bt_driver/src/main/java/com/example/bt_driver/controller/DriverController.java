@@ -31,6 +31,8 @@ public class DriverController {
     @GetMapping("/drivers")
     public String getAllDriver(Model model) {
         List<Driver> driver = driverService.getAllDriver();
+        List<Level> levels = Arrays.asList(Level.values());
+        model.addAttribute("dsTaiXe",levels);
         model.addAttribute("danhSachDriver", driver);
         model.addAttribute("driverTaoMoi", new DriverCreateRequest());
         return "driver-list";
@@ -58,14 +60,18 @@ public class DriverController {
     @GetMapping("/drivers/{id}/edit")
     public String forwardToUpdateForm(@PathVariable("id") int id, Model model) {
         DriverUpdateRequest driverUpdateRequest = driverService.findById(id);
-
+        List<Level> levels = Arrays.asList(Level.values());
+        model.addAttribute("dsTaiXe",levels);
         model.addAttribute("driverCapNhatMoi", driverUpdateRequest);
         return "edit-driver";
     }
 
     @PostMapping("/drivers/update")
-    public String updateDriver(@ModelAttribute("driverCapNhatMoi") @Valid DriverUpdateRequest driverUpdateRequest,  BindingResult bindingResult) {
+    public String updateDriver(@ModelAttribute("driverCapNhatMoi") @Valid DriverUpdateRequest driverUpdateRequest,  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            List<Level> levels = Arrays.asList(Level.values());
+            model.addAttribute("dsTaiXe",levels);
+            model.addAttribute("driverCapNhatMoi", driverUpdateRequest);
             return "update-driver";
         }
         driverService.updateDriver(driverUpdateRequest);
@@ -80,6 +86,14 @@ public class DriverController {
     @GetMapping("/api/drivers/{id}")
     public ResponseEntity<?> getDriver(@PathVariable Integer id) {
         return ResponseEntity.ok(driverService.findByIdVer2(id));
+    }
+    @PutMapping("/api/drivers/{id}")
+    public ResponseEntity<?> updateStudent(@PathVariable Integer id, @RequestBody @Valid DriverUpdateRequest driverUpdateRequest, Model model) {
+        List<Level> levels = Arrays.asList(Level.values());
+        model.addAttribute("dsTaiXe",levels);
+        driverUpdateRequest.setId(id);
+        driverService.updateDriver(driverUpdateRequest);
+        return ResponseEntity.ok(null);
     }
 
 

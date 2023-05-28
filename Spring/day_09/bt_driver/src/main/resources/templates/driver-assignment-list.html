@@ -1,63 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý danh sách tuyến xe</title>
+    <title>DriverAssignment management</title>
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/assignment-list.css"/>
 
-    <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
-<div class="container my-3 py-3">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <ul class="navbar-nav pl-5">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/drivers}">Quản lý tài xế</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/bus}">Quản lý tuyến xe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/assignments}">Quản lý phân công lái xe</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-<div class="container">
-    <div class="row">
+<div class="container-fluid m-0 p-0">
+
+    <div th:insert="fragments/nav :: nav"></div>
+
+    <div class="row  mt-3 ml-3">
         <div class="col">
-                <a class="btn btn-primary" href="/assignments/create-form">Tạo mới</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assignment-create-modal">
+                Create
+            </button>
         </div>
     </div>
-    <div class="row mt-4">
+
+    <div th:insert="fragments/assignment-create-modal :: assignment-create-modal"
+         th:with="themluotphancong=${themluotphancong}"></div>
+
+    <div class="row mt-4 mx-3">
         <div class="col">
             <table class="table table-bordered table-hover table-striped">
                 <tr>
-                    <th class="text-center px-0 ">Id</th>
-                    <th class="text-center px-0">Lái Xe</th>
-                    <th class="text-center px-0">Tuyến</th>
-                    <th class="text-center px-0">Số Lượt</th>
-                    <th class="text-center px-0">Ngày Lái</th>
-                    <th class="text-center px-0">Action</th>
+                    <th class="text-center ">Id</th>
+                    <th class="text-center">Lái Xe</th>
+                    <th class="text-center ">Tuyến</th>
+                    <th class="text-center ">Số Lượt</th>
+                    <th class="text-center ">Ngày Lái</th>
+                    <th class="text-center ">Action</th>
                 </tr>
-                <tr th:each="assignment: ${danhSachDriverAssignment}">
-                    <td th:text="${assignment.id}" class="px-2 "></td>
-                    <td th:text="${assignment.driverName}" class="px-2"></td>
-                    <td th:text="${assignment.buslineName}" class="px-2"></td>
-                    <td th:text="${assignment.quantity}" class="px-2"></td>
-                    <td th:text="${assignment.date}" class="px-2"></td>
-                    <td class="text-center d-flex justify-content-around">
-                        <a role="button" class="mr-3 text-primary"
-                           th:href="@{'/assignments/'+${assignment.id}+'/update'}">
+                <tr th:each="u: ${danhSachDriverAssignment}">
+                    <td th:text="${u.id}"/>
+                    <td th:text="${u.driverName}"/>
+                    <td th:text="${u.buslineName}"/>
+                    <td th:text="${u.quantity}"/>
+                    <td th:text="${u.date}"/>
+                    <td>
+                        <a role="button" class="mr-3 text-primary update-assignment" th:attr="assignment-id=${u.id}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                     </td>
@@ -65,6 +53,217 @@
             </table>
         </div>
     </div>
+    <div th:insert="fragments/assignment-update-modal :: assignment-update-modal"></div>
+
+    <div th:insert="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>
+
+
+<!-- jQuery library -->
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        toastr.options.timeOut = 2500;
+
+        $.validator.addMethod("maxDate", function (value, element) {
+            var inputDate = new Date(value);
+            var currentDate = new Date();
+            currentDate.setHours(0, 0, 0, 0);  // Đặt giờ của ngày hiện tại về 00:00:00 để so sánh
+
+            return inputDate <= currentDate;
+        }, "Ngày chạy không được vượt quá ngày hiện tại.");
+
+        $("#assignment-update-modal-form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
+                "driverName": {
+                    required: true,
+                    maxlength: 255
+                },
+                "buslineName": {
+                    required: true,
+                    maxlength: 255
+                },
+                "quantity": {
+                    required: true,
+                    min: 1,
+                    max: 15
+                },
+                "date": {
+                    required: true,
+                    date: true,
+                    maxDate: true
+                }
+            },
+            messages: {
+                "driverName": {
+                    required: "Bắt buộc nhập tên tài xế",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "buslineName": {
+                    required: "Bắt buộc nhập tên tuyến xe",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "quantity": {
+                    required: "Bắt buộc nhập số lượt chạy",
+                    min: "Lượt chạy không được nhỏ hơn 1",
+                    max: "Lượt chạy không được vượt quá 15"
+                },
+                "date": {
+                    required: "Bắt buộc nhập ngày chạy",
+                    date: "Vui lòng nhập ngày hợp lệ",
+                    maxDate: "Không được nhập ngày tương lai",
+                }
+            }
+        });
+
+        $("#assignment-create-modal-form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
+                "driverName": {
+                    required: true,
+                    maxlength: 255
+                },
+                "buslineName": {
+                    required: true,
+                    maxlength: 255
+                },
+                "quantity": {
+                    required: true,
+                    min: 1,
+                    max: 15
+                },
+                "date": {
+                    required: true,
+                    date: true,
+                    maxDate: true
+                }
+            },
+            messages: {
+                "driverName": {
+                    required: "Bắt buộc nhập tên tài xế",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "buslineName": {
+                    required: "Bắt buộc nhập tên tuyến xe",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "quantity": {
+                    required: "Bắt buộc nhập số lượt chạy",
+                    min: "Lượt chạy không được nhỏ hơn 1",
+                    max: "Lượt chạy không được vượt quá 15"
+                },
+                "date": {
+                    required: "Bắt buộc nhập ngày chạy",
+                    date: "Vui lòng nhập ngày hợp lệ",
+                    maxDate: "Không được vượt quá ngày hiện tại"
+                }
+            }
+        });
+
+        $(".update-assignment").click(function (event) {
+            $('#assignment-update-modal').modal('show');
+
+            const assignmentId = $(event.currentTarget).attr("assignment-id");
+            console.log(assignmentId);
+
+            // $.ajax({
+            //     url: '/api/levels/',
+            //     type: 'GET',
+            //     contentType: "application/json; charset=utf-8",
+            //     success: function (data) {
+            //         console.log(data);
+            //         if (!data || data.length === 0) {
+            //             return;
+            //         }
+            //         let levelOption = "";
+            //         for (let i = 0; i < data.length; i++) {
+            //             levelOption += "<option value='" + data[i].code + "'>" + data[i].name + "</option>";
+            //         }
+            //         $('#driver-update-modal #level').append($(levelOption));
+            //     },
+            //     error: function (data) {
+            //         console.log(data);
+            //         toastr.warning(data.responseJSON.message);
+            //     }
+            // });
+
+            let currentAssignment = null;
+
+            $.ajax({
+                url: '/api/assignments/' + assignmentId,
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log(data);
+                    currentAssignment = data;
+                    $('#assignment-update-modal #driverId').val(currentAssignment.driverId);
+                    $('#assignment-update-modal #buslineId').val(currentAssignment.buslineId);
+                    $('#assignment-update-modal #quantity').val(currentAssignment.quantity);
+                    $('#assignment-update-modal #date').val(currentAssignment.date);
+
+                    $('#assignment-update-modal #submit-update-assignment').attr("assignment-id", assignmentId);
+
+                    $('#assignment-update-modal').modal('show');
+                },
+                error: function (data) {
+                    console.log(data);
+                    toastr.warning(data.responseJSON.message);
+                }
+            });
+
+        })
+
+        $("#submit-update-assignment").click(() => {
+            const isValidForm = $("#assignment-update-modal-form").valid();
+            if (!isValidForm) {
+                return;
+            }
+
+            const assignmentId = $('#assignment-update-modal #submit-update-assignment').attr("assignment-id");
+            const formData = $('#assignment-update-modal-form').serializeArray();
+            console.log(formData);
+            if (!formData || formData.length === 0) {
+                return;
+            }
+            const requestData = {};
+            for (let i = 0; i < formData.length; i++) {
+                requestData[formData[i].name] = formData[i].value;
+            }
+
+            $.ajax({
+                url: '/api/assignments/' + assignmentId,
+                type: 'PUT',
+                data: JSON.stringify(requestData),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    toastr.success("Cập nhật phân công lái xe thành công");
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                },
+                error: function (data) {
+                    toastr.warning(data.responseJSON.message);
+                }
+            });
+        });
+    });
+</script>

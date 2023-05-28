@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
-<div th:fragment="driver-create-modal" class="modal fade" id="driver-create-modal">
+<div th:fragment="busline-create-modal" class="modal fade" id="busline-create-modal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Create a new driver</h4>
+                <h4 class="modal-title">Create a new busline</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
-            <form action="#" id="driver-create-modal-form" th:action="@{/drivers}" th:object="${driverTaoMoi}" method="post">
+            <form action="#" id="busline-create-modal-form" th:action="@{/bus}" th:object="${buslineTaoMoi}" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Tên</label>
+                        <label for="name">Tuyến </label>
                         <input type="text" th:field="*{name}" class="form-control" id="name"/>
                     </div>
                     <div class="form-group">
-                        <label for="address">Địa chỉ</label>
-                        <input type="text" th:field="*{address}" class="form-control" id="address"/>
+                        <label for="distance">Khoảng cách </label>
+                        <input type="text" th:field="*{distance}" class="form-control" id="distance"/>
                     </div>
-
                     <div class="form-group">
-                        <label for="phone">Số điện thoại</label>
-                        <input type="text" th:field="*{phone}" class="form-control" id="phone"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="level">Trình độ lái xe</label>
-                        <select name="level" id="level" th:field="*{level}" class="form-control">
-                            <option th:each="taixe: ${dsTaiXe}" th:value="${taixe}" th:text="${taixe.name}">
-                            </option>
-                        </select>
+                        <label for="stopover">Số điểm dừng</label>
+                        <input type="text" th:field="*{stopover}" class="form-control" id="stopover"/>
                     </div>
 
                 </div>

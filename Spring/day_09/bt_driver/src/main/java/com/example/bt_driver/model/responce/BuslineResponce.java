@@ -1,6 +1,5 @@
 package com.example.bt_driver.model.responce;
 
-import com.example.bt_driver.model.request.PersonCreateRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,11 +8,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
-public class DriverResponce  {
+public class BuslineResponce {
     int id;
     String name;
-    String address;
-    String phone;
-    String level;
+    String distance;
+    int stopover;
+
 }

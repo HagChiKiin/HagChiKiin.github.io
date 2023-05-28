@@ -1,4 +1,4 @@
-package com.example.bt_driver.model;
+package com.example.bt_driver.model.request;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BuslineModel {
+public class BuslineCreateRequest {
     int id;
 
     @NotBlank(message = "distance cannot be blank!")
@@ -22,8 +22,8 @@ public class BuslineModel {
 
     String distance;
 
-
     @Min(value = 0, message = "stopover cannot be less than 0")
     int stopover;
+
 
 }

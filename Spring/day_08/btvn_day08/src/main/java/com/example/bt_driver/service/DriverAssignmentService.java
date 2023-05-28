@@ -34,6 +34,7 @@ public class DriverAssignmentService {
                     .buslineId(s.getBusline().getId())
                     .buslineName(s.getBusline().getName())
                     .quantity(s.getQuantity())
+                    .date(s.getDate())
                     .build();
             rs.add(driverAssignmentModel);
         });
@@ -76,6 +77,7 @@ public class DriverAssignmentService {
                         .buslineId(d.getBusline().getId())
                         .buslineName(d.getBusline().getName())
                         .quantity(d.getQuantity())
+                        .date(d.getDate())
                         .build();
             }
         }
@@ -91,7 +93,7 @@ public class DriverAssignmentService {
             DriverModel driverModel = driverService.findById(driverAssignmentModel.getDriverId());
             Driver driver = objectMapper.convertValue(driverModel, Driver.class);
 
-            BuslineModel buslineModel = buslineService.findById(driverAssignmentModel.getDriverId());
+            BuslineModel buslineModel = buslineService.findById(driverAssignmentModel.getBuslineId());
             Busline busline = objectMapper.convertValue(buslineModel, Busline.class);
 
             s.setDriver(driver);

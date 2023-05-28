@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
-@Builder
+//@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PROTECTED)

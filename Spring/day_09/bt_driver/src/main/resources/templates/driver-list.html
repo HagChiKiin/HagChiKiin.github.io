@@ -48,6 +48,12 @@
                         <a role="button" class="mr-3 text-primary update-driver" th:attr="driver-id=${u.id}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        <a role="button" class="text-danger"
+                           th:href="@{'/drivers/'+${u.id}+'/delete'}"
+                           th:data-confirm-delete="|Bạn có chắc chắn muốn xóa tài xế này không?|"
+                           onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                            <i class="fas fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
             </table>
@@ -83,7 +89,36 @@
             onfocusout: false,
             onkeyup: false,
             onclick: false,
-            rule: {
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 255
+                },
+                "address": {
+                    required: true,
+                    maxlength: 255
+                },
+                "phone": {
+                    required: true,
+                    maxlength: 10
+                }
+            },
+            messages: {
+                "name": {
+                    required: "Bắt buộc nhập tên tài xế",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "address": {
+                    required: "Bắt buộc nhập địa chỉ tài xế",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                }
+            }
+        });
+        $("#driver-create-modal-form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
                 "name": {
                     required: true,
                     maxlength: 255
@@ -109,13 +144,14 @@
             }
         });
 
-        $(".update-driver").click(async event => {
-            console.log(event);
+        $(".update-driver").click(function (event) {
+            $('#driver-update-modal').modal('show');
+
             const driverId = $(event.currentTarget).attr("driver-id");
             console.log(driverId);
 
-            await $.ajax({
-                url: '/api/level/',
+            $.ajax({
+                url: '/api/levels/',
                 type: 'GET',
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
@@ -127,7 +163,7 @@
                     for (let i = 0; i < data.length; i++) {
                         levelOption += "<option value='" + data[i].code + "'>" + data[i].name + "</option>";
                     }
-                    $('#student-update-modal #level').append($(levelOption));
+                    $('#driver-update-modal #level').append($(levelOption));
                 },
                 error: function (data) {
                     console.log(data);
@@ -137,31 +173,28 @@
 
             let currentDriver = null;
 
-            await $.ajax({
-                url: '/api/drivers/' + studentId,
+            $.ajax({
+                url: '/api/drivers/' + driverId,
                 type: 'GET',
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     console.log(data);
                     currentDriver = data;
+                    $('#driver-update-modal #name').val(currentDriver.name);
+                    $('#driver-update-modal #address').val(currentDriver.address);
+                    $('#driver-update-modal #phone').val(currentDriver.phone);
+                    $('#driver-update-modal #level').val(currentDriver.level);
+
+                    $('#driver-update-modal #submit-update-driver').attr("driver-id", driverId);
+
+                    $('#driver-update-modal').modal('show');
                 },
                 error: function (data) {
                     console.log(data);
                     toastr.warning(data.responseJSON.message);
                 }
             });
-            if (!currentDriver) {
-                return;
-            }
 
-            $('#driver-update-modal #name').val(currentDriver.name);
-            $('#driver-update-modal #address').val(currentDriver.address);
-            $('#driver-update-modal #phone').val(currentDriver.phone);
-            $('#driver-update-modal #level').val(currentDriver.level);
-
-            $('#driver-update-modal #submit-update-driver').attr("driver-id", driverId);
-
-            $('#driver-update-modal').modal('show');
         })
 
         $("#submit-update-driver").click(() => {

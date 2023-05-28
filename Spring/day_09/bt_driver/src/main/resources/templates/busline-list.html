@@ -1,44 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý danh sách tuyến xe</title>
+    <title>Busline management</title>
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/busline-list.css"/>
 
-    <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
-<div class="container my-3 py-3">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <ul class="navbar-nav pl-5">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{/drivers}">Quản lý tài xế</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/bus}">Quản lý tuyến xe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/assignments}">Quản lý phân công lái xe</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-<div class="container">
-    <div class="row">
+<div class="container-fluid m-0 p-0">
+
+    <div th:insert="fragments/nav :: nav"></div>
+
+    <div class="row  mt-3 ml-3">
         <div class="col">
-            <a class="btn btn-primary" href="/bus/create-form">Tạo mới</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#busline-create-modal">
+                Create
+            </button>
         </div>
     </div>
-    <div class="row mt-4">
+
+    <div th:insert="fragments/busline-create-modal :: busline-create-modal"
+         th:with="buslineTaoMoi=${buslineTaoMoi}"></div>
+
+    <div class="row mt-4 mx-3">
         <div class="col">
             <table class="table table-bordered table-hover table-striped">
                 <tr>
@@ -48,14 +37,13 @@
                     <th class="text-center">Số điểm dừng</th>
                     <th class="text-center">Actions</th>
                 </tr>
-                <tr th:each="u: ${danhsachBusline}">
+                <tr th:each="u: ${danhSachBusline}">
                     <td th:text="${u.id}"/>
                     <td th:text="${u.name}"/>
                     <td th:text="${u.distance}"/>
                     <td th:text="${u.stopover}"/>
-                    <td class="d-flex justify-content-center">
-                        <a role="button" class="mr-3 text-primary"
-                           th:href="@{'/bus/'+${u.id}+'/edit'}">
+                    <td>
+                        <a role="button" class="mr-3 text-primary update-busline" th:attr="busline-id=${u.id}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         <a role="button" class="text-danger"
@@ -69,6 +57,181 @@
             </table>
         </div>
     </div>
+    <div th:insert="fragments/busline-update-modal :: busline-update-modal"></div>
+
+    <div th:insert="fragments/footer :: footer"></div>
 </div>
 </body>
 </html>
+
+<!-- jQuery library -->
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+<script>
+    $(document).ready(function () {
+        toastr.options.timeOut = 2500;
+
+        $("#busline-update-modal-form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 255
+                },
+                "distance": {
+                    required: true,
+                    maxlength: 255
+                },
+                "stopover": {
+                    required: true,
+                    min: 0
+                }
+            },
+            messages: {
+                "name": {
+                    required: "Bắt buộc nhập tên tuyến",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "distance": {
+                    required: "Bắt buộc nhập khoảng cách",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "stopover": {
+                    required: "Bắt buộc nhập số điểm dừng",
+                    min: "Điểm dừng không được nhỏ hơn 0"
+                }
+            }
+        });
+        $("#busline-create-modal-form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 255
+                },
+                "distance": {
+                    required: true,
+                    maxlength: 255
+                },
+                "stopover": {
+                    required: true,
+                    min: 1
+                }
+            },
+            messages: {
+                "name": {
+                    required: "Bắt buộc nhập tên tuyến",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "distance": {
+                    required: "Bắt buộc nhập khoảng cách",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "stopover": {
+                    required: "Bắt buộc nhập số điểm dừng",
+                    min: "Điểm dừng không được nhỏ hơn 1"
+                }
+            }
+        });
+
+        $(".update-busline").click(function (event){
+            $('#busline-update-modal').modal('show');
+
+            const buslineId = $(event.currentTarget).attr("busline-id");
+            console.log(buslineId);
+
+            // $.ajax({
+            //     url: '/api/levels/',
+            //     type: 'GET',
+            //     contentType: "application/json; charset=utf-8",
+            //     success: function (data) {
+            //         console.log(data);
+            //         if (!data || data.length === 0) {
+            //             return;
+            //         }
+            //         let levelOption = "";
+            //         for (let i = 0; i < data.length; i++) {
+            //             levelOption += "<option value='" + data[i].code + "'>" + data[i].name + "</option>";
+            //         }
+            //         $('#driver-update-modal #level').append($(levelOption));
+            //     },
+            //     error: function (data) {
+            //         console.log(data);
+            //         toastr.warning(data.responseJSON.message);
+            //     }
+            // });
+
+            let currentBussline = null;
+
+            $.ajax({
+                url: '/api/bus/' + buslineId,
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log(data);
+                    currentBussline = data;
+
+                    $('#busline-update-modal #name').val(currentBussline.name);
+                    $('#busline-update-modal #distance').val(currentBussline.distance);
+                    $('#busline-update-modal #stopover').val(currentBussline.stopover);
+
+                    $('#busline-update-modal #submit-update-busline').attr("busline-id", buslineId);
+
+                    $('#busline-update-modal').modal('show');
+                },
+                error: function (data) {
+                    console.log(data);
+                    toastr.warning(data.responseJSON.message);
+                }
+            });
+        })
+
+        $("#submit-update-busline").click(() => {
+            const isValidForm = $("#busline-update-modal-form").valid();
+            if (!isValidForm) {
+                return;
+            }
+
+            const buslineId = $('#busline-update-modal #submit-update-busline').attr("busline-id");
+            const formData = $('#busline-update-modal-form').serializeArray();
+            console.log(formData);
+            if (!formData || formData.length === 0) {
+                return;
+            }
+            const requestData = {};
+            for (let i = 0; i < formData.length; i++) {
+                requestData[formData[i].name] = formData[i].value;
+            }
+
+            $.ajax({
+                url: '/api/bus/' + buslineId,
+                type: 'PUT',
+                data: JSON.stringify(requestData),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    toastr.success("Cập nhật tuyến xe thành công");
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                },
+                error: function (data) {
+                    toastr.warning(data.responseJSON.message);
+                }
+            });
+        });
+    });
+</script>

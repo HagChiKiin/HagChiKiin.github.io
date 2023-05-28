@@ -8,8 +8,9 @@ import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@AllArgsConstructor
+//@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
 public class DriverCreateRequest extends PersonCreateRequest {
