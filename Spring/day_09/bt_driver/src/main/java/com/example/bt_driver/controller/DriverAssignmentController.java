@@ -53,7 +53,7 @@ public class DriverAssignmentController {
     @GetMapping("/assignments/{id}/edit")
     public String forwardToEditForm(@PathVariable int id, Model model) {
         DriverAssignmentCreateRequest driverAssignmentCreateRequest = driverAssignmentService.findDriverAssignmentById(id);
-        getList(model);
+            getList(model);
         model.addAttribute("driverAssignmentCapNhatMoi", driverAssignmentCreateRequest);
         return "edit-assignment";
     }
