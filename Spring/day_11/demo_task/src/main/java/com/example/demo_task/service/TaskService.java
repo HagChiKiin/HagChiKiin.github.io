@@ -35,26 +35,24 @@ public class TaskService {
         List<TaskDetailResponse> taskDetailResponses = tasks.stream().map(s-> objectMapper.convertValue(s, TaskDetailResponse.class)).collect(Collectors.toList());
         List<Status> statuses = Arrays.asList(Status.values()); // sinh ra list khác để lọc ra các phần tử
 
-        List<TaskResponse> result = new ArrayList<>();
-        for (int i = 0; i < statuses.size(); i++) {
-            Status status = statuses.get(i);
-            List<TaskDetailResponse> list = new ArrayList<>();
-            for (int j = 0; j < taskDetailResponses.size(); j++) {
-                if(taskDetailResponses.get(i).getStatus().equals(status)){
-                    list.add(taskDetailResponses.get(i));
-                }
-            }
-            TaskResponse taskResponse = new TaskResponse(status,list);
-            result.add(taskResponse);
-        }
-        return  result;
-//        return statuses.stream().map(s->{
-//            List<TaskDetailResponse> collect = taskDetailResponses.stream().filter(t -> t.getStatus().equals(s)).collect(Collectors.toList());
-//            return  new TaskResponse(s, collect);
-//        }).collect(Collectors.toList());
+//        List<TaskResponse> result = new ArrayList<>();
+//        for (int i = 0; i < statuses.size(); i++) {
+//            Status status = statuses.get(i);
+//            List<TaskDetailResponse> list = new ArrayList<>();
+//            for (int j = 0; j < taskDetailResponses.size(); j++) {
+//                if(taskDetailResponses.get(i).getStatus().equals(status)){
+//                    list.add(taskDetailResponses.get(i));
+//                }
+//            }
+//            TaskResponse taskResponse = new TaskResponse(status,list);
+//            result.add(taskResponse);
+//        }
+//        return  result;
+        return statuses.stream().map(s->{
+            List<TaskDetailResponse> collect = taskDetailResponses.stream().filter(t -> t.getStatus().equals(s)).collect(Collectors.toList());
+            return  new TaskResponse(s, collect);
+        }).collect(Collectors.toList());
     }
-
-
 
     public void delete(Integer id) {
         taskRepository.delete(id);
