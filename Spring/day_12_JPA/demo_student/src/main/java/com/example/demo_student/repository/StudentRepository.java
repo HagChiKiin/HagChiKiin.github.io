@@ -11,26 +11,30 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-    // sử dụng method query
+    // Sử dụng method query
     // Tìm kiếm theo tên và phân trang
-
     Page<Student> findByName(String name, Pageable pageable);
 
-    List<Student> findByNameOrderByNameDesc(String name);
+    List<Student> findByNameOrderByNameDesc(String name); // Nhanh nhất
+    List<Student> findByName(String name, Sort sort); // Áp dụng cho nhiều trường hợp sắp xếp khác nhau
 
-    List<Student> findByName(String name, Sort sort);
+    @Query(nativeQuery = true, value = "select * from student where name = ?1 order by name desc")
+    List<Student> findByNameSort(String name);
 
     Page<Student> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
-    // Sử dụng natuve query
-    @Query(nativeQuery = true, value = "SELECT * FROM  students", countQuery = "SELECT count(id) FROM students")
-    Page<Student> getAllStudent( Pageable pageable);
+    // Sử dụng native query
+    @Query(
+            nativeQuery = true,
+            value = "select * from student",
+            countQuery = "select count(id) from student"
+    )
+    Page<Student> getAllStudent(Pageable pageable);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM students s WHERE LOWER(name) LIKE CONCAT('%', LOWER (?1), '%')",
-    countQuery = "SELECT count(s.id) FROM students s WHERE LOWER(s.name) like CONCAT('%', LOWER (?1), '%') ")
+    @Query(
+            nativeQuery = true,
+            value = "select * from student s where upper(s.name) like upper(concat('%', ?1, '%'))",
+            countQuery = "select count(s.id) from student s where upper(s.name) like upper(concat('%', ?1, '%'))"
+    )
     Page<Student> findByNameContainingIgnoreCaseUsingNQ(String name, Pageable pageable);
-
-    @Query(value = "SELECT * FROM students WHERE name=?1 ORDER BY name DESC", nativeQuery = true)
-    List<Student> findByNameSort(String name);
-
 }

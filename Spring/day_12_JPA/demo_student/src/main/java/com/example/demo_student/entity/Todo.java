@@ -4,22 +4,22 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "todo")
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    Integer id;
+    private Integer id;
 
     @Column(name = "title")
-    String title;
+    private String title;
 
     @Column(name = "status")
-    Boolean status;
-
+    private Boolean status;
 }
