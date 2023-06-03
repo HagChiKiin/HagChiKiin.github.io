@@ -9,6 +9,7 @@ $(document).ready(function () {
         return inputDate >= currentDate;
     }, "Thời gian kết thúc dự kiến không được là ngày quá khứ.");
 
+    // validate
     $("#task-modal-form").validate({
         onfocusout: false,
         onkeyup: false,
@@ -51,6 +52,7 @@ $(document).ready(function () {
         }
     });
 
+    // lấy ra trạng thái của task - status
     $.ajax({
         url: "/api/v1/tasks/status",
         type: 'GET',
@@ -72,4 +74,29 @@ $(document).ready(function () {
             toastr.warning(data.responseJSON.error);
         }
     });
-}
+
+    // xóa task
+    $("#delete-task").click(event => {
+        const taskId = $("#task-delete-modal #delete-task").attr("task-id");
+
+        $.ajax({
+            url: "/api/v1/tasks/" + taskId,
+            type: "DELETE",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                toastr.success("Xóa thành công");
+                $("#task-delete-modal #delete-task").attr("task-id", "");
+                $("#task-delete-modal").modal("hide");   // xóa và ẩn model
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            },
+            error: function (data) {
+                toastr.warning(data.responseJSON.error);
+            }
+        });
+    });
+
+
+
+});
