@@ -8,10 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
@@ -29,14 +26,12 @@ public class TaskRequest {
     @NotBlank(message = " address cannot be blank")
     String description;
 
+    @NotNull
     Status status;
 
-    @NotNull(message = "Please enter ")
-    @Past(message = "should be less than current date!!")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate createdDateTime;
 
     @NotNull(message = "Please enter ")
+    @FutureOrPresent
     @Past(message = "should be less than current date!!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate expectedEndTime;
