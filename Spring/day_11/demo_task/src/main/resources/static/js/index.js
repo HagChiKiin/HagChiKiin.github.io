@@ -100,7 +100,7 @@ $(document).ready(function () {
     $(".create-task-btn").click((event) => {
         const taskStatus = $(event.currentTarget).attr("task-status");
         $("#task-modal #status").val(taskStatus);
-        $("#task-modal #save-task").attr("action-type", "CREATE");
+        $("#task-modal #submid-save-task").attr("action-type", "CREATE");
 
         $("#task-modal").modal("show");
     });
@@ -151,14 +151,15 @@ $(document).ready(function () {
         });
     })
 
-    $("#save-task").click((event)  => {
+    $("#submit-save-task").on('click', function(event)  {
+        event.preventDefault();
         const isValidForm = $("#task-modal-form").valid();
         if (!isValidForm) {
             return;
         }
 
-        const actionType = $(event.currentTarget).attr("action-type");
-        const taskId = $(event.currentTarget).attr("task-id");
+        const actionType = $(this).attr("action-type");
+        const taskId = $(this).attr("task-id");
         const formData = $('#task-modal-form').serializeArray();
         if (!formData || formData.length === 0) {
             return;
@@ -190,8 +191,8 @@ $(document).ready(function () {
             }
         });
 
-        $("#task-modal #save-task").attr("action-type", "");
-        $("#task-modal #save-task").attr("task-id", "");
+        $(this).attr("action-type", "");
+        $(this).attr("task-id", "");
         $('#task-modal-form').trigger("reset");
     });
 
