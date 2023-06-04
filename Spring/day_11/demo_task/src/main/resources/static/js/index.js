@@ -15,39 +15,39 @@ $(document).ready(function () {
         onkeyup: false,
         onclick: false,
         rules: {
-            "name": {
+            name: {
                 required: true,
                 maxlength: 255
             },
-            "expectedEndTime": {
+            expectedEndTime: {
                 required: true,
                 date: true,
                 minDate: true
             },
-            "status": {
-                required: true,
+            status: {
+                required: true
             },
-            "description": {
+            description: {
                 required: true,
-                maxlength: 255,
+                maxlength: 255
             }
         },
         messages: {
-            "name": {
-                required: "Bắt buộc nhập tên ",
-                maxlength: "Hãy nhập tối đa 255 ký tự"
+            name: {
+                required: "Bắt buộc nhập tên.",
+                maxlength: "Hãy nhập tối đa 255 ký tự."
             },
-            "expectedEndTime": {
-                required: "Bắt buộc nhập thời gian",
-                date: "Định dạng ngày tháng phải hợp lệ",
-                minDate: "Thời gian kết thúc dự kiến phải là ngày tương lai"
+            expectedEndTime: {
+                required: "Bắt buộc nhập thời gian.",
+                date: "Định dạng ngày tháng phải hợp lệ.",
+                minDate: "Thời gian kết thúc dự kiến phải là ngày tương lai."
             },
-            "quantity": {
-                status: "Bắt buộc nhập",
+            status: {
+                required: "Bắt buộc chọn trạng thái."
             },
-            "description": {
-                required: "Bắt buộc nhập mô tả",
-                maxlength: "Hãy nhập tối đa 255 ký tự",
+            description: {
+                required: "Bắt buộc nhập mô tả.",
+                maxlength: "Hãy nhập tối đa 255 ký tự."
             }
         }
     });
@@ -55,21 +55,21 @@ $(document).ready(function () {
     // lấy ra trạng thái của task - status
     $.ajax({
         url: "/api/v1/tasks/status",
-        type: 'GET',
+        type: "GET",
         contentType: "application/json; charset=utf-8",
-        success: function (data) {
+        success: function(data) {
             console.log(data);
             if (!data || data.length === 0) {
                 return;
             }
-            let statusOptions = "";
-            for (let i = 0; i < data.length; i++) {
+            var statusOptions = "";
+            for (var i = 0; i < data.length; i++) {
                 statusOptions += "<option value='" + data[i].code + "'>" + data[i].name + "</option>";
             }
-            $('#task-modal #status').append($(statusOptions));
+            $('#task-modal #status').append(statusOptions);
             console.log(data);
         },
-        error: function (data) {
+        error: function(data) {
             console.log(data);
             toastr.warning(data.responseJSON.error);
         }
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     // xóa task
     $("#delete-task").click(event => {
-        const taskId = $("#task-delete-modal #delete-task").attr("task-id");
+        const taskId = $("#task-delete-confirmation-modal #delete-task").attr("task-id");
 
         $.ajax({
             url: "/api/v1/tasks/" + taskId,
@@ -85,8 +85,8 @@ $(document).ready(function () {
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 toastr.success("Xóa thành công");
-                $("#task-delete-modal #delete-task").attr("task-id", "");
-                $("#task-delete-modal").modal("hide");   // xóa và ẩn model
+                $("#task-delete-confirmation-modal #delete-task").attr("task-id", "");
+                $("#task-delete-confirmation-modal").modal("hide");   // xóa và ẩn model
                 setTimeout(() => {
                     location.reload();
                 }, 500);
@@ -100,7 +100,7 @@ $(document).ready(function () {
     $(".create-task-btn").click((event) => {
         const taskStatus = $(event.currentTarget).attr("task-status");
         $("#task-modal #status").val(taskStatus);
-        $("#task-modal #submid-save-task").attr("action-type", "CREATE");
+        $("#task-modal #save-task").attr("action-type", "CREATE");
 
         $("#task-modal").modal("show");
     });
@@ -139,8 +139,8 @@ $(document).ready(function () {
                 $("#task-modal-form #expectedEndTime").val(task.expectedEndTime);
                 $("#task-modal-form #description").val(task.description);
 
-                $("#task-modal #submit-save-task").attr("action-type", "UPDATE");
-                $('#task-modal #submit-save-task').attr("task-id", taskId);
+                $("#task-modal #save-task").attr("action-type", "UPDATE");
+                $('#task-modal #save-task').attr("task-id", taskId);
 
                 $("#task-modal").modal("show");
             },
@@ -151,32 +151,31 @@ $(document).ready(function () {
         });
     })
 
-    $("#submit-save-task").on('click', function(event)  {
-        event.preventDefault();
+    $("#save-task").click(async event => {
         const isValidForm = $("#task-modal-form").valid();
         if (!isValidForm) {
             return;
         }
 
-        const actionType = $(this).attr("action-type");
-        const taskId = $(this).attr("task-id");
+        const actionType = $(event.currentTarget).attr("action-type");
+        const taskId = $(event.currentTarget).attr("task-id");
         const formData = $('#task-modal-form').serializeArray();
         if (!formData || formData.length === 0) {
             return;
         }
-        const requestData = {};
+        const requestBody = {};
         for (let i = 0; i < formData.length; i++) {
-            requestData[formData[i].name] = formData[i].value;
+            requestBody[formData[i].name] = formData[i].value;
         }
 
         const method = actionType === "CREATE" ? "POST" : "PUT";
         if (method === "PUT") {
-            requestData["id"] = taskId;
+            requestBody["id"] = taskId;
         }
-        $.ajax({
+        await $.ajax({
             url: "/api/v1/tasks",
             type: method,
-            data: JSON.stringify(requestData),
+            data: JSON.stringify(requestBody),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 toastr.success((actionType === "CREATE" ? "Create" : "Update") + " a new task successfully");
@@ -184,27 +183,27 @@ $(document).ready(function () {
                 $("#task-modal").modal("hide");
                 setTimeout(() => {
                     location.reload();
-                }, 1000);
+                }, 500);
             },
             error: function (data) {
                 toastr.warning(data.responseJSON.error);
             }
         });
 
-        $(this).attr("action-type", "");
-        $(this).attr("task-id", "");
+        $("#task-modal #save-task").attr("action-type", "");
+        $("#task-modal #save-task").attr("task-id", "");
         $('#task-modal-form').trigger("reset");
     });
 
     //delete button
     $(".delete-btn").click(event => {
         const taskId = $(event.currentTarget).attr("task-id");
-        $("#task-delete-modal #delete-task").attr("task-id", taskId);
-        $("#task-delete-modal").modal("show");
+        $("#task-delete-confirmation-modal #delete-task").attr("task-id", taskId);
+        $("#task-delete-confirmation-modal").modal("show");
     });
 
     $("#delete-task").click(event =>{
-        const taskId = $("#task-delete-modal #delete-task").attr("task-id");
+        const taskId = $("#task-delete-confirmation-modal #delete-task").attr("task-id");
 
         $.ajax({
             url: "/api/v1/tasks/" +taskId,
@@ -213,7 +212,7 @@ $(document).ready(function () {
             success: function (data) {
 
                 toastr.success("Xóa thành công");
-                $("#task-delete-modal #delete-task").attr("tasj-id","");
+                $("#task-delete-confirmation-modal #delete-task").attr("tasj-id","");
                 $("task-delete-modal").modal("hide");
                 setTimeout(()=>{
                     local.reload();

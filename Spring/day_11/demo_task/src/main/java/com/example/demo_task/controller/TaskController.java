@@ -22,11 +22,11 @@ import java.util.List;
 public class TaskController {
     TaskService taskService;
 
-    StatusService statusService;
+   StatusService statusService;
 
     @GetMapping("/")
     public String getTasks(Model model) {
-        List<TaskResponse> taskResponses = taskService.getAll();
+            List<TaskResponse> taskResponses = taskService.getAll();
         model.addAttribute("tasks", taskResponses);
         return "index";
     }

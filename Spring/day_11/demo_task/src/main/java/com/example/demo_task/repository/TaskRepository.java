@@ -33,13 +33,12 @@ public class TaskRepository {
         ) {
             if (t.getId() == id) {
                 return t;
-
             }
         }
         return null;
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id)                   {
         tasks.removeIf(t -> t.getId() == id);
     }
 
@@ -48,13 +47,10 @@ public class TaskRepository {
             if(s.getId()!= task.getId()){
                 return;
             }
-            s.setId(task.getId());
             s.setName(task.getName());
             s.setDescription(task.getDescription());
             s.setStatus(task.getStatus());
-            s.setCreatedDateTime(task.getCreatedDateTime());
             s.setExpectedEndTime(task.getExpectedEndTime());
-            s.setOverdue(task.getOverdue());
         });
     }
 

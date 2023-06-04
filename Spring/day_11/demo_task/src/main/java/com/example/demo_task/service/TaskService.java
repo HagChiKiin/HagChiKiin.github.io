@@ -4,6 +4,7 @@ import com.example.demo_task.entity.Task;
 import com.example.demo_task.model.request.TaskRequest;
 import com.example.demo_task.model.responce.TaskDetailResponse;
 import com.example.demo_task.model.responce.TaskResponse;
+import com.example.demo_task.model.responce.TaskStatusResponse;
 import com.example.demo_task.repository.TaskRepository;
 import com.example.demo_task.statics.Status;
 import com.fasterxml.jackson.databind.ObjectMapper;
