@@ -55,24 +55,31 @@ $(document).ready(function () {
     // lấy ra trạng thái của task - status
     $.ajax({
         url: "/api/v1/tasks/status",
-        type: "GET",
+        type: 'GET',
         contentType: "application/json; charset=utf-8",
-        success: function(data) {
-            console.log(data);
-            if (!data || data.length === 0) {
-                return;
+        success: function (data) {
+            const statusSelection = $('#task-modal #status');
+            if (statusSelection.children().length === 0) {
+                if (!data || data.length === 0) {
+                    return;
+                }
+                let statusOptions = "";
+                for (let i = 0; i < data.length; i++) {
+                    statusOptions += "<option value='" + data[i].code + "'>" + data[i].name + "</option>";
+                }
+                statusSelection.append($(statusOptions));
             }
-            var statusOptions = "";
-            for (var i = 0; i < data.length; i++) {
-                statusOptions += "<option value='" + data[i].code + "'>" + data[i].name + "</option>";
-            }
-            $('#task-modal #status').append(statusOptions);
-            console.log(data);
         },
-        error: function(data) {
-            console.log(data);
+        error: function (data) {
             toastr.warning(data.responseJSON.error);
         }
+    });
+
+    //delete button
+    $(".delete-btn").click(event => {
+        const taskId = $(event.currentTarget).attr("task-id");
+        $("#task-delete-confirmation-modal #delete-task").attr("task-id", taskId);
+        $("#task-delete-confirmation-modal").modal("show");
     });
 
     // xóa task
@@ -96,6 +103,7 @@ $(document).ready(function () {
             }
         });
     });
+
     //create task
     $(".create-task-btn").click((event) => {
         const taskStatus = $(event.currentTarget).attr("task-status");
@@ -104,53 +112,44 @@ $(document).ready(function () {
 
         $("#task-modal").modal("show");
     });
-    //update task
-    $(".task-title").click(function (event) {
-        $('#task-modal-form').modal('show');
 
+    // open modal to update a task
+    $(".task-title").click(async event => {
         const taskId = $(event.currentTarget).attr("task-id");
-        console.log(taskId);
-        $.ajax({
-            url: '/api/v1/tasks/' + taskId,
-            type: 'GET',
+        let task = null;
+        await $.ajax({
+            url: "/api/v1/tasks/" + taskId,
+            type: "GET",
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 task = data;
-
             },
             error: function (data) {
-                console.log(data)
                 toastr.warning(data.responseJSON.error);
             }
         });
 
-        let currentTask = null;
+        if (!task) {
+            toastr.error("Có lỗi xảy ra, vui lòng thử lại");
+            return;
+        }
+        $("#task-modal-form #name").val(task.name);
+        $("#task-modal-form #status").val(task.status);
+        $("#task-modal-form #expectedEndTime").val(task.expectedEndTime);
+        $("#task-modal-form #description").val(task.description);
 
-        $.ajax({
-            url: '/api/v1/tasks/' + taskId,
-            type: 'GET',
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                console.log(data);
-                currentTask = data;
+        $("#task-modal #save-task").attr("action-type", "UPDATE");
+        $("#task-modal #save-task").attr("task-id", taskId);
+        $("#task-modal").modal("show");
+    });
 
-                $("#task-modal-form #name").val(task.name);
-                $("#task-modal-form #status").val(task.status);
-                $("#task-modal-form #expectedEndTime").val(task.expectedEndTime);
-                $("#task-modal-form #description").val(task.description);
-
-                $("#task-modal #save-task").attr("action-type", "UPDATE");
-                $('#task-modal #save-task').attr("task-id", taskId);
-
-                $("#task-modal").modal("show");
-            },
-            error: function (data) {
-                console.log(data);
-                toastr.warning(data.responseJSON.message);
-            }
-        });
-    })
-
+    // close modal -> clear form + reset form, delete action-type attribute at submit button
+    $(".close-modal").click(() => {
+        $("#task-modal #save-task").attr("action-type", "");
+        $("#task-modal #save-task").attr("task-id", "");
+        $('#task-modal-form').trigger("reset");
+    });
+    // create or update a task
     $("#save-task").click(async event => {
         const isValidForm = $("#task-modal-form").valid();
         if (!isValidForm) {
@@ -195,33 +194,31 @@ $(document).ready(function () {
         $('#task-modal-form').trigger("reset");
     });
 
-    //delete button
-    $(".delete-btn").click(event => {
-        const taskId = $(event.currentTarget).attr("task-id");
-        $("#task-delete-confirmation-modal #delete-task").attr("task-id", taskId);
-        $("#task-delete-confirmation-modal").modal("show");
-    });
-
-    $("#delete-task").click(event =>{
-        const taskId = $("#task-delete-confirmation-modal #delete-task").attr("task-id");
-
-        $.ajax({
-            url: "/api/v1/tasks/" +taskId,
-            type: "DELETE",
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-
-                toastr.success("Xóa thành công");
-                $("#task-delete-confirmation-modal #delete-task").attr("tasj-id","");
-                $("task-delete-modal").modal("hide");
-                setTimeout(()=>{
-                    local.reload();
-                }, 1000);
-            },
-            error: function (data){
-                toastr.warning(data.responseJSON.error)
-            }
-        })
-    })
-
 });
+
+function dragStart(event) {
+    event.dataTransfer.setData("text", event.target.id);
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function dropHandler(event) {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text");
+    const taskId = id.split("-")[1];
+    const targetStatus = event.target.getAttribute("task-status");
+    $.ajax({
+        url: "/api/v1/tasks/" + taskId + "/" + targetStatus,
+        type: "PUT",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            event.target.appendChild(document.getElementById(id));
+            toastr.success("Change status successfully");
+        },
+        error: function (data) {
+            toastr.warning(data.responseJSON.error);
+        }
+    });
+}

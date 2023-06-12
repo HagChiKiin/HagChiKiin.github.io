@@ -1,7 +1,6 @@
 package com.example.demo_task.repository;
 
 import com.example.demo_task.entity.Task;
-import com.example.demo_task.model.request.TaskRequest;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Repository;
@@ -13,22 +12,21 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TaskRepository {
 
-    final List<Task> tasks = new ArrayList<>();
     static int AUTO_ID = 1;
 
+    final List<Task> tasks = new ArrayList<>();
 
     public List<Task> getAll() {
         return tasks;
     }
 
-    public void saveTask(Task task) {
+    public void add(Task task) {
         task.setId(AUTO_ID);
-        tasks.add(task);
         AUTO_ID++;
-
+        tasks.add(task);
     }
 
-    public Task getDetail(Integer id) {
+    public Task getOne(Integer id) {
         for (Task t : tasks
         ) {
             if (t.getId() == id) {
@@ -36,10 +34,6 @@ public class TaskRepository {
             }
         }
         return null;
-    }
-
-    public void delete(Integer id)                   {
-        tasks.removeIf(t -> t.getId() == id);
     }
 
     public void update(Task task) {
@@ -54,4 +48,7 @@ public class TaskRepository {
         });
     }
 
+    public void delete(Integer id) {
+        tasks.removeIf(t -> t.getId() == id);
+    }
 }

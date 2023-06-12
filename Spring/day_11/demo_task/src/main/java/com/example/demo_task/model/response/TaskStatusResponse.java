@@ -1,4 +1,4 @@
-package com.example.demo_task.model.responce;
+package com.example.demo_task.model.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

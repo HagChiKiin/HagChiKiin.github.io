@@ -1,6 +1,6 @@
-package com.example.demo_task.model.responce;
+package com.example.demo_task.model.response;
 
-import com.example.demo_task.statics.Status;
+import com.example.demo_task.statics.TaskStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,8 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TaskResponse {
 
-    Status status;
+    TaskStatus status;
 
     List<TaskDetailResponse> taskDetails;
+
 }

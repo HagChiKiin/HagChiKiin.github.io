@@ -5,11 +5,14 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Status {
-    TODO("TODO","To Do"),
+public enum TaskStatus {
+
+    TODO("TODO", "To Do"),
     IN_PROGRESS("IN_PROGRESS","In progress"),
     REVIEWING("REVIEWING","Reviewing"),
-    DONE("DONE","Done");
+    COMPLETED("COMPLETED","Completed");
+
     public String code;
     public String name;
+
 }

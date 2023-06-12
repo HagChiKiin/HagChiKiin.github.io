@@ -1,7 +1,7 @@
 package com.example.demo_task.controller;
 
 import com.example.demo_task.model.request.TaskRequest;
-import com.example.demo_task.model.responce.TaskResponse;
+import com.example.demo_task.model.response.TaskResponse;
 import com.example.demo_task.service.StatusService;
 import com.example.demo_task.service.TaskService;
 import lombok.AccessLevel;
@@ -20,42 +20,50 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TaskController {
+
     TaskService taskService;
 
-   StatusService statusService;
+    StatusService statusService;
 
     @GetMapping("/")
     public String getTasks(Model model) {
-            List<TaskResponse> taskResponses = taskService.getAll();
-        model.addAttribute("tasks", taskResponses);
+        List<TaskResponse> tasks = taskService.getAll();
+        model.addAttribute("tasks", tasks);
         return "index";
     }
 
-    @GetMapping("api/v1/tasks/status")
-    public ResponseEntity<?> getStatus(){
+    @GetMapping("/api/v1/tasks/status")
+    public ResponseEntity<?> getTaskStatus() {
         return ResponseEntity.ok(statusService.getStatus());
     }
 
-    @GetMapping("/api/v1/tasks{id}")
-    public ResponseEntity<?> getDetail(@PathVariable Integer id){
+    @PostMapping("/api/v1/tasks")
+    public ResponseEntity<?> create(@RequestBody @Valid TaskRequest request) {
+        taskService.saveTask(request);
+        return ResponseEntity.ok(null);
+    }
+
+    @GetMapping("/api/v1/tasks/{id}")
+    public ResponseEntity<?> getDetail(@PathVariable Integer id) {
         return ResponseEntity.ok(taskService.getDetail(id));
     }
 
-    @PostMapping("/api/v1/tasks")
-    public ResponseEntity<?> createTask(@RequestBody @Valid TaskRequest request  ){
+    @PutMapping("/api/v1/tasks")
+    public ResponseEntity<?> update(@RequestBody @Valid TaskRequest request) {
         taskService.saveTask(request);
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping("/api/v1/tasks{id}")
-    public ResponseEntity<?> updateTask(@RequestBody @Valid TaskRequest request ){
-        taskService.saveTask(request);
+    @PutMapping("/api/v1/tasks/{id}/{statusId}")
+    public ResponseEntity<?> update(@PathVariable Integer id, @PathVariable String statusId) {
+        taskService.updateStatus(id, statusId);
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping("/api/v1/tasks{id}")
-    public ResponseEntity<?> deleteTask(@PathVariable Integer id){
+    @DeleteMapping("/api/v1/tasks/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         taskService.delete(id);
         return ResponseEntity.ok(null);
     }
+
 }
