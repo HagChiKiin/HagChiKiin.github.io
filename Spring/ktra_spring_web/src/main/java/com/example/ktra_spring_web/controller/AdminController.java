@@ -32,11 +32,18 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String adminPage(Model model) {
+        model.addAttribute("products", productService.getAllProduct());
+
+        return "admin";
+    }
+
+    @GetMapping("/products")
+    public String adminPage1(Model model) {
         List<Product> products = productService.getAllProduct();
         model.addAttribute("danhSachProduct", products);
         model.addAttribute("productTaoMoi",new ProductRequest());
 
-        return "admin";
+        return "product";
     }
 
     // thêm

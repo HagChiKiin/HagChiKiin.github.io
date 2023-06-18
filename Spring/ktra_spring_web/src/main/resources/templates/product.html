@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <!-- Site Metas -->
+  <meta name="keywords" content=""/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+
+  <title> Products</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet"/>
+  <!-- font-awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link href="css/index.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-fluid p-0">
+
+  <div th:insert="fragments/nav::nav"></div>
+  <div class="row mt-3 ml-3">
+    <div class="col">
+      <button type="button" class="btn btn-primary create-product" data-toggle="modal" data-target="#product-create-modal">
+        Create
+      </button>
+    </div>
+  </div>
+
+  <div th:insert="fragments/product-create-modal :: product-create-modal"
+       th:with="productTaoMoi=${productTaoMoi}">
+
+  </div>
+
+  <div class="row mt-4 mx-3">
+    <div class="col">
+      <table class="table table-bordered table-hover table-striped">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Name Of Product</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Describe</th>
+          <th class="text-center">Image</th>
+          <th class="text-center">Actions</th>
+        </tr>
+        <tr th:each="product: ${danhSachProduct}">
+          <td th:text="${product.id}"/>
+          <td th:text="${product.name}"/>
+          <td th:text="${product.price}"/>
+          <td th:text="${product.description}"/>
+          <td th:text="${product.image}"/>
+          <td>
+            <a role="button" class="mr-3 text-primary update-product" th:attr="product-id=${product.id}">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div th:insert="fragments/product-update-modal :: product-update-modal"></div>
+
+  <!--    <div th:insert="fragments/footer :: footer"></div>-->
+
+</div>
+
+</body>
+</html>
+
+<!-- jQuery library -->
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+<script th:inline="javascript">
+  $(document).ready(function () {
+    toastr.options.timeOut = 2500
+
+
+    $("#product-update-modal-form").validate({
+      onfocusout: false,
+      onkeyup: false,
+      onclick: false,
+      rules: {
+        "name": {
+          required: true,
+          maxlength: 255
+        },
+        "price": {
+          required: true,
+          min: 0
+        },
+        "description":{
+          required: true,
+          maxlength: 255
+        }
+      }, messages: {
+        "name": {
+          required: "Bắt buộc nhập tên sản phẩm",
+          maxlength: "tối đa 255 ký tự"
+        },
+        "price": {
+          required: "Bắt buộc nhập giá",
+          min: "Giá phải lớn hơn 0"
+        },
+        "description":{
+          required: "Hãy nhập mô tả",
+          maxlength: " Tối đa 255 ký tự"
+        }
+      }
+
+    });
+    $("#product-create-modal-form").validate({
+      onfocusout: false,
+      onkeyup: false,
+      onclick: false,
+      rules: {
+        "name": {
+          required: true,
+          maxlength: 255
+        },
+        "price": {
+          required: true,
+          min: 0
+        },
+        "description":{
+          required: true,
+          maxlength: 255
+        }
+      }, messages: {
+        "name": {
+          required: "Bắt buộc nhập tên sản phẩm",
+          maxlength: "tối đa 255 ký tự"
+        },
+        "price": {
+          required: "Bắt buộc nhập giá",
+          min: "Giá phải lớn hơn 0"
+        },
+        "description":{
+          required: "Hãy nhập mô tả",
+          maxlength: " Tối đa 255 ký tự"
+        }
+      }
+    });
+
+    $(".create-product").click(() => {
+      $("#product-create-modal").modal("show");
+    })
+
+    $('#submit-create-product').click(async event => {
+      const isValidForm = $('#product-create-modal-form').valid();
+      if (!isValidForm) return;
+
+      try {
+        const formData = $('#product-create-modal-form').serialize();
+        await $.ajax({
+          url: "/api/v1/products",
+          type: "POST",
+          data: formData,
+          contentType: "application/x-www-form-urlencoded",
+          success: function () {
+            toastr.success("Thêm sản phẩm thành công!");
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+          },
+          error: function (data) {
+            toastr.warning(data.responseJSON.message);
+          }
+        });
+      } catch (error) {
+        toastr.warning("Đã xảy ra lỗi khi thêm sản phẩm.");
+      }
+    });
+
+    $(".update-product").click(async event => {
+      const productId = $(event.currentTarget).attr("data-product-id");
+
+      try {
+        const currentProduct = await $.ajax({
+          url: "/api/v1/product/" + productId,
+          type: "GET",
+          contentType: "application/json; charset=utf-8"
+        });
+
+        $('#product-update-modal #name').val(currentProduct.name);
+        $('#product-update-modal #price').val(currentProduct.price);
+        $('#product-update-modal #description').val(currentProduct.description);
+        $('#product-update-modal #image').val(currentProduct.image);
+        $("#product-update-modal #submit-update-product").attr("data-product-id", productId);
+        $("#product-update-modal").modal("show");
+      } catch (error) {
+        toastr.warning(error.responseJSON.message);
+      }
+    });
+
+
+    $("#submit-update-product").click(async event => {
+      const isValidForm = $('#product-update-modal-form').valid();
+      if (!isValidForm) {
+        return
+      }
+
+      const productId = $('#product-update-modal #submit-update-product').attr("student-id");
+      const formData = $('#product-update-modal-form').serializeArray();
+
+      if (!formData || formData.length === 0) {
+        return;
+      }
+      const requestData = {};
+
+      for (let i = 0; i < formData.length; i++) {
+        requestData[formData[i].name] = formData[i].value;
+      }
+      await $.ajax({
+        url: "/api/v1/products/" + productId,
+        type: "PUT",
+        data: JSON.stringify(requestData),
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+          toastr.success("Cập nhật sản phẩm thành công!")
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        },
+        error: function () {
+          toastr.warning(data.responseJSON.message)
+        }
+      })
+    })
+
+  })
+</script>
