@@ -3,10 +3,14 @@ package com.example.demojparelationship.entity;
 import lombok.*;
 
 import javax.persistence.*;
-@NoArgsConstructor
+
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "identity_card")
 public class IdentityCard {

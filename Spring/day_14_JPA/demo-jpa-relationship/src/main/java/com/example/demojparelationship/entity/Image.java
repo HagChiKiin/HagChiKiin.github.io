@@ -5,10 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "image")
 public class Image {

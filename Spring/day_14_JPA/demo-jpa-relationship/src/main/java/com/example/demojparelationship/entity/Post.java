@@ -4,10 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "post")
 public class Post {
@@ -22,4 +24,5 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
 }

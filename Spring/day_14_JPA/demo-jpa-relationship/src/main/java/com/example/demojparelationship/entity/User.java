@@ -5,10 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "user")
 public class User {
@@ -26,14 +28,10 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)  // mặc định là eager
-    @JoinColumn(name = "card_id")
-    private IdentityCard identityCard;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "card_id")
+//    private IdentityCard identityCard;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL , orphanRemoval = true, fetch = FetchType.LAZY)   // mặc định là lazy
-    private List<Post> post;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Image> images;
-
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private List<Post> posts;
 }

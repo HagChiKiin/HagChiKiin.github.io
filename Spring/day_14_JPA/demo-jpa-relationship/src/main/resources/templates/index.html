@@ -13,7 +13,7 @@
     />
 </head>
 <body>
-<div class="container">z
+<div class="container">
     <h2 class="mt-5 mb-3">Danh sách user</h2>
 
     <div class="row">
@@ -28,49 +28,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Nguyễn Văn A</td>
-                    <td>a@gmail.com</td>
-                    <td><a href="#">Xem chi tiết</a></td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td>Trần Văn B</td>
-                    <td>b@gmail.com</td>
-                    <td><a href="#">Xem chi tiết</a></td>
+                <tr th:each="user : ${userList}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td><a th:href="@{/users/{id}/files (id=${user.id})} ">Xem
+                        chi tiết</a></td>
+                    <td>
+                        <button class="btn btn-danger">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $("#uploadForm").submit(function(event) {
-            event.preventDefault(); // Ngăn chặn sự kiện mặc định khi submit form
-
-            var formData = new FormData();
-            formData.append("file", $("#fileInput")[0].files[0]);
-
-            $.ajax({
-                url: "/users/{id}/files", // Thay thế {id} bằng ID của người dùng
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    console.log("Tải lên thành công");
-                    // Xử lý khi tải lên thành công
-                },
-                error: function(xhr, status, error) {
-                    console.log("Lỗi khi tải lên:", error);
-                    // Xử lý khi có lỗi xảy ra
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>

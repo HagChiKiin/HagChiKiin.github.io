@@ -4,10 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "tag")
 public class Tag {
