@@ -12,7 +12,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Drool Admin- Products</title>
+    <title>Drool Admin - Products</title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
@@ -34,20 +34,23 @@
 
     <div th:insert="fragments/nav::nav"></div>
 
+
     <div class="row mt-3 ml-3">
         <div class="col">
-            <button type="button" class="btn btn-primary create-product">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product-create-modal">
                 Create
             </button>
         </div>
     </div>
 
-    <div th:insert="fragments/product-create-modal :: product-create-modal"></div>
+    <div th:insert="fragments/product-create-modal :: product-create-modal"
+         th:with="productTaoMoi=${productTaoMoi}">
+
+    </div>
 
     <div class="row mt-4 mx-3">
         <div class="col">
             <table class="table table-bordered table-hover table-striped">
-                <thead>
                 <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">Name Of Product</th>
@@ -56,27 +59,25 @@
                     <th class="text-center">Image</th>
                     <th class="text-center">Actions</th>
                 </tr>
-                </thead>
-                <tbody>
-                <!--                <tr th:each="product: ${products}">-->
-                <!--                    <td th:text="${product.id}"/>-->
-                <!--                    <td th:text="${product.name}"/>-->
-                <!--                    <td th:text="${product.price}"/>-->
-                <!--                    <td th:text="${product.describe}"/>-->
-                <!--                    <td th:text="${product.avatar}"/>-->
-                <!--                    <td class="text-center d-flex justify-content-around">-->
-                <!--                        <a role="button" class="mr-3 text-primary update-product "-->
-                <!--                           th:attr="product-id=${product.id}">-->
-                <!--                            <i class="fas fa-pencil-alt "></i>-->
-                <!--                        </a>-->
-                <!--                    </td>-->
-                <!--                </tr>-->
-                </tbody>
+                <tr th:each="product: ${danhSachProduct}">
+                    <td th:text="${product.id}"/>
+                    <td th:text="${product.name}"/>
+                    <td th:text="${product.price}"/>
+                    <td th:text="${product.description}"/>
+                    <td th:text="${product.image}"/>
+                    <td>
+                        <a role="button" class="mr-3 text-primary update-product" th:attr="product-id=${product.id}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
 
     <div th:insert="fragments/product-update-modal :: product-update-modal"></div>
+
+<!--    <div th:insert="fragments/footer :: footer"></div>-->
 
 </div>
 
@@ -95,3 +96,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+<script>
+
+</script>
