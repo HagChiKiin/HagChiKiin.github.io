@@ -25,8 +25,8 @@ public class Appointment {
     @JoinColumn(name = "user_id")
     User user;
 
-    @Column(name = "description")
-    String description;
+    @Column(name = "message")
+    String message;
 
     @Column(name = "status")
     Status status;

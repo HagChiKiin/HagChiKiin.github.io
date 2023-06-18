@@ -34,7 +34,31 @@ public class AppointmentService {
     }
 
     public AppointmentResponse createAppointment(AppointmentRequest appointmentRequest) {
+        User user = userRepository.findByEmail(appointmentRequest.getEmail());
+        Appointment appointment;
 
+        if (user == null) {
+            User newUser = User.builder()
+                    .name(appointmentRequest.getName())
+                    .email(appointmentRequest.getEmail())
+                    .phone(appointmentRequest.getPhone())
+                    .build();
+            userRepository.save(newUser);
+
+            appointment = Appointment.builder()
+                    .user(newUser)
+                    .appointmentAt(appointmentRequest.getAppointmentAt())
+                    .message(appointmentRequest.getMessage())
+                    .build();
+        } else {
+            appointment = Appointment.builder()
+                    .user(user)
+                    .appointmentAt(appointmentRequest.getAppointmentAt())
+                    .message(appointmentRequest.getMessage())
+                    .build();
+        }
+
+        appointmentRepository.save(appointment);
+        return objectMapper.convertValue(appointment, AppointmentResponse.class);
     }
-
 }

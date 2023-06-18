@@ -33,7 +33,6 @@ public class AppointmentRequest {
     @Length(max = 255)
     String message;
 
-
     Status status;
 
     @NotNull
