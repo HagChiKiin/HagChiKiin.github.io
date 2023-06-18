@@ -12,16 +12,16 @@
             </div>
 
             <!-- Modal body -->
-            <form action="#" th:action="@{/products}" th:object="${productTaoMoi}" method="post">
+            <form action="#" id="product-create-modal-form" th:action="@{/products}" th:object="${productTaoMoi}" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" th:field="*{name}" class="form-control" id="name" />
+                        <input type="text" th:field="*{name}" class="form-control" id="name"/>
                     </div>
 
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number"th:field="*{price}" class="form-control" id="price" />
+                        <input type="number" th:field="*{price}" class="form-control" id="price" />
                     </div>
 
                     <div class="form-group">
