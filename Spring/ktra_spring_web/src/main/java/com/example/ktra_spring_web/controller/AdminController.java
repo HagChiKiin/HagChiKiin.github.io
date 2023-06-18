@@ -1,5 +1,6 @@
 package com.example.ktra_spring_web.controller;
 
+import com.example.ktra_spring_web.entity.Product;
 import com.example.ktra_spring_web.exception.NotFoundException;
 import com.example.ktra_spring_web.model.request.AppointmentRequest;
 import com.example.ktra_spring_web.model.request.ProductRequest;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -30,7 +32,10 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String adminPage(Model model) {
-        model.addAttribute("products", productService.getAllProduct());
+        List<Product> products = productService.getAllProduct();
+        model.addAttribute("danhSachProduct", products);
+        model.addAttribute("productTaoMoi",new ProductRequest());
+
         return "admin";
     }
 

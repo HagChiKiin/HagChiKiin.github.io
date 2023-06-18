@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +24,10 @@ public class ProductService {
 
     AppointmentRepository appointmentRepository;
 
-    public List<ProductResponse> getAllProduct() {
-        return productRepository.findAll()
-                .stream()
-                .map(p -> objectMapper.convertValue(p, ProductResponse.class))
-                .collect(Collectors.toList());
+    List<Product> products;
+
+    public List<Product> getAllProduct() {
+        return products;
     }
 
     public ProductResponse saveProduct(ProductRequest request) {
