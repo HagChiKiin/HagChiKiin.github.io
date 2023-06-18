@@ -28,7 +28,7 @@ public class Product {
     @Column(name = "description")
     String description;
 
-    @Column(name = "avatar")
+    @Column(name = "image")
     String image;
 
     //    @OneToMany(mappedBy = "product")
