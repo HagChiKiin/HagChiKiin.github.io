@@ -52,17 +52,17 @@ public class DriverController {
     public DriverResponce create(@RequestBody @Valid DriverRequest request) {
         return driverService.create(request);
     }
-//
-//    @GetMapping
-//    public String getAllDriver(Model model, Authentication authentication) {
-//        List<Driver> driver = driverService.getAllDriver();
-//        List<Level> levels = Arrays.asList(Level.values());
-//        model.addAttribute("dsTaiXe",levels);
-//        model.addAttribute("danhSachDriver", driver);
-//        model.addAttribute("driverTaoMoi", new DriverCreateRequest());
-//
-//        return "driver-list";
-//    }
+
+    @GetMapping
+    public String getAllDriver(Model model, Authentication authentication) {
+        List<DriverResponce> driver = driverService.getAll();
+        List<Level> levels = Arrays.asList(Level.values());
+        model.addAttribute("dsTaiXe",levels);
+        model.addAttribute("danhSachDriver", driver);
+        model.addAttribute("driverTaoMoi", new DriverCreateRequest());
+
+        return "driver-list";
+    }
 
 
     @PostMapping
