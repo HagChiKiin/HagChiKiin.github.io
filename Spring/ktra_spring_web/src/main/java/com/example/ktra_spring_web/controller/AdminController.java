@@ -72,7 +72,7 @@ public class AdminController {
         return "appointment";
     }
 
-     @PutMapping("/api/v1/appointments/{id}")
+    @PutMapping("/api/v1/appointments/{id}")
     public ResponseEntity<?> updateAppointment(@PathVariable Integer id, @RequestBody AppointmentRequest appointmentRequest) throws NotFoundException {
         AppointmentResponse appointmentResponse = appointmentService.updateAppointment(id, appointmentRequest);
         return ResponseEntity.ok(appointmentResponse);
