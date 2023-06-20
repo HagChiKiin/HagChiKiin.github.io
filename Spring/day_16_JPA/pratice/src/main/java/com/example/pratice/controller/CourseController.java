@@ -15,10 +15,20 @@ import java.util.List;
 public class CourseController {
     private final CourseService courseService;
 
-    @GetMapping("/")
+    @GetMapping("/course-list.html")
     public String getUserPage(Model model) {
-        List<Course> courses = courseService.getAll();
-        model.addAttribute("userList", courses);
+        model.addAttribute("courses", courseService.getAll());
         return "course-list";
     }
+    @GetMapping("/course-onlab-list.html")
+    public String getOnLab(Model model) {
+        model.addAttribute("courses", courseService.getAll());
+        return "course-onlab-list";
+    }
+    @GetMapping("/course-online-list.html")
+    public String getOnLine(Model model) {
+        model.addAttribute("courses", courseService.getAll());
+        return "course-online-list";
+    }
+
 }
