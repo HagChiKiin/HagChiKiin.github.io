@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org"
-      th:replace="layout/layout-admin :: main-fragment(~{:: title}, ~{}, ~{:: .course-list}, ~{})">
+      th:replace="layout/layout-admin :: main-fragment(~{:: title}, ~{:: #css}, ~{:: .course-list}, ~{:: #javascript})">
 
 <head>
+    <title>Chi tiết khóa học</title>
 
-    <title >Tạo khóa học</title>
-
+    <th:block id="css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    </th:block>
 </head>
 
 <body>
+</div>
 
 <!-- BODY -->
 <div class="course-list mt-4 mb-4">
@@ -19,7 +22,7 @@
                     <span><i class="fa-solid fa-plus"></i></span>
                     Cập nhật
                 </button>
-                <a th:href="${}" class="btn-custom btn-refresh">
+                <a th:href="@{/}" class="btn-custom btn-refresh">
                     <span><i class="fa-solid fa-angle-left"></i></span>
                     Quay lại
                 </a>
@@ -32,101 +35,94 @@
             </div>
         </div>
 
+
         <div class="course-list-inner p-2">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="mb-3">
-                        <label for="course-name" class="form-label fw-bold" th:text="${course.name}">Tên khóa học</label>
-                        <input type="text" class="form-control" id="course-name">
+                <form id="update-form">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="course-name" class="form-label fw-bold">Tên khóa học</label>
+                            <input type="text" class="form-control" id="course-name" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="course-description" class="form-label fw-bold">Mô tả</label>
+                            <textarea class="form-control" id="course-description" name="description"
+                                      rows="10"></textarea>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="course-description" class="form-label fw-bold"th:text="${course.description}">Mô tả</label>
-                        <textarea class="form-control" id="course-description" rows="10"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="course-type" class="form-label fw-bold" th:text="${course.type}">Hình thức học</label>
-                        <select class="form-control" id="course-type">
-                            <option hidden>- Chọn hình thức học</option>
-                            <option value="online">Online</option>
-                            <option value="onlab">Onlab</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="course-topic" class="form-label fw-bold" th:text="${course.topicIds}">Chủ đề</label>
-                        <select class="form-control" id="course-topic" multiple="multiple">
-                            <option value="1">Backend</option>
-                            <option value="2">Frontend</option>
-                            <option value="3">Mobile</option>
-                            <option value="4">Lập trình web</option>
-                            <option value="5">Database</option>
-                            <option value="6">Devops</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="course-supporter" class="form-label fw-bold" th:text="${course.supporterId}">Tư vấn viên</label>
-                        <select class="form-control" id="course-supporter">
-                            <option hidden>- Chọn tư vấn viên</option>
-                            <option value="1">Nguyễn Văn A</option>
-                            <option value="2">Trần Văn B</option>
-                            <option value="3">Ngô Thị C</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold" th:text="course.thumbnail">Thumnail</label>
-                        <div class="course-logo-preview mb-3 rounded">
-                            <img id="course-logo-preview" class="rounded">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="course-type" class="form-label fw-bold">Hình thức học</label>
+                            <select class="form-control" id="course-type" name="type">
+                                <option hidden>- Chọn hình thức học</option>
+                                <option value="online">Online</option>
+                                <option value="onlab">Onlab</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="course-topic" class="form-label fw-bold">Chủ đề</label>
+                            <select class="form-control" id="course-topic" multiple="multiple" name="topicIds">
+                                <option th:each="topic : ${topicList}" th:value="${topic.id}" th:text="${topic.name}">
+                                    Backend
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="course-supporter" class="form-label fw-bold">Tư vấn viên</label>
+                            <select class="form-control" id="course-supporter" name="supporterId">
+                                <option hidden>- Chọn tư vấn viên</option>
+                                <option th:each="supporter : ${supporterList}" th:value="${supporter.id}"
+                                        th:text="${supporter.name}">Nguyễn Văn A
+                                </option>
+                            </select>
                         </div>
 
-                        <label for="course-logo-input" class="btn btn-warning">Đổi ảnh
-                            <input type="file" id="course-logo-input" class="d-none">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Thumnail</label>
+                            <div class="course-logo-preview mb-3 rounded">
+                                <img id="course-logo-preview" class="rounded">
+                            </div>
+
+                            <label for="course-logo-input" class="btn btn-warning">Đổi ảnh
+                                <input type="file" id="course-logo-input" class="d-none">
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
+<th:block id="javascript">
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <script th:inline="javascript">
+        let course = [[${course}]]
+        console.log(course)
 
+        // Truy cập vào các thành phần
+        const courseName = document.getElementById("course-name");
+        const courseDescription = document.getElementById("course-description");
+        const courseType = document.getElementById("course-type");
+        const courseTopic = $("#course-topic");
+        const courseSupporter = document.getElementById("course-supporter");
+        const courseThumbnailPreview = document.getElementById("course-logo-preview");
 
-<script>
+        // Kích hoạt select2
+        courseTopic.select2({
+            placeholder: "- Chọn chủ đề",
+        });
 
-    // Truy cập vào các thành phần
-    const courseName = document.getElementById("course-name");
-    const courseDescription = document.getElementById("course-description");
-    const courseType = document.getElementById("course-type");
-    const courseTopic = $("#course-topic");
-    const courseSupporter = document.getElementById("course-supporter");
-    const courseThumbnailPreview = document.getElementById("course-logo-preview");
+        const initCourse = (course) => {
+            courseName.value = course.name;
+            courseDescription.innerText = course.description;
+            courseType.value = course.type;
+            courseTopic.val(course.topics.map(topic => `${topic.id}`)).trigger("change"); // ["1","2","3"]
+            courseSupporter.value = `${course.supporter.id}`;
+            courseThumbnailPreview.src = course.thumbnail;
+        }
 
-    // Kích hoạt select2
-    courseTopic.select2({
-        placeholder: "- Chọn chủ đề",
-    });
-
-    let course = {
-        id: 1,
-        name: "Khóa học Spring Boot",
-        description: "Spring Boot là một module của Spring Framework giúp giảm tải các cấu hình cho phép xây dựng nhanh chóng một ứng dụng độc lập. Spring Boot cung cấp sẵn các Embedded HTTP servers (Tomcat, Jetty, …), các plugins để phát triển và test một cách dễ dàng.",
-        type: "onlab",
-        topics: ["1", "2", "3"],
-        thumnail: "https://media.techmaster.vn/api/static/36/bu7v9ks51co41h2qcttg",
-        supporterId: "1"
-    }
-
-    const initCourse = (course) => {
-        courseName.value = course.name;
-        courseDescription.innerText = course.description;
-        courseType.value = course.type;
-        courseTopic.val(course.topics).trigger("change");
-        courseSupporter.value = course.supporterId;
-        courseThumbnailPreview.src = course.thumnail;
-    }
-
-    initCourse(course);
-</script>
+        initCourse(course);
+    </script>
+</th:block>
 </body>
 
 </html>

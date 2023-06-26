@@ -22,92 +22,72 @@ import java.util.Set;
 @Service
 @AllArgsConstructor
 public class CourseService {
-
     private final CourseRepository courseRepository;
-
     private final SupporterRepository supporterRepository;
-
     private final TopicRepository topicRepository;
-
-
-
 
     public Page<Course> getAllCourse(Integer page, Integer pageSize) {
         Pageable pageRequest = PageRequest.of(page - 1, pageSize);
         return courseRepository.findAll(pageRequest);
     }
 
-    public Page<Course> getAllCourse(Integer page, Integer pageSize, String type) {
-        Pageable pageRequest = PageRequest.of(page - 1, pageSize);
-        return courseRepository.findByType(pageRequest, type);
-    }
-
-    public List<Course> getAllCourse(String type) {
-        return courseRepository.findByType(type);
-    }
-
-    public Course getCourseDetail(Integer id) {
-        return courseRepository.findById(id)
-                .orElseThrow(() -> {
-                    throw new RuntimeException("Not found course with id = " + id);
-                });
-    }
 
     public Course createCourse(UpsertCourseRequest request) {
-        Course course = new Course();
+        // Tìm kiếm supporter
+        Supporter supporter = supporterRepository.findById(request.getSupporterId())
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found supporter with id = " + request.getSupporterId());
+                });
+
+        // Tìm kiếm danh sách topic
+        Set<Topic> topics = topicRepository.findByIdIn(request.getTopicIds());
+
+        // Tạo khóa học
+        Course course = Course.builder()
+                .name(request.getName())
+                .description(request.getDescription())
+                .type(request.getType())
+                .topics(topics)
+                .supporter(supporter)
+                .build();
+
+        courseRepository.save(course);
+        return course;
+    }
+
+    public Course updateCourse(int id, UpsertCourseRequest request) {
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found course with id = " + id);
+                });
+
+        // Tìm kiếm supporter
+        Supporter supporter = supporterRepository.findById(request.getSupporterId())
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found supporter with id = " + request.getSupporterId());
+                });
+
+        // Tìm kiếm danh sách topic
+        Set<Topic> topics = topicRepository.findByIdIn(request.getTopicIds());
+
         course.setName(request.getName());
         course.setDescription(request.getDescription());
         course.setType(request.getType());
+        course.setSupporter(supporter);
+        course.setTopics(topics);
         course.setThumbnail(request.getThumbnail());
 
-        Optional<Supporter> optionalSupporter = supporterRepository.findById(request.getSupporterId());
-        optionalSupporter.ifPresent(course::setSupporter);
-
-        Set<Topic> topics = new HashSet<>();
-        if (request.getTopicIds() != null) {
-            for (Integer topicId : request.getTopicIds()) {
-                Optional<Topic> optionalTopic = topicRepository.findById(topicId);
-                optionalTopic.ifPresent(topics::add);
-            }
-        }
-        course.setTopics(topics);
-
-        return courseRepository.save(course);
+        courseRepository.save(course);
+        return course;
     }
 
-    public Course updateCourse(Integer id, UpsertCourseRequest request) {
-        Optional<Course> optionalCourse = courseRepository.findById(id);
-        if (optionalCourse.isPresent()) {
-            Course course = optionalCourse.get();
-            course.setName(request.getName());
-            course.setDescription(request.getDescription());
-            course.setType(request.getType());
-            course.setThumbnail(request.getThumbnail());
-
-            Optional<Supporter> optionalSupporter = supporterRepository.findById(request.getSupporterId());
-            optionalSupporter.ifPresent(course::setSupporter);
-
-            Set<Topic> topics = new HashSet<>();
-            if (request.getTopicIds() != null) {
-                for (Integer topicId : request.getTopicIds()) {
-                    Optional<Topic> optionalTopic = topicRepository.findById(topicId);
-                    optionalTopic.ifPresent(topics::add);
-                }
-            }
-            course.setTopics(topics);
-
-            return courseRepository.save(course);
-        } else {
-            return null;
-        }
-    }
-
-
-    public void deleteCourse(Integer id){
+    public void deleteCourse(Integer id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> {
-                    throw new RuntimeException("Not found id");
+                    throw new NotFoundException("Not found course with id = " + id);
                 });
         courseRepository.delete(course);
     }
+
+
 }

@@ -2,9 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org"
       th:replace="layout/layout-admin :: main-fragment(~{:: title}, ~{}, ~{:: .course-list}, ~{})">
 
-
 <head>
-
 
     <title>Danh sách khóa học</title>
 
@@ -13,16 +11,15 @@
 <body>
 <!--HEADER-->
 
-
 <!-- BODY -->
 <div class="course-list mt-4 mb-4">
     <div class="container">
         <div class="mb-4">
-            <a href="./course-create.html" class="btn-custom btn-create-course">
+            <a th:href="@{/admin/courses/create}" class="btn-custom btn-create-course">
                 <span><i class="fa-solid fa-plus"></i></span>
                 Tạo khóa học
             </a>
-            <a href="./course-list.html" class="btn-custom btn-refresh">
+            <a th:href="@{/}" class="btn-custom btn-refresh">
                 <span><i class="fa-solid fa-arrow-rotate-right"></i></span>
                 Refresh
             </a>
@@ -39,40 +36,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <a th:href="@{/admin/courses}">SpringBoot - Web Back End</a>
+                <tr th:each="course, info: ${pageInfo.getContent()}">
+                    <td th:text="${info.index + 1}">1</td>
+                    <td >
+                         <a th:text="${course.name}"  th:href="@{/admin/courses/{id} (id=${course.id})}">SpringBoot - Web Back End</a>
                     </td>
-                    <td class="text-info">onlab</td>
-                    <td>backend, cơ sở dữ liệu, lập trình web</td>
-                </tr>
-                <tr>
-                    <td>2</td>
+                    <td th:text="${course.type}" class="text-info">onlab</td>
                     <td>
-                        <a href="./course-edit.html">React</a>
+                        <span th:each="topic :${course.getTopics}" th:text="topic.name" class="badge bg-secondary me-1"></span>
                     </td>
-                    <td class="text-info">onlab</td>
-                    <td>frontend, react</td>
                 </tr>
-                <tr>
-                    <td>3</td>
-                    <td>
-                        <a href="./course-edit.html">Lập trình di động IOS Swift online</a>
-                    </td>
-                    <td class="text-warning">online</td>
-                    <td>mobile, database</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>
-                        <a href="./course-edit.html">Javascript căn bản - Tổng hợp 12 game huyền thoại</a>
-                    </td>
-                    <td class="text-warning">online</td>
-                    <td>frontend, game, javascript</td>
-                </tr>
+
                 </tbody>
             </table>
+
+            <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/?page={page} (page=${currentPage - 1})}">Previous</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${#numbers.sequence(1, pageInfo.getTotalPages())}" th:classappend="${currentPage == page ? 'active' : ''}">
+                        <a class="page-link" th:href="@{/(page=${page})}"><span th:text="${page}"></span></a>
+                    </li>
+                    <li class="page-item" th:classappend="${currentPage == pageInfo.getTotalPages() ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/(page=${currentPage + 1})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
     </div>
 </div>
