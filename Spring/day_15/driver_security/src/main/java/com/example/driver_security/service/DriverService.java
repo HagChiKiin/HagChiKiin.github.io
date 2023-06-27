@@ -81,18 +81,20 @@ public class DriverService {
 
     }
 
-    public void updateDriver(DriverUpdateRequest driverUpdateRequest) {
-        drivers.forEach(s->{
-            if(s.getId() != driverUpdateRequest.getId()){
-                return;
-            }
-            s.setId(driverUpdateRequest.getId());
-            s.setName(driverUpdateRequest.getName());
-            s.setAddress(driverUpdateRequest.getAddress());
-            s.setPhone(driverUpdateRequest.getPhone());
-            s.setLevel(Level.valueOf(driverUpdateRequest.getLevel()));
+    public Driver updateDriver(int id, DriverUpdateRequest driverUpdateRequest) {
+        Driver driver = driverRepository.findById((long) id)
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found course with id = " + id);
+                });
 
-        });
+        driver.setId(driverUpdateRequest.getId());
+        driver.setName(driverUpdateRequest.getName());
+        driver.setAddress(driverUpdateRequest.getAddress());
+        driver.setPhone(driverUpdateRequest.getPhone());
+        driver.setLevel(Level.valueOf(driverUpdateRequest.getLevel()));
+
+        driverRepository.save(driver);
+        return driver;
     }
 
     // Tìm lái xe theo ID và trả về thông tin dưới dạng DriverResponse

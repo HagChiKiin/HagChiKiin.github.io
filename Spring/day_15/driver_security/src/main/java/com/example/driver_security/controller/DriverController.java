@@ -37,24 +37,9 @@ public class DriverController {
 
     LevelService levelService;
 
+    // view
     @GetMapping
-    public List<DriverResponce> getAll() {
-        return driverService.getAll();
-    }
-
-    @GetMapping("/{id}")
-    public DriverResponce getDetail(@PathVariable Long id) throws ClassNotFoundException {
-        return driverService.getDetail(id);
-    }
-
-
-    @PostMapping
-    public DriverResponce create(@RequestBody @Valid DriverRequest request) {
-        return driverService.create(request);
-    }
-
-    @GetMapping
-    public String getAllDriver(Model model, Authentication authentication) {
+    public String getAllDriver(Model model) {
         List<DriverResponce> driver = driverService.getAll();
         List<Level> levels = Arrays.asList(Level.values());
         model.addAttribute("dsTaiXe",levels);
@@ -64,20 +49,7 @@ public class DriverController {
         return "driver-list";
     }
 
-
-    @PostMapping
-    public String createNewDriver(@ModelAttribute("driverTaoMoi") @Valid DriverCreateRequest driverCreateRequest) {
-        driverService.saveDriver(driverCreateRequest);
-        return "redirect:/drivers";
-    }
-
-    @DeleteMapping("/{id}/delete")
-    public String deleteDriver(@PathVariable int id) {
-        driverService.delete(id);
-        return "redirect:/drivers";
-    }
-
-    @GetMapping("/{id}/edit")
+    @PutMapping("/{id}/edit")
     public String forwardToUpdateForm(@PathVariable("id") int id, Model model) {
         DriverUpdateRequest driverUpdateRequest = driverService.findById(id);
         List<Level> levels = Arrays.asList(Level.values());
@@ -86,15 +58,15 @@ public class DriverController {
         return "edit-driver";
     }
 
-    @PostMapping("/update")
-    public String updateDriver(@ModelAttribute("driverCapNhatMoi") @Valid DriverUpdateRequest driverUpdateRequest,  BindingResult bindingResult, Model model) {
+    @PutMapping("/update")
+    public String updateDriver(@ModelAttribute("driverCapNhatMoi")  Integer id, @Valid DriverUpdateRequest driverUpdateRequest,  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             List<Level> levels = Arrays.asList(Level.values());
             model.addAttribute("dsTaiXe",levels);
             model.addAttribute("driverCapNhatMoi", driverUpdateRequest);
             return "update-driver";
         }
-        driverService.updateDriver(driverUpdateRequest);
+        driverService.updateDriver(id,driverUpdateRequest);
         return "redirect:/drivers";
     }
 
@@ -103,20 +75,29 @@ public class DriverController {
         return levelService.getAll();
     }
 
-    @GetMapping("/api/drivers/{id}")
+    //api
+
+    @GetMapping("/api/v1/drivers/{id}")
     public ResponseEntity<?> getDriver(@PathVariable Integer id) {
         return ResponseEntity.ok(driverService.findByIdVer2(id));
     }
-    @PutMapping("/api/drivers/{id}")
-    public ResponseEntity<?> updateStudent(@PathVariable Integer id, @RequestBody @Valid DriverUpdateRequest driverUpdateRequest, Model model) {
-        List<Level> levels = Arrays.asList(Level.values());
-        model.addAttribute("dsTaiXe",levels);
-        driverUpdateRequest.setId(id);
-        driverService.updateDriver(driverUpdateRequest);
+    // thêm
+    @PostMapping("/api/v1/products")
+    public ResponseEntity<?> create(@RequestBody @Valid DriverRequest request) {
+        DriverResponce driverResponce = driverService.create(request);
+        return ResponseEntity.ok(driverResponce);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Driver> updateStudent(@PathVariable Integer id, @RequestBody @Valid DriverUpdateRequest driverUpdateRequest, Model model) {
+        driverService.updateDriver(id,driverUpdateRequest);
         return ResponseEntity.ok(null);
     }
 
-
-
+    @DeleteMapping("{id}")
+    public ResponseEntity<Driver> deleteFile(@PathVariable Integer id) {
+        driverService.delete(id);
+        return ResponseEntity.noContent().build();  // trả về mã 204 - no content
+    }
 
 }

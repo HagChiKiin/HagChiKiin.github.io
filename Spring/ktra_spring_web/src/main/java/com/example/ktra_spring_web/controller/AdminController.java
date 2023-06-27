@@ -77,4 +77,6 @@ public class AdminController {
         AppointmentResponse appointmentResponse = appointmentService.updateAppointment(id, appointmentRequest);
         return ResponseEntity.ok(appointmentResponse);
     }
+
+
 }

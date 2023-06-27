@@ -83,7 +83,7 @@ public class CourseAdminController {
     }
 
     @DeleteMapping("/api/v1/admin/courses/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Integer id) {
+    public ResponseEntity<?> deleteCourse(@PathVariable Integer id) {
         courseService.deleteCourse(id);
         return ResponseEntity.noContent().build();
     }
