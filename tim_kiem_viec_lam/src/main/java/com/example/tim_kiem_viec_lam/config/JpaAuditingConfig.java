@@ -1,6 +1,6 @@
 package com.example.tim_kiem_viec_lam.config;
 
-import com.github.truongbb.jwtrefreshtoken.security.CustomUserDetails;
+import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,9 +1,9 @@
 package com.example.tim_kiem_viec_lam.config;
 
-import com.github.truongbb.jwtrefreshtoken.security.AuthTokenFilter;
-import com.github.truongbb.jwtrefreshtoken.security.AuthenticationEntryPointJwt;
-import com.github.truongbb.jwtrefreshtoken.security.CustomUserDetailsService;
-import com.github.truongbb.jwtrefreshtoken.statics.Roles;
+import com.example.tim_kiem_viec_lam.security.AuthTokenFilter;
+import com.example.tim_kiem_viec_lam.security.AuthenticationEntryPointJwt;
+import com.example.tim_kiem_viec_lam.security.CustomUserDetailsService;
+import com.example.tim_kiem_viec_lam.statics.Roles;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

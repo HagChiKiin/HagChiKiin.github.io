@@ -1,9 +1,9 @@
 package com.example.tim_kiem_viec_lam.controller;
 
-import com.github.truongbb.jwtrefreshtoken.exception.ExistedUserException;
-import com.github.truongbb.jwtrefreshtoken.model.request.CreateUserRequest;
-import com.github.truongbb.jwtrefreshtoken.model.response.UserResponse;
-import com.github.truongbb.jwtrefreshtoken.service.UserService;
+import com.example.tim_kiem_viec_lam.exception.ExistedUserException;
+import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
+import com.example.tim_kiem_viec_lam.model.response.UserResponse;
+import com.example.tim_kiem_viec_lam.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
