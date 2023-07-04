@@ -17,8 +17,6 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User extends BaseEntity {
 
-    String username;
-
     String email;
 
     String password;

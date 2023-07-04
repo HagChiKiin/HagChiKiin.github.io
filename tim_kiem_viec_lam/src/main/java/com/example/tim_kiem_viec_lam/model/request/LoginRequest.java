@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -11,9 +12,10 @@ import javax.validation.constraints.Size;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LoginRequest {
 
+    @Email
     @NotBlank
-    @Size(max = 50)
-    String username;
+    @Size(max = 255)
+    String email;
 
     @NotBlank
     String password;
