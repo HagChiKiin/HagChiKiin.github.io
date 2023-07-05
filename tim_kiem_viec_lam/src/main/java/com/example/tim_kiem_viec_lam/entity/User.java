@@ -2,6 +2,7 @@ package com.example.tim_kiem_viec_lam.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,10 +18,14 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User extends BaseEntity {
 
+    @Column(name = "email")
     String email;
 
+    @Column(name = "password")
     String password;
 
+    @Column(nullable = false)
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     boolean activated;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -29,8 +34,7 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    String avatar;
-
+    @Column(name = "deleted_datetime")
     LocalDateTime deletedDateTime;
 
 //    String refreshToken;

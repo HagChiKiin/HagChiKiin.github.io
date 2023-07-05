@@ -4,15 +4,16 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "recruiters")
+@Table(name = "cv")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Recruiter extends BaseEntity {
+public class CurriculumVitaes extends  BaseEntity{
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     User user;
@@ -20,19 +21,10 @@ public class Recruiter extends BaseEntity {
     @Column(name = "name")
     String name;
 
-    @Column(name = "address")
-    String address;
+    @Column(name = "dob")
+    String cvUrl;
 
-    @Column(name = "introduce")
-    String introduce;
-
-    @Column(name = "contact_info")
-    String contactInfo;
-
-    @Column(name = "avatar")
-    String avatar;
-
-    @Column(name = "phone")
-    String phone;
+    @Column(name = "deleted_datetime")
+    LocalDateTime deletedDateTime;
 
 }
