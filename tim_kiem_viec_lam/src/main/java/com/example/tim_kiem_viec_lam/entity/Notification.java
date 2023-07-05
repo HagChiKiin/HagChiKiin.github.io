@@ -1,5 +1,6 @@
 package com.example.tim_kiem_viec_lam.entity;
 
+import com.example.tim_kiem_viec_lam.statics.NotificationStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -28,5 +29,8 @@ public class Notification extends BaseEntity {
     @Column(name = "content")
     String content;
 
+    @Column(name = "notification_status")
+    @Enumerated(EnumType.STRING)
+    NotificationStatus notificationStatus;
 
 }
