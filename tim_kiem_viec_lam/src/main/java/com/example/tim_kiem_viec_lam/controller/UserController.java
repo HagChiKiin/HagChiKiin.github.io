@@ -22,6 +22,8 @@ public class UserController {
 
     UserService userService;
 
+
+
     @GetMapping
     public List<UserResponse> getAll() {
         return userService.getAll();
