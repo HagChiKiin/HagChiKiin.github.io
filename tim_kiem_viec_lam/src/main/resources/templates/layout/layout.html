@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:fragment="main-fragment(title, css, content, js)">
+<head>
+  <meta charset="UTF-8">
+  <title th:replace="${title} ?: ~{}">Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Roboto Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- bootstrap css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+  <!-- select 2 css -->
+  <link rel="stylesheet" href="css/select2.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- main css -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!--CSS-->
+  <th:block th:replace="${css} ?: ~{}"></th:block>
+</head>
+<body>
+<!--HEADER-->
+<th:block th:replace="~{fragments/header :: .header}"></th:block>
+<div class="clearfix"></div>
+<!--CONTENT-->
+<th:block th:replace="${content} ?: ~{}"></th:block>
+
+<div class="clearfix"></div>
+<!--FOOTER-->
+<th:block th:replace="~{fragments/footer :: .footer}"></th:block>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--<script type="text/javascript" src="js/readmore.js"></script>-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-3.4.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/jobdata.js"></script>
+
+<!-- <script type="text/javascript" src="js/pagination.js"></script> -->
+<!-- Owl Stylesheets Javascript -->
+<script src="js/owlcarousel/owl.carousel.js"></script>
+<!-- Read More Plugin -->
+<!--JS-->
+<th:block th:replace="${js} ?: ~{}"></th:block>
+</body>
+</html>
