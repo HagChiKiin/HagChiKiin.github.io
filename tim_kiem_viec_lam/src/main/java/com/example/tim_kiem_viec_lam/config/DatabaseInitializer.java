@@ -33,6 +33,17 @@ public class DatabaseInitializer implements CommandLineRunner {
         if(roleUserOptinal.isEmpty()){
             Role userRole = Role.builder().name(Roles.USER).build();
             roleRepository.save(userRole);
+
+            Optional<User> user = userRepository.findByEmail("kien@gmail.com");
+            if(user.isEmpty()){
+                User user1 = new User();
+                user1.setEmail("kien@gmail.com");
+                user1.setPassword(passwordEncoder.encode("kien123")); // Encrypt the password
+                Set<Role> roles = new HashSet<>();
+                roles.add(userRole);
+                user1.setRoles(roles);
+                userRepository.save(user1);
+            }
         }
         Optional<Role> roleRecruiterOptinal = roleRepository.findByName(Roles.RECRUITER);
         if(roleRecruiterOptinal.isEmpty()){

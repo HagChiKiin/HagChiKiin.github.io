@@ -53,18 +53,18 @@ let filesDone = 0;
 let filesToDo = 0;
 let progressBar = document.getElementById("progress-bar");
 
-["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-  dropArea.addEventListener(eventName, preventDefaults, false);
-});
+// ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+//   dropArea.addEventListener(eventName, preventDefaults, false);
+// });
 
 function preventDefaults(e) {
   e.preventDefault();
   e.stopPropagation();
 }
 
-["dragenter", "dragover"].forEach((eventName) => {
-  dropArea.addEventListener(eventName, highlight, false);
-});
+// ["dragenter", "dragover"].forEach((eventName) => {
+//   dropArea.addEventListener(eventName, highlight, false);
+// });
 ["dragleave", "drop"].forEach((eventName) => {
   dropArea.addEventListener(eventName, unhighlight, false);
 });

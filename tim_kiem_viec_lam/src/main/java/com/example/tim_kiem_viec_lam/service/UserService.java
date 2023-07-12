@@ -67,7 +67,7 @@ public class UserService {
         Set<Role> roles = new HashSet<>();
         roles.add(optionalRole.get());
         User user = User.builder()
-                .email(registrationRequest.getUsername())
+                .email(registrationRequest.getEmail())
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
                 .roles(roles)
                 .build();
