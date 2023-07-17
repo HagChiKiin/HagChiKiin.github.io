@@ -11,12 +11,15 @@ import javax.validation.constraints.Size;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ResetPassWordRequest {
+public class ResetPasswordRequest {
 
     @Email
     @NotBlank
     @Size(max = 255)
     String email;
+
+    @NotBlank
+    String otpCode;
 
     @NotBlank
     String newPassword;

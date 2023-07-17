@@ -62,11 +62,12 @@ $(document).ready(function () {
                 toastr.success("Đăng nhập thành công");
 
 
-
-                if(response.roles[0] ==="ADMIN"){
+                if (response.roles[0] === "ADMIN") {
                     window.location.href = 'http://localhost:8080/admin'
-                } else  {
+                } else if(response.roles[0] === "USER"){
                     window.location.href = 'http://localhost:8080/user'
+                }else {
+                    window.location.href = 'http://localhost:8080/recruiter'
                 }
 
             },
@@ -76,5 +77,27 @@ $(document).ready(function () {
         });
     });
 
+    // Function to update the UI based on the login status
+//     function updateUI() {
+//         const token = localStorage.getItem('jwtToken');
+//         const registerNavItem = $('#registerNavItem');
+//         const loginNavItem = $('#loginNavItem');
+//         const loggedInUserNavItem = $('#loggedInUserNavItem');
+//
+//         if (token) {
+//             registerNavItem.hide();
+//             loginNavItem.hide();
+//             loggedInUserNavItem.show();
+//         } else {
+//             registerNavItem.show();
+//             loginNavItem.show();
+//             loggedInUserNavItem.hide();
+//         }
+//     }
+//
+// // Gọi hàm updateUI khi trang web được tải
+//     $(document).ready(function () {
+//         updateUI();
+//     });
 
-});
+})

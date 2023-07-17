@@ -12,7 +12,7 @@ $('#logout-button').click(function() {
                 toastr.success("Thoát thành công")
 
                 setTimeout(function () {
-                    window.location.href = 'http://localhost:8080/user';
+                    window.location.href = 'http://localhost:8080';
                 }, 1000)
             },
             error: function () {

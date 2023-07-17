@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -20,5 +21,7 @@ public class Otp extends BaseEntity{
 
     @Column(name = "otp_code")
     String otpCode;
+
+    LocalDateTime expiredAt;
 
 }

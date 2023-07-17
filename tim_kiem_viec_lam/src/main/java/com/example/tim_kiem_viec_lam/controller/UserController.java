@@ -53,8 +53,8 @@ public class UserController {
         otpService.sendOtp(email);
     }
 
-    @PostMapping("/{email}/attach-file")
-    public void sendAttachedFileMail(@PathVariable String email) throws MessagingException {
-        otpService.sendAttachedMail(email);
-    }
+//    @PostMapping("/{email}/attach-file")
+//    public void sendAttachedFileMail(@PathVariable String email) throws MessagingException {
+//        otpService.sendAttachedMail(email);
+//    }
 }

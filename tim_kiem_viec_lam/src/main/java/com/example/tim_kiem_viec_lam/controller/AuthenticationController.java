@@ -100,12 +100,12 @@ public class AuthenticationController {
     }
 
     @PutMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(@RequestBody ChangePasswordRequest request) {
+    public ResponseEntity<?> resetPassword(@RequestBody @Valid ResetPasswordRequest request) {
         return userRepository.findByEmail(request.getEmail())
                 .map(user -> {
                     try {
                         userService.resetPassword(request);
-                        return new ResponseEntity<>("Success", HttpStatus.OK);
+                        return new ResponseEntity<>("Thành công", HttpStatus.OK);
                     } catch (OtpExpiredException e) {
                         return new ResponseEntity<>("Otp đã hết hạn", HttpStatus.BAD_REQUEST);
                     }
@@ -113,13 +113,14 @@ public class AuthenticationController {
                 .orElseGet(() -> new ResponseEntity<>("Email not exist", HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/password-change")
+
+    @PutMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
         return userRepository.findByEmail(changePasswordRequest.getEmail())
                 .map(user -> {
                     try {
                         userService.changePassword(changePasswordRequest);
-                        return new ResponseEntity<>("Change password success", HttpStatus.OK);
+                        return new ResponseEntity<>("Đổi mật khẩu thành công", HttpStatus.OK);
                     } catch (BadRequestException e) {
                         return new ResponseEntity<>("Wrong old password", HttpStatus.OK);
                     }

@@ -3,14 +3,8 @@ package com.example.tim_kiem_viec_lam.service;
 import com.example.tim_kiem_viec_lam.entity.Otp;
 import com.example.tim_kiem_viec_lam.entity.Role;
 import com.example.tim_kiem_viec_lam.entity.User;
-import com.example.tim_kiem_viec_lam.exception.BadRequestException;
-import com.example.tim_kiem_viec_lam.exception.ExistedUserException;
-import com.example.tim_kiem_viec_lam.exception.OtpExpiredException;
-import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
-import com.example.tim_kiem_viec_lam.model.request.ChangePasswordRequest;
-import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
-import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
-import com.example.tim_kiem_viec_lam.model.request.RegistrationRequest;
+import com.example.tim_kiem_viec_lam.exception.*;
+import com.example.tim_kiem_viec_lam.model.request.*;
 import com.example.tim_kiem_viec_lam.model.response.JwtResponse;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
 import com.example.tim_kiem_viec_lam.repository.OtpRepository;
@@ -148,12 +142,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void resetPassword(ChangePasswordRequest request) throws OtpExpiredException {
-//        Otp otp = otpRepository.findByOtpCode(request.getOtpCode()).orElseThrow(() -> new ChangeSetPersister.NotFoundException("Not found Otp"));
-//        if (LocalDateTime.now().isAfter(otp.getExpiredAt())) {
-//            throw new OtpExpiredException();
-//        }
-//        userRepository.findByEmail(request.getEmail()).get().setPassword(passwordEncoder.encode(request.getNewPassword()));
+
+    public void resetPassword(ResetPasswordRequest request) throws OtpExpiredException {
+        Otp otp = otpRepository.findByOtpCode(request.getOtpCode()).orElseThrow(() -> new NotFoundException("Not found Otp"));
+        if (LocalDateTime.now().isAfter(otp.getExpiredAt())) {
+            throw new OtpExpiredException();
+        }
+        userRepository.findByEmail(request.getEmail()).get().setPassword(passwordEncoder.encode(request.getNewPassword()));
     }
 
     public void changePassword(ChangePasswordRequest changePasswordRequest) throws BadRequestException {

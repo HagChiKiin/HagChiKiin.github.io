@@ -46,25 +46,26 @@ public class OtpService {
         javaMailSender.send(mailMessage);
     }
 
-    public void sendAttachedMail(String receiver) throws MessagingException {
-        // Creating a mime message
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper;
-
-        // Setting multipart as true for attachments to
-        // be send
-        mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-        mimeMessageHelper.setFrom(sender);
-        mimeMessageHelper.setTo(receiver);
-        mimeMessageHelper.setText("Email có đính kèm file");
-        mimeMessageHelper.setSubject("[DEMO MAIL] Gửi mail kèm file");
-
-        // Adding the attachment
-        FileSystemResource file = new FileSystemResource(new File("/Users/buibatruong/Desktop/1506ccd7-58d2-410d-b284-39c86a1dc2a4.png"));
-        mimeMessageHelper.addAttachment(file.getFilename(), file);
-
-        // Sending the mail
-        javaMailSender.send(mimeMessage);
-    }
+//    public void sendAttachedMail(String receiver) throws MessagingException {
+//        // Creating a mime message
+//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+//        MimeMessageHelper mimeMessageHelper;
+//
+//        // Setting multipart as true for attachments to
+//        // be send
+//        mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+//        mimeMessageHelper.setFrom(sender);
+//        mimeMessageHelper.setTo(receiver);
+//        mimeMessageHelper.setText("Email có đính kèm file");
+//        mimeMessageHelper.setSubject("Gửi mail kèm file");
+//
+//        // Adding the attachment
+//        String filePath = "/path/to/attachment/file.png";
+//        FileSystemResource file = new FileSystemResource(new File(filePath));
+//        mimeMessageHelper.addAttachment(file.getFilename(), file);
+//
+//        // Sending the mail
+//        javaMailSender.send(mimeMessage);
+//    }
 
 }
