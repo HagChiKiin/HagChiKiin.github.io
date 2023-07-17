@@ -1,6 +1,5 @@
 const inputs = document.querySelectorAll(".input");
 
-
 function addcl(){
 	let parent = this.parentNode.parentNode;
 	parent.classList.add("focus");
@@ -53,20 +52,20 @@ let filesDone = 0;
 let filesToDo = 0;
 let progressBar = document.getElementById("progress-bar");
 
-// ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
-//   dropArea.addEventListener(eventName, preventDefaults, false);
-// });
+["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+  dropArea?.addEventListener(eventName, preventDefaults, false);
+});
 
 function preventDefaults(e) {
   e.preventDefault();
   e.stopPropagation();
 }
 
-// ["dragenter", "dragover"].forEach((eventName) => {
-//   dropArea.addEventListener(eventName, highlight, false);
-// });
+["dragenter", "dragover"].forEach((eventName) => {
+  dropArea?.addEventListener(eventName, highlight, false);
+});
 ["dragleave", "drop"].forEach((eventName) => {
-  dropArea.addEventListener(eventName, unhighlight, false);
+  dropArea?.addEventListener(eventName, unhighlight, false);
 });
 
 function highlight(e) {
@@ -76,7 +75,7 @@ function highlight(e) {
 function unhighlight(e) {
   dropArea.classList.remove("highlight");
 }
-dropArea.addEventListener("drop", handleDrop, false);
+dropArea?.addEventListener("drop", handleDrop, false);
 
 function handleDrop(e) {
   let dt = e.dataTransfer;

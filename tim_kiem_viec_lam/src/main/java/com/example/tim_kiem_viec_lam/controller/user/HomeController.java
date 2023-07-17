@@ -14,6 +14,11 @@ public class HomeController {
         return "user/index";
     }
 
+    @GetMapping("/user")
+    public String getUser(){
+        return "user/index-user";
+    }
+
     @GetMapping("/jd-page")
     public String getJobDetail(){
         return "user/jd-page";

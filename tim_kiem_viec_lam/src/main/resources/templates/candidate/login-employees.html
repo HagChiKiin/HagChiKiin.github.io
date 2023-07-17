@@ -18,11 +18,15 @@
     <!-- main css -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <!--  validate-->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
           integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous"/>
 
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 
 
 </head>
@@ -70,21 +74,22 @@
                             <div class="input-div one">
                                 <div class="div lg-lable">
                                     <h5>Email</h5>
-                                    <input type="text" class="input form-control-lgin">
+                                    <input type="text" id="email-input" class="input form-control-lgin" name="email">
                                 </div>
                             </div>
                             <div class="input-div pass">
                                 <div class="div lg-lable">
                                     <h5>Password</h5>
-                                    <input type="password" class="input form-control-lgin">
+                                    <input type="password" class="input form-control-lgin pass" name="password">
                                 </div>
                             </div>
                             <div class="form-group d-block frm-text">
-                                <a href="#" class="fg-login d-inline-block">Quên mật khẩu</a>
+                                <a href="#" class="forgot-employees fg-login d-inline-block" onclick="forgotPass()">Quên mật khẩu</a>
                                 <a href="/register-employees" class="fg-login float-right d-inline-block">Bạn chưa có
                                     tài khoản? Đăng ký</a>
                             </div>
-                            <button type="button" id="login-employees"class="login-btn btn btn-primary float-right btn-login d-block w-100" >Đăng
+                            <button type="button" id="login-employees"
+                                    class="login-btn btn btn-primary float-right btn-login d-block w-100">Đăng
                                 Nhập
                             </button>
                             <div class="form-group d-block w-100 mt-5">
@@ -107,6 +112,43 @@
                                     </div>
                                 </div>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        forgot-->
+        <div class="forgot-main">
+            <div class="w-login m-auto">
+                <div class="row">
+                    <!-- login main descriptions -->
+                    <div class="col-md-6 col-sm-12 col-12 login-main-left">
+                        <img src="img/banner-login.png">
+                    </div>
+                    <!-- login main form -->
+                    <div class="col-md-6 col-sm-12 col-12 login-main-right">
+
+                        <form class="login-form">
+                            <div class="login-main-header">
+                                <h3>Đăng Nhập</h3>
+                            </div>
+                            <div class="input-div one">
+                                <div class="div lg-lable">
+                                    <h5>Email</h5>
+                                    <input type="text" id="email-input" class="input form-control-lgin" name="email">
+                                </div>
+                            </div>
+                            <div class="input-div pass">
+                                <div class="div lg-lable">
+                                    <h5>Password</h5>
+                                    <input type="password" class="input form-control-lgin pass" name="password">
+                                </div>
+                            </div>
+                            <button type="button" id="login-employees"
+                                    class="login-btn btn btn-primary float-right btn-login d-block w-100">Đăng
+                                Nhập
+                            </button>
+
                         </form>
                     </div>
                 </div>
@@ -138,15 +180,20 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!--<script src="js/jquery-3.4.1.slim.min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="jsmain/signin.js"></script>
 
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    function forgotPass() {
+        $('.forgot-main').show();
+        $('.login-main').hide();
+    }
+</script>
+
 </body>
 </html>

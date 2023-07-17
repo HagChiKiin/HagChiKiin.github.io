@@ -1,5 +1,6 @@
 package com.example.tim_kiem_viec_lam.config;
 
+import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.entity.Role;
 import com.example.tim_kiem_viec_lam.entity.User;
 import com.example.tim_kiem_viec_lam.repository.RoleRepository;
@@ -34,21 +35,32 @@ public class DatabaseInitializer implements CommandLineRunner {
             Role userRole = Role.builder().name(Roles.USER).build();
             roleRepository.save(userRole);
 
-            Optional<User> user = userRepository.findByEmail("kien@gmail.com");
-            if(user.isEmpty()){
-                User user1 = new User();
-                user1.setEmail("kien@gmail.com");
-                user1.setPassword(passwordEncoder.encode("kien123")); // Encrypt the password
+            Optional<User> candidate = userRepository.findByEmail("kien@gmail.com");
+            if(candidate.isEmpty()){
+                User user = new User();
+                user.setEmail("kien@gmail.com");
+                user.setPassword(passwordEncoder.encode("kien123")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();
                 roles.add(userRole);
-                user1.setRoles(roles);
-                userRepository.save(user1);
+                user.setRoles(roles);
+                userRepository.save(user);
             }
         }
         Optional<Role> roleRecruiterOptinal = roleRepository.findByName(Roles.RECRUITER);
         if(roleRecruiterOptinal.isEmpty()){
             Role recruiterRole = Role.builder().name(Roles.RECRUITER).build();
             roleRepository.save(recruiterRole);
+
+            Optional<User> recruiter = userRepository.findByEmail("fptsoftware@gmail.com");
+            if(recruiter.isEmpty()){
+                User user = new User();
+                user.setEmail("fptsoftware@gmail.com");
+                user.setPassword(passwordEncoder.encode("fpt123")); // Encrypt the password
+                Set<Role> roles = new HashSet<>();
+                roles.add(recruiterRole);
+                user.setRoles(roles);
+                userRepository.save(user);
+            }
         }
 
         Optional<Role> roleAdminOptinal = roleRepository.findByName(Roles.ADMIN);
@@ -67,9 +79,5 @@ public class DatabaseInitializer implements CommandLineRunner {
                 userRepository.save(user);
             }
         }
-
-
-
     }
-
 }

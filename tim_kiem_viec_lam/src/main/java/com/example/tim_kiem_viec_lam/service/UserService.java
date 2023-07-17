@@ -1,14 +1,19 @@
 package com.example.tim_kiem_viec_lam.service;
 
+import com.example.tim_kiem_viec_lam.entity.Otp;
 import com.example.tim_kiem_viec_lam.entity.Role;
 import com.example.tim_kiem_viec_lam.entity.User;
+import com.example.tim_kiem_viec_lam.exception.BadRequestException;
 import com.example.tim_kiem_viec_lam.exception.ExistedUserException;
+import com.example.tim_kiem_viec_lam.exception.OtpExpiredException;
 import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
+import com.example.tim_kiem_viec_lam.model.request.ChangePasswordRequest;
 import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
 import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
 import com.example.tim_kiem_viec_lam.model.request.RegistrationRequest;
 import com.example.tim_kiem_viec_lam.model.response.JwtResponse;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
+import com.example.tim_kiem_viec_lam.repository.OtpRepository;
 import com.example.tim_kiem_viec_lam.repository.RefreshTokenRepository;
 import com.example.tim_kiem_viec_lam.repository.RoleRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
@@ -20,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -44,6 +50,8 @@ public class UserService {
 
     final ObjectMapper objectMapper;
 
+    final OtpRepository otpRepository;
+
     final RefreshTokenRepository refreshTokenRepository;
 
     @Value("${application.security.refreshToken.tokenValidityMilliseconds}")
@@ -53,11 +61,12 @@ public class UserService {
 
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,
                        RoleRepository roleRepository, ObjectMapper objectMapper,
-                       RefreshTokenRepository refreshTokenRepository, JwtUtils jwtUtils) {
+                       OtpRepository otpRepository, RefreshTokenRepository refreshTokenRepository, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.objectMapper = objectMapper;
+        this.otpRepository = otpRepository;
         this.refreshTokenRepository = refreshTokenRepository;
         this.jwtUtils = jwtUtils;
     }
@@ -133,9 +142,28 @@ public class UserService {
 
         User user = User.builder()
                 .email(request.getEmail())
-                .password(passwordEncoder.encode("123"))
+                .password(passwordEncoder.encode(request.getPassword()))
                 .roles(roles)
                 .build();
         userRepository.save(user);
     }
+
+    public void resetPassword(ChangePasswordRequest request) throws OtpExpiredException {
+//        Otp otp = otpRepository.findByOtpCode(request.getOtpCode()).orElseThrow(() -> new ChangeSetPersister.NotFoundException("Not found Otp"));
+//        if (LocalDateTime.now().isAfter(otp.getExpiredAt())) {
+//            throw new OtpExpiredException();
+//        }
+//        userRepository.findByEmail(request.getEmail()).get().setPassword(passwordEncoder.encode(request.getNewPassword()));
+    }
+
+    public void changePassword(ChangePasswordRequest changePasswordRequest) throws BadRequestException {
+        User user = userRepository.findByEmail(changePasswordRequest.getEmail()).get();
+        if (passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
+            userRepository.save(user);
+        } else {
+            throw new BadRequestException();
+        }
+    }
+
 }

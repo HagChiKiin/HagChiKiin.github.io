@@ -1,10 +1,10 @@
 package com.example.tim_kiem_viec_lam.controller;
 
 import com.example.tim_kiem_viec_lam.entity.RefreshToken;
+import com.example.tim_kiem_viec_lam.exception.BadRequestException;
+import com.example.tim_kiem_viec_lam.exception.OtpExpiredException;
 import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
-import com.example.tim_kiem_viec_lam.model.request.LoginRequest;
-import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
-import com.example.tim_kiem_viec_lam.model.request.RegistrationRequest;
+import com.example.tim_kiem_viec_lam.model.request.*;
 import com.example.tim_kiem_viec_lam.model.response.JwtResponse;
 import com.example.tim_kiem_viec_lam.repository.RefreshTokenRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
@@ -99,6 +99,34 @@ public class AuthenticationController {
         return ResponseEntity.ok(null);
     }
 
+    @PutMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody ChangePasswordRequest request) {
+        return userRepository.findByEmail(request.getEmail())
+                .map(user -> {
+                    try {
+                        userService.resetPassword(request);
+                        return new ResponseEntity<>("Success", HttpStatus.OK);
+                    } catch (OtpExpiredException e) {
+                        return new ResponseEntity<>("Otp đã hết hạn", HttpStatus.BAD_REQUEST);
+                    }
+                })
+                .orElseGet(() -> new ResponseEntity<>("Email not exist", HttpStatus.NOT_FOUND));
+    }
 
+    @PutMapping("/password-change")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
+        return userRepository.findByEmail(changePasswordRequest.getEmail())
+                .map(user -> {
+                    try {
+                        userService.changePassword(changePasswordRequest);
+                        return new ResponseEntity<>("Change password success", HttpStatus.OK);
+                    } catch (BadRequestException e) {
+                        return new ResponseEntity<>("Wrong old password", HttpStatus.OK);
+                    }
 
+                })
+                .orElseGet(() -> new ResponseEntity<>("Email not exist", HttpStatus.NOT_FOUND));
+    }
 }
+
+

@@ -17,6 +17,11 @@
     <!-- main css -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <!--  validate-->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 <body>
 <div class="container-fluid login-fluid clear-left clear-right">
@@ -62,31 +67,31 @@
                             <div class="input-div one">
                                 <div class="div lg-lable">
                                     <h5>Họ Và Tên<span class="req">*</span></h5>
-                                    <input type="text" class="input form-control-lgin">
+                                    <input type="text" class="input form-control-lgin" id="fullname" name="fullname">
                                 </div>
                             </div>
                             <div class="input-div one">
                                 <div class="div lg-lable">
                                     <h5>Địa Chỉ Email<span class="req">*</span></h5>
-                                    <input type="text" class="input form-control-lgin">
+                                    <input type="text" class="input form-control-lgin" id="email" name="email">
                                 </div>
                             </div>
                             <div class="input-div one">
                                 <div class="div lg-lable">
                                     <h5>Số điện thoại<span class="req">*</span></h5>
-                                    <input type="text" class="input form-control-lgin">
+                                    <input type="text" class="input form-control-lgin" id="phone" name="phone">
                                 </div>
                             </div>
                             <div class="input-div one">
                                 <div class="div lg-lable">
                                     <h5>Mật khẩu<span class="req">*</span></h5>
-                                    <input type="password" class="input form-control-lgin">
+                                    <input type="password" class="input form-control-lgin" id="password" name="password">
                                 </div>
                             </div>
                             <div class="input-div one">
                                 <div class="div lg-lable">
                                     <h5>Nhập Lại Mật khẩu<span class="req">*</span></h5>
-                                    <input type="password" class="input form-control-lgin">
+                                    <input type="password" name="rePassword" class="input form-control-lgin">
                                 </div>
                             </div>
                             <div class="form-group d-block frm-text">
@@ -94,7 +99,7 @@
                                 <a href="/login-employees" class="fg-login float-right d-inline-block">Bạn đã có tài
                                     khoản? Đăng Nhập</a>
                             </div>
-                            <button type="button" class="btn btn-primary float-right btn-login d-block w-100">Đăng Ký
+                            <button type="button" id="register-employees"class="btn btn-primary float-right btn-login d-block w-100">Đăng Ký
                             </button>
                             <div class="form-group d-block w-100 mt-5">
                                 <div class="text-or text-center">
@@ -146,13 +151,13 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!--<script src="js/jquery-3.4.1.slim.min.js"></script>-->
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/signup.js"></script>
+<script type="text/javascript" src="jsmain/signup.js"></script>
 </body>
 </html>

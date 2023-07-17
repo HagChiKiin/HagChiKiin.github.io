@@ -3,6 +3,7 @@ package com.example.tim_kiem_viec_lam.controller;
 import com.example.tim_kiem_viec_lam.exception.ExistedUserException;
 import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
+import com.example.tim_kiem_viec_lam.service.OtpService;
 import com.example.tim_kiem_viec_lam.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -21,6 +23,8 @@ import java.util.List;
 public class UserController {
 
     UserService userService;
+
+    OtpService otpService;
 
 
 
@@ -44,4 +48,13 @@ public class UserController {
         }
     }
 
+    @PostMapping("/{email}/otp-sending")
+    public void sendOtp(@PathVariable String email) {
+        otpService.sendOtp(email);
+    }
+
+    @PostMapping("/{email}/attach-file")
+    public void sendAttachedFileMail(@PathVariable String email) throws MessagingException {
+        otpService.sendAttachedMail(email);
+    }
 }
