@@ -9,15 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @RequestMapping
 public class CandidateController {
-    @GetMapping("/candidate/job-search")
-    public String getJobSearch() {
-        return "candidate/job-search";
-    }
-
-    @GetMapping("/login-employees")
-    public String loginEmployee() {
-        return "candidate/login-employees";
-    }
 
 
 }

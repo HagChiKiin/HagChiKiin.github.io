@@ -9,14 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @RequestMapping
 public class RecruiterController {
-    @GetMapping("/login-employers")
-    public String loginEmployer(){
-        return "recruiter/login-employers";
-    }
 
-    @GetMapping("/recruiter/published-recruitment")
-    public String publishRecruitment(){
-        return "recruiter/published-recruitment";
-    }
 
 }

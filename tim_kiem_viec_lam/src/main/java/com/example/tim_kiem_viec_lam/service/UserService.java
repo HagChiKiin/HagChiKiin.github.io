@@ -19,7 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,6 +37,8 @@ public class UserService {
 
     final PasswordEncoder passwordEncoder;
 
+    final OtpService otpService;
+
     final UserRepository userRepository;
 
     final RoleRepository roleRepository;
@@ -53,10 +54,11 @@ public class UserService {
 
     final JwtUtils jwtUtils;
 
-    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,
+    public UserService(PasswordEncoder passwordEncoder, OtpService otpService, UserRepository userRepository,
                        RoleRepository roleRepository, ObjectMapper objectMapper,
                        OtpRepository otpRepository, RefreshTokenRepository refreshTokenRepository, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
+        this.otpService = otpService;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.objectMapper = objectMapper;
@@ -140,14 +142,38 @@ public class UserService {
                 .roles(roles)
                 .build();
         userRepository.save(user);
+// Gửi OTP đến email của người dùng
+        String otpCode = generateOtpCode();
+        // Lưu OTP vào cơ sở dữ liệu
+        Otp otp = new Otp();
+        otp.setOtpCode(otpCode);
+        otp.setUser(user);
+
+        otpRepository.save(otp);
+        otpService.sendVerificationEmail(request.getEmail(), otpCode);
+    }
+
+    private String generateOtpCode() {
+        UUID uuid = UUID.randomUUID();
+        String code = uuid.toString().substring(0, 6).toUpperCase();
+        return code;
     }
 
 
-    public void resetPassword(ResetPasswordRequest request) throws OtpExpiredException {
-        Otp otp = otpRepository.findByOtpCode(request.getOtpCode()).orElseThrow(() -> new NotFoundException("Not found Otp"));
-        if (LocalDateTime.now().isAfter(otp.getExpiredAt())) {
-            throw new OtpExpiredException();
-        }
+    public void resetPassword(ResetPasswordRequest request, String email) throws OtpExpiredException {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Không tìm thấy email trong hệ thống"));
+
+        // Gửi OTP đến email của người dùng
+        String otpCode = generateOtpCode();
+
+        // Lưu OTP vào cơ sở dữ liệu
+        Otp otp1 = new Otp();
+        otp1.setOtpCode(otpCode);
+        otp1.setUser(user);
+        otpRepository.save(otp1);
+
+        otpService.sendResetEmail(email, otpCode);
+
         userRepository.findByEmail(request.getEmail()).get().setPassword(passwordEncoder.encode(request.getNewPassword()));
     }
 

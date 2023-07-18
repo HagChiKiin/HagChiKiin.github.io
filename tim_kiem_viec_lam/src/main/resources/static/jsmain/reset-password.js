@@ -1,15 +1,15 @@
 $(document).ready(function () {
     $(".reset-btn").click(function () {
         // Lấy dữ liệu từ form
-        var email = $("input[name='email']").val();
-        var otp = $("input[name='otp']").val();
-        var password = $("input[name='password']").val();
+        var email = $(".reset-email").val();
+        var otp = $(".reset-otp").val();
+        var password = $(".reset-password").val();
 
         // Tạo đối tượng chứa dữ liệu
         var formData = {
             email: email,
             otp: otp,
-            password: password
+            newPassword: password
         };
 
         // Gửi yêu cầu đến máy chủ bằng Ajax

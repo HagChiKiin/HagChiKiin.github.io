@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('.reg-form-candidate').validate({
         onfocusout: false,
         onkeyup: false,
@@ -69,15 +69,42 @@ $(document).ready(function() {
             type: 'POST',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(formData),
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
-                toastr.success('Đăng nhập thành công');
+                toastr.success('Đăng Kí Thành Công! Vui lòng truy cập email của bạn và xác thực tài khoản');
 
                 window.location.href = '/login-employees';
             },
-            error: function(data) {
-                toastr.error("Đăng nhập không thành công!")
+            error: function (data) {
+                toastr.error("Đăng Kí Thất Bại")
             }
         });
     });
 });
+
+// Hàm để thực hiện xác thực người dùng khi tải trang
+function checkLoggedIn() {
+    const jwtToken = localStorage.getItem("jwtToken")
+    if (!jwtToken) {
+        $("#avatar_toggle").empty();
+        const loginHtmlContent = "<span>Login</span>";
+        $("#avatar_toggle").append(loginHtmlContent);
+        return;
+    }
+    const userInfo = JSON.parse(localStorage.getItem("userInfomation"));
+    $(".avatar_toggle").empty();
+    const userHtmlContent = "<span>" + userInfo.email + "</span>";
+    $(".avatar_toggle").append(userHtmlContent);
+}
+checkLoggedIn();
+
+// function showAvatar() {
+//     const avatarElement = document.querySelector('.avatar');
+//     avatarElement.style.display = 'block';
+//
+//     const loginRegisterElement = document.querySelectorAll('.user-partner');
+//     loginRegisterElement.forEach(element => {
+//         element.style.display = 'none';
+//     })
+// }
+

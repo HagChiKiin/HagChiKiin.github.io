@@ -100,11 +100,11 @@ public class AuthenticationController {
     }
 
     @PutMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(@RequestBody @Valid ResetPasswordRequest request) {
+    public ResponseEntity<?> resetPassword(@RequestBody @Valid ResetPasswordRequest request, String email) {
         return userRepository.findByEmail(request.getEmail())
                 .map(user -> {
                     try {
-                        userService.resetPassword(request);
+                        userService.resetPassword(request,email);
                         return new ResponseEntity<>("Thành công", HttpStatus.OK);
                     } catch (OtpExpiredException e) {
                         return new ResponseEntity<>("Otp đã hết hạn", HttpStatus.BAD_REQUEST);

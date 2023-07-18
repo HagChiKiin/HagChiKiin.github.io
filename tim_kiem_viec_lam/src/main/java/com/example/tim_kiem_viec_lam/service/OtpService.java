@@ -8,6 +8,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -26,10 +27,12 @@ public class OtpService {
 
     Random rd = new Random();
 
+    @Autowired
     public OtpService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 
+    @Async
     public void sendOtp(String email) {
         // Creating a simple mail message
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -43,6 +46,34 @@ public class OtpService {
         mailMessage.setSubject("[TECH JOB] OTP Vefification");
 
         // Sending the mail
+        javaMailSender.send(mailMessage);
+    }
+
+    public void sendVerificationEmail(String email, String otpCode) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+        // Tạo đường dẫn xác nhận
+        String confirmationLink = "http://localhost:8080/api/v1/authentication/verify?email=" + email + "&code=" + otpCode;
+
+        mailMessage.setFrom(sender);
+        mailMessage.setTo(email);
+        mailMessage.setSubject("Xác nhận đăng ký");
+        mailMessage.setText("Vui lòng ấn vào liên kết sau để xác nhận đăng ký:" + confirmationLink);
+
+        javaMailSender.send(mailMessage);
+    }
+
+    public void sendResetEmail(String email, String otpCode) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+        // Tạo đường dẫn xác nhận
+        String resetPassLink = "http://localhost:8080/api/v1/authentication/reset-password?email=" + email + "&code=" + otpCode;
+
+        mailMessage.setFrom(sender);
+        mailMessage.setTo(email);
+        mailMessage.setSubject("Xác nhận đăng ký");
+        mailMessage.setText("Vui lòng ấn vào liên kết sau để reset password:" + resetPassLink);
+
         javaMailSender.send(mailMessage);
     }
 
