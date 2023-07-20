@@ -47,8 +47,11 @@ public class Job extends BaseEntity{
     @Column(name = "benefit")
     String benefit;
 
-    @Column(name = "salary")
-    String salary;
+    @Column(name = "salary_from")
+    String salaryFrom;
+
+    @Column(name = "salary_to")
+    String salaryTo;
 
     @Column(name = "job_status")
     @Enumerated(EnumType.STRING)

@@ -1,7 +1,13 @@
 package com.example.tim_kiem_viec_lam.service;
 
+import com.example.tim_kiem_viec_lam.entity.Otp;
+import com.example.tim_kiem_viec_lam.model.response.OtpResponse;
 import com.example.tim_kiem_viec_lam.repository.OtpRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -14,89 +20,44 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.Optional;
 import java.util.Random;
 
 
 @Service
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class OtpService {
 
-    private final JavaMailSender javaMailSender;
+    OtpRepository otpRepository;
 
-    @Value("${spring.mail.username}")
-    private String sender;
+    ObjectMapper objectMapper;
 
-    Random rd = new Random();
+    public String generateOTP() {
+        StringBuilder otp = new StringBuilder();
 
-    @Autowired
-    public OtpService(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
+        String OTP_CHARACTERS = "0123456789QWERTYUIOPASDFGHJKLZXCVBNM";
+
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            int index = random.nextInt(OTP_CHARACTERS.length());
+            otp.append(OTP_CHARACTERS.charAt(index));
+        }
+
+        return otp.toString();
     }
 
-    @Async
-    public void sendOtp(String email) {
-        // Creating a simple mail message
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-        // Setting up necessary details
-        mailMessage.setFrom(sender);
-        mailMessage.setTo(email);
-        String randomOTP = String.valueOf(rd.nextInt(1000000));
-        System.out.println(randomOTP);
-        mailMessage.setText("Mã OTP của bạn là"+randomOTP+" \n\n Không chia sẻ mã này cho bất kỳ ai!");
-        mailMessage.setSubject("[TECH JOB] OTP Vefification");
-
-        // Sending the mail
-        javaMailSender.send(mailMessage);
+    public OtpResponse verifyOtp(String otpCode) {
+        Optional<Otp> optional=otpRepository.findByOtpCode(otpCode);
+        if (optional.isPresent()){
+            Otp otp=optional.get();
+            return OtpResponse.builder()
+                    .otpCode(otp.getOtpCode())
+                    .expiredTime(otp.getExpiredTime())
+                    .email(otp.getUser().getEmail())
+                    .build();
+        }
+        return null;
     }
-
-    public void sendVerificationEmail(String email, String otpCode) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-        // Tạo đường dẫn xác nhận
-        String confirmationLink = "http://localhost:8080/api/v1/authentication/verify?email=" + email + "&code=" + otpCode;
-
-        mailMessage.setFrom(sender);
-        mailMessage.setTo(email);
-        mailMessage.setSubject("Xác nhận đăng ký");
-        mailMessage.setText("Vui lòng ấn vào liên kết sau để xác nhận đăng ký:" + confirmationLink);
-
-        javaMailSender.send(mailMessage);
-    }
-
-    public void sendResetEmail(String email, String otpCode) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-        // Tạo đường dẫn xác nhận
-        String resetPassLink = "http://localhost:8080/api/v1/authentication/reset-password?email=" + email + "&code=" + otpCode;
-
-        mailMessage.setFrom(sender);
-        mailMessage.setTo(email);
-        mailMessage.setSubject("Xác nhận đăng ký");
-        mailMessage.setText("Vui lòng ấn vào liên kết sau để reset password:" + resetPassLink);
-
-        javaMailSender.send(mailMessage);
-    }
-
-//    public void sendAttachedMail(String receiver) throws MessagingException {
-//        // Creating a mime message
-//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-//        MimeMessageHelper mimeMessageHelper;
-//
-//        // Setting multipart as true for attachments to
-//        // be send
-//        mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-//        mimeMessageHelper.setFrom(sender);
-//        mimeMessageHelper.setTo(receiver);
-//        mimeMessageHelper.setText("Email có đính kèm file");
-//        mimeMessageHelper.setSubject("Gửi mail kèm file");
-//
-//        // Adding the attachment
-//        String filePath = "/path/to/attachment/file.png";
-//        FileSystemResource file = new FileSystemResource(new File(filePath));
-//        mimeMessageHelper.addAttachment(file.getFilename(), file);
-//
-//        // Sending the mail
-//        javaMailSender.send(mimeMessage);
-//    }
 
 }

@@ -49,6 +49,8 @@ public class UserService {
 
     final RefreshTokenRepository refreshTokenRepository;
 
+    final EmailService emailService;
+
     @Value("${application.security.refreshToken.tokenValidityMilliseconds}")
     long refreshTokenValidityMilliseconds;
 
@@ -56,7 +58,7 @@ public class UserService {
 
     public UserService(PasswordEncoder passwordEncoder, OtpService otpService, UserRepository userRepository,
                        RoleRepository roleRepository, ObjectMapper objectMapper,
-                       OtpRepository otpRepository, RefreshTokenRepository refreshTokenRepository, JwtUtils jwtUtils) {
+                       OtpRepository otpRepository, RefreshTokenRepository refreshTokenRepository, EmailService emailService, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
         this.otpService = otpService;
         this.userRepository = userRepository;
@@ -64,6 +66,7 @@ public class UserService {
         this.objectMapper = objectMapper;
         this.otpRepository = otpRepository;
         this.refreshTokenRepository = refreshTokenRepository;
+        this.emailService = emailService;
         this.jwtUtils = jwtUtils;
     }
 
@@ -77,6 +80,7 @@ public class UserService {
                 .roles(roles)
                 .build();
         userRepository.save(user);
+        emailService.sendActivationEmail(user.getEmail(), user.getId());
     }
 
 
@@ -130,7 +134,7 @@ public class UserService {
 
     public void createUser(CreateUserRequest request) throws ExistedUserException {
         Optional<User> userOptional = userRepository.findByEmail(request.getEmail());
-        if (!userOptional.isEmpty()) {
+        if (userOptional.isPresent()) {
             throw new ExistedUserException();
         }
 
@@ -138,53 +142,45 @@ public class UserService {
 
         User user = User.builder()
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .password(passwordEncoder.encode("123"))
                 .roles(roles)
                 .build();
         userRepository.save(user);
-// Gửi OTP đến email của người dùng
-        String otpCode = generateOtpCode();
-        // Lưu OTP vào cơ sở dữ liệu
-        Otp otp = new Otp();
-        otp.setOtpCode(otpCode);
-        otp.setUser(user);
-
-        otpRepository.save(otp);
-        otpService.sendVerificationEmail(request.getEmail(), otpCode);
     }
 
-    private String generateOtpCode() {
-        UUID uuid = UUID.randomUUID();
-        String code = uuid.toString().substring(0, 6).toUpperCase();
-        return code;
+    public Boolean existUserByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 
-
-    public void resetPassword(ResetPasswordRequest request, String email) throws OtpExpiredException {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Không tìm thấy email trong hệ thống"));
-
-        // Gửi OTP đến email của người dùng
-        String otpCode = generateOtpCode();
-
-        // Lưu OTP vào cơ sở dữ liệu
-        Otp otp1 = new Otp();
-        otp1.setOtpCode(otpCode);
-        otp1.setUser(user);
-        otpRepository.save(otp1);
-
-        otpService.sendResetEmail(email, otpCode);
-
-        userRepository.findByEmail(request.getEmail()).get().setPassword(passwordEncoder.encode(request.getNewPassword()));
+    public void sendOtp(String email) {
+        emailService.sendSimpleMail(email);
     }
 
-    public void changePassword(ChangePasswordRequest changePasswordRequest) throws BadRequestException {
-        User user = userRepository.findByEmail(changePasswordRequest.getEmail()).get();
-        if (passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword())) {
-            user.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
+    public void resetPassword(ResetPasswordRequest request) {
+        Optional<User> userOptional=userRepository.findByEmail(request.getEmail());
+        if (userOptional.isPresent()){
+            User user=userOptional.get();
+            user.setPassword(passwordEncoder.encode(request.getNewPassword()));
             userRepository.save(user);
-        } else {
-            throw new BadRequestException();
         }
+    }
+
+    public void activeAccount(String email) throws ActivatedAccountException {
+        Optional<User> userOptional=userRepository.findByEmail(email);
+        if (userOptional.isPresent()){
+            User user=userOptional.get();
+            if (!user.isActivated()){
+                user.setActivated(true);
+                userRepository.save(user);
+            }
+            else {
+                throw new ActivatedAccountException("Tài Khoản Đã Được Kích Hoạt RỒi");
+            }
+        }
+    }
+
+    public void resentActivationEmail(String email, Long id) {
+        emailService.sendActivationEmail(email,id);
     }
 
 }

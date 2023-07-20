@@ -27,8 +27,6 @@ public class CourseAdminController {
     private final TopicService topicService;
     private final SupporterService supporterService;
 
-
-
     private final List<Course> courses;
 
     // Danh sách View

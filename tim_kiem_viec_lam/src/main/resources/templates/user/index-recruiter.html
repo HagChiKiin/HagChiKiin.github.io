@@ -74,6 +74,12 @@
                         <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i> <span
                                 class="hidden-text">Tìm kiếm</span></a>
                     </li>
+                    <li class="nav-item" id="registerNavItem">
+                        <a class="nav-link" href="/register-employees">Đăng Ký</a>
+                    </li>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="/login-employees">Đăng Nhập</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -83,29 +89,31 @@
                             <a class="dropdown-item" href="#">English</a>
                         </div>
                     </li>
-                    <li class="navbar-right item group ">
+                    <li class="nav-item">
+                        <a class="nav-link btn-employers" href="/login-employers" tabindex="-1" aria-disabled="true">Nhà
+                            Tuyển Dụng</a>
+                    </li>
+                    <li class="navbar-right item group " id="loggedInUserNavItem" style="display: none">
                         <div class="dropdown">
-                            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://www.topcv.vn/images/avatar-default.jpg" style="height: 28px"
+                            <a class="d-inline-block avatar rounded-circle"
+                               id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="https://www.topcv.vn/images/avatar-default.jpg"
+                                     style="height: 38px; width: 38px"
                                      alt="Tiểu Phàm TRương">
-                            </button>
+                            </a>
                             <div class="dropdown-menu" style=" background-color: #2f55d4"
                                  aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Thông
                                     tin cá nhân</a>
                                 <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Đổi
                                     mật khẩu</a>
-                                <a class="dropdown-item" href="/published-recruitment" style="color: white; background-color: #2f55d4 ">Tạo
-                                    tuyển dụng</a>
                                 <a id="logout-button" class="dropdown-item" href="#"
                                    style="color: white; background-color: #2f55d4 ;"><i
                                         class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất</a>
                             </div>
                         </div>
-
                     </li>
-
                 </ul>
             </div>
         </nav>
@@ -811,6 +819,17 @@
 </div>
 <script>
     $(document).ready(function () {
+        const userInfomationStr = localStorage.getItem("userInfomation");
+        if (userInfomationStr) {
+            const userInfomation = JSON.parse(userInfomationStr)
+            if (userInfomation.username) {
+                $('#registerNavItem').hide();
+                $('#loginNavItem').hide();
+                $('#loggedInUserNavItem').show();
+
+            }
+        }
+
         var owl = $('.owl-carousel');
         owl.owlCarousel({
             loop: true,
@@ -1889,7 +1908,7 @@
 </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!--<script src="js/jquery-3.4.1.slim.min.js"></script>-->
@@ -1902,6 +1921,7 @@
 <!-- Owl Stylesheets Javascript -->
 <script src="js/owlcarousel/owl.carousel.js"></script>
 <!-- Read More Plugin -->
+<script type="text/javascript" src="jsmain/signin.js"></script>
 <script type="text/javascript" src="jsmain/logout.js"></script>
 
 

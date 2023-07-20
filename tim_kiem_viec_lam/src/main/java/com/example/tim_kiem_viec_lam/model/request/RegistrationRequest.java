@@ -28,4 +28,6 @@ public class RegistrationRequest {
     @NotBlank
     String password;
 
+
+
 }

@@ -22,6 +22,9 @@ public class Otp extends BaseEntity{
     @Column(name = "otp_code")
     String otpCode;
 
-    LocalDateTime expiredAt;
+    LocalDateTime creatTime;
+
+    LocalDateTime expiredTime;
+
 
 }

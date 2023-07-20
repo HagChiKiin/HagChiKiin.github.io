@@ -8,7 +8,7 @@ $(document).ready(function () {
             error.insertAfter(element.parent());
         },
         rules: {
-            fullname: {
+            name: {
                 required: true
             },
             email: {
@@ -19,15 +19,17 @@ $(document).ready(function () {
                 required: true
             },
             password: {
-                required: true
+                required: true,
+                minlength: 6,
             },
-            // rePassword: {
-            //     required: true,
-            //     equalTo : '#password'
-            // }
+            confirmPassword: {
+                required: true,
+                minlength: 6,
+                equalTo: '#password'
+            }
         },
         messages: {
-            fullname: {
+            name: {
                 required: "Vui lòng nhập họ và tên"
             },
             email: {
@@ -38,27 +40,31 @@ $(document).ready(function () {
                 required: "Vui lòng nhập số điện thoại"
             },
             password: {
-                required: "Vui lòng nhập mật khẩu"
+                required: "Vui lòng nhập mật khẩu",
+                minlength: 'Mật khẩu tối thiểu 6 ký tự',
             },
-            // rePassword: {
-            //     required: "Vui lòng nhập lại mật khẩu"
-            // }
+            confirmPassword: {
+                required: 'Vui lòng nhập lại mật khẩu.',
+                minlength: 'Mật khẩu tối thiểu 6 ký tự',
+                equalTo: 'Mật khẩu không đúng'
+            }
         },
     });
-    $('#register-employees').click(function (event) {
-        let isValidForm = $('.reg-form-candidate').valid()
-        if (!isValidForm) return
+
+    $('#register-employees').click(function () {
+        let isValidForm = $('.reg-form-candidate').valid();
+        if (!isValidForm) return;
 
         // Lấy dữ liệu từ form đăng ký
-        var fullname = $('#fullname').val();
-        var email = $('#email').val();
-        var phone = $('#phone').val();
-        var password = $('#password').val();
+        let name = $('#fullname').val();
+        let email = $('#email').val();
+        let phone = $('#phone').val();
+        let password = $('#password').val();
 
 
         // Tạo object chứa dữ liệu đăng ký
-        var formData = {
-            fullname: fullname,
+        let formData = {
+            name: name,
             email: email,
             phone: phone,
             password: password
@@ -96,6 +102,7 @@ function checkLoggedIn() {
     const userHtmlContent = "<span>" + userInfo.email + "</span>";
     $(".avatar_toggle").append(userHtmlContent);
 }
+
 checkLoggedIn();
 
 // function showAvatar() {

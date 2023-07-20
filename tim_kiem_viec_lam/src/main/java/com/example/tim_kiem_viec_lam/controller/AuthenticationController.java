@@ -10,6 +10,7 @@ import com.example.tim_kiem_viec_lam.repository.RefreshTokenRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.security.JwtUtils;
+import com.example.tim_kiem_viec_lam.service.OtpService;
 import com.example.tim_kiem_viec_lam.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -45,6 +46,8 @@ public class AuthenticationController {
     RefreshTokenRepository refreshTokenRepository;
 
     AuthenticationManager authenticationManager;
+
+    OtpService otpService;
 
     @PostMapping("/login")
     public JwtResponse authenticateUser(@Valid @RequestBody LoginRequest request) {
@@ -99,34 +102,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(@RequestBody @Valid ResetPasswordRequest request, String email) {
-        return userRepository.findByEmail(request.getEmail())
-                .map(user -> {
-                    try {
-                        userService.resetPassword(request,email);
-                        return new ResponseEntity<>("Thành công", HttpStatus.OK);
-                    } catch (OtpExpiredException e) {
-                        return new ResponseEntity<>("Otp đã hết hạn", HttpStatus.BAD_REQUEST);
-                    }
-                })
-                .orElseGet(() -> new ResponseEntity<>("Email not exist", HttpStatus.NOT_FOUND));
-    }
 
 
-    @PutMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
-        return userRepository.findByEmail(changePasswordRequest.getEmail())
-                .map(user -> {
-                    try {
-                        userService.changePassword(changePasswordRequest);
-                        return new ResponseEntity<>("Đổi mật khẩu thành công", HttpStatus.OK);
-                    } catch (BadRequestException e) {
-                        return new ResponseEntity<>("Wrong old password", HttpStatus.OK);
-                    }
-
-                })
-                .orElseGet(() -> new ResponseEntity<>("Email not exist", HttpStatus.NOT_FOUND));
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifyOtp(@RequestBody VerifyOtpRequest request){
+        return ResponseEntity.ok(otpService.verifyOtp(request.getOtpCode()));
     }
 }
 

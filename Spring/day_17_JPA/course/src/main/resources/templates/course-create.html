@@ -79,43 +79,46 @@
             placeholder: "- Chọn chủ đề",
         });
 
-            // $(".course-list-inner").validate({
-            //     onfocusout: false,
-            //     onkeyup: false,
-            //     onclick: false,
-            //     errorPlacement: function (error, element) {
-            //         error.addClass("error-message");
-            //         error.insertAfter(element);
-            //     },
-            //     rules: {
-            //         "name": {
-            //             required: true,
-            //             maxlength: 255
-            //         },
-            //         "price": {
-            //             required: true,
-            //             min: 0
-            //         },
-            //         "image": {
-            //             required: true,
-            //         }
-            //     },
-            //     messages: {
-            //         "name": {
-            //             required: "Bắt buộc nhập tên sản phẩm",
-            //             maxlength: "Hãy nhập tối đa 255 ký tự"
-            //         },
-            //         "price": {
-            //             required: "Bắt buộc nhập giá",
-            //             min: "Giá phải lớn hơn 0"
-            //         },
-            //         "image": {
-            //             required: "Hãy chọn ảnh sản phẩm",
-            //         }
-            //     }
-            // })
+            $(".course-list-inner").validate({
+                onfocusout: false,
+                onkeyup: false,
+                onclick: false,
+                errorPlacement: function (error, element) {
+                    error.addClass("error-message");
+                    error.insertAfter(element);
+                },
+                rules: {
+                    "name": {
+                        required: true,
+                        maxlength: 255
+                    },
+                    "price": {
+                        required: true,
+                        min: 0
+                    },
+                    "image": {
+                        required: true,
+                    }
+                },
+                messages: {
+                    "name": {
+                        required: "Bắt buộc nhập tên sản phẩm",
+                        maxlength: "Hãy nhập tối đa 255 ký tự"
+                    },
+                    "price": {
+                        required: "Bắt buộc nhập giá",
+                        min: "Giá phải lớn hơn 0"
+                    },
+                    "image": {
+                        required: "Hãy chọn ảnh sản phẩm",
+                    }
+                }
+            })
 
         $('.btn-create-course').click(() => {
+            let isValidForm = $(".course-list-inner").valid()
+            if (!isValidForm) return
+
             // Lấy nội dung trong ô input
             let name = $("#course-name").val();
             let description = $("#course-description").val();
@@ -131,7 +134,7 @@
                 data: JSON.stringify(request),
                 success:
                     function (data) {
-                        // window.location.href = "/admin/courses/"+ data.id
+                        window.location.href = "/admin/courses/"+ data.id
                         console.log(data)
                     },
                 error: function (data) {

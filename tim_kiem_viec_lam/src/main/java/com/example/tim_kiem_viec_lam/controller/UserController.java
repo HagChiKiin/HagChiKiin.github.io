@@ -1,7 +1,11 @@
 package com.example.tim_kiem_viec_lam.controller;
 
+import com.example.tim_kiem_viec_lam.exception.ActivatedAccountException;
 import com.example.tim_kiem_viec_lam.exception.ExistedUserException;
 import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
+import com.example.tim_kiem_viec_lam.model.request.ExistedEmailRequest;
+import com.example.tim_kiem_viec_lam.model.request.ReActivationAccountRequest;
+import com.example.tim_kiem_viec_lam.model.request.ResetPasswordRequest;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
 import com.example.tim_kiem_viec_lam.service.OtpService;
 import com.example.tim_kiem_viec_lam.service.UserService;
@@ -11,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -25,8 +30,6 @@ public class UserController {
     UserService userService;
 
     OtpService otpService;
-
-
 
     @GetMapping
     public List<UserResponse> getAll() {
@@ -48,13 +51,35 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{email}/otp-sending")
-    public void sendOtp(@PathVariable String email) {
-        otpService.sendOtp(email);
+    @PostMapping("/email-check")
+    public ResponseEntity<Boolean> existByEmail(@RequestBody ExistedEmailRequest existedEmailRequest){
+        return ResponseEntity.ok(userService.existUserByEmail(existedEmailRequest.getEmail()));
     }
 
-//    @PostMapping("/{email}/attach-file")
-//    public void sendAttachedFileMail(@PathVariable String email) throws MessagingException {
-//        otpService.sendAttachedMail(email);
-//    }
+    @PostMapping("/{email}/otp-sending")
+    public void sendOtp(@PathVariable String email) {
+        userService.sendOtp(email);
+    }
+
+    @PutMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request){
+        userService.resetPassword(request);
+        return ResponseEntity.ok(null);
+    }
+
+    @GetMapping("/active-account/{email}")
+    public ModelAndView activeAccount(@PathVariable("email") String email) throws ActivatedAccountException {
+        try {
+            userService.activeAccount(email);
+            return new ModelAndView("notification/activation.html");
+        } catch (ActivatedAccountException e) {
+            return new ModelAndView("notification/error.html");
+        }
+    }
+
+    @PostMapping("/resend-activation-email/")
+    public ResponseEntity<?> resentActivationEmail(@RequestBody ReActivationAccountRequest request, Long id){
+        userService.resentActivationEmail(request.getEmail(), id);
+        return ResponseEntity.ok(HttpStatus.CREATED);
+    }
 }

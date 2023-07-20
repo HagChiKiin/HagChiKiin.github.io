@@ -10,7 +10,7 @@
     <div class="container cnt-tnar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light tjnav-bar">
             <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-            <a href="#" class="nav-logo">
+            <a href="/" class="nav-logo">
                 <img src="img/techjobs_bgw.png">
             </a>
             <button class="navbar-toggler tnavbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,11 +43,11 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i> <span class="hidden-text">Tìm kiếm</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng Ký</a>
+                    <li class="nav-item" id="registerNavItem">
+                        <a class="nav-link" href="/register-employees">Đăng Ký</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng Nhập</a>
+                    <li class="nav-item"  id="loginNavItem">
+                        <a class="nav-link" href="/login-employees">Đăng Nhập</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,7 +58,27 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-employers" href="#" tabindex="-1" aria-disabled="true" style="color: #fff!important">Nhà Tuyển Dụng</a>
+                        <a class="nav-link btn-employers" href="/login-employers" tabindex="-1" aria-disabled="true">Nhà Tuyển Dụng</a>
+                    </li>
+                    <li class="navbar-right item group "  id="loggedInUserNavItem"  style="display: none" >
+                        <div class="dropdown">
+                            <a href="javascript:void(0)" class="d-inline-block avatar rounded-circle"
+                               id="avatar_toggle"  style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="https://www.topcv.vn/images/avatar-default.jpg" style="height: 38px; width: 38px"
+                                     alt="Tiểu Phàm TRương">
+                            </a>
+                            <div class="dropdown-menu" style=" background-color: #2f55d4"
+                                 aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Thông
+                                    tin cá nhân</a>
+                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Đổi
+                                    mật khẩu</a>
+                                <a id="logout-button" class="dropdown-item" href="#"
+                                   style="color: white; background-color: #2f55d4 ;"><i
+                                        class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất</a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
