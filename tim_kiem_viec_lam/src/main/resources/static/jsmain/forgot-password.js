@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".forgot-password-form").validate({
+    $(".email-reset-form").validate({
         onfocusout: false,
         onkeyup: false,
         onclick: false,
@@ -8,43 +8,47 @@ $(document).ready(function () {
             error.insertAfter(element.parent());
         },
         rules: {
-            "emailReset": {
+            "email": {
                 required: true,
                 email: true
             },
         },
         messages: {
-            "emailReset": {
+            "email": {
                 required: "Hãy nhập email của bạn",
                 email: "Email không đúng định dạng"
             }
         }
     });
 
-    $("#submit-forgot").click(function (event) {
-        let isValidForm = $(".forgot-password-form").valid()
-        if (!isValidForm) return
-
-        let formdata = {
-            emailReset: $("#emailReset").val(),
+    $("#submit-reset-modal").click(async event => {
+        let isValidForm = $(".email-reset-form").valid();
+        if (!isValidForm) {
+            return;
+        }
+        let emailReset = $(".email-reset-form #email").val();
+        let request = {
+            email: emailReset
         };
-        $.ajax({
-            url: '/api/v1/users/otp-sending',
+        console.log(request)
+
+        await $.ajax({
+            url: "/api/v1/users/otp-sending",
             type: 'POST',
-            data: JSON.stringify(formdata),
+            data: JSON.stringify(request),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                toastr.success("Vui lòng check email");
+                toastr.success("Vui lòng kiểm tra email");
             },
             error: function () {
-                toastr.warning("Email không tồn tại hoặc chưa được kích hoạt");
+                toastr.warning("Email không tồn tại trong hệ thống hoặc chưa kích hoạt");
             }
         });
     })
 
-    $('.forgot-password-form').on('keyup', function (event) {
-        if (event.key === 'Enter') {
-            $("#submit-forgot").click();
-        }
-    });
+    // $('.email-reset-form').on('keyup', function (event) {
+    //     if (event.key === 'Enter') {
+    //         $("#submit-reset-modal").click();
+    //     }
+    // });
 });
