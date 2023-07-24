@@ -35,7 +35,10 @@
 
 
     <!-- Link tự viết -->
-    <link rel="stylesheet" type="text/css"  href="css/style-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/style-admin.css">
+
+    <!--  validate-->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body>
@@ -93,64 +96,65 @@
                 Quay lại
             </a>
         </div>
+        <form id="create-job-form">
+            <div class="company-list-inner p-2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Tên công việc</label>
+                            <input type="text" class="form-control" id="title" name="title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="avatar-input" class="form-control">Upload Avatar</label>
+                            <input type="file" id="avatar-input" name="avatar-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dueDateTime" class="form-label">Hạn nộp</label>
+                            <input type="text" class="form-control" id="dueDateTime" name="dueDateTime">
+                        </div>
 
-        <div class="company-list-inner p-2">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Tên công việc</label>
-                        <input type="text" class="form-control" id="title">
                     </div>
-                    <div class="mb-3">
-                        <label for="avatar" class="form-control">Upload Avatar</label>
-                        <input type="file" id="avatar">
-                    </div>
-                    <div class="mb-3">
-                        <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                        <input type="text" class="form-control" id="dueDateTime">
-                    </div>
-
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="skill" class="form-label">Kỹ năng</label>
-                        <select id="skill" class="form-control" multiple="multiple">
-                            <option value="Javascript">Javascript</option>
-                            <option value="Java">Java</option>
-                            <option value="Golang">Golang</option>
-                            <option value="PHP">PHP</option>
-                            <option value="React">React</option>
-                            <option value="AWS">AWS</option>
-                            <option value="Devops">Devops</option>
-                            <option value=".Net">.Net</option>
-                            <option value="Vue">Vue</option>
-                            <option value="Angular">Angular</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Công ty</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="salaryFrom" class="form-label">Mức lương từ</label>
-                        <input type="number" class="form-control" id="salaryFrom">
-                    </div>
-                    <div class="mb-3">
-                        <label for="salaryTo" class="form-label">đến</label>
-                        <input type="number" class="form-control" id="salaryTo">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="skill" class="form-label">Kỹ năng</label>
+                            <select id="skill" class="form-control" multiple="multiple" name="skill">
+                                <option value="Javascript">Javascript</option>
+                                <option value="Java">Java</option>
+                                <option value="Golang">Golang</option>
+                                <option value="PHP">PHP</option>
+                                <option value="React">React</option>
+                                <option value="AWS">AWS</option>
+                                <option value="Devops">Devops</option>
+                                <option value=".Net">.Net</option>
+                                <option value="Vue">Vue</option>
+                                <option value="Angular">Angular</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Công ty</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="salaryFrom" class="form-label">Mức lương từ</label>
+                            <input type="number" class="form-control" id="salaryFrom" name="salaryFrom">
+                        </div>
+                        <div class="mb-3">
+                            <label for="salaryTo" class="form-label">đến</label>
+                            <input type="number" class="form-control" id="salaryTo" name="salaryTo">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+
 </div>
 
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 <!-- axios -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -159,9 +163,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!-- Components JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<!-- axios -->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"-->
+<!--        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+<!--&lt;!&ndash; axios &ndash;&gt;-->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -173,14 +177,14 @@
             placeholder: "- Chọn chủ đề",
         });
 
-        $(".company-list-inner").validate({
-            // onfocusout: false,
-            // onkeyup: false,
-            // onclick: false,
-            // errorPlacement: function (error, element) {
-            //     error.addClass("error-message");
-            //     error.insertAfter(element.parent());
-            // },
+        $("#create-job-form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            errorPlacement: function (error, element) {
+                error.addClass("error-message");
+                error.insertAfter(element.parent());
+            },
             rules: {
                 "name": {
                     required: true,
@@ -190,8 +194,8 @@
                     required: true,
                     maxlength: 255
                 },
-                "avatar": {
-                    required: true,
+                "avatar-input": {
+                    required: false,
                 },
                 "salaryFrom": {
                     required: true,
@@ -202,18 +206,21 @@
                 },
                 "dueDateTime": {
                     required: true,
+                },
+                "skill": {
+                    required: true,
                 }
             },
             messages: {
                 "name": {
-                    required: "Bắt buộc nhập tên công việc",
+                    required: "Bắt buộc nhập tên công ty",
                     maxlength: "Hãy nhập tối đa 255 ký tự"
                 },
                 "title": {
                     required: "Bắt buộc nhập tiêu đề tuyển dụng",
                     maxlength: "Hãy nhập tối đa 255 ký tự"
                 },
-                "avatar": {
+                "avatar-input": {
                     required: "Hãy chọn ảnh công việc",
                 },
                 "salaryFrom": {
@@ -221,45 +228,37 @@
                     min: "Mức lương phải lớn hơn hoặc bằng 0"
                 },
                 "salaryTo": {
-                    required: "Hãy nhập mức lương đến",
+                    required: "Hãy nhập mức lương đến"
                 },
                 "dueDateTime": {
                     required: "Hãy nhập hạn nộp"
+                },
+                "skill": {
+                    required: "Hãy nhập kĩ năng"
                 }
             }
         })
         $('#job-create-btn').click(function () {
-            let isValidForm = $(".company-list-inner").valid()
+            let isValidForm = $("#create-job-form").valid()
             if (!isValidForm) return
 
             // Lấy nội dung trong ô input
-            let title = $("#title").val();
-            let avatar = $("#avatar").val();
-            let name = $("#name").val();
-            let location = $("#location").val();
-            let skill = $("#skill").val();
-            let salaryFrom = $("#salaryFrom").val();
-            let salaryTo = $("#salaryTo").val();
-            let dueDateTime = $("#dueDateTime").val();
-
-
             let request = {
-                name: name,
-                title: title,
-                avatar: avatar,
-                salaryFrom: salaryFrom,
-                salaryTo: salaryTo,
-                dueDateTime: dueDateTime,
-                location: location,
-                skill: skill
+                name: $("#title").val(),
+                title: $("#avatar-input").val(),
+                avatar: $("#name").val(),
+                salaryFrom: $("#salaryFrom").val(),
+                salaryTo: $("#salaryTo").val(),
+                dueDateTime: "2023-07-23T10:34:12.966Z",
+                location: $("#location").val(),
+                skill: $("#skill").val()
             }
             $.ajax({
                 url: "/api/v1/jobs",
                 type: 'POST',
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(request),
-                success: function(response) {
-                    alert("thêm mới khóa học thành công");
+                success: function (response) {
                     toastr.success("Thêm công việc thành công");
                 },
                 error: function (data) {

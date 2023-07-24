@@ -66,7 +66,7 @@
                     <!-- login main form -->
                     <div class="col-md-6 col-sm-12 col-12 login-main-right">
 
-                        <form class="login-form">
+                        <form class="login-form" onsubmit="return false;">
                             <div class="login-main-header">
                                 <h3>Đăng Nhập</h3>
                             </div>
@@ -79,7 +79,8 @@
                             <div class="input-div pass">
                                 <div class="div lg-lable">
                                     <h5>Password</h5>
-                                    <input type="password" class="input form-control-lgin pass" name="password">
+                                    <input type="password" class="input form-control-lgin pass" id="input-pass"
+                                           name="password">
                                 </div>
                             </div>
                             <div class="form-group d-block frm-text">
@@ -125,37 +126,36 @@
                     <div class="col-md-6 col-sm-12 col-12 login-main-left">
                         <img src="img/banner-login.png">
                     </div>
-                    <!-- login main form -->
+
                     <div class="col-md-6 col-sm-12 col-12 login-main-right">
 
-                        <form class="login-form">
+                        <form class="forgot-password-form" >
                             <div class="login-main-header">
-                                <h3>Đăng Nhập</h3>
+                                <h3>Forgot Password</h3>
                             </div>
                             <div class="input-div one">
                                 <div class="div lg-lable">
                                     <h5>Email</h5>
-                                    <input type="text" class="reset-email input form-control-lgin" id="email" name="email">
+                                    <input type="email" class="email-reset-form input form-control-lgin mb-3" id="emailReset"
+                                           name="emailReset">
+                                </div>
+                            </div>
+<!--                            <div class="input-div one">-->
+<!--                                <div class="div lg-lable">-->
+<!--                                    <h5>Password</h5>-->
+<!--                                    <input type="password" class="input form-control-lgin pass " name="password">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="input-div one">-->
+<!--                                <div class="div lg-lable">-->
+<!--                                    <h5>Re-password</h5>-->
+<!--                                    <input type="password" class="input form-control-lgin pass" id="re-pass"-->
+<!--                                           name="pass">-->
+<!--                                </div>-->
+<!--                            </div>-->
 
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary send-mail">Send mail</button>
-                                </div>
-                            </div>
-                            <div class="input-div one">
-                                <div class="div lg-lable">
-                                    <h5>Otp</h5>
-                                    <input type="text" class="reset-otp input form-control-lgin" name="otp">
-                                </div>
-                            </div>
-                            <div class="input-div pass">
-                                <div class="div lg-lable">
-                                    <h5>Password</h5>
-                                    <input type="password" class="reset-password input form-control-lgin pass" name="password">
-                                </div>
-                            </div>
-                            <button type="button"
-                                    class="reset-btn btn btn-primary float-right btn-login d-block w-100">Đổi Mật Khẩu
+                            <button type="submit" name="reset" id="submit-reset-modal"
+                                    class="reset-btn btn btn-success float-right btn-login d-block w-100">Send
                             </button>
 
                         </form>
@@ -197,6 +197,7 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="jsmain/signin.js"></script>
 <script type="text/javascript" src="jsmain/sendmail.js"></script>
+<script type="text/javascript" src="jsmain/forgot-password.js"></script>
 
 <script type="text/javascript">
     function forgotPass() {

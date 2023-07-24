@@ -23,12 +23,12 @@ public class JobController {
     private JobService jobService;
 
     @PostMapping
-    public ResponseEntity<?> createJob(@RequestBody @Valid JobRequest jobRequest) {
+    public ResponseEntity<?> createJob(@RequestBody JobRequest jobRequest) {
         JobResponse jobResponse = jobService.saveJob(jobRequest);
         return ResponseEntity.ok(jobResponse);
     }
 
-    @PutMapping("{job_id}")
+    @PutMapping("/{job_id}")
     public ResponseEntity<?> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest jobRequest) {
         JobResponse jobResponse = jobService.updateJob(id, jobRequest);
         return ResponseEntity.ok(jobResponse);
@@ -40,7 +40,7 @@ public class JobController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("{job_id}/application")
+    @PostMapping("/{job_id}/application")
     public ResponseEntity<?> applyToJob(@PathVariable("jobId") Long id, @RequestBody @Valid Application application ){
         jobService.applyToJob(id, application);
         return ResponseEntity.ok("Ứng tuyển vào công việc thành công");

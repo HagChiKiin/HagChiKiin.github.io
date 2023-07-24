@@ -28,15 +28,13 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @EnableAsync
 @Service
 public class EmailService {
 
     private final JavaMailSender javaMailSender;
-
-
-    OtpService otpService;
 
     UserRepository userRepository;
 
@@ -45,57 +43,59 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String sender;
 
-    public EmailService(JavaMailSender javaMailSender, OtpService otpService, UserRepository userRepository,OtpRepository otpRepository) {
-        this.otpService=otpService;
+    public EmailService(JavaMailSender javaMailSender, UserRepository userRepository,OtpRepository otpRepository) {
         this.javaMailSender = javaMailSender;
         this.userRepository =userRepository;
         this.otpRepository=otpRepository;
     }
 
-    public void sendSimpleMail(String receiver) {
-        // Creating a simple mail message
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-
-        Optional<User> userOptional =userRepository.findByEmail(receiver);
-        if (userOptional.isPresent()){
-            User user=userOptional.get();
-            Otp otp=Otp.builder()
-                    .otpCode(otpService.generateOTP())
-                    .creatTime(LocalDateTime.now())
-                    .expiredTime(LocalDateTime.now().plus(30, ChronoUnit.MINUTES))
-                    .user(user)
-                    .build();
-            otpRepository.save(otp);
-            mailMessage.setFrom(sender);
-            mailMessage.setTo(receiver);
-            mailMessage.setText("Mã OTP của bạn là:"+otp.getOtpCode()+". Không chia sẻ mã này cho bất kỳ ai!");
-            mailMessage.setSubject("[SkyHub] OTP Vefification");
-
-            // Sending the mail
-            javaMailSender.send(mailMessage);
-        }
-
-        // Setting up necessary details
-    }
-
-
     @Async
-    public void sendActivationEmail(String receiver, Long id) {
-        MimeMessage message = javaMailSender.createMimeMessage();
+    public void sendActivationEmail(String email,Long id) {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-            helper.setFrom(sender);
-            helper.setTo(receiver);
-            helper.setSubject("[TECH JOB] Kích Hoạt Tài Khoản");
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
-            String activationLink = "http://localhost:8080/api/v1/users/" +id +"activations/"  ;
-            String emailContent = "Bạn Vừa Đăng Kí Tài Khoản, Ấn <a href=\"" + activationLink + "\">đây</a> Để Thực Hiện Kích Hoạt Tài Khoản";
+            helper.setFrom(sender);
+            helper.setTo(email);
+
+            helper.setSubject("[Tech Job] Active account");
+            String activationLink = "http://localhost:8080/api/v1/users/" + id + "/activations";
+            String emailContent = "Bạn vừa đăng ký tài khoản, Ấn <a href=\"" + activationLink + "\">đây</a> để thực hiện kích hoạt tài khoản";
             helper.setText(emailContent, true);
 
-            javaMailSender.send(message);
+            javaMailSender.send(mimeMessage);
         } catch (MessagingException e) {
-            // Xử lý ngoại lệ khi gửi email không thành công
+            System.out.println("Error while sending mail!!!");
         }
+    }
+
+    @Async
+    public void sendOtp(String email) {
+        String otpCode = UUID.randomUUID().toString();
+        Optional<User> emailOptional = userRepository.findByEmail(email);
+
+        otpRepository.save(Otp.builder()
+                .otpCode(otpCode)
+                .user(emailOptional.get())
+                .expiredAt(LocalDateTime.now().plusMinutes(10))
+                .build());
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setFrom(sender);
+            mimeMessageHelper.setTo(email);
+
+            mimeMessageHelper.setSubject("[Tech Job] Reset password");
+
+            String resetLink = "http://localhost:8080/check-otp-reset?otpCode=" + otpCode;
+            String htmlContent = "<html> Bạn đã quên mật khẩu? <a href=\"" + resetLink + "\">Reset password.</a> </html>\n";
+            mimeMessageHelper.setText(htmlContent, true);
+
+            javaMailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            System.out.println("Error while sending mail!!!");
+        }
+
     }
 }

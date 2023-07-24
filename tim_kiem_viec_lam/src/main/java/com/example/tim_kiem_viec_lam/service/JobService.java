@@ -28,7 +28,7 @@ public class JobService {
     List<Job> jobs;
 
     public List<Job> getAllJob() {
-        return jobs;
+        return jobRepository.findAll();
     }
 
     public JobResponse saveJob(JobRequest jobRequest) {

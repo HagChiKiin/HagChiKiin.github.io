@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class HomeController {
 
     JobService jobService;
 
+
     @GetMapping("/")
     public String getAll(Model model){
         List<Job> jobList = jobService.getAllJob();
@@ -30,6 +32,7 @@ public class HomeController {
     public String getAdmin(){
         return "admin/company-list";
     }
+
 
     @GetMapping("/admin/companies-create")
     public String getCompany() {

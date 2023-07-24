@@ -1,33 +1,62 @@
 $(document).ready(function () {
-    $(".reset-btn").click(function () {
-        // Lấy dữ liệu từ form
-        var email = $(".reset-email").val();
-        var otp = $(".reset-otp").val();
-        var password = $(".reset-password").val();
-
-        // Tạo đối tượng chứa dữ liệu
-        var formData = {
-            email: email,
-            otp: otp,
-            newPassword: password
-        };
-
-        // Gửi yêu cầu đến máy chủ bằng Ajax
-        $.ajax({
-            url: '/api/v1/authentication/reset-password',
-            type: 'POST',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(formData),
-            success: function (response) {
-                // Xử lý kết quả thành công
-                toastr.success("Đổi mật khẩu thành công");
-                // Chuyển hướng người dùng đến trang chủ hoặc trang đăng nhập
-                window.location.href = 'http://localhost:8080';
+    $(".forgot-main").validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        errorPlacement: function (error, element) {
+            error.addClass("error-message");
+            error.insertAfter(element);
+        },
+        rules: {
+            "password": {
+                required: true,
             },
-            error: function (data) {
-                // Xử lý lỗi
-                toastr.error("Đổi mật khẩu không thành công!");
+            "re-pass": {
+                required: true,
+                equalTo: "#password"
+            }
+        },
+        messages: {
+            "password": {
+                required: "Enter your password"
             },
-        });
+            "re-pass": {
+                required: "Repeat your password",
+                equalTo: "Re-password incorrect"
+            }
+        }
     });
-});
+
+    $("#reset").click(() => {
+        let isValidForm = $("#reset-form").valid();
+        if (!isValidForm) {
+            return;
+        }
+        let otpCode = new URLSearchParams(window.location.search).get('otpCode');
+        let newPassword = $("#password").val();
+        let request = {
+            "otpCode": otpCode,
+            "newPassword": newPassword
+        }
+        console.log(request)
+        $.ajax({
+            url: "/api/v1/users/reset-password",
+            type: 'PUT',
+            data: JSON.stringify(request),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                toastr.success("Reset password successful!");
+                setTimeout(function () {
+                    window.location.href = 'http://localhost:8080/'
+                }, 1000)
+            },
+            error: function () {
+                toastr.warning("Request expired, let resend request!");
+                setTimeout(function () {
+                    window.location.href = 'http://localhost:8080'
+                }, 1500)
+            }
+        });
+
+    })
+})

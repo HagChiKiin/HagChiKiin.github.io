@@ -1,24 +1,23 @@
 package com.example.tim_kiem_viec_lam.controller;
 
-import com.example.tim_kiem_viec_lam.exception.ActivatedAccountException;
 import com.example.tim_kiem_viec_lam.exception.ExistedUserException;
+import com.example.tim_kiem_viec_lam.exception.OtpExpiredException;
 import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
-import com.example.tim_kiem_viec_lam.model.request.ExistedEmailRequest;
-import com.example.tim_kiem_viec_lam.model.request.ReActivationAccountRequest;
+import com.example.tim_kiem_viec_lam.model.request.EmailRequest;
 import com.example.tim_kiem_viec_lam.model.request.ResetPasswordRequest;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
-import com.example.tim_kiem_viec_lam.service.OtpService;
 import com.example.tim_kiem_viec_lam.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -28,8 +27,6 @@ import java.util.List;
 public class UserController {
 
     UserService userService;
-
-    OtpService otpService;
 
     @GetMapping
     public List<UserResponse> getAll() {
@@ -47,13 +44,8 @@ public class UserController {
             userService.createUser(request);
             return ResponseEntity.ok(null);
         } catch (ExistedUserException ex) {
-            return new ResponseEntity<>("username đã tồn tại", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Email đã tồn tại", HttpStatus.BAD_REQUEST);
         }
-    }
-
-    @PostMapping("/email-check")
-    public ResponseEntity<Boolean> existByEmail(@RequestBody ExistedEmailRequest existedEmailRequest){
-        return ResponseEntity.ok(userService.existUserByEmail(existedEmailRequest.getEmail()));
     }
 
     @PostMapping("/{email}/otp-sending")
@@ -61,25 +53,21 @@ public class UserController {
         userService.sendOtp(email);
     }
 
+    @PostMapping("/otp-sending")
+    public ResponseEntity<?> sendOtp(@RequestBody @Valid EmailRequest emailRequest) {
+        return userService.findByEmailAndActivated(emailRequest.getEmail())
+                .map(user -> {
+                    userService.sendOtp(emailRequest.getEmail());
+                    return new ResponseEntity<>(null, HttpStatus.OK);
+                })
+                .orElseGet(() -> new ResponseEntity<>("Email không tồn tại trong hệ thống hoặc chưa kích hoạt", HttpStatus.NOT_FOUND));
+    }
+
+
     @PutMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request){
-        userService.resetPassword(request);
-        return ResponseEntity.ok(null);
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) throws OtpExpiredException {
+        userService.resetPassword(resetPasswordRequest);
+        return new ResponseEntity<>("Change password successful", HttpStatus.OK);
     }
 
-    @GetMapping("/active-account/{email}")
-    public ModelAndView activeAccount(@PathVariable("email") String email) throws ActivatedAccountException {
-        try {
-            userService.activeAccount(email);
-            return new ModelAndView("notification/activation.html");
-        } catch (ActivatedAccountException e) {
-            return new ModelAndView("notification/error.html");
-        }
-    }
-
-    @PostMapping("/resend-activation-email/")
-    public ResponseEntity<?> resentActivationEmail(@RequestBody ReActivationAccountRequest request, Long id){
-        userService.resentActivationEmail(request.getEmail(), id);
-        return ResponseEntity.ok(HttpStatus.CREATED);
-    }
 }

@@ -6,10 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ExistedEmailRequest {
+public class EmailRequest {
+    @NotBlank
+    @Email
     String email;
 }

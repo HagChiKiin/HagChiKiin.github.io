@@ -1,8 +1,8 @@
 package com.example.tim_kiem_viec_lam.controller;
 
 import com.example.tim_kiem_viec_lam.entity.RefreshToken;
-import com.example.tim_kiem_viec_lam.exception.BadRequestException;
-import com.example.tim_kiem_viec_lam.exception.OtpExpiredException;
+import com.example.tim_kiem_viec_lam.entity.User;
+import com.example.tim_kiem_viec_lam.exception.AccountNotActiveException;
 import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.*;
 import com.example.tim_kiem_viec_lam.model.response.JwtResponse;
@@ -10,7 +10,6 @@ import com.example.tim_kiem_viec_lam.repository.RefreshTokenRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.security.JwtUtils;
-import com.example.tim_kiem_viec_lam.service.OtpService;
 import com.example.tim_kiem_viec_lam.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -47,7 +46,6 @@ public class AuthenticationController {
 
     AuthenticationManager authenticationManager;
 
-    OtpService otpService;
 
     @PostMapping("/login")
     public JwtResponse authenticateUser(@Valid @RequestBody LoginRequest request) {
@@ -60,6 +58,12 @@ public class AuthenticationController {
         Set<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toSet());
+
+        User user = userRepository.findById(userDetails.getId()).get();
+
+        if (!user.isActivated()) {
+            throw  new AccountNotActiveException("Account not activated");
+        }
 
         String refreshToken = UUID.randomUUID().toString();
         RefreshToken refreshTokenEntity = RefreshToken.builder()
@@ -103,11 +107,6 @@ public class AuthenticationController {
     }
 
 
-
-    @PostMapping("/verify-otp")
-    public ResponseEntity<?> verifyOtp(@RequestBody VerifyOtpRequest request){
-        return ResponseEntity.ok(otpService.verifyOtp(request.getOtpCode()));
-    }
 }
 
 

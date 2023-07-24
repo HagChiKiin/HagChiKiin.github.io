@@ -26,7 +26,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,9 +42,9 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserService {
 
-    final PasswordEncoder passwordEncoder;
+    private static final String LOCAL_FOLDER = "D:/img";
 
-    final OtpService otpService;
+    final PasswordEncoder passwordEncoder;
 
     final UserRepository userRepository;
 
@@ -56,11 +63,10 @@ public class UserService {
 
     final JwtUtils jwtUtils;
 
-    public UserService(PasswordEncoder passwordEncoder, OtpService otpService, UserRepository userRepository,
+    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,
                        RoleRepository roleRepository, ObjectMapper objectMapper,
                        OtpRepository otpRepository, RefreshTokenRepository refreshTokenRepository, EmailService emailService, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
-        this.otpService = otpService;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.objectMapper = objectMapper;
@@ -82,7 +88,6 @@ public class UserService {
         userRepository.save(user);
         emailService.sendActivationEmail(user.getEmail(), user.getId());
     }
-
 
     public List<UserResponse> getAll() {
         List<User> users = userRepository.findAll();
@@ -142,31 +147,14 @@ public class UserService {
 
         User user = User.builder()
                 .email(request.getEmail())
-                .password(passwordEncoder.encode("123"))
+                .password(passwordEncoder.encode(request.getPassword()))
                 .roles(roles)
                 .build();
         userRepository.save(user);
     }
 
-    public Boolean existUserByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
-
-    public void sendOtp(String email) {
-        emailService.sendSimpleMail(email);
-    }
-
-    public void resetPassword(ResetPasswordRequest request) {
-        Optional<User> userOptional=userRepository.findByEmail(request.getEmail());
-        if (userOptional.isPresent()){
-            User user=userOptional.get();
-            user.setPassword(passwordEncoder.encode(request.getNewPassword()));
-            userRepository.save(user);
-        }
-    }
-
-    public void activeAccount(String email) throws ActivatedAccountException {
-        Optional<User> userOptional=userRepository.findByEmail(email);
+    public void activeAccount(Long id) throws ActivatedAccountException {
+        Optional<User> userOptional=userRepository.findById(id);
         if (userOptional.isPresent()){
             User user=userOptional.get();
             if (!user.isActivated()){
@@ -174,13 +162,34 @@ public class UserService {
                 userRepository.save(user);
             }
             else {
-                throw new ActivatedAccountException("Tài Khoản Đã Được Kích Hoạt RỒi");
+                throw new ActivatedAccountException("Tài khoản đã được kích hoạt");
             }
         }
     }
 
-    public void resentActivationEmail(String email, Long id) {
-        emailService.sendActivationEmail(email,id);
+    public void sendOtp(String email) {
+        emailService.sendOtp(email);
+    }
+
+    public Optional<User> findByEmailAndActivated(String email) {
+        return userRepository.findByEmailAndActivated(email, true);
+    }
+
+    public void checkOtp(String otpCode) throws OtpExpiredException {
+        Otp otp = otpRepository.findByOtpCode(otpCode).get();
+        if (LocalDateTime.now().isAfter(otp.getExpiredAt())) {
+            throw new OtpExpiredException();
+        }
+    }
+
+    public void resetPassword(ResetPasswordRequest resetPasswordRequest) throws OtpExpiredException {
+        Otp otp = otpRepository.findByOtpCode(resetPasswordRequest.getOtpCode()).get();
+        if (LocalDateTime.now().isAfter(otp.getExpiredAt())) {
+            throw new OtpExpiredException();
+        }
+        User user = otp.getUser();
+        user.setPassword(passwordEncoder.encode(resetPasswordRequest.getNewPassword()));
+        userRepository.save(user);
     }
 
 }

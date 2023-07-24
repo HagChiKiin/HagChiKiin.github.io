@@ -1,13 +1,13 @@
 package com.example.demojparelationship.service;
 
-import com.example.demojparelationship.entity.Image;
-import com.example.demojparelationship.entity.User;
 import com.example.demojparelationship.repository.ImageRepository;
 import com.example.demojparelationship.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 

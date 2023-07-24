@@ -19,13 +19,6 @@ public class RegistrationRequest {
     String email;
 
     @NotBlank
-    @Size(max = 255)
-    String fullname;
-
-    @NotNull
-    String phone;
-
-    @NotBlank
     String password;
 
 

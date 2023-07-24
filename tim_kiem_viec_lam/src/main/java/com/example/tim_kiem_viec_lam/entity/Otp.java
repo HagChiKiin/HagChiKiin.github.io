@@ -2,6 +2,7 @@ package com.example.tim_kiem_viec_lam.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,18 +14,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name = "otps")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Otp extends BaseEntity{
+public class Otp {
 
-    @ManyToOne(targetEntity = User.class)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
 
-    @Column(name = "otp_code")
     String otpCode;
 
-    LocalDateTime creatTime;
+    @CreatedDate
+    LocalDateTime createdDateTime;
 
-    LocalDateTime expiredTime;
+    LocalDateTime expiredAt;
+
 
 
 }

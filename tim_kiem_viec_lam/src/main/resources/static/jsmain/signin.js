@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    //validate login
     $(".login-form").validate({
         onfocusout: false,
         onkeyup: false,
@@ -30,8 +30,8 @@ $(document).ready(function () {
         },
     });
 
-    // sign in
-    $('#login-employees').click(function () {
+    // method login
+    function performLogin() {
         let isValidForm = $(".login-form").valid()
         if (!isValidForm) return
 
@@ -50,9 +50,9 @@ $(document).ready(function () {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(formData),
             success: function (response) {
-                localStorage.clear();
-                localStorage.setItem('jwtToken', response.jwt);
-                localStorage.setItem('refreshToken', response.refreshToken);
+                localStorage.clear()
+                localStorage.setItem('jwtToken', response.jwt)
+                localStorage.setItem('refreshToken', response.refreshToken)
                 let userInfomation = {
                     username: response.username,
                     userId: response.id,
@@ -60,22 +60,34 @@ $(document).ready(function () {
                 }
                 localStorage.setItem('userInfomation', JSON.stringify(userInfomation))
                 toastr.success("Đăng nhập thành công");
-                setTimeout(function () {
-                    if (response.roles[0] === "ADMIN") {
-                        window.location.href = 'http://localhost:8080/admin/companies'
-                    } else if (response.roles[0] === "USER") {
-                        window.location.href = 'http://localhost:8080/'
-                    } else {
-                        window.location.href = 'http://localhost:8080/recruiter'
-                    }
-                }, 1000);
 
+
+                if (response.roles[0] === "ADMIN") {
+                    window.location.href = 'http://localhost:8080/admin'
+                } else if (response.roles[0] === "USER") {
+                    window.location.href = 'http://localhost:8080/admin/jobs'
+                } else {
+                    window.location.href = 'http://localhost:8080/recruiter'
+                }
             },
             error: function (data) {
                 toastr.error("Đăng nhập không thành công!")
             },
         });
+    };
+// Bắt sự kiện click nút đăng nhập
+    $('#login-employees').click(function (event) {
+        performLogin();
     });
+
+// Bắt sự kiện khi nhấn phím "Enter"
+    $(".login-form input").on('keyup', function (event) {
+        if (event.key === 'Enter') {
+            performLogin();
+        }
+    });
+
+    // Logout
     $('#logout-button').click(function () {
         let jwtToken = localStorage.getItem("jwtToken")
         if (jwtToken) {
@@ -103,36 +115,37 @@ $(document).ready(function () {
             toastr.warning("Bạn chưa đăng nhập")
         }
     });
-})
 
-function refreshToken() {
-    let jwt = localStorage.getItem("jwt")
-    let refreshToken = localStorage.getItem('refreshToken');
-    let formData = {
-        refreshToken: refreshToken
-    }
-
-    if (!jwt) {
-        return
-    }
-    $.ajax({
-        url: '/api/v1/authentication/refresh-token',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(formData),
-        headers: {
-            'Authorization': 'Bearer' + " " + jwt
-        },
-        success: function (response) {
-            localStorage.setItem('jwtToken', response.jwt);
-
-        },
-        error: function () {
-            toastr.error("Token refresh failed");
+    //refresk Token
+    function refreshToken() {
+        let jwt = localStorage.getItem("jwt")
+        let refreshToken = localStorage.getItem('refreshToken');
+        let formData = {
+            refreshToken: refreshToken
         }
-    });
-}
 
-setInterval(refreshToken, 29.5 * 60 * 1000);
+        if (!jwt) {
+            return
+        }
+        $.ajax({
+            url: '/api/v1/authentication/refresh-token',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            headers: {
+                'Authorization': 'Bearer' + " " + jwt
+            },
+            success: function (response) {
+                localStorage.setItem('jwtToken', response.jwt);
 
+            },
+            error: function () {
+                toastr.error("Token refresh failed");
+            }
+        });
+    }
+
+    setInterval(refreshToken, 29.5 * 60 * 1000);
+})
+;
 

@@ -39,6 +39,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             if(candidate.isEmpty()){
                 User user = new User();
                 user.setEmail("kien@gmail.com");
+                user.setActivated(true);
                 user.setPassword(passwordEncoder.encode("kien123")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();
                 roles.add(userRole);
@@ -55,6 +56,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             if(recruiter.isEmpty()){
                 User user = new User();
                 user.setEmail("fptsoftware@gmail.com");
+                user.setActivated(true);
                 user.setPassword(passwordEncoder.encode("fpt123")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();
                 roles.add(recruiterRole);
@@ -72,6 +74,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             if(admin.isEmpty()){
                 User user = new User();
                 user.setEmail("admin@gmail.com");
+                user.setActivated(true);
                 user.setPassword(passwordEncoder.encode("admin123")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();
                 roles.add(adminRole);
