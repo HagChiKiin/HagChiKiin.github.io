@@ -48,10 +48,6 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{email}/otp-sending")
-    public void sendOtp(@PathVariable String email) {
-        userService.sendOtp(email);
-    }
 
     @PostMapping("/otp-sending")
     public ResponseEntity<?> sendOtp(@RequestBody @Valid EmailRequest emailRequest) {
@@ -60,8 +56,14 @@ public class UserController {
                     userService.sendOtp(emailRequest.getEmail());
                     return new ResponseEntity<>(null, HttpStatus.OK);
                 })
-                .orElseGet(() -> new ResponseEntity<>("Email không tồn tại trong hệ thống hoặc chưa kích hoạt", HttpStatus.NOT_FOUND));
+                .orElseGet(() -> new ResponseEntity<>("Email not exist or not activated", HttpStatus.NOT_FOUND));
     }
+
+//    @PostMapping("/otp-sending")
+//    public ResponseEntity<?> sendOtp(@RequestBody @Valid EmailRequest emailRequest) throws ExistedUserException {
+//        userService.sendOtp(emailRequest.getEmail());
+//        return ResponseEntity.ok(null);
+//    }
 
 
     @PutMapping("/reset-password")

@@ -166,7 +166,15 @@ public class UserService {
             }
         }
     }
-
+//
+//    public void sendOtp(String email) throws ExistedUserException {
+//        if (!userRepository.existsByEmail(email)){
+//            throw new ExistedUserException();
+//        }
+//        else {
+//            emailService.sendOtp(email);
+//        }
+//    }
     public void sendOtp(String email) {
         emailService.sendOtp(email);
     }

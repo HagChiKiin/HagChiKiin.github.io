@@ -1,11 +1,11 @@
 $(document).ready(function () {
-    $(".forgot-main").validate({
+    $(".reset-form").validate({
         onfocusout: false,
         onkeyup: false,
         onclick: false,
         errorPlacement: function (error, element) {
             error.addClass("error-message");
-            error.insertAfter(element);
+            error.insertAfter(element.parent());
         },
         rules: {
             "password": {
@@ -27,8 +27,8 @@ $(document).ready(function () {
         }
     });
 
-    $("#reset").click(() => {
-        let isValidForm = $("#reset-form").valid();
+    $("#reset-btn").click(() => {
+        let isValidForm = $(".reset-form").valid();
         if (!isValidForm) {
             return;
         }
@@ -45,18 +45,23 @@ $(document).ready(function () {
             data: JSON.stringify(request),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                toastr.success("Reset password successful!");
+                toastr.success("Đổi mật khẩu thành công");
                 setTimeout(function () {
-                    window.location.href = 'http://localhost:8080/'
+                    window.location.href = 'http://localhost:8080/login'
                 }, 1000)
             },
             error: function () {
-                toastr.warning("Request expired, let resend request!");
+                toastr.warning("Đã có lỗi xảy ra");
                 setTimeout(function () {
-                    window.location.href = 'http://localhost:8080'
+                    window.location.href = 'http://localhost:8080/login'
                 }, 1500)
             }
         });
-
     })
+
+    $('.reset-form').on('keyup', function (event) {
+       if(event.key === 'Enter'){
+            $("#reset-btn").click();
+        }
+    });
 })

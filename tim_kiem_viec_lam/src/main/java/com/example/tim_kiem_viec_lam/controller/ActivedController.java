@@ -32,12 +32,12 @@ public class ActivedController {
     }
 
     @GetMapping("/check-otp-reset")
-    public String getResetPasswordPage(@RequestParam("otpCode") String otpCode) {
+    public String resetPass(@RequestParam("otpCode") String otpCode) {
         try {
             userService.checkOtp(otpCode);
             return "user/reset-password";
         } catch (OtpExpiredException e) {
-            return "user/login";
+            return "/";
         }
     }
 }

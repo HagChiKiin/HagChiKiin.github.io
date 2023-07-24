@@ -63,9 +63,9 @@ $(document).ready(function () {
 
 
                 if (response.roles[0] === "ADMIN") {
-                    window.location.href = 'http://localhost:8080/admin'
-                } else if (response.roles[0] === "USER") {
                     window.location.href = 'http://localhost:8080/admin/jobs'
+                } else if (response.roles[0] === "USER") {
+                    window.location.href = 'http://localhost:8080/'
                 } else {
                     window.location.href = 'http://localhost:8080/recruiter'
                 }

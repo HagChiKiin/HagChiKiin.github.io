@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".email-reset-form").validate({
+    $(".forgot-password-form").validate({
         onfocusout: false,
         onkeyup: false,
         onclick: false,
@@ -21,13 +21,12 @@ $(document).ready(function () {
         }
     });
 
-    $("#submit-reset-modal").click(function (event) {
-        let isValidForm = $(".email-reset-form").valid();
-        if (!isValidForm) {
-            return;
-        }
+    $("#submit-forgot").click(function (event) {
+        let isValidForm = $(".forgot-password-form").valid()
+        if (!isValidForm) return
+
         let formdata = {
-            emailReset: $(".email-reset-form #email").val(),
+            emailReset: $("#emailReset").val(),
         };
         $.ajax({
             url: '/api/v1/users/otp-sending',
@@ -38,14 +37,14 @@ $(document).ready(function () {
                 toastr.success("Vui lòng check email");
             },
             error: function () {
-                toastr.warning("Email không tồn tại hoặc đã được kích hoạt");
+                toastr.warning("Email không tồn tại hoặc chưa được kích hoạt");
             }
         });
     })
 
-    $('.email-reset-form').on('keyup', function (event) {
+    $('.forgot-password-form').on('keyup', function (event) {
         if (event.key === 'Enter') {
-            $("#submit-reset-modal").click();
+            $("#submit-forgot").click();
         }
     });
 });
