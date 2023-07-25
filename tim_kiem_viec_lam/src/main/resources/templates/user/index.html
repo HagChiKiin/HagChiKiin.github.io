@@ -475,47 +475,47 @@
                             </div>
                         </div>
 
-<!--                        <div class="job pagi">-->
-<!--                            <div class="job-content" th:each="job :${jobList}">-->
-<!--                                <div class="job-logo" >-->
-<!--                                    <a href="#">-->
-<!--                                        <img th:src="${job.recruiter.avatar}" class="job-logo-ima" alt="job-logo">-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                                <div class="job-desc">-->
-<!--                                    <div class="job-title">-->
-<!--                                        <a href="#" th:text="${job.title}"></a>-->
-<!--                                    </div>-->
-<!--                                    <div class="job-company">-->
-<!--                                        <a th:text="${job.recruiter.name}" href="#"></a> | <a-->
-<!--                                            th:text="${job.location}" href="#" class="job-address"><i-->
-<!--                                            class="fa fa-map-marker" aria-hidden="true"></i>-->
-<!--                                        </a>-->
-<!--                                    </div>-->
+    <!--                        <div class="job pagi">-->
+    <!--                            <div class="job-content" th:each="job :${jobList}">-->
+    <!--                                <div class="job-logo" >-->
+    <!--                                    <a href="#">-->
+    <!--                                        <img th:src="${job.recruiter.avatar}" class="job-logo-ima" alt="job-logo">-->
+    <!--                                    </a>-->
+    <!--                                </div>-->
+    <!--                                <div class="job-desc">-->
+    <!--                                    <div class="job-title">-->
+    <!--                                        <a href="#" th:text="${job.title}"></a>-->
+    <!--                                    </div>-->
+    <!--                                    <div class="job-company">-->
+    <!--                                        <a th:text="${job.recruiter.name}" href="#"></a> | <a-->
+    <!--                                            th:text="${job.location}" href="#" class="job-address"><i-->
+    <!--                                            class="fa fa-map-marker" aria-hidden="true"></i>-->
+    <!--                                        </a>-->
+    <!--                                    </div>-->
 
-<!--                                    <div class="job-inf">-->
-<!--                                        <div class="job-main-skill">-->
-<!--                                            <i class="fa fa-code" aria-hidden="true"></i> <a th:text="${job.skill}"-->
-<!--                                                                                             href="#"></a>-->
-<!--                                        </div>-->
-<!--                                        <div class="job-salary">-->
-<!--                                            <i class="fa fa-money" aria-hidden="true"></i>-->
-<!--                                            <span th:text="${job.salaryFrom}" class="salary-min"><em-->
-<!--                                                    class="salary-unit">triệu</em></span>-->
-<!--                                            <span th:text="${job.salaryTo}" class="salary-max"><em-->
-<!--                                                    class="salary-unit">triệu</em></span>-->
-<!--                                        </div>-->
-<!--                                        <div class="job-deadline">-->
-<!--                                            <span><i th:text="${job.dueDateTime}" class="fa fa-clock-o"-->
-<!--                                                     aria-hidden="true"></i>  Hạn nộp: <strong></strong></span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="wrap-btn-appl">-->
-<!--                                    <a href="#" class="btn btn-appl">Apply Now</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+    <!--                                    <div class="job-inf">-->
+    <!--                                        <div class="job-main-skill">-->
+    <!--                                            <i class="fa fa-code" aria-hidden="true"></i> <a th:text="${job.skill}"-->
+    <!--                                                                                             href="#"></a>-->
+    <!--                                        </div>-->
+    <!--                                        <div class="job-salary">-->
+    <!--                                            <i class="fa fa-money" aria-hidden="true"></i>-->
+    <!--                                            <span th:text="${job.salaryFrom}" class="salary-min"><em-->
+    <!--                                                    class="salary-unit">triệu</em></span>-->
+    <!--                                            <span th:text="${job.salaryTo}" class="salary-max"><em-->
+    <!--                                                    class="salary-unit">triệu</em></span>-->
+    <!--                                        </div>-->
+    <!--                                        <div class="job-deadline">-->
+    <!--                                            <span><i th:text="${job.dueDateTime}" class="fa fa-clock-o"-->
+    <!--                                                     aria-hidden="true"></i>  Hạn nộp: <strong></strong></span>-->
+    <!--                                        </div>-->
+    <!--                                    </div>-->
+    <!--                                </div>-->
+    <!--                                <div class="wrap-btn-appl">-->
+    <!--                                    <a href="#" class="btn btn-appl">Apply Now</a>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
                         <div class="readmorestyle-wrap">
                             <a href="#" class="readallstyle reads1">Xem tất cả</a>
                         </div>
@@ -1985,6 +1985,17 @@
 <!-- Read More Plugin -->
 <script type="text/javascript" src="jsmain/signin.js"></script>
 <script type="text/javascript" src="jsmain/logout.js"></script>
+
+<script th:inline="javascript">
+    const formatDate = dateString =>{
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = `0${date.getMonth() + 1 }`.slice(-2);
+        const day =`0${date.getDate() + 1 }`.slice(-2);
+
+        return `${day}/${month}/${year}`;
+    }
+</script>
 
 
 </body>

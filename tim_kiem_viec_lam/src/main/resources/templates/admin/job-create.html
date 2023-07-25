@@ -91,7 +91,7 @@
                 <span><i class="fa-solid fa-plus"></i></span>
                 Tạo
             </button>
-            <a href="/admin/companies" class="btn-custom btn-refresh">
+            <a href="/admin/jobs" class="btn-custom btn-refresh">
                 <span><i class="fa-solid fa-angle-left"></i></span>
                 Quay lại
             </a>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                            <input type="text" class="form-control" id="dueDateTime" name="dueDateTime">
+                            <input type="datetime-local" class="form-control" id="dueDateTime" name="dueDateTime">
                         </div>
 
                     </div>
@@ -205,7 +205,7 @@
                     required: true,
                 },
                 "dueDateTime": {
-                    required: true,
+                    required: false,
                 },
                 "skill": {
                     required: true,
@@ -244,13 +244,12 @@
 
             // Lấy nội dung trong ô input
             let request = {
-                name: $("#title").val(),
-                title: $("#avatar-input").val(),
-                avatar: $("#name").val(),
+                name: $("#name").val(),
+                title: $("#title").val(),
+                avatar: $("#avatar-input").val(),
                 salaryFrom: $("#salaryFrom").val(),
                 salaryTo: $("#salaryTo").val(),
-                dueDateTime: "2023-07-23T10:34:12.966Z",
-                location: $("#location").val(),
+                dueDateTime: $("#dueDateTime").val(),
                 skill: $("#skill").val()
             }
             $.ajax({
@@ -260,9 +259,10 @@
                 data: JSON.stringify(request),
                 success: function (response) {
                     toastr.success("Thêm công việc thành công");
+                    window.location.href = 'http://localhost:8080/admin/jobs'
                 },
                 error: function (data) {
-                    console.log(data)
+                    console.log(data);
                     toastr.error("Lỗi khi thêm công việc");
                 }
             });

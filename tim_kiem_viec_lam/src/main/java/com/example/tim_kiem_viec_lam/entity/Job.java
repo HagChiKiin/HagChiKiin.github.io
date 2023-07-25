@@ -8,12 +8,15 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Data
-@Entity
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
+@Getter
+@Setter
+@Entity
 @Table(name = "jobs")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Job extends BaseEntity{
@@ -52,6 +55,12 @@ public class Job extends BaseEntity{
 
     @Column(name = "salary_to")
     String salaryTo;
+
+    @Column(name = "skill")
+    String skill;
+
+    @Column(name = "avatar")
+    String avatar;
 
     @Column(name = "job_status")
     @Enumerated(EnumType.STRING)

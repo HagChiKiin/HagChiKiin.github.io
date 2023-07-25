@@ -24,8 +24,8 @@ public class JobController {
 
     @PostMapping
     public ResponseEntity<?> createJob(@RequestBody JobRequest jobRequest) {
-        JobResponse jobResponse = jobService.saveJob(jobRequest);
-        return ResponseEntity.ok(jobResponse);
+        jobService.createJob(jobRequest);
+        return ResponseEntity.ok(null);
     }
 
     @PutMapping("/{job_id}")

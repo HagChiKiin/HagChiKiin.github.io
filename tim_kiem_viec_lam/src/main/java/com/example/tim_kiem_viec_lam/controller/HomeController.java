@@ -1,7 +1,9 @@
 package com.example.tim_kiem_viec_lam.controller;
 
 import com.example.tim_kiem_viec_lam.entity.Job;
+import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.service.JobService;
+import com.example.tim_kiem_viec_lam.service.RecruiterService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -21,6 +23,8 @@ public class HomeController {
 
     JobService jobService;
 
+    RecruiterService recruiterService;
+
 
     @GetMapping("/")
     public String getAll(Model model){
@@ -29,7 +33,9 @@ public class HomeController {
         return "user/index";
     }
     @GetMapping("admin/companies")
-    public String getAdmin(){
+    public String getAdmin(Model model){
+        List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
+        model.addAttribute("recruiterList",recruiterList);
         return "admin/company-list";
     }
 
@@ -40,7 +46,9 @@ public class HomeController {
 
     }
     @GetMapping("/admin/jobs")
-    public String getJob() {
+    public String getJob(Model model) {
+        List<Job> jobList = jobService.getAllJob();
+        model.addAttribute("jobList",jobList);
         return "admin/job-list";
 
     }

@@ -13,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -62,6 +63,9 @@ public class JobRequest {
 
     LocalDateTime closeDateTime;
 
+    List<String> skill;
+
+    String avatar;
 
     LocalDateTime deletedDateTime;
 

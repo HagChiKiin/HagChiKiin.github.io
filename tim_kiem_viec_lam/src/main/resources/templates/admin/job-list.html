@@ -102,42 +102,30 @@
           <th>STT</th>
           <th>Tên công việc</th>
           <td>Kỹ năng</td>
-          <th>Mức lương</th>
+          <th>Mức lương từ</th>
+          <th>Mức lương đến</th>
           <th>Công ty</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>1</td>
+        <tr th:each="job, info: ${jobList}">
+          <td th:text="${info.index + 1}">1</td>
           <td>
-            <a href="/admin/jobs/1">Legacy IT Agent</a>
+            <a th:href="@{/admin/jobs/{id} (id=${job.id})}"  th:text="${job.title}" >Legacy IT Agent</a>
           </td>
           <td>
-            <span class="me-1 badge bg-warning text-dark">Devops</span><span
-                  class="me-1 badge bg-warning text-dark">Vue</span><span
-                  class="me-1 badge bg-warning text-dark">Angular</span>
-          </td>
-          <td>29,194,223 VNĐ</td>
-          <td>
-            <a href="/admin/companies/1">Haley, Bailey and Brakus</a>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>
-            <a href="/admin/jobs/2">National Director</a>
-          </td>
-          <td>
-            <span class="me-1 badge bg-warning text-dark">Devops</span><span
-                  class="me-1 badge bg-warning text-dark">Java</span><span
-                  class="me-1 badge bg-warning text-dark">React</span>
-          </td>
-          <td>34,703,104 VNĐ</td>
-          <td>
-            <a href="/admin/companies/4">Hilll-Wiza</a>
-          </td>
-        </tr>
+            <span class="me-1 badge bg-warning text-dark" th:text="${job.skill}">Devops</span><span
 
+          </td>
+          <td th:text="${job.salaryFrom}">29,194,223 VNĐ</td>
+          <td th:text="${job.salaryTo}">29,194,223 VNĐ</td>
+          <td th:if="${job.recruiter != null}">>
+            <a href="/admin/companies/1" th:text="${job.recruiter.name}">Haley, Bailey and Brakus</a>
+          </td>
+          <td th:unless="${job.recruiter != null}">
+            N/A
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>

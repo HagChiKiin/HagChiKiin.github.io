@@ -33,18 +33,18 @@
                 </thead>
                 <tbody>
 
-<!--                <tr th:each="image : ${imageList}">-->
-<!--                    <td th:text="${image.id}"> 1 </td>-->
-<!--                    <td th:text="${image.type}">image/png</td>-->
-<!--                    <td th:text="${#temporals.format(image.createdAt, 'dd/MM/yyyy')}">01/02/2023</td>-->
-<!--                    <td><a th:href="@{/api/v1/files/{id}  (id=${image.id})}">Xem-->
-<!--                        chi tiết</a></td>-->
-<!--                    <td>-->
-<!--                        <button class="btn btn-danger">-->
-<!--                            Delete-->
-<!--                        </button>-->
-<!--                    </td>-->
-<!--                </tr>-->
+                <tr th:each="image : ${imageList}">
+                    <td th:text="${image.id}"> 1 </td>
+                    <td th:text="${image.type}">image/png</td>
+                    <td th:text="${#temporals.format(image.createdAt, 'dd/MM/yyyy')}">01/02/2023</td>
+                    <td><a th:href="@{/api/v1/files/{id}  (id=${image.id})}">Xem
+                        chi tiết</a></td>
+                    <td>
+                        <button class="btn btn-danger">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
                 <tr >
                     <td > 1 </td>
                     <td >image/png</td>
