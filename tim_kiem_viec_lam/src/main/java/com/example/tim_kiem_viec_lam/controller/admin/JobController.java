@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JobController {
 
-    private JobService jobService;
+    JobService jobService;
 
     @PostMapping
     public ResponseEntity<?> createJob(@RequestBody JobRequest jobRequest) {
@@ -29,9 +29,9 @@ public class JobController {
     }
 
     @PutMapping("/{job_id}")
-    public ResponseEntity<?> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest jobRequest) {
-        JobResponse jobResponse = jobService.updateJob(id, jobRequest);
-        return ResponseEntity.ok(jobResponse);
+    public ResponseEntity<?> updateJob(@PathVariable Long job_id, @RequestBody @Valid JobRequest jobRequest) {
+        jobService.updateJob(job_id, jobRequest);
+        return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("{job_id}")

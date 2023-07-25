@@ -97,19 +97,20 @@
                     <th>Tên công ty</th>
                     <th>Địa chỉ</th>
                     <th>Website</th>
+                    <th>Phone</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td >1</td>
+                <tr th:each="recruiter, info: ${recruiterList}">
+                    <td th:text="${info.index + 1}">1</td>
                     <td>
-                        <a href="/admin/companies/1">Haley, Bailey and Brakus</a>
+                        <a th:href="@{/admin/companies/{id} (id=${recruiter.id})}" th:text="${recruiter.name}" >Haley, Bailey and Brakus</a>
                     </td>
-                    <th>Thành phố Hồ Chí Minh</th>
-                    <td>korey.hayes@yahoo.com</td>
+                    <th  th:text="${recruiter.address}">Thành phố Hồ Chí Minh</th>
                     <td>
-                        <a href="www.flatleyllc.net">www.flatleyllc.net</a>
+                        <a th:text="${recruiter.contactInfo}" href="www.flatleyllc.net">www.flatleyllc.net</a>
                     </td>
+                    <td th:text="${recruiter.phone}" >0913465789</td>
                 </tr>
 
                 </tbody>

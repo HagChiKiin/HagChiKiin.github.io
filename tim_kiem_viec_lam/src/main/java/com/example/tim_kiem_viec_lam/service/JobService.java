@@ -68,7 +68,7 @@ public class JobService {
         jobRepository.save(job);
     }
 
-    public JobResponse updateJob(Long id, JobRequest jobRequest) throws NotFoundException {
+    public void updateJob(Long id, JobRequest jobRequest) throws NotFoundException {
         Job job = jobRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Not found job"));
         job.setBenefit(jobRequest.getBenefit());
@@ -89,8 +89,6 @@ public class JobService {
         job.setYoeTo(jobRequest.getYoeTo());
 
         jobRepository.save(job);
-
-        return objectMapper.convertValue(job, JobResponse.class);
     }
 
     public void deleteJob(Long id) throws NotFoundException {

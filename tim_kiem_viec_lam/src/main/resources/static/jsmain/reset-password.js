@@ -35,8 +35,8 @@ $(document).ready(function () {
         let otpCode = new URLSearchParams(window.location.search).get('otpCode');
         let newPassword = $("#password").val();
         let request = {
-            "otpCode": otpCode,
-            "newPassword": newPassword
+            otpCode: otpCode,
+            newPassword: newPassword
         }
         console.log(request)
         $.ajax({

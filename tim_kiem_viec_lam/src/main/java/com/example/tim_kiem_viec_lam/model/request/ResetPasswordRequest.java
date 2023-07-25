@@ -15,6 +15,6 @@ public class ResetPasswordRequest {
     @NotBlank
     String otpCode;
 
-    @NotNull
+    @NotBlank
     String newPassword;
 }

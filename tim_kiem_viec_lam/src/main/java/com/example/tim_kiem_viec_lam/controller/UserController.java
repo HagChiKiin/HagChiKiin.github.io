@@ -72,4 +72,10 @@ public class UserController {
         return new ResponseEntity<>("Change password successful", HttpStatus.OK);
     }
 
+    // search
+//    @GetMapping
+//    public List<UserSearchResponse> search (UserSearchRequest request){
+//        return  userService.searchUser(request);
+//    }
+
 }

@@ -87,6 +87,7 @@ public class UserService {
                 .build();
         userRepository.save(user);
         emailService.sendActivationEmail(user.getEmail(), user.getId());
+
     }
 
     public List<UserResponse> getAll() {
