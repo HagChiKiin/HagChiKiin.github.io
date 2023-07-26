@@ -52,10 +52,10 @@ public class DatabaseInitializer implements CommandLineRunner {
             Role recruiterRole = Role.builder().name(Roles.RECRUITER).build();
             roleRepository.save(recruiterRole);
 
-            Optional<User> recruiter = userRepository.findByEmail("fptsoftware@gmail.com");
+            Optional<User> recruiter = userRepository.findByEmail("thanhkien221100@gmail.com");
             if(recruiter.isEmpty()){
                 User user = new User();
-                user.setEmail("fptsoftware@gmail.com");
+                user.setEmail("thanhkien221100@gmail.com");
                 user.setActivated(true);
                 user.setPassword(passwordEncoder.encode("fpt123")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();

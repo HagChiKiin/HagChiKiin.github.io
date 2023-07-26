@@ -91,6 +91,16 @@ public class AuthenticationController {
                 });
     }
 
+    @PostMapping("/signupRecruiter")
+    public ResponseEntity<?> registerRecruiter(@Valid @RequestBody RegistrationRequest request) {
+        return userRepository.findByEmail(request.getEmail())
+                .map(user -> new ResponseEntity<>("Email is existed", HttpStatus.BAD_REQUEST))
+                .orElseGet(() -> {
+                    userService.registerRecruiter(request);
+                    return new ResponseEntity<>(null, HttpStatus.CREATED);
+                });
+    }
+
     @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(@RequestBody @Valid RefreshTokenRequest request) {
         try {

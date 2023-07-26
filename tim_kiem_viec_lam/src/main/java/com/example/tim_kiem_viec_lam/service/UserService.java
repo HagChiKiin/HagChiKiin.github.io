@@ -1,16 +1,14 @@
 package com.example.tim_kiem_viec_lam.service;
 
 import com.example.tim_kiem_viec_lam.entity.Otp;
+import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.entity.Role;
 import com.example.tim_kiem_viec_lam.entity.User;
 import com.example.tim_kiem_viec_lam.exception.*;
 import com.example.tim_kiem_viec_lam.model.request.*;
 import com.example.tim_kiem_viec_lam.model.response.JwtResponse;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
-import com.example.tim_kiem_viec_lam.repository.OtpRepository;
-import com.example.tim_kiem_viec_lam.repository.RefreshTokenRepository;
-import com.example.tim_kiem_viec_lam.repository.RoleRepository;
-import com.example.tim_kiem_viec_lam.repository.UserRepository;
+import com.example.tim_kiem_viec_lam.repository.*;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.security.JwtUtils;
 import com.example.tim_kiem_viec_lam.security.SecurityUtils;
@@ -26,14 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -47,6 +38,8 @@ public class UserService {
     final PasswordEncoder passwordEncoder;
 
     final UserRepository userRepository;
+
+    final RecruiterRepository recruiterRepository;
 
     final RoleRepository roleRepository;
 
@@ -64,10 +57,11 @@ public class UserService {
     final JwtUtils jwtUtils;
 
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,
-                       RoleRepository roleRepository, ObjectMapper objectMapper,
+                       RecruiterRepository recruiterRepository, RoleRepository roleRepository, ObjectMapper objectMapper,
                        OtpRepository otpRepository, RefreshTokenRepository refreshTokenRepository, EmailService emailService, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.recruiterRepository = recruiterRepository;
         this.roleRepository = roleRepository;
         this.objectMapper = objectMapper;
         this.otpRepository = otpRepository;
@@ -87,7 +81,29 @@ public class UserService {
                 .build();
         userRepository.save(user);
         emailService.sendActivationEmail(user.getEmail(), user.getId());
+    }
 
+    public void registerRecruiter(RegistrationRequest registrationRequest) {
+        Optional<Role> optionalRole = roleRepository.findByName(Roles.RECRUITER);
+        Set<Role> roles = new HashSet<>();
+        roles.add(optionalRole.get());
+        User user = User.builder()
+                .email(registrationRequest.getEmail())
+                .password(passwordEncoder.encode(registrationRequest.getPassword()))
+                .roles(roles)
+                .build();
+        userRepository.save(user);
+        Recruiter recruiter = Recruiter.builder()
+                .user(user)
+                .phone(registrationRequest.getPhone())
+                .name(registrationRequest.getName())
+                .contactInfo(registrationRequest.getContactInfo())
+                .address(registrationRequest.getAddress())
+                .introduce(registrationRequest.getIntroduce())
+                .avatar(registrationRequest.getAvatar())
+                .build();
+        recruiterRepository.save(recruiter);
+        emailService.sendActivationEmail(user.getEmail(), user.getId());
     }
 
     public List<UserResponse> getAll() {
@@ -200,5 +216,6 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(resetPasswordRequest.getNewPassword()));
         userRepository.save(user);
     }
+
 
 }

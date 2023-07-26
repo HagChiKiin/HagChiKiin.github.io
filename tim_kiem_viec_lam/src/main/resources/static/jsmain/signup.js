@@ -67,6 +67,7 @@ $(document).ready(function () {
             data: JSON.stringify(formData),
             success: function (response) {
                 console.log(response);
+                localStorage.setItem("userRole", "USER");
                 toastr.success('Đăng Kí Thành Công! Vui lòng truy cập email của bạn và xác thực tài khoản');
 
                 setTimeout(function () {
@@ -79,23 +80,6 @@ $(document).ready(function () {
             }
         });
     });
-
-// Hàm để thực hiện xác thực người dùng khi tải trang
-    function checkLoggedIn() {
-        const jwtToken = localStorage.getItem("jwtToken")
-        if (!jwtToken) {
-            $("#avatar_toggle").empty();
-            const loginHtmlContent = "<span>Login</span>";
-            $("#avatar_toggle").append(loginHtmlContent);
-            return;
-        }
-        const userInfo = JSON.parse(localStorage.getItem("userInfomation"));
-        $(".avatar_toggle").empty();
-        const userHtmlContent = "<span>" + userInfo.email + "</span>";
-        $(".avatar_toggle").append(userHtmlContent);
-    }
-
-    checkLoggedIn();
 
 });
 

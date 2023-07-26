@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -20,6 +21,19 @@ public class RegistrationRequest {
 
     @NotBlank
     String password;
+
+    String phone;
+
+    String name;
+
+    String address;
+
+    String introduce;
+
+    String contactInfo;
+
+    String avatar;
+
 
 
 
