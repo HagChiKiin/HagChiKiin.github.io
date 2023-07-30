@@ -24,16 +24,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.annotation.MultipartConfig;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
-
+@MultipartConfig()
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserService {
-
-    private static final String LOCAL_FOLDER = "D:/img";
 
     final PasswordEncoder passwordEncoder;
 
@@ -55,6 +61,17 @@ public class UserService {
     long refreshTokenValidityMilliseconds;
 
     final JwtUtils jwtUtils;
+
+    private static final String LOCAL_FOLDER = "D:/img";
+
+    public String uploadLocalFile(MultipartFile file) throws IOException {
+        if (ObjectUtils.isEmpty(file) || file.isEmpty()) {
+            return null;
+        }
+        String filePath = LOCAL_FOLDER + File.separator + file.getOriginalFilename();
+        Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+        return filePath;
+    }
 
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,
                        RecruiterRepository recruiterRepository, RoleRepository roleRepository, ObjectMapper objectMapper,
@@ -183,15 +200,7 @@ public class UserService {
             }
         }
     }
-//
-//    public void sendOtp(String email) throws ExistedUserException {
-//        if (!userRepository.existsByEmail(email)){
-//            throw new ExistedUserException();
-//        }
-//        else {
-//            emailService.sendOtp(email);
-//        }
-//    }
+
     public void sendOtp(String email) {
         emailService.sendOtp(email);
     }

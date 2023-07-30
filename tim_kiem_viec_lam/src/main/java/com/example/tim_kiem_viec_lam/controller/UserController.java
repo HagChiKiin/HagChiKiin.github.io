@@ -48,7 +48,6 @@ public class UserController {
         }
     }
 
-
     @PostMapping("/otp-sending")
     public ResponseEntity<?> sendOtp(@RequestBody @Valid EmailRequest emailRequest) {
         return userService.findByEmailAndActivated(emailRequest.getEmail())
@@ -65,17 +64,15 @@ public class UserController {
 //        return ResponseEntity.ok(null);
 //    }
 
-
     @PutMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) throws OtpExpiredException {
         userService.resetPassword(resetPasswordRequest);
         return new ResponseEntity<>("Change password successful", HttpStatus.OK);
     }
 
-    // search
-//    @GetMapping
-//    public List<UserSearchResponse> search (UserSearchRequest request){
-//        return  userService.searchUser(request);
-//    }
+    @PostMapping(value = "/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadAvatar(@RequestPart("avatar") MultipartFile avatarImage) throws IOException {
+        return ResponseEntity.ok(userService.uploadLocalFile(avatarImage));
+    }
 
 }

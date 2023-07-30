@@ -5,20 +5,86 @@
     <title>Header</title>
 </head>
 <body>
-<div class="header d-flex align-items-center">
-    <div class="container-fluid">
-        <div class="d-flex justify-content-start align-items-center">
-            <div class="logo">
-                <a th:href="@{/}">
-                    <img src="https://techmaster.vn/resources/image/logo-techmaster/white/white_200x74.png" alt="logo">
-                </a>
+<!-- main nav -->
+<div class="container-fluid fluid-nav another-page header">
+    <div class="container cnt-tnar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light tjnav-bar">
+            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+            <a href="/" class="nav-logo">
+                <img src="img/techjobs_bgw.png">
+            </a>
+            <button class="navbar-toggler tnavbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                <i class="fa fa-bars icn-res" aria-hidden="true"></i>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto tnav-left tn-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Việc Làm IT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tin Tức</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i> <span class="hidden-text">Tìm kiếm</span></a>
+                    </li>
+                    <li class="nav-item" id="registerNavItem">
+                        <a class="nav-link" href="/register-employees">Đăng Ký</a>
+                    </li>
+                    <li class="nav-item"  id="loginNavItem">
+                        <a class="nav-link" href="/login-employees">Đăng Nhập</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            VI
+                        </a>
+                        <div class="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">English</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-employers" href="/login-employers" tabindex="-1" aria-disabled="true">Nhà Tuyển Dụng</a>
+                    </li>
+                    <li class="navbar-right item group "  id="loggedInUserNavItem"  style="display: none" >
+                        <div class="dropdown">
+                            <a href="javascript:void(0)" class="d-inline-block avatar rounded-circle"
+                               id="avatar_toggle"  style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="https://www.topcv.vn/images/avatar-default.jpg" style="height: 38px; width: 38px"
+                                     alt="Tiểu Phàm TRương">
+                            </a>
+                            <div class="dropdown-menu" style=" background-color: #2f55d4"
+                                 aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Thông
+                                    tin cá nhân</a>
+                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Đổi
+                                    mật khẩu</a>
+                                <a id="logout-button" class="dropdown-item" href="#"
+                                   style="color: white; background-color: #2f55d4 ;"><i
+                                        class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="menu">
-                <a class="text-white ms-5" th:href="@{/}">Danh sách khóa học</a>
-                <a class="text-white ms-3" th:href="@{/admin/courses/create}">Tạo khóa học</a>
-            </div>
-        </div>
+        </nav>
     </div>
 </div>
+<!-- (end) main nav -->
 </body>
 </html>

@@ -80,6 +80,8 @@ $(document).ready(function () {
         let name = $('#name').val();
         let address = $('#address').val();
         let introduce = $('#introduce').val();
+        let avatar = $("#avatar-input").val()
+        console.log(avatar)
 
         // Tạo object chứa dữ liệu đăng ký
         let formData = {
@@ -90,7 +92,8 @@ $(document).ready(function () {
             phone: phone,
             name: name,
             address: address,
-            introduce: introduce
+            introduce: introduce,
+            avatar: avatar
         };
         // Gửi Ajax request đăng ký
         $.ajax({

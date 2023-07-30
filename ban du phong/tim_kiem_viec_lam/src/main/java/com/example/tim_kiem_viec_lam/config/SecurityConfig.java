@@ -61,7 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/v1/authentication/login", "/api/v1/authentication/signup").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/authentication/refresh-token", "/api/v1/authentication/logout").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/v1/users", "/api/v1/users/{id}").hasAnyAuthority(Roles.USER.toString(), Roles.ADMIN.toString(), Roles.RECRUITER.toString())
-                .antMatchers(HttpMethod.POST, "/api/v1/users").hasAnyAuthority(Roles.ADMIN.toString())
+//                .antMatchers(HttpMethod.POST, "/api/v1/users").hasAnyAuthority(Roles.ADMIN.toString())
+//                .antMatchers(HttpMethod.POST, "/api/v1/jobs", "/api/v1/jobs/{id}").hasAnyAuthority(Roles.ADMIN.toString(),Roles.RECRUITER.toString() )
+//                .antMatchers(HttpMethod.PUT, "/api/v1/jobs", "/api/v1/jobs/{id}").hasAnyAuthority(Roles.ADMIN.toString())
+//                .antMatchers(HttpMethod.DELETE, "/api/v1/jobs", "/api/v1/jobs/{id}").hasAnyAuthority(Roles.ADMIN.toString())
                 .anyRequest().permitAll()
                 .and()
                 .httpBasic()
@@ -69,11 +72,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().sameOrigin();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) -> web.ignoring()
-//                .regexMatchers("/css/**","/js/**","/img/**");
-//    }
-
 }

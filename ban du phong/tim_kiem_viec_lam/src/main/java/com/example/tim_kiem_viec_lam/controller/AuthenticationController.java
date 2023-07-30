@@ -1,10 +1,10 @@
 package com.example.tim_kiem_viec_lam.controller;
 
 import com.example.tim_kiem_viec_lam.entity.RefreshToken;
+import com.example.tim_kiem_viec_lam.entity.User;
+import com.example.tim_kiem_viec_lam.exception.AccountNotActiveException;
 import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
-import com.example.tim_kiem_viec_lam.model.request.LoginRequest;
-import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
-import com.example.tim_kiem_viec_lam.model.request.RegistrationRequest;
+import com.example.tim_kiem_viec_lam.model.request.*;
 import com.example.tim_kiem_viec_lam.model.response.JwtResponse;
 import com.example.tim_kiem_viec_lam.repository.RefreshTokenRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
@@ -46,6 +46,7 @@ public class AuthenticationController {
 
     AuthenticationManager authenticationManager;
 
+
     @PostMapping("/login")
     public JwtResponse authenticateUser(@Valid @RequestBody LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
@@ -57,6 +58,12 @@ public class AuthenticationController {
         Set<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toSet());
+
+        User user = userRepository.findById(userDetails.getId()).get();
+
+        if (!user.isActivated()) {
+            throw  new AccountNotActiveException("Account not activated");
+        }
 
         String refreshToken = UUID.randomUUID().toString();
         RefreshToken refreshTokenEntity = RefreshToken.builder()
@@ -76,10 +83,20 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegistrationRequest request) {
-        return userRepository.findByEmail(request.getUsername())
-                .map(user -> new ResponseEntity<>("Username is existed", HttpStatus.BAD_REQUEST))
+        return userRepository.findByEmail(request.getEmail())
+                .map(user -> new ResponseEntity<>("Email is existed", HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
                     userService.registerUser(request);
+                    return new ResponseEntity<>(null, HttpStatus.CREATED);
+                });
+    }
+
+    @PostMapping("/signupRecruiter")
+    public ResponseEntity<?> registerRecruiter(@Valid @RequestBody RegistrationRequest request) {
+        return userRepository.findByEmail(request.getEmail())
+                .map(user -> new ResponseEntity<>("Email is existed", HttpStatus.BAD_REQUEST))
+                .orElseGet(() -> {
+                    userService.registerRecruiter(request);
                     return new ResponseEntity<>(null, HttpStatus.CREATED);
                 });
     }
@@ -99,4 +116,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(null);
     }
 
+
 }
+
+

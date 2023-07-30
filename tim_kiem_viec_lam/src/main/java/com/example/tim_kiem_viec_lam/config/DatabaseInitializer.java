@@ -30,40 +30,6 @@ public class DatabaseInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Optional<Role> roleUserOptinal = roleRepository.findByName(Roles.USER);
-        if(roleUserOptinal.isEmpty()){
-            Role userRole = Role.builder().name(Roles.USER).build();
-            roleRepository.save(userRole);
-
-            Optional<User> candidate = userRepository.findByEmail("kien@gmail.com");
-            if(candidate.isEmpty()){
-                User user = new User();
-                user.setEmail("kien@gmail.com");
-                user.setActivated(true);
-                user.setPassword(passwordEncoder.encode("kien123")); // Encrypt the password
-                Set<Role> roles = new HashSet<>();
-                roles.add(userRole);
-                user.setRoles(roles);
-                userRepository.save(user);
-            }
-        }
-        Optional<Role> roleRecruiterOptinal = roleRepository.findByName(Roles.RECRUITER);
-        if(roleRecruiterOptinal.isEmpty()){
-            Role recruiterRole = Role.builder().name(Roles.RECRUITER).build();
-            roleRepository.save(recruiterRole);
-
-            Optional<User> recruiter = userRepository.findByEmail("thanhkien221100@gmail.com");
-            if(recruiter.isEmpty()){
-                User user = new User();
-                user.setEmail("thanhkien221100@gmail.com");
-                user.setActivated(true);
-                user.setPassword(passwordEncoder.encode("fpt123")); // Encrypt the password
-                Set<Role> roles = new HashSet<>();
-                roles.add(recruiterRole);
-                user.setRoles(roles);
-                userRepository.save(user);
-            }
-        }
 
         Optional<Role> roleAdminOptinal = roleRepository.findByName(Roles.ADMIN);
         if(roleAdminOptinal.isEmpty()){
@@ -78,6 +44,30 @@ public class DatabaseInitializer implements CommandLineRunner {
                 user.setPassword(passwordEncoder.encode("admin123")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();
                 roles.add(adminRole);
+                user.setRoles(roles);
+                userRepository.save(user);
+            }
+        }
+
+        Optional<Role> roleRecruiterOptinal = roleRepository.findByName(Roles.RECRUITER);
+        if(roleRecruiterOptinal.isEmpty()){
+            Role recruiterRole = Role.builder().name(Roles.RECRUITER).build();
+            roleRepository.save(recruiterRole);
+        }
+
+        Optional<Role> roleUserOptinal = roleRepository.findByName(Roles.USER);
+        if(roleUserOptinal.isEmpty()){
+            Role userRole = Role.builder().name(Roles.USER).build();
+            roleRepository.save(userRole);
+
+            Optional<User> candidate = userRepository.findByEmail("kien@gmail.com");
+            if(candidate.isEmpty()){
+                User user = new User();
+                user.setEmail("kien@gmail.com");
+                user.setActivated(true);
+                user.setPassword(passwordEncoder.encode("kien123")); // Encrypt the password
+                Set<Role> roles = new HashSet<>();
+                roles.add(userRole);
                 user.setRoles(roles);
                 userRepository.save(user);
             }

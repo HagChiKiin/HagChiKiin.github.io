@@ -52,7 +52,7 @@ table, tr, th, td {
 
 /*Style header*/
 .header {
-    background-color: rgb(22, 36, 61);
+    background-color: #3c4385 ;
     padding: 0 15px;
     height: 60px;
     color: rgba(255, 255, 255, 0.55);

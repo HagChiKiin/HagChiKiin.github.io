@@ -17,4 +17,7 @@ public class CreateUserRequest {
     @Length(max = 255, message = "email không được vượt quá 255 ký tự")
     String email;
 
+    @NotBlank
+    String password;
+
 }

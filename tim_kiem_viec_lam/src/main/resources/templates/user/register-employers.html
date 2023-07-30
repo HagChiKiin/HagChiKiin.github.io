@@ -61,7 +61,7 @@
                     <!-- login main form -->
                     <div class="col-md-6 col-sm-12 col-12 login-main-right">
 
-                        <form class="login-form reg-form-recruiter">
+                        <form class="login-form reg-form-recruiter" onsubmit="return false;">
                             <div class="login-main-header">
                                 <h3>Đăng Ký Tài Khoản Nhà Tuyển Dụng</h3>
                             </div>
@@ -119,10 +119,25 @@
                             </div>
                             <div class="input-div one">
                                 <div class="div lg-lable">
-                                    <h5>Giới thiệu<span class="req">*</span></h5>
-                                    <input type="text" class="input form-control-lgin" name="introduce" id="introduce">
+                                    <h5>Giới thiệu công ty<span class="req">*</span></h5>
+                                    <input type="text" class="input form-control-lgin" name="address" id="introduce">
                                 </div>
                             </div>
+                            <div class="input-div one">
+                                <h5>Avatar<span class="req">*</span></h5>
+                                <div class="col d-flex justify-content-center">
+                                    <img id="avatar" class="rounded-circle" style="width: 100px;height:100px" alt="Avatar"
+                                         src="/img/default-avatar.jpg"/>
+                                </div>
+                                <div class="row mt-5 ">
+                                    <div class="col d-flex justify-content-center">
+                                        <button type="button"class="btn btn-sm btn-primary change-avatar-btn">Tải lên avatar</button>
+                                        <input type="file" hidden="hidden" id="avatar-input"/>
+                                        <button class="btn btn-sm btn-success submit-avatar-btn ml-1">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group d-block frm-text">
                                 <a href="#" class="fg-login d-inline-block"></a>
                                 <a href="/login-employers" class="fg-login float-right d-inline-block">Bạn đã có tài
@@ -169,8 +184,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="jsmain/signup-recruiter.js"></script>
+<script type="text/javascript" src="jsmain/avatar.js"></script>
+
 </body>
 </html>

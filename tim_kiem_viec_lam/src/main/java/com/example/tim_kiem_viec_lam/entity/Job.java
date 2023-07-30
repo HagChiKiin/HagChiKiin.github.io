@@ -33,11 +33,8 @@ public class Job extends BaseEntity{
     @Column(name = "detail")
     String detail;
 
-    @Column(name = "yoe_from")
-    int yoeFrom;
-
-    @Column(name = "yoe_to")
-    int yoeTo;
+    @Column(name = "yoe")
+    int yoe;
 
     @Column(name = "literacy")
     @Enumerated(EnumType.STRING)
@@ -61,6 +58,9 @@ public class Job extends BaseEntity{
 
     @Column(name = "avatar")
     String avatar;
+
+    @Column(name = "Requirements")
+    String requirement;
 
     @Column(name = "job_status")
     @Enumerated(EnumType.STRING)

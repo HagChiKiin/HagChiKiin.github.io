@@ -1,5 +1,6 @@
 package com.example.tim_kiem_viec_lam.config;
 
+import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.entity.Role;
 import com.example.tim_kiem_viec_lam.entity.User;
 import com.example.tim_kiem_viec_lam.repository.RoleRepository;
@@ -29,16 +30,6 @@ public class DatabaseInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Optional<Role> roleUserOptinal = roleRepository.findByName(Roles.USER);
-        if(roleUserOptinal.isEmpty()){
-            Role userRole = Role.builder().name(Roles.USER).build();
-            roleRepository.save(userRole);
-        }
-        Optional<Role> roleRecruiterOptinal = roleRepository.findByName(Roles.RECRUITER);
-        if(roleRecruiterOptinal.isEmpty()){
-            Role recruiterRole = Role.builder().name(Roles.RECRUITER).build();
-            roleRepository.save(recruiterRole);
-        }
 
         Optional<Role> roleAdminOptinal = roleRepository.findByName(Roles.ADMIN);
         if(roleAdminOptinal.isEmpty()){
@@ -49,6 +40,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             if(admin.isEmpty()){
                 User user = new User();
                 user.setEmail("admin@gmail.com");
+                user.setActivated(true);
                 user.setPassword(passwordEncoder.encode("admin123")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();
                 roles.add(adminRole);
@@ -57,8 +49,28 @@ public class DatabaseInitializer implements CommandLineRunner {
             }
         }
 
+        Optional<Role> roleRecruiterOptinal = roleRepository.findByName(Roles.RECRUITER);
+        if(roleRecruiterOptinal.isEmpty()){
+            Role recruiterRole = Role.builder().name(Roles.RECRUITER).build();
+            roleRepository.save(recruiterRole);
+        }
 
+        Optional<Role> roleUserOptinal = roleRepository.findByName(Roles.USER);
+        if(roleUserOptinal.isEmpty()){
+            Role userRole = Role.builder().name(Roles.USER).build();
+            roleRepository.save(userRole);
 
+            Optional<User> candidate = userRepository.findByEmail("kien@gmail.com");
+            if(candidate.isEmpty()){
+                User user = new User();
+                user.setEmail("kien@gmail.com");
+                user.setActivated(true);
+                user.setPassword(passwordEncoder.encode("kien123")); // Encrypt the password
+                Set<Role> roles = new HashSet<>();
+                roles.add(userRole);
+                user.setRoles(roles);
+                userRepository.save(user);
+            }
+        }
     }
-
 }
