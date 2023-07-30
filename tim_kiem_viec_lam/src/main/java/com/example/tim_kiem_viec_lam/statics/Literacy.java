@@ -6,7 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Literacy {
-    UNIVERSITY,
-    COLLEGE,
-    INTERMEDIATE;
+    UNIVERSITY, // Đại học
+    COLLEGE, // Cao đẳng
+    INTERMEDIATE, // Trung cấp
+    NONE; // Không yêu cầu trình độ học vấn
 }

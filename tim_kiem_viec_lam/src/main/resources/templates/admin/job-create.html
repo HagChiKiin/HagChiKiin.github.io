@@ -96,6 +96,25 @@
                             <label for="dueDateTime" class="form-label">Hạn nộp</label>
                             <input type="datetime-local" class="form-control" id="dueDateTime" name="dueDateTime">
                         </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="location" name="location">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jobStatus" class="form-label">Trạng thái</label>
+                            <select type="text" class="form-control" id="jobStatus" name="jobStatus">
+                                <option>OPEN</option>
+                                <option>ONGOING_INTERVIEWS</option>
+                                <option>HIRED</option>
+                                <option>CLOSED</option>
+                                <option>CANCELLED</option>
+                            </select>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="yoe" class="form-label">Kinh nghiệm</label>
+                            <input type="number" class="form-control" id="yoe" name="yoe">
+                        </div>
 
                     </div>
                     <div class="col-md-6">
@@ -146,6 +165,15 @@
                             <label for="salaryTo" class="form-label">đến</label>
                             <input type="number" class="form-control" id="salaryTo" name="salaryTo">
                         </div>
+                        <div class="mb-3">
+                            <label for="literacy" class="form-label">Trình độ học vấn</label>
+                            <select type="text" class="form-control" id="literacy" name="literacy">
+                                <option>UNIVERSITY</option>
+                                <option>COLLEGE</option>
+                                <option>INTERMEDIATE</option>
+                                <option>NONE</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -180,8 +208,6 @@
         $("#skill").select2({
             placeholder: "- Chọn chủ đề",
         });
-
-
         $("#create-job-form").validate({
             onfocusout: false,
             onkeyup: false,
@@ -199,6 +225,9 @@
                     required: true,
                     maxlength: 255
                 },
+                "avatar": {
+                    required: true,
+                },
                 "salaryFrom": {
                     required: true,
                     min: 0
@@ -207,34 +236,77 @@
                     required: true,
                 },
                 "dueDateTime": {
-                    required: false,
-                },
-                "skill": {
                     required: true,
-                }
+                },
+                "location": {
+                    required: true,
+                    maxlength: 255
+                },
+                "introduce": {
+                    required: true,
+                },
+                "benefit": {
+                    required: true,
+                },
+                "jobStatus": {
+                    required: true,
+                },
+                "detail": {
+                    required: true,
+                },
+                "yoe": {
+                    required: false,
+                    min: 0
+                },
+                "requirement": {
+                    required: true,
+                },
             },
             messages: {
                 "name": {
-                    required: "Bắt buộc nhập tên công ty",
+                    required: "Bắt buộc nhập tên công việc",
                     maxlength: "Hãy nhập tối đa 255 ký tự"
                 },
                 "title": {
                     required: "Bắt buộc nhập tiêu đề tuyển dụng",
                     maxlength: "Hãy nhập tối đa 255 ký tự"
                 },
+                "avatar": {
+                    required: "Hãy chọn ảnh công việc",
+                },
                 "salaryFrom": {
                     required: "Hãy nhập mức lương từ",
                     min: "Mức lương phải lớn hơn hoặc bằng 0"
                 },
                 "salaryTo": {
-                    required: "Hãy nhập mức lương đến"
+                    required: "Hãy nhập mức lương đến",
                 },
                 "dueDateTime": {
                     required: "Hãy nhập hạn nộp"
                 },
-                "skill": {
-                    required: "Hãy nhập kĩ năng"
-                }
+                "location": {
+                    required: "Bắt buộc nhập địa điểm",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "introduce": {
+                    required: "Bắt buộc nhập giới thiệu công việc",
+                },
+                "benefit": {
+                    required: "Bắt buộc nhập quyền lợi công việc",
+                },
+                "jobStatus": {
+                    required: "Bắt buộc chọn trạng thái công việc",
+                },
+                "detail": {
+                    required: "Bắt buộc nhập mô tả công việc",
+                },
+                "yoe": {
+                    required: "Bắt buộc nhập số năm kinh nghiệm",
+                    min: "Số năm kinh nghiệm phải lớn hơn hoặc bằng 0"
+                },
+                "requirement": {
+                    required: "Bắt buộc nhập yêu cầu công việc",
+                },
             }
         })
         $('#job-create-btn').click(function () {
@@ -242,13 +314,37 @@
             if (!isValidForm) return
 
             // Lấy nội dung trong ô input
+            let title = $("#title").val();
+            let name = $("#name").val();
+            let location = $("#location").val();
+            let skill = $("#skill").val();
+            let salaryFrom = $("#salaryFrom").val();
+            let salaryTo = $("#salaryTo").val();
+            let dueDateTime = $("#dueDateTime").val();
+            let introduce = $("#introduce").val();
+            let benefit = $("#benefit").val();
+            let jobStatus = $("#jobStatus").val();
+            let detail = $("#detail").val();
+            let literacy = $("#literacy").val();
+            let yoe = $("#yoe").val();
+            let requirement = $("#requirement").val();
+
             let request = {
-                name: $("#name").val(),
-                title: $("#title").val(),
-                salaryFrom: $("#salaryFrom").val(),
-                salaryTo: $("#salaryTo").val(),
-                dueDateTime: $("#dueDateTime").val(),
-                skill: $("#skill").val()
+                name: name,
+                title: title,
+                avatar: avatar,
+                salaryFrom: salaryFrom,
+                salaryTo: salaryTo,
+                dueDateTime: dueDateTime,
+                location: location,
+                skill: skill,
+                introduce: introduce,
+                benefit: benefit,
+                jobStatus: jobStatus,
+                detail : detail,
+                literacy: literacy,
+                yoe: yoe,
+                requirement: requirement
             }
             $.ajax({
                 url: "/api/v1/jobs",
