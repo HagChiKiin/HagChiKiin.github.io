@@ -5,18 +5,20 @@ import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.exception.NotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.JobRequest;
-import com.example.tim_kiem_viec_lam.model.response.JobResponse;
 import com.example.tim_kiem_viec_lam.repository.ApplicationRepository;
 import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.RecruiterRepository;
+import com.example.tim_kiem_viec_lam.repository.UserRepository;
+import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -30,6 +32,8 @@ public class JobService {
 
     RecruiterRepository recruiterRepository;
 
+    UserRepository userRepository;
+
     List<Job> jobs;
 
     public List<Job> getAllJob() {
@@ -41,30 +45,32 @@ public class JobService {
 //        Job job = objectMapper.convertValue(jobRequest, Job.class);
 //        jobRepository.save(job);
 //        return objectMapper.convertValue(job, JobResponse.class);
-            Recruiter recruiter = recruiterRepository.findById(jobRequest.getId())
-                    .orElseThrow(() -> {
-                        throw new NotFoundException("Not found recruiter with id = " + jobRequest.getId());
-                    });
-            Job job = Job.builder()
-                    .jobStatus(jobRequest.getJobStatus())
-                    .benefit(jobRequest.getBenefit())
-                    .detail(jobRequest.getDetail())
-                    .closeDateTime(jobRequest.getCloseDateTime())
-                    .deletedDateTime(jobRequest.getDeletedDateTime())
-                    .dueDateTime(jobRequest.getDueDateTime())
-                    .literacy(jobRequest.getLiteracy())
-                    .location(jobRequest.getLocation())
-                    .publishDateTime(jobRequest.getPublishDateTime())
-                    .recruiter(recruiter)
-                    .salaryFrom(jobRequest.getSalaryFrom())
-                    .salaryTo(jobRequest.getSalaryTo())
-                    .skill(String.valueOf(jobRequest.getSkill()))
-                    .avatar(jobRequest.getAvatar())
-                    .title(jobRequest.getTitle())
-                    .workType(jobRequest.getWorkType())
-                    .yoe(jobRequest.getYoe())
-                    .build();
-            jobRepository.save(job);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        Recruiter recruiter = recruiterRepository.findByUserId(customUserDetails.getId())
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found recruiter with id = " + jobRequest.getId());
+                });
+        Job job = Job.builder()
+                .jobStatus(jobRequest.getJobStatus())
+                .benefit(jobRequest.getBenefit())
+                .detail(jobRequest.getDetail())
+                .closeDateTime(jobRequest.getCloseDateTime())
+                .deletedDateTime(jobRequest.getDeletedDateTime())
+                .dueDateTime(jobRequest.getDueDateTime())
+                .literacy(jobRequest.getLiteracy())
+                .location(jobRequest.getLocation())
+                .publishDateTime(jobRequest.getPublishDateTime())
+                .recruiter(recruiter)
+                .salaryFrom(jobRequest.getSalaryFrom())
+                .salaryTo(jobRequest.getSalaryTo())
+                .skill(String.valueOf(jobRequest.getSkill()))
+                .avatar(jobRequest.getAvatar())
+                .title(jobRequest.getTitle())
+                .workType(jobRequest.getWorkType())
+                .yoe(jobRequest.getYoe())
+                .build();
+        jobRepository.save(job);
     }
 
     public void updateJob(Long id, JobRequest jobRequest) throws NotFoundException {

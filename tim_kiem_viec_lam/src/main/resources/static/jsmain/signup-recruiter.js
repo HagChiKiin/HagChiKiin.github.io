@@ -67,6 +67,25 @@ $(document).ready(function () {
         },
     });
 
+    let chosenFile = null;
+
+    $("#recruiter-avatar").click(() => {
+        $("#avatar-input").click();
+    });
+
+    $("#avatar-input").change(event => {
+        const tempFiles = event.target.files;
+        if (!tempFiles || tempFiles.length === 0) {
+            return;
+        }
+        console.log(event.target.files[0].data);
+        chosenFile = tempFiles[0];
+
+        const imageBlob = new Blob([chosenFile], {type: chosenFile.type});
+        const imageUrl = URL.createObjectURL(imageBlob);
+        $("#recruiter-avatar").attr("src", imageUrl);
+    });
+
     $('#register-recruiter').click(function () {
         let isValidForm = $('.reg-form-recruiter').valid();
         if (!isValidForm) return;
@@ -80,8 +99,6 @@ $(document).ready(function () {
         let name = $('#name').val();
         let address = $('#address').val();
         let introduce = $('#introduce').val();
-        let avatar = $("#avatar-input").val()
-        console.log(avatar)
 
         // Tạo object chứa dữ liệu đăng ký
         let formData = {
@@ -92,17 +109,21 @@ $(document).ready(function () {
             phone: phone,
             name: name,
             address: address,
-            introduce: introduce,
-            avatar: avatar
+            introduce: introduce
         };
+
+        var fd = new FormData();
+        fd.append('recruiter', JSON.stringify(formData));
+        fd.append('avatar', chosenFile);
+
         // Gửi Ajax request đăng ký
         $.ajax({
-            url: '/api/v1/authentication/signupRecruiter',
+            url: '/api/v1/authentication/recruiter-signup',
+            data: fd,
+            processData: false,
+            contentType: false,
             type: 'POST',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(formData),
             success: function (response) {
-                console.log(response);
                 localStorage.setItem("userRole", "RECRUITER");
                 // localStorage.setItem("userRole", response.userInfomation.roles[0]);
                 toastr.success('Đăng Kí Thành Công! Vui lòng truy cập email của bạn và xác thực tài khoản');
