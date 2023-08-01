@@ -62,15 +62,15 @@ public class UserService {
 
     final JwtUtils jwtUtils;
 
-    private static final String LOCAL_FOLDER = "D:/img";
+    private static final String LOCAL_FOLDER = "/Users/Admin/Desktop";
 
     public String uploadLocalFile(MultipartFile file) throws IOException {
-        if (ObjectUtils.isEmpty(file) || file.isEmpty()) {
-            return null;
-        }
-        String filePath = LOCAL_FOLDER + File.separator + file.getOriginalFilename();
-        Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
-        return filePath;
+            if (ObjectUtils.isEmpty(file) || file.isEmpty()) {
+                return null;
+            }
+            String filePath = LOCAL_FOLDER + File.separator + file.getOriginalFilename();
+            Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+            return filePath;
     }
 
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,

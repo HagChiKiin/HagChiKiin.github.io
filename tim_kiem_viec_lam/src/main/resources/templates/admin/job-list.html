@@ -107,12 +107,10 @@
                     </td>
                     <td th:text="${job.salaryFrom}">29,194,223 VNĐ</td>
                     <td th:text="${job.salaryTo}">29,194,223 VNĐ</td>
-                    <td th:if="${job.recruiter != null}">>
-                        <a href="/admin/companies/1" th:text="${job.recruiter.name}">Haley, Bailey and Brakus</a>
+                    <td >
+                        <a th:each="recruiter: ${recruiterList}" th:text="${recruiter.name}">Haley, Bailey and Brakus</a>
                     </td>
-                    <td th:unless="${job.recruiter != null}">
-                        N/A
-                    </td>
+
                 </tr>
                 </tbody>
             </table>

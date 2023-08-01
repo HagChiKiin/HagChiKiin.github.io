@@ -26,13 +26,13 @@ public class RecruiterController {
     }
 
     @PutMapping("/{recruiter_id}")
-    public ResponseEntity<?> updateJob(@PathVariable Long recruiter_id, @RequestBody @Valid RecruiterRequest request) {
+    public ResponseEntity<?> updateRecruiter(@PathVariable Long recruiter_id, @RequestBody @Valid RecruiterRequest request) {
         recruiterService.updateRecruiter(recruiter_id, request);
         return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("/{recruiter_id}")
-    public ResponseEntity<?> deleteJob(@PathVariable Long recruiter_id) {
+    public ResponseEntity<?> deleteRecruiter(@PathVariable Long recruiter_id) {
         recruiterService.deleteRecruiter(recruiter_id);
         return ResponseEntity.noContent().build();
     }

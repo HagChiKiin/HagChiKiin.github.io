@@ -41,30 +41,30 @@ public class JobService {
 //        Job job = objectMapper.convertValue(jobRequest, Job.class);
 //        jobRepository.save(job);
 //        return objectMapper.convertValue(job, JobResponse.class);
-//        Recruiter recruiter = recruiterRepository.findById(jobRequest.getId())
-//                .orElseThrow(() -> {
-//                    throw new NotFoundException("Not found supporter with id = " + jobRequest.getId());
-//                });
-        Job job = Job.builder()
-                .jobStatus(jobRequest.getJobStatus())
-                .benefit(jobRequest.getBenefit())
-                .detail(jobRequest.getDetail())
-                .closeDateTime(jobRequest.getCloseDateTime())
-                .deletedDateTime(jobRequest.getDeletedDateTime())
-                .dueDateTime(jobRequest.getDueDateTime())
-                .literacy(jobRequest.getLiteracy())
-                .location(jobRequest.getLocation())
-                .publishDateTime(jobRequest.getPublishDateTime())
-                .recruiter(jobRequest.getRecruiter())
-                .salaryFrom(jobRequest.getSalaryFrom())
-                .salaryTo(jobRequest.getSalaryTo())
-                .skill(String.valueOf(jobRequest.getSkill()))
-                .avatar(jobRequest.getAvatar())
-                .title(jobRequest.getTitle())
-                .workType(jobRequest.getWorkType())
-                .yoe(jobRequest.getYoe())
-                .build();
-        jobRepository.save(job);
+            Recruiter recruiter = recruiterRepository.findById(jobRequest.getId())
+                    .orElseThrow(() -> {
+                        throw new NotFoundException("Not found recruiter with id = " + jobRequest.getId());
+                    });
+            Job job = Job.builder()
+                    .jobStatus(jobRequest.getJobStatus())
+                    .benefit(jobRequest.getBenefit())
+                    .detail(jobRequest.getDetail())
+                    .closeDateTime(jobRequest.getCloseDateTime())
+                    .deletedDateTime(jobRequest.getDeletedDateTime())
+                    .dueDateTime(jobRequest.getDueDateTime())
+                    .literacy(jobRequest.getLiteracy())
+                    .location(jobRequest.getLocation())
+                    .publishDateTime(jobRequest.getPublishDateTime())
+                    .recruiter(recruiter)
+                    .salaryFrom(jobRequest.getSalaryFrom())
+                    .salaryTo(jobRequest.getSalaryTo())
+                    .skill(String.valueOf(jobRequest.getSkill()))
+                    .avatar(jobRequest.getAvatar())
+                    .title(jobRequest.getTitle())
+                    .workType(jobRequest.getWorkType())
+                    .yoe(jobRequest.getYoe())
+                    .build();
+            jobRepository.save(job);
     }
 
     public void updateJob(Long id, JobRequest jobRequest) throws NotFoundException {

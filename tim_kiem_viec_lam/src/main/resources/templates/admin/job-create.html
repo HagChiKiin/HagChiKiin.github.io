@@ -45,7 +45,7 @@
 <!--HEADER-->
 <div class="header">
     <div class="logo">
-        <a href="#">
+        <a href="/">
             <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px"alt="logo">
         </a>
     </div>
@@ -146,6 +146,7 @@
                                 <option value=".Net">.Net</option>
                                 <option value="Vue">Vue</option>
                                 <option value="Angular">Angular</option>
+                                <option value="Python">Python</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -225,9 +226,6 @@
                     required: true,
                     maxlength: 255
                 },
-                "avatar": {
-                    required: true,
-                },
                 "salaryFrom": {
                     required: true,
                     min: 0
@@ -270,9 +268,6 @@
                 "title": {
                     required: "Bắt buộc nhập tiêu đề tuyển dụng",
                     maxlength: "Hãy nhập tối đa 255 ký tự"
-                },
-                "avatar": {
-                    required: "Hãy chọn ảnh công việc",
                 },
                 "salaryFrom": {
                     required: "Hãy nhập mức lương từ",
@@ -332,7 +327,6 @@
             let request = {
                 name: name,
                 title: title,
-                avatar: avatar,
                 salaryFrom: salaryFrom,
                 salaryTo: salaryTo,
                 dueDateTime: dueDateTime,

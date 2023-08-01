@@ -34,11 +34,11 @@ public class JobController {
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping("{job_id}")
-    public ResponseEntity<?> deleteJob(@PathVariable Long id) {
-        jobService.deleteJob(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @DeleteMapping("{job_id}")
+//    public ResponseEntity<?> deleteJob(@PathVariable Long id) {
+//        jobService.deleteJob(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
     @PostMapping("/{job_id}/application")
     public ResponseEntity<?> applyToJob(@PathVariable("jobId") Long id, @RequestBody @Valid Application application ){

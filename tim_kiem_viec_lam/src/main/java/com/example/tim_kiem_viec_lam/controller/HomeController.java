@@ -51,7 +51,8 @@ public class HomeController {
     @GetMapping("/recruiter/jobs")
     public String getJob(Model model) {
         List<Job> jobList = jobService.getAllJob();
-
+        List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
+        model.addAttribute("recruiterList",recruiterList);
         model.addAttribute("jobList",jobList);
         return "admin/job-list";
 
