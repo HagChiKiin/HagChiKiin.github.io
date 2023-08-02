@@ -46,7 +46,7 @@
 <div class="header">
     <div class="logo">
         <a href="/">
-            <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px"alt="logo">
+            <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px" alt="logo">
         </a>
     </div>
 
@@ -89,6 +89,16 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="mb-3">
+                            <label for="name" class="form-label">Công ty</label>
+                            <select type="text" class="form-control" id="name" name="name">
+                                <option th:each="recruiter : ${recruiterList}" th:value="${recruiter.id}"
+                                        th:text="${recruiter.name}">
+
+                                </option>
+                            </select>
+
+                        </div>
+                        <div class="mb-3">
                             <label for="title" class="form-label">Tên công việc</label>
                             <input type="text" class="form-control" id="title" name="title">
                         </div>
@@ -115,24 +125,6 @@
                             <label for="yoe" class="form-label">Kinh nghiệm</label>
                             <input type="number" class="form-control" id="yoe" name="yoe">
                         </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="benefit" class="form-label">Phúc lợi</label>
-                            <textarea class="form-control" id="benefit" name="benefit" ></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="detail" class="form-label">Mô tả công việc</label>
-                            <textarea type="text" class="form-control" id="detail" name="detail"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="requirement" class="form-label">Yêu cầu công việc</label>
-                            <textarea type="text" class="form-control" id="requirement" name="requirement"></textarea>
-                        </div>
-
-                    </div>
-                    <div class="col-md-3">
                         <div class="mb-3">
                             <label for="skill" class="form-label">Kỹ năng</label>
                             <select id="skill" class="form-control" multiple="multiple" name="skill">
@@ -147,17 +139,11 @@
                                 <option value="Vue">Vue</option>
                                 <option value="Angular">Angular</option>
                                 <option value="Python">Python</option>
+                                <option value="C#">C#</option>
+                                <option value="SQL">SQL</option>
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label" >Công ty</label>
-                            <select type="text" class="form-control" id="name" name="name" >
-                                <option th:each="recruiter : ${recruiterList}"  th:value="${recruiter.id}" th:text="${recruiter.name}">
 
-                                </option>
-                            </select>
-
-                        </div>
                         <div class="mb-3">
                             <label for="salaryFrom" class="form-label">Mức lương từ</label>
                             <input type="number" class="form-control" id="salaryFrom" name="salaryFrom">
@@ -175,6 +161,23 @@
                                 <option>NONE</option>
                             </select>
                         </div>
+
+                    </div>
+                    <div class="col-md-9">
+                        <div class="mb-3">
+                            <label for="benefit" class="form-label">Phúc lợi</label>
+                            <textarea rows="10" class="form-control" id="benefit" name="benefit"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="detail" class="form-label">Mô tả công việc</label>
+                            <textarea rows="10" type="text" class="form-control" id="detail" name="detail"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="requirement" class="form-label">Yêu cầu công việc</label>
+                            <textarea rows="10" type="text" class="form-control" id="requirement"
+                                      name="requirement"></textarea>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -202,9 +205,33 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!--<script type="text/javascript" src="jsmain/check-permission.js"></script>-->
 
 
 <script>
+    window.onload = function () {
+        const jwtToken = localStorage.getItem("jwtToken");
+
+        if (!jwtToken) {
+            // Chưa đăng nhập, chuyển hướng về trang đăng nhập
+            window.location.href = "http://localhost:8080/splash";
+        } else {
+            const userRoles = ["RECRUITER"]; // Giả định bạn đã lấy thông tin vai trò từ server
+
+            // Kiểm tra vai trò và chuyển hướng người dùng
+            const pathName = window.location.pathname;
+
+            if (pathName.startsWith('/admin/') && !userRoles.includes("ADMIN")) {
+                window.location.href = "http://localhost:8080";
+            } else if (pathName.startsWith('/recruiter/') && !userRoles.includes("RECRUITER")) {
+                window.location.href = "http://localhost:8080";
+            } else {
+                // Có quyền truy cập, tiếp tục xử lý khác
+                // ...
+            }
+        }
+    };
+
     $(document).ready(function () {
         $("#skill").select2({
             placeholder: "- Chọn chủ đề",
@@ -335,25 +362,35 @@
                 introduce: introduce,
                 benefit: benefit,
                 jobStatus: jobStatus,
-                detail : detail,
+                detail: detail,
                 literacy: literacy,
                 yoe: yoe,
                 requirement: requirement
             }
-            $.ajax({
-                url: "/api/v1/jobs",
-                type: 'POST',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(request),
-                success: function (response) {
-                    toastr.success("Thêm công việc thành công");
-                    window.location.href = 'http://localhost:8080/recruiter/jobs'
-                },
-                error: function (data) {
-                    console.log(data);
-                    toastr.error("Lỗi khi thêm công việc");
-                }
-            });
+            let jwtToken = localStorage.getItem("jwtToken")
+            if (jwtToken) {
+                $.ajax({
+                    url: "/api/v1/jobs",
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(request),
+                    headers: {
+                        'Authorization': 'Bearer' + " " + jwtToken
+                    },
+                    success: function (response) {
+                        toastr.success("Thêm công việc thành công");
+
+                        window.location.href = 'http://localhost:8080/recruiter/jobs'
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        toastr.error("Lỗi khi thêm công việc");
+                    }
+                });
+            } else {
+                toastr.warning("Bạn chưa đăng nhập")
+            }
+
         })
     });
 

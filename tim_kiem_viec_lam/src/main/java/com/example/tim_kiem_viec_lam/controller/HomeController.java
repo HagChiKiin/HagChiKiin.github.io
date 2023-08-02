@@ -57,6 +57,13 @@ public class HomeController {
         return "admin/job-list";
 
     }
+    @GetMapping("/recruiter/jobs/{id}")
+    public String getDetailCourse(@PathVariable Integer id, Model model) {
+        return "admin/job-edit";
+
+    }
+
+
 
     @GetMapping("/recruiter/jobs-create")
     public String createJob(Model model) {
@@ -113,5 +120,10 @@ public class HomeController {
     @GetMapping("/recruiter/published-recruitment")
     public String publishRecruitment(){
         return "recruiter/published-recruitment";
+    }
+
+    @GetMapping("/splash")
+    public String showSplashPage() {
+        return "user/splash-page"; // Trang trung gian (splash page)
     }
 }

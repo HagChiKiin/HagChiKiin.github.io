@@ -1,6 +1,7 @@
 .error {
     color: red;
 }
+
 .navbar__item__dropdown-menu {
     -webkit-animation: fadein .4s;
     animation: fadein .4s;
@@ -16,7 +17,8 @@
     top: 100%;
     z-index: 2;
 }
-.navbar-right__item>.title:after {
+
+.navbar-right__item > .title:after {
     color: #00b14f;
     content: "⌄";
     display: block;
@@ -26,4 +28,8 @@
     top: 50%;
     transform: translate(-50%, -50%);
     transition: .7s ease-in-out;
+}
+
+#recruiter-avatar {
+    cursor: pointer;
 }

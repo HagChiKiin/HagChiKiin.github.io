@@ -71,8 +71,24 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-                toastr.error("Đăng nhập không thành công!")
+                if (data.status === 401) {
+                    toastr.error("Bạn đã nhập sai hoặc tài khoản cần kích hoạt khi sử dụng!");
+                    return;
+                }
+                if (data.status === 500) {
+                    toastr.error("Đã có lỗi xảy ra, vui lòng thử lại!");
+                    return;
+                }
+                toastr.error("Đăng nhập không thành công!");
             },
+            // statusCode: {
+            //     401: function () {
+            //         toastr.error("Bạn cần kích hoạt tài khoản trước khi sử dụng!");
+            //     },
+            //     500: function () {
+            //         toastr.error("Đã có lỗi xảy ra, vui lòng thử lại!");
+            //     },
+            // },
         });
     };
 // Bắt sự kiện click nút đăng nhập

@@ -99,7 +99,7 @@
                 <tr th:each="job, info: ${jobList}">
                     <td th:text="${info.index + 1}">1</td>
                     <td>
-                        <a th:href="@{/admin/jobs/{id} (id=${job.id})}" th:text="${job.title}">Legacy IT Agent</a>
+                        <a th:href="@{/recruiter/jobs/{id} (id=${job.id})}" th:text="${job.title}">Legacy IT Agent</a>
                     </td>
                     <td>
                         <span class="me-1 badge bg-warning text-dark" th:text="${job.skill}">Devops</span><span

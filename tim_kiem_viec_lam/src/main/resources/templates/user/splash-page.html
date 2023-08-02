@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #fdcb6e; /* Màu nền của trang */
+        }
+
+        .splash-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Chiều cao của trang */
+            background-color: #ffffff; /* Màu nền của splash container */
+        }
+
+        .splash-content {
+            text-align: center;
+            opacity: 0; /* Bắt đầu ẩn content */
+        }
+
+        .splash-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #333333; /* Màu chữ của tiêu đề */
+        }
+
+        .splash-content p {
+            font-size: 1.5rem;
+            color: #666666; /* Màu chữ của nội dung */
+        }
+
+        .countdown {
+            font-size: 2rem;
+            margin-top: 10px;
+            color: #e74c3c; /* Màu chữ đếm ngược */
+        }
+
+        /* Hiệu ứng fade-in/fade-out */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Thêm hiệu ứng fade-in khi splash-content xuất hiện */
+        .splash-content {
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Thêm hiệu ứng fade-out trước khi chuyển hướng */
+        body {
+            animation: fadeOut 1s 6s forwards;
+        }
+
+        .loading-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin-top: 10px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #e74c3c;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="splash-container">
+    <div class="splash-content">
+        <h1 style="color: #e74c3c;">Welcome to Our Website</h1>
+        <p style="color: #34495e;">Please wait while we process your request...</p>
+        <div class="loading-icon">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        </div>
+        <div class="countdown" id="countdown">5</div>
+    </div>
+</div>
+<script>
+    // Đếm ngược
+    let count = 5; // Thời gian đếm ngược (số giây)
+    const countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+        countdownElement.textContent = count;
+        count--;
+
+        if (count < 0) {
+            // Khi đếm ngược hoàn tất, chuyển hướng về trang chủ
+            window.location.href = "/";
+        } else {
+            setTimeout(updateCountdown, 1000); // Cập nhật sau mỗi 1 giây (1000 ms)
+        }
+    }
+
+    setTimeout(updateCountdown, 1000);
+</script>
+</body>
+
+</html>

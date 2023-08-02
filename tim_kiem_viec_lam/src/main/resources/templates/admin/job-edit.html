@@ -106,43 +106,95 @@
                         </button>
                     </div>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="job-title" class="form-label">Tên công việc</label>
-                                <input type="text" class="form-control" id="job-title" value="Legacy IT Agent">
-                            </div>
-                            <div class="mb-3">
-                                <label for="job-description" class="form-label">Mô tả ngắn</label>
-                                <textarea class="form-control" id="job-description"
-                                          rows="10">A neque qui aliquid minus in alias excepturi iusto magni laboriosam quo quos voluptatum possimus asperiores natus facere et dolorem consequatur quo quia voluptatum facilis odit cum eaque ratione repudiandae consectetur neque qui qui saepe omnis optio numquam recusandae accusamus et voluptatem laboriosam ex necessitatibus pariatur occaecati ab et reiciendis quaerat hic quo vero velit minus placeat rerum soluta sed deserunt quod itaque debitis sequi labore voluptatem possimus quas quibusdam et quo omnis voluptatibus ab et dolorem quaerat enim aperiam praesentium cupiditate consectetur quasi maxime dicta et et enim similique in ut vitae aut occaecati cum eveniet odit enim similique non.</textarea>
-                            </div>
-                        </div>
+                                <label for="name" class="form-label" >Công ty</label>
+                                <select type="text" class="form-control" id="name" name="name" >
+                                    <option th:each="recruiter : ${recruiterList}"  th:value="${recruiter.id}" th:text="${recruiter.name}">
 
-                        <div class="col-md-4">
+                                    </option>
+                                </select>
+
+                            </div>
                             <div class="mb-3">
-                                <label for="job-skill" class="form-label">Kỹ năng</label>
-                                <select id="job-skill" class="form-control" multiple="multiple">
+                                <label for="title" class="form-label">Tên công việc</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="dueDateTime" class="form-label">Hạn nộp</label>
+                                <input type="datetime-local" class="form-control" id="dueDateTime" name="dueDateTime">
+                            </div>
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" id="location" name="location">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jobStatus" class="form-label">Trạng thái</label>
+                                <select type="text" class="form-control" id="jobStatus" name="jobStatus">
+                                    <option>OPEN</option>
+                                    <option>ONGOING_INTERVIEWS</option>
+                                    <option>HIRED</option>
+                                    <option>CLOSED</option>
+                                    <option>CANCELLED</option>
+                                </select>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="yoe" class="form-label">Kinh nghiệm</label>
+                                <input type="number" class="form-control" id="yoe" name="yoe">
+                            </div>
+                            <div class="mb-3">
+                                <label for="skill" class="form-label">Kỹ năng</label>
+                                <select id="skill" class="form-control" multiple="multiple" name="skill">
                                     <option value="Javascript">Javascript</option>
                                     <option value="Java">Java</option>
                                     <option value="Golang">Golang</option>
                                     <option value="PHP">PHP</option>
                                     <option value="React">React</option>
                                     <option value="AWS">AWS</option>
+                                    <option value="Devops">Devops</option>
+                                    <option value=".Net">.Net</option>
+                                    <option value="Vue">Vue</option>
+                                    <option value="Angular">Angular</option>
+                                    <option value="Python">Python</option>
+                                    <option value="C#">C#</option>
+                                    <option value="SQL">SQL</option>
                                 </select>
                             </div>
+
                             <div class="mb-3">
-                                <label for="job-company" class="form-label">Công ty</label>
-                                <select id="job-company" class="form-control">
-                                    <option value="1" selected="selected">Haley, Bailey and Brakus</option>
-                                    <option value="2">Armstrong, Nolan and Heaney</option>
-                                    <option value="3">Trantow, Collier and Kirlin</option>
-                                    <option value="4">Hilll-Wiza</option>
+                                <label for="salaryFrom" class="form-label">Mức lương từ</label>
+                                <input type="number" class="form-control" id="salaryFrom" name="salaryFrom">
+                            </div>
+                            <div class="mb-3">
+                                <label for="salaryTo" class="form-label">đến</label>
+                                <input type="number" class="form-control" id="salaryTo" name="salaryTo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="literacy" class="form-label">Trình độ học vấn</label>
+                                <select type="text" class="form-control" id="literacy" name="literacy">
+                                    <option>UNIVERSITY</option>
+                                    <option>COLLEGE</option>
+                                    <option>INTERMEDIATE</option>
+                                    <option>NONE</option>
                                 </select>
                             </div>
+
+                        </div>
+                        <div class="col-md-9">
                             <div class="mb-3">
-                                <label for="job-salary" class="form-label">Mức lương</label>
-                                <input type="text" class="form-control" id="job-salary" value="29194223">
+                                <label for="benefit" class="form-label">Phúc lợi</label>
+                                <textarea rows="10" class="form-control" id="benefit" name="benefit" ></textarea>
                             </div>
+                            <div class="mb-3">
+                                <label for="detail" class="form-label">Mô tả công việc</label>
+                                <textarea rows="10" type="text" class="form-control" id="detail" name="detail"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="requirement" class="form-label">Yêu cầu công việc</label>
+                                <textarea rows="10" type="text" class="form-control" id="requirement" name="requirement"></textarea>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -214,7 +266,7 @@
 
 <script>
     $(document).ready(function() {
-        $("#job-skill").select2();
+        $("#skill").select2();
     });
 </script>
 

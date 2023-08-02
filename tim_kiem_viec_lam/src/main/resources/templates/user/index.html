@@ -252,10 +252,10 @@
 
                     <div class="job-group">
                         <div class="job pagi">
-                            <div class="job-content">
+                            <div class="job-content" th:each="job : ${recruiterList}">
                                 <div class="job-logo">
                                     <a href="#">
-                                        <img src="img/fpt-logo.png" class="job-logo-ima" alt="job-logo">
+                                        <img th:src="${job.avatar}" class="job-logo-ima" alt="job-logo">
                                     </a>
                                 </div>
 
