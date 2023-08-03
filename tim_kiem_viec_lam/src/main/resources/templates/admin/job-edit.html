@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Legacy IT Agent</title>
+    <title th:text="'Công việc ' + ${job.id}"></title>
 
     <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
 
@@ -96,7 +96,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="job" role="tabpanel" aria-labelledby="job-tab">
                     <div class="d-flex justify-content-between mb-4">
-                        <button class="btn-custom btn-update-job"  id="updateJobButton">
+                        <button class="btn-custom btn-update-job" id="updateJobButton">
                             <span><i class="fa-solid fa-plus"></i></span>
                             Cập nhật
                         </button>
@@ -105,29 +105,27 @@
                             Xóa
                         </button>
                     </div>
-                    <div class="row">
+                    <div class="row" id="update-form">
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <input type="hidden" id="jobId" name="jobId">
                                 <label for="name" class="form-label">Công ty</label>
-                                <select type="text" class="form-control" id="name" name="name">
-                                    <option th:each="recruiter : ${recruiterList}" th:value="${recruiter.id}"
-                                            th:text="${recruiter.name}">
-                                    </option>
-                                </select>
+                                <input th:value="${job.recruiter.name}" type="text" class="form-control" id="name"
+                                       name="name">
+
                             </div>
                             <div class="mb-3">
                                 <label for="title" class="form-label">Tên công việc</label>
-                                <input type="text" class="form-control" id="title" name="title">
+                                <input th:value="${job.title}" type="text" class="form-control" id="title" name="title">
                             </div>
                             <div class="mb-3">
                                 <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                                <input type="date" class="form-control" id="dueDateTime"
+                                <input th:value="${job.dueDateTime}" type="date" class="form-control" id="dueDateTime"
                                        name="dueDateTime">
                             </div>
                             <div class="mb-3">
                                 <label for="location" class="form-label">Địa chỉ</label>
-                                <input type="text" class="form-control" id="location"
+                                <input th:value="${job.location}" type="text" class="form-control" id="location"
                                        name="location">
                             </div>
                             <div class="mb-3">
@@ -143,7 +141,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="yoe" class="form-label">Kinh nghiệm</label>
-                                <input type="number" class="form-control" id="yoe" name="yoe">
+                                <input th:value="${job.yoe}" type="number" class="form-control" id="yoe" name="yoe">
                             </div>
                             <div class="mb-3">
                                 <label for="skill" class="form-label">Kỹ năng</label>
@@ -166,17 +164,18 @@
 
                             <div class="mb-3">
                                 <label for="salaryFrom" class="form-label">Mức lương từ</label>
-                                <input type="text" class="form-control" id="salaryFrom"
+                                <input th:value="${job.salaryFrom}" type="text" class="form-control" id="salaryFrom"
                                        name="salaryFrom">
                             </div>
                             <div class="mb-3">
                                 <label for="salaryTo" class="form-label">đến</label>
-                                <input type="text" class="form-control" id="salaryTo"
+                                <input th:value="${job.salaryTo}" type="text" class="form-control" id="salaryTo"
                                        name="salaryTo">
                             </div>
                             <div class="mb-3">
                                 <label for="literacy" class="form-label">Trình độ học vấn</label>
-                                <select type="text" class="form-control" id="literacy" name="literacy">
+                                <select th:value="${job.literacy}" type="text" class="form-control" id="literacy"
+                                        name="literacy">
                                     <option>UNIVERSITY</option>
                                     <option>COLLEGE</option>
                                     <option>INTERMEDIATE</option>
@@ -188,17 +187,20 @@
                         <div class="col-md-9">
                             <div class="mb-3">
                                 <label for="benefit" class="form-label">Phúc lợi</label>
-                                <textarea rows="10" class="form-control" id="benefit" name="benefit"
+                                <textarea th:text="${job.benefit}" rows="10" class="form-control" id="benefit"
+                                          name="benefit"
                                 ></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="detail" class="form-label">Mô tả công việc</label>
-                                <textarea rows="10" type="text" class="form-control" id="detail" name="detail"
+                                <textarea th:text="${job.detail}" rows="10" type="text" class="form-control" id="detail"
+                                          name="detail"
                                 ></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="requirement" class="form-label">Yêu cầu công việc</label>
-                                <textarea rows="10" type="text" class="form-control" id="requirement" name="requirement"
+                                <textarea th:text="${job.requirement}" rows="10" type="text" class="form-control"
+                                          id="requirement" name="requirement"
                                 ></textarea>
                             </div>
                         </div>
@@ -219,22 +221,14 @@
                         <tr>
                             <td>1</td>
                             <td>Noah Lott</td>
-                            <td class="w-50">Deleniti praesentium laborum et fugiat ea enim aliquid corporis
-                                architecto soluta numquam beatae earum quae ad id ut recusandae aut eveniet et
-                                aliquam voluptate voluptatem totam deleniti quia est eveniet qui porro quam
-                                blanditiis harum molestias impedit et veritatis voluptas magni voluptate nisi
-                                porro eveniet rem esse sit perspiciatis qui.
+                            <td class="w-50">Deleniti
                             </td>
                             <td><a href="" target="_blank">Xem chi tiết</a></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Penny Bunn</td>
-                            <td class="w-50">Qui ab et provident quo architecto sint voluptatum error dolorem
-                                consequatur iusto ut libero occaecati et harum accusantium non veritatis eum
-                                sunt perferendis repellendus quasi illum dignissimos quia ea in quaerat facere
-                                dicta in vero ut qui distinctio vitae velit quis quae eveniet iure saepe
-                                laboriosam qui sint quas magnam sunt omnis id dicta.
+                            <td class="w-50">Qui
                             </td>
                             <td><a href="" target="_blank">Xem chi tiết</a></td>
                         </tr>
@@ -262,16 +256,14 @@
 <script src="/js/main.js"></script>
 <!-- Components JS -->
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 <script>
     window.onload = function () {
         const jwtToken = localStorage.getItem("jwtToken");
@@ -299,90 +291,231 @@
             }
         }
     };
-    $(document).ready(function () {
-        const url = window.location.href;
-        const parts = url.split("/");
-        const jobId = parts[parts.length - 1];
+</script>
+<script>
+    // Truy cập vào các thành phần
+    const name = document.getElementById("name")
+    const title = document.getElementById("title")
+    const dueDateTime = document.getElementById("dueDateTime")
+    const location = document.getElementById("location")
+    const jobStatus = document.getElementById("jobStatus")
+    const yoe = document.getElementById("yoe")
+    const salaryFrom = document.getElementById("salaryFrom")
+    const salaryTo = document.getElementById("salaryTo")
+    const literacy = document.getElementById("literacy")
+    const benefit = document.getElementById("benefit")
+    const detail = document.getElementById("detail")
+    const requirement = document.getElementById("requirement")
+    const skill = $("#skill");
 
-        if (jobId) {
-            getJobDetails(jobId); // Gọi hàm để lấy thông tin công việc dựa vào ID
-        } else {
-            toastr.error("Không tìm thấy ID công việc!");
-        }
-
-        $("#skill").select2();
-
-        $(".btn-update-job").click(function () {
-            const jobId = $("#name").val(); // Lấy job id từ trường input "name"
-            updateJob(jobId);
-        });
+    skill.select2({
+        placeholder: "- Chọn chủ đề",
     });
+</script>
+<script th:inline="javascript">
+    let job = [[${job}]]
+    console.log(job)
+    console.log("11112222")
+    // $.ajax({
+    //     url: '/api/v1/jobs/' + [[${job.id}]],
+    //     type: 'GET',
+    //     success: function (response) {
+    //         $('#name').val(response.name);
+    //         $('#title').text(response.title);
+    //         $('#dueDateTime').val(response.dueDateTime);
+    //         $('#location').val(response.location);
+    //         $('#jobStatus').val(response.jobStatus);
+    //         $('#yoe').val(response.yoe);
+    //         $('#salaryFrom').val(response.salaryFrom);
+    //         $('#salaryTo').val(response.salaryTo);
+    //         $('#literacy').val(response.literacy);
+    //         $('#benefit').val(response.benefit);
+    //         $('#detail').val(response.detail);
+    //         $('#requirement').val(response.requirement);
+    //         $('#skill').val(response.skill);
+    //         // $('#skill').val(skillId).trigger('change');
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log(error);
+    //     }
+    // });
+    $(document).ready(function () {
+        $('#update-form').validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            errorPlacement: function (error, element) {
+                error.addClass("error-message");
+                error.insertAfter(element.parent());
+            },
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 255
+                },
+                "title": {
+                    required: true,
+                    maxlength: 255
+                },
+                "salaryFrom": {
+                    required: true,
+                    min: 0
+                },
+                "salaryTo": {
+                    required: true,
+                },
+                "dueDateTime": {
+                    required: true,
+                },
+                "location": {
+                    required: true,
+                    maxlength: 255
+                },
+                "introduce": {
+                    required: true,
+                },
+                "benefit": {
+                    required: true,
+                },
+                "jobStatus": {
+                    required: true,
+                },
+                "detail": {
+                    required: true,
+                },
+                "yoe": {
+                    required: false,
+                    min: 0
+                },
+                "requirement": {
+                    required: true,
+                },
+            },
+            messages: {
+                "name": {
+                    required: "Bắt buộc nhập tên công việc",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "title": {
+                    required: "Bắt buộc nhập tiêu đề tuyển dụng",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "salaryFrom": {
+                    required: "Hãy nhập mức lương từ",
+                    min: "Mức lương phải lớn hơn hoặc bằng 0"
+                },
+                "salaryTo": {
+                    required: "Hãy nhập mức lương đến",
+                },
+                "dueDateTime": {
+                    required: "Hãy nhập hạn nộp"
+                },
+                "location": {
+                    required: "Bắt buộc nhập địa điểm",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "introduce": {
+                    required: "Bắt buộc nhập giới thiệu công việc",
+                },
+                "benefit": {
+                    required: "Bắt buộc nhập quyền lợi công việc",
+                },
+                "jobStatus": {
+                    required: "Bắt buộc chọn trạng thái công việc",
+                },
+                "detail": {
+                    required: "Bắt buộc nhập mô tả công việc",
+                },
+                "yoe": {
+                    required: "Bắt buộc nhập số năm kinh nghiệm",
+                    min: "Số năm kinh nghiệm phải lớn hơn hoặc bằng 0"
+                },
+                "requirement": {
+                    required: "Bắt buộc nhập yêu cầu công việc",
+                },
+            }
+        })
 
-    async function getJobDetails(jobId) {
-        try {
-            const response = await axios.get(`/recruiter/jobs/${jobId}`);
-            const job = response.data;
-            populateForm(job);
-            $("#jobId").val(job.id); // Gán ID công việc vào trường input ẩn "jobId"
-        } catch (error) {
-            console.error("Error fetching job details:", error);
-        }
-    }
+        $('.btn-update-job').click(function () {
+            const isValidForm = $('#update-form').valid();
+            if (!isValidForm) {
+                return;
+            }
 
-    function populateForm(job) {
-        // Điền thông tin công việc vào các trường trong form
-        $("#name").val(job.id);
-        $("#title").val(job.title);
-        $("#dueDateTime").val(job.dueDateTime);
-        $("#location").val(job.location);
-        $("#jobStatus").val(job.jobStatus);
-        $("#yoe").val(job.yoe);
-        $("#salaryFrom").val(job.salaryFrom);
-        $("#salaryTo").val(job.salaryTo);
-        $("#literacy").val(job.literacy);
-        $("#benefit").val(job.benefit);
-        $("#description").val(job.description);
-        $("#detail").val(job.detail);
-        $("#requirement").val(job.requirement);
+            let title = $("#title").val();
+            let name = $("#name").val();
+            let location = $("#location").val();
+            let skill = $("#skill").val();
+            let salaryFrom = $("#salaryFrom").val();
+            let salaryTo = $("#salaryTo").val();
+            let dueDateTime = $("#dueDateTime").val();
+            let introduce = $("#introduce").val();
+            let benefit = $("#benefit").val();
+            let jobStatus = $("#jobStatus").val();
+            let detail = $("#detail").val();
+            let literacy = $("#literacy").val();
+            let yoe = $("#yoe").val();
+            let requirement = $("#requirement").val();
 
-        // Đối với trường skillInput (select2), bạn cần gọi lại hàm select2() như sau:
-        const selectSkill = $("#skill");
-        const selectedSkills = job.skills.map((skill) => skill.id);
-        selectSkill.val(selectedSkills).trigger("change");
-    }
+            let request = {
+                name: name,
+                title: title,
+                salaryFrom: salaryFrom,
+                salaryTo: salaryTo,
+                dueDateTime: dueDateTime,
+                location: location,
+                skill: skill,
+                introduce: introduce,
+                benefit: benefit,
+                jobStatus: jobStatus,
+                detail: detail,
+                literacy: literacy,
+                yoe: yoe,
+                requirement: requirement
+            }
+            let jwtToken = localStorage.getItem("jwtToken")
+            if (jwtToken) {
+                $.ajax({
+                    url: "/api/v1/jobs/" + [[${job.id}]],
+                    type: 'PUT',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(request),
+                    headers: {
+                        'Authorization': 'Bearer' + " " + jwtToken
+                    },
+                    success: function (response) {
+                        toastr.success("Cập nhật công việc thành công");
 
-    async function updateJob(jobId) {
-        try {
-            const request = {
-                name: $("#name").val(),
-                title: $("#title").val(),
-                dueDateTime: $("#dueDateTime").val(),
-                location: $("#location").val(),
-                jobStatus: $("#jobStatus").val(),
-                yoe: $("#yoe").val(),
-                salaryFrom: $("#salaryFrom").val(),
-                salaryTo: $("#salaryTo").val(),
-                literacy: $("#literacy").val(),
-                benefit: $("#benefit").val(),
-                detail: $("#detail").val(),
-                requirement: $("#requirement").val(),
-                skills: $("#skill").val(),
-            };
+                        window.location.href = 'http://localhost:8080/recruiter/jobs'
+                    },
+                    error: function (data) {
+                        toastr.warning(data.responseJSON.message);
+                    }
+                });
+            } else {
+                toastr.warning("Bạn chưa đăng nhập")
+            }
 
-            const response = await $.ajax({
-                url: `/api/v1/jobs/${jobId}`,
-                type: "PUT",
-                contentType: "application/json",
-                data: JSON.stringify(request),
+        });
+
+        $('.btn-delete-job').click(function () {
+            confirm("bạn có chắc muốn xóa không")
+            $.ajax({
+                url: '/api/v1/jobs/' + [[${job.id}]],
+                type: 'DELETE',
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    toastr.success("Xóa công việc thành công");
+                    setTimeout(function () {
+                        location.href = "/recruiter/jobs/";
+                    }, 1000);
+                },
+                error: function (data) {
+                    toastr.warning(data.responseJSON.message);
+                },
             });
-
-            toastr.success("Cập nhật công việc thành công");
-            window.location.href = "http://localhost:8080/recruiter/jobs";
-        } catch (error) {
-            console.error("Error updating job:", error);
-            toastr.error("Lỗi khi cập nhật công việc");
-        }
-    }
+        })
+    });
 
 </script>
 </body>

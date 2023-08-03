@@ -30,22 +30,16 @@ public class JobController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest jobRequest) {
-        Job updateJob = jobService.updateJob(id, jobRequest);
-        if (updateJob != null) {
-            return ResponseEntity.ok(updateJob);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<?> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest jobRequest) {
+        Job job = jobService.updateJob(id, jobRequest);
+        return ResponseEntity.ok(job);
     }
 
-
-
-//    @DeleteMapping("{job_id}")
-//    public ResponseEntity<?> deleteJob(@PathVariable Long id) {
-//        jobService.deleteJob(id);
-//        return ResponseEntity.noContent().build();
-//    }
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deleteJob(@PathVariable Long id) {
+        jobService.deleteJob(id);
+        return ResponseEntity.noContent().build();
+    }
 
     @PostMapping("/{job_id}/application")
     public ResponseEntity<?> applyToJob(@PathVariable("jobId") Long id, @RequestBody @Valid Application application ){

@@ -72,9 +72,12 @@ public class JobService {
         jobRepository.save(job);
     }
 
-    public Job updateJob(Long id, JobRequest jobRequest) throws NotFoundException {
+    public Job updateJob(Long id, JobRequest jobRequest) {
         Job job = jobRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Not found job"));
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found job with id = " + id);
+                });
+
         job.setBenefit(jobRequest.getBenefit());
         job.setDetail(jobRequest.getDetail());
         job.setJobStatus(jobRequest.getJobStatus());
@@ -112,5 +115,12 @@ public class JobService {
 
         // Lưu thông tin ứng tuyển
         applicationRepository.save(application);
+    }
+
+    public Job getJobById(Long id) {
+        return jobRepository.findById(id)
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found job with id = " + id);
+                });
     }
 }

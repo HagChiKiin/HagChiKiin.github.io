@@ -31,6 +31,12 @@ public class CourseService {
         return courseRepository.findAll(pageRequest);
     }
 
+    public Course getCourseById(Integer id) {
+        return courseRepository.findById(id)
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found course with id = " + id);
+                });
+    }
 
     public Course createCourse(UpsertCourseRequest request) {
         // Tìm kiếm supporter

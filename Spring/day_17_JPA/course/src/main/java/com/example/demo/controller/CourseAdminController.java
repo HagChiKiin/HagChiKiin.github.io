@@ -54,10 +54,12 @@ public class CourseAdminController {
     @GetMapping("/admin/courses/{id}")
     public String getDetailCourse(@PathVariable Integer id, Model model) {
         List<Topic> topicList = topicService.getAllTopic();
-        List<Supporter>supporterList=supporterService.getAllSupporter();
+        List<Supporter> supporterList = supporterService.getAllSupporter();
+        Course course = courseService.getCourseById(id);
+
         model.addAttribute("topicList", topicList);
         model.addAttribute("supporterList", supporterList);
-        model.addAttribute("courseId",id);
+        model.addAttribute("course", course);
         return "course-edit";
 
     }

@@ -64,12 +64,13 @@ public class HomeController {
 
     }
     @GetMapping("/recruiter/jobs/{id}")
-    public String getDetailJob(@PathVariable Integer id, Model model) {
+    public String getDetailJob(@PathVariable Long id, Model model) {
         List<Job> jobList = jobService.getAllJob();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
+        Job job = jobService.getJobById(id);
         model.addAttribute("recruiterList",recruiterList);
         model.addAttribute("jobList",jobList);
-        model.addAttribute("jobId",id);
+        model.addAttribute("job",job);
         return "admin/job-edit";
 
     }
