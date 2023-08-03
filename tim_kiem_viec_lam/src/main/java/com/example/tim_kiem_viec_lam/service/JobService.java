@@ -65,7 +65,6 @@ public class JobService {
                 .salaryFrom(jobRequest.getSalaryFrom())
                 .salaryTo(jobRequest.getSalaryTo())
                 .skill(String.valueOf(jobRequest.getSkill()))
-                .avatar(jobRequest.getAvatar())
                 .title(jobRequest.getTitle())
                 .workType(jobRequest.getWorkType())
                 .yoe(jobRequest.getYoe())
@@ -73,7 +72,7 @@ public class JobService {
         jobRepository.save(job);
     }
 
-    public void updateJob(Long id, JobRequest jobRequest) throws NotFoundException {
+    public Job updateJob(Long id, JobRequest jobRequest) throws NotFoundException {
         Job job = jobRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Not found job"));
         job.setBenefit(jobRequest.getBenefit());
@@ -87,12 +86,12 @@ public class JobService {
         job.setRecruiter(jobRequest.getRecruiter());
         job.setSalaryFrom(jobRequest.getSalaryFrom());
         job.setSalaryTo(jobRequest.getSalaryTo());
-
         job.setTitle(jobRequest.getTitle());
         job.setWorkType(jobRequest.getWorkType());
         job.setYoe(jobRequest.getYoe());
 
         jobRepository.save(job);
+        return job;
     }
 
     public void deleteJob(Long id) throws NotFoundException {

@@ -1,6 +1,7 @@
 package com.example.tim_kiem_viec_lam.service;
 
 import com.example.tim_kiem_viec_lam.entity.FileEntity;
+import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.repository.FileRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Log4j2
@@ -45,6 +47,10 @@ public class FileService {
             return null;
         }
         return fileEntityOptional.get();
+    }
+
+    public List<FileEntity> getAllFile() {
+        return fileRepository.findAll();
     }
 
 }

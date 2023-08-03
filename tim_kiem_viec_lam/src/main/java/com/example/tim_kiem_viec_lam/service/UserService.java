@@ -113,12 +113,13 @@ public class UserService {
     @Transactional(rollbackFor = Exception.class)
     public void registerRecruiter(RegistrationRequest registrationRequest, MultipartFile avatar) throws IOException {
         User user = saveUser(registrationRequest);
-        String avatarPath = saveAvatar(avatar);
-        saveRecruiter(user, registrationRequest, avatarPath);
+        FileEntity fileEntity = saveAvatar(avatar);
+        String avatarPath = fileEntity.getPath();
+        saveRecruiter(fileEntity, user, registrationRequest, avatarPath);
         emailService.sendActivationEmail(user.getEmail(), user.getId());
     }
 
-    private void saveRecruiter(User user, RegistrationRequest registrationRequest, String avatarPath) {
+    private void saveRecruiter(FileEntity fileEntity,User user, RegistrationRequest registrationRequest, String avatarPath) {
         Recruiter recruiter = Recruiter.builder()
                 .user(user)
                 .phone(registrationRequest.getPhone())
@@ -127,11 +128,12 @@ public class UserService {
                 .address(registrationRequest.getAddress())
                 .introduce(registrationRequest.getIntroduce())
                 .avatar(avatarPath)
+                .fileId(fileEntity)
                 .build();
         recruiterRepository.save(recruiter);
     }
 
-    private String saveAvatar(MultipartFile avatar) throws IOException {
+    private FileEntity saveAvatar(MultipartFile avatar) throws IOException {
         String fileName = UUID.randomUUID().toString();
         String extension = FilenameUtils.getExtension(avatar.getOriginalFilename());
         String filePath = userAvatarFolder + fileName + "." + extension;
@@ -143,7 +145,7 @@ public class UserService {
                 .size(avatar.getSize())
                 .build();
         fileRepository.save(fileEntity);
-        return filePath;
+        return fileEntity;
     }
 
     private User saveUser(RegistrationRequest registrationRequest) {

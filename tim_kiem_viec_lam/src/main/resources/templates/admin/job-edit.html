@@ -43,7 +43,7 @@
 <!--HEADER-->
 <div class="header">
     <div class="logo">
-        <a href="#">
+        <a href="/">
             <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px" alt="logo">
         </a>
     </div>
@@ -96,7 +96,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="job" role="tabpanel" aria-labelledby="job-tab">
                     <div class="d-flex justify-content-between mb-4">
-                        <button class="btn-custom btn-update-job">
+                        <button class="btn-custom btn-update-job"  id="updateJobButton">
                             <span><i class="fa-solid fa-plus"></i></span>
                             Cập nhật
                         </button>
@@ -108,102 +108,99 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="mb-3">
+                                <input type="hidden" id="jobId" name="jobId">
                                 <label for="name" class="form-label">Công ty</label>
                                 <select type="text" class="form-control" id="name" name="name">
-                                    <option th:each="recruiter : ${recruiterList}" th:text="${recruiter.name}">
-
+                                    <option th:each="recruiter : ${recruiterList}" th:value="${recruiter.id}"
+                                            th:text="${recruiter.name}">
                                     </option>
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Tên công việc</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="dueDateTime" class="form-label">Hạn nộp</label>
+                                <input type="date" class="form-control" id="dueDateTime"
+                                       name="dueDateTime">
+                            </div>
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" id="location"
+                                       name="location">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jobStatus" class="form-label">Trạng thái</label>
+                                <select type="text" class="form-control" id="jobStatus" name="jobStatus">
+                                    <option>OPEN</option>
+                                    <option>ONGOING_INTERVIEWS</option>
+                                    <option>HIRED</option>
+                                    <option>CLOSED</option>
+                                    <option>CANCELLED</option>
+                                </select>
 
-                            <form th:each="job : ${jobList}">
-                                <div class="mb-3">
-                                    <label for="title" class="form-label">Tên công việc</label>
-                                    <input type="text" class="form-control" id="title" name="title"
-                                           th:text="${job.title}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                                    <input type="datetime-local" class="form-control" id="dueDateTime"
-                                           name="dueDateTime" th:text="${job.dueDateTime}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="location" class="form-label">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="location" name="location"
-                                           th:text="${job.location}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="jobStatus" class="form-label">Trạng thái</label>
-                                    <select type="text" class="form-control" id="jobStatus" name="jobStatus">
-                                        <option>OPEN</option>
-                                        <option>ONGOING_INTERVIEWS</option>
-                                        <option>HIRED</option>
-                                        <option>CLOSED</option>
-                                        <option>CANCELLED</option>
-                                    </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="yoe" class="form-label">Kinh nghiệm</label>
+                                <input type="number" class="form-control" id="yoe" name="yoe">
+                            </div>
+                            <div class="mb-3">
+                                <label for="skill" class="form-label">Kỹ năng</label>
+                                <select id="skill" class="form-control" multiple="multiple" name="skill">
+                                    <option value="Javascript">Javascript</option>
+                                    <option value="Java">Java</option>
+                                    <option value="Golang">Golang</option>
+                                    <option value="PHP">PHP</option>
+                                    <option value="React">React</option>
+                                    <option value="AWS">AWS</option>
+                                    <option value="Devops">Devops</option>
+                                    <option value=".Net">.Net</option>
+                                    <option value="Vue">Vue</option>
+                                    <option value="Angular">Angular</option>
+                                    <option value="Python">Python</option>
+                                    <option value="C#">C#</option>
+                                    <option value="SQL">SQL</option>
+                                </select>
+                            </div>
 
-                                </div>
-                                <div class="mb-3">
-                                    <label for="yoe" class="form-label">Kinh nghiệm</label>
-                                    <input type="number" class="form-control" id="yoe" name="yoe" th:text="${job.yoe}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="skill" class="form-label">Kỹ năng</label>
-                                    <select id="skill" class="form-control" multiple="multiple" name="skill">
-                                        <option value="Javascript">Javascript</option>
-                                        <option value="Java">Java</option>
-                                        <option value="Golang">Golang</option>
-                                        <option value="PHP">PHP</option>
-                                        <option value="React">React</option>
-                                        <option value="AWS">AWS</option>
-                                        <option value="Devops">Devops</option>
-                                        <option value=".Net">.Net</option>
-                                        <option value="Vue">Vue</option>
-                                        <option value="Angular">Angular</option>
-                                        <option value="Python">Python</option>
-                                        <option value="C#">C#</option>
-                                        <option value="SQL">SQL</option>
-                                    </select>
-                                </div>
+                            <div class="mb-3">
+                                <label for="salaryFrom" class="form-label">Mức lương từ</label>
+                                <input type="text" class="form-control" id="salaryFrom"
+                                       name="salaryFrom">
+                            </div>
+                            <div class="mb-3">
+                                <label for="salaryTo" class="form-label">đến</label>
+                                <input type="text" class="form-control" id="salaryTo"
+                                       name="salaryTo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="literacy" class="form-label">Trình độ học vấn</label>
+                                <select type="text" class="form-control" id="literacy" name="literacy">
+                                    <option>UNIVERSITY</option>
+                                    <option>COLLEGE</option>
+                                    <option>INTERMEDIATE</option>
+                                    <option>NONE</option>
+                                </select>
+                            </div>
 
-                                <div class="mb-3">
-                                    <label for="salaryFrom" class="form-label">Mức lương từ</label>
-                                    <input type="number" class="form-control" id="salaryFrom" name="salaryFrom"
-                                           th:text="${job.salaryFrom}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="salaryTo" class="form-label">đến</label>
-                                    <input type="number" class="form-control" id="salaryTo" name="salaryTo"
-                                           th:text="${job.salaryTo}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="literacy" class="form-label">Trình độ học vấn</label>
-                                    <select type="text" class="form-control" id="literacy" name="literacy">
-                                        <option>UNIVERSITY</option>
-                                        <option>COLLEGE</option>
-                                        <option>INTERMEDIATE</option>
-                                        <option>NONE</option>
-                                    </select>
-                                </div>
-                            </form>
                         </div>
-                        <div class="col-md-9" th:each="job : ${jobList}">
+                        <div class="col-md-9">
                             <div class="mb-3">
                                 <label for="benefit" class="form-label">Phúc lợi</label>
                                 <textarea rows="10" class="form-control" id="benefit" name="benefit"
-                                          th:text="${job.benefit}"></textarea>
+                                ></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="detail" class="form-label">Mô tả công việc</label>
                                 <textarea rows="10" type="text" class="form-control" id="detail" name="detail"
-                                          th:text="${job.detail}"></textarea>
+                                ></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="requirement" class="form-label">Yêu cầu công việc</label>
                                 <textarea rows="10" type="text" class="form-control" id="requirement" name="requirement"
-                                          th:text="${job.requirement}"></textarea>
+                                ></textarea>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -276,72 +273,118 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $("#skill").select2();
-    });
-</script>
-<script>
-    // Step 1: Add an event listener to the "Cập nhật" (Update) button
-    const updateJobButton = document.querySelector(".btn-update-job");
-    updateJobButton.addEventListener("click", toggleEditMode);
+    window.onload = function () {
+        const jwtToken = localStorage.getItem("jwtToken");
 
-    // Step 2: Function to fetch job details from the backend
-    function getJobDetails(id) {
-        return axios.get(`/recruiter/jobs/${id}`); // Replace with your API endpoint to fetch job details
-    }
-
-    // Step 3: Function to populate the form fields with the fetched data
-    function populateForm(job) {
-        const nameInput = document.getElementById("name");
-        const titleInput = document.getElementById("title");
-        const dueDateTimeInput = document.getElementById("dueDateTime");
-        const locationInput = document.getElementById("location");
-        const jobStatusInput = document.getElementById("jobStatus");
-        const yoeInput = document.getElementById("yoe");
-        const skillInput = document.getElementById("skill");
-        const salaryFromInput = document.getElementById("salaryFrom");
-        const salaryToInput = document.getElementById("salaryTo");
-        const literacyInput = document.getElementById("literacy");
-        const benefitTextarea = document.getElementById("benefit");
-        const detailTextarea = document.getElementById("detail");
-        const requirementTextarea = document.getElementById("requirement");
-
-        nameInput.value = job.recruiterId;
-        titleInput.value = job.title;
-        dueDateTimeInput.value = job.dueDateTime;
-        locationInput.value = job.location;
-        jobStatusInput.value = job.jobStatus;
-        yoeInput.value = job.yoe;
-
-        // Trigger Select2 update after populating the "skill" field (if using Select2)
-        $("#skill").val(job.skills).trigger("change"); // Assuming your job object contains the skills field as an array of skill names
-    }
-
-    // Step 4: Function to handle edit mode toggle
-    let editMode = false;
-
-    async function toggleEditMode() {
-        if (!editMode) {
-            const jobId = /* Replace with the current job's ID */; // You need to get the current job's ID from the URL or any other source
-            try {
-                const response = await getJobDetails(jobId);
-                const job = response.data;
-                populateForm(job);
-                editMode = true;
-                updateJobButton.innerText = "Lưu"; // Change the button text to "Lưu" (Save)
-            } catch (error) {
-                console.error("Error fetching job details:", error);
-            }
+        if (!jwtToken) {
+            // Chưa đăng nhập, chuyển hướng về trang đăng nhập
+            window.location.href = "http://localhost:8080/splash";
         } else {
-            // Perform the save/update logic here (e.g., call another API to update the job details)
-            // After successfully updating the job, you can set editMode back to false and change the button text back to "Cập nhật"
-            editMode = false;
-            updateJobButton.innerText = "Cập nhật";
+            // lấy ra roles ở dạng string
+            const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+            const userRoles = userInfomation.roles[0];
+            console.log(userRoles)
+
+
+            // Kiểm tra vai trò và chuyển hướng người dùng
+            const pathName = window.location.pathname;
+
+            // chỉ admin được vào trang /admin/** ko có role ADMIN chuyển về trang chủ
+            if (pathName.startsWith('/admin/') && !userRoles.includes("ADMIN")) {
+                window.location.href = "http://localhost:8080";
+
+                // chỉ admin và recruiter được vào trang /recruiter/**  ko có role ADMIN hoặc RECRUITER chuyển về trang chủ
+            } else if (pathName.startsWith('/recruiter/') && !userRoles.includes("RECRUITER") && !userRoles.includes("ADMIN")) {
+                window.location.href = "http://localhost:8080";
+            }
+        }
+    };
+    $(document).ready(function () {
+        const url = window.location.href;
+        const parts = url.split("/");
+        const jobId = parts[parts.length - 1];
+
+        if (jobId) {
+            getJobDetails(jobId); // Gọi hàm để lấy thông tin công việc dựa vào ID
+        } else {
+            toastr.error("Không tìm thấy ID công việc!");
+        }
+
+        $("#skill").select2();
+
+        $(".btn-update-job").click(function () {
+            const jobId = $("#name").val(); // Lấy job id từ trường input "name"
+            updateJob(jobId);
+        });
+    });
+
+    async function getJobDetails(jobId) {
+        try {
+            const response = await axios.get(`/recruiter/jobs/${jobId}`);
+            const job = response.data;
+            populateForm(job);
+            $("#jobId").val(job.id); // Gán ID công việc vào trường input ẩn "jobId"
+        } catch (error) {
+            console.error("Error fetching job details:", error);
         }
     }
+
+    function populateForm(job) {
+        // Điền thông tin công việc vào các trường trong form
+        $("#name").val(job.id);
+        $("#title").val(job.title);
+        $("#dueDateTime").val(job.dueDateTime);
+        $("#location").val(job.location);
+        $("#jobStatus").val(job.jobStatus);
+        $("#yoe").val(job.yoe);
+        $("#salaryFrom").val(job.salaryFrom);
+        $("#salaryTo").val(job.salaryTo);
+        $("#literacy").val(job.literacy);
+        $("#benefit").val(job.benefit);
+        $("#description").val(job.description);
+        $("#detail").val(job.detail);
+        $("#requirement").val(job.requirement);
+
+        // Đối với trường skillInput (select2), bạn cần gọi lại hàm select2() như sau:
+        const selectSkill = $("#skill");
+        const selectedSkills = job.skills.map((skill) => skill.id);
+        selectSkill.val(selectedSkills).trigger("change");
+    }
+
+    async function updateJob(jobId) {
+        try {
+            const request = {
+                name: $("#name").val(),
+                title: $("#title").val(),
+                dueDateTime: $("#dueDateTime").val(),
+                location: $("#location").val(),
+                jobStatus: $("#jobStatus").val(),
+                yoe: $("#yoe").val(),
+                salaryFrom: $("#salaryFrom").val(),
+                salaryTo: $("#salaryTo").val(),
+                literacy: $("#literacy").val(),
+                benefit: $("#benefit").val(),
+                detail: $("#detail").val(),
+                requirement: $("#requirement").val(),
+                skills: $("#skill").val(),
+            };
+
+            const response = await $.ajax({
+                url: `/api/v1/jobs/${jobId}`,
+                type: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(request),
+            });
+
+            toastr.success("Cập nhật công việc thành công");
+            window.location.href = "http://localhost:8080/recruiter/jobs";
+        } catch (error) {
+            console.error("Error updating job:", error);
+            toastr.error("Lỗi khi cập nhật công việc");
+        }
+    }
+
 </script>
-
-
 </body>
 
 </html>

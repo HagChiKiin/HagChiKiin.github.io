@@ -3,10 +3,12 @@
     import com.example.tim_kiem_viec_lam.statics.JobStatus;
     import com.example.tim_kiem_viec_lam.statics.Literacy;
     import com.example.tim_kiem_viec_lam.statics.WorkType;
+    import com.fasterxml.jackson.annotation.JsonFormat;
     import lombok.*;
     import lombok.experimental.FieldDefaults;
 
     import javax.persistence.*;
+    import java.time.LocalDate;
     import java.time.LocalDateTime;
     import java.util.List;
 
@@ -56,9 +58,6 @@
         @Column(name = "skill")
         String skill;
 
-        @Column(name = "avatar")
-        String avatar;
-
         @Column(name = "Requirements")
         String requirement;
 
@@ -70,7 +69,8 @@
         LocalDateTime publishDateTime;
 
         @Column(name = "due_datetime")
-        LocalDateTime dueDateTime;
+        @JsonFormat(pattern = "dd-MM-yyyy")
+        LocalDate dueDateTime;
 
         @Column(name = "close_datetime")
         LocalDateTime closeDateTime;

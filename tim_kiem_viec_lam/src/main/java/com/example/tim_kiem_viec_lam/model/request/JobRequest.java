@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,7 +44,6 @@ public class JobRequest {
 
     int yoe;
 
-
     Literacy literacy;
 
     WorkType workType;
@@ -56,15 +56,15 @@ public class JobRequest {
 
     JobStatus jobStatus;
 
+    String requirement;
+
     LocalDateTime publishDateTime;
 
-    LocalDateTime dueDateTime;
+    LocalDate dueDateTime;
 
     LocalDateTime closeDateTime;
 
     List<String> skill;
-
-    String avatar;
 
     LocalDateTime deletedDateTime;
 

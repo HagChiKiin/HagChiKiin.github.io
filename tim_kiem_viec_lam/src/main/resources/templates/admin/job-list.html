@@ -44,7 +44,7 @@
 <!--HEADER-->
 <div class="header">
     <div class="logo">
-        <a href="#">
+        <a href="/">
             <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px" alt="logo">
         </a>
     </div>
@@ -102,13 +102,12 @@
                         <a th:href="@{/recruiter/jobs/{id} (id=${job.id})}" th:text="${job.title}">Legacy IT Agent</a>
                     </td>
                     <td>
-                        <span class="me-1 badge bg-warning text-dark" th:text="${job.skill}">Devops</span><span
-
+                        <span class="me-1 badge bg-warning text-dark" th:text="${job.skill}">Devops</span>
                     </td>
                     <td th:text="${job.salaryFrom}">29,194,223 VNĐ</td>
                     <td th:text="${job.salaryTo}">29,194,223 VNĐ</td>
                     <td >
-                        <a th:each="recruiter: ${recruiterList}" th:text="${recruiter.name}">Haley, Bailey and Brakus</a>
+                        <a th:text="${job.recruiter.name}">Haley, Bailey and Brakus</a>
                     </td>
 
                 </tr>

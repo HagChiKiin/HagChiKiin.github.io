@@ -1,6 +1,7 @@
 package com.example.tim_kiem_viec_lam.controller.admin;
 
 import com.example.tim_kiem_viec_lam.entity.Application;
+import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.model.request.JobRequest;
 import com.example.tim_kiem_viec_lam.model.response.JobResponse;
 import com.example.tim_kiem_viec_lam.repository.JobRepository;
@@ -28,10 +29,14 @@ public class JobController {
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping("/{job_id}")
-    public ResponseEntity<?> updateJob(@PathVariable Long job_id, @RequestBody @Valid JobRequest jobRequest) {
-        jobService.updateJob(job_id, jobRequest);
-        return ResponseEntity.ok(null);
+    @PutMapping("/{id}")
+    public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest jobRequest) {
+        Job updateJob = jobService.updateJob(id, jobRequest);
+        if (updateJob != null) {
+            return ResponseEntity.ok(updateJob);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

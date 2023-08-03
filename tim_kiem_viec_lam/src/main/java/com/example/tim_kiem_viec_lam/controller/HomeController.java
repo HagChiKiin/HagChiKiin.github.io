@@ -1,7 +1,9 @@
 package com.example.tim_kiem_viec_lam.controller;
 
+import com.example.tim_kiem_viec_lam.entity.FileEntity;
 import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
+import com.example.tim_kiem_viec_lam.service.FileService;
 import com.example.tim_kiem_viec_lam.service.JobService;
 import com.example.tim_kiem_viec_lam.service.RecruiterService;
 import lombok.AccessLevel;
@@ -26,13 +28,17 @@ public class HomeController {
 
     RecruiterService recruiterService;
 
+    FileService fileService;
+
 
     @GetMapping("/")
     public String getAll(Model model){
         List<Job> jobList = jobService.getAllJob();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
+        List<FileEntity> fileList = fileService.getAllFile();
         model.addAttribute("recruiterList",recruiterList);
         model.addAttribute("jobList",jobList);
+        model.addAttribute("fileList",fileList);
         return "user/index";
     }
     @GetMapping("admin/companies")
@@ -58,11 +64,12 @@ public class HomeController {
 
     }
     @GetMapping("/recruiter/jobs/{id}")
-    public String getDetailCourse(@PathVariable Integer id, Model model) {
+    public String getDetailJob(@PathVariable Integer id, Model model) {
         List<Job> jobList = jobService.getAllJob();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         model.addAttribute("recruiterList",recruiterList);
         model.addAttribute("jobList",jobList);
+        model.addAttribute("jobId",id);
         return "admin/job-edit";
 
     }

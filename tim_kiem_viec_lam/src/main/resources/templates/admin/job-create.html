@@ -33,6 +33,8 @@
     <!-- Components CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
+<!--    ngày tháng năm-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <!-- Link tự viết -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-admin.css}">
@@ -104,7 +106,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                            <input type="datetime-local" class="form-control" id="dueDateTime" name="dueDateTime">
+                            <input type="date" class="form-control" id="dueDateTime" name="dueDateTime">
                         </div>
                         <div class="mb-3">
                             <label for="location" class="form-label">Địa chỉ</label>
@@ -146,11 +148,11 @@
 
                         <div class="mb-3">
                             <label for="salaryFrom" class="form-label">Mức lương từ</label>
-                            <input type="number" class="form-control" id="salaryFrom" name="salaryFrom">
+                            <input type="text" class="form-control" id="salaryFrom" name="salaryFrom">
                         </div>
                         <div class="mb-3">
                             <label for="salaryTo" class="form-label">đến</label>
-                            <input type="number" class="form-control" id="salaryTo" name="salaryTo">
+                            <input type="text" class="form-control" id="salaryTo" name="salaryTo">
                         </div>
                         <div class="mb-3">
                             <label for="literacy" class="form-label">Trình độ học vấn</label>
@@ -206,7 +208,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!--<script type="text/javascript" src="jsmain/check-permission.js"></script>-->
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
     window.onload = function () {
@@ -216,18 +218,22 @@
             // Chưa đăng nhập, chuyển hướng về trang đăng nhập
             window.location.href = "http://localhost:8080/splash";
         } else {
-            const userRoles = ["RECRUITER"]; // Giả định bạn đã lấy thông tin vai trò từ server
+            // lấy ra roles ở dạng string
+            const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+            const userRoles = userInfomation.roles[0];
+            console.log(userRoles)
+
 
             // Kiểm tra vai trò và chuyển hướng người dùng
             const pathName = window.location.pathname;
 
+            // chỉ admin được vào trang /admin/** ko có role ADMIN chuyển về trang chủ
             if (pathName.startsWith('/admin/') && !userRoles.includes("ADMIN")) {
                 window.location.href = "http://localhost:8080";
-            } else if (pathName.startsWith('/recruiter/') && !userRoles.includes("RECRUITER")) {
+
+                // chỉ admin và recruiter được vào trang /recruiter/**  ko có role ADMIN hoặc RECRUITER chuyển về trang chủ
+            } else if (pathName.startsWith('/recruiter/') && !userRoles.includes("RECRUITER") && !userRoles.includes("ADMIN")) {
                 window.location.href = "http://localhost:8080";
-            } else {
-                // Có quyền truy cập, tiếp tục xử lý khác
-                // ...
             }
         }
     };
