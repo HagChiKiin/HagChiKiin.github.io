@@ -53,6 +53,8 @@ $(document).ready(function () {
                 localStorage.clear()
                 localStorage.setItem('jwtToken', response.jwt)
                 localStorage.setItem('refreshToken', response.refreshToken)
+                localStorage.setItem('loggedInEmail', email);
+
                 let userInfomation = {
                     username: response.username,
                     userId: response.id,
@@ -61,13 +63,17 @@ $(document).ready(function () {
                 localStorage.setItem('userInfomation', JSON.stringify(userInfomation))
                 toastr.success("Đăng nhập thành công");
 
+                userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+                const loggedInEmail = userInfomation.username;
+                console.log(loggedInEmail)
+
 
                 if (response.roles[0] === "ADMIN") {
                     window.location.href = 'http://localhost:8080/admin/companies'
                 } else if (response.roles[0] === "USER") {
                     window.location.href = 'http://localhost:8080/'
                 } else {
-                    window.location.href = 'http://localhost:8080/recruiter/jobs'
+                    window.location.href = 'http://localhost:8080/recruiter/jobs?email=' + loggedInEmail;
                 }
             },
             error: function (data) {

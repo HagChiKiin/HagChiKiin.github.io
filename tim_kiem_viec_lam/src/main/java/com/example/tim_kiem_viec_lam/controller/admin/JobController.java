@@ -29,6 +29,11 @@ public class JobController {
         return ResponseEntity.ok(null);
     }
 
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getJob(@PathVariable("id") long id){
+//        return ResponseEntity.ok(jobService.getJobById(id));
+//    }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest jobRequest) {
         Job job = jobService.updateJob(id, jobRequest);

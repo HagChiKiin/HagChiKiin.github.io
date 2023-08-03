@@ -69,7 +69,7 @@
         LocalDateTime publishDateTime;
 
         @Column(name = "due_datetime")
-        @JsonFormat(pattern = "dd-MM-yyyy")
+        @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate dueDateTime;
 
         @Column(name = "close_datetime")

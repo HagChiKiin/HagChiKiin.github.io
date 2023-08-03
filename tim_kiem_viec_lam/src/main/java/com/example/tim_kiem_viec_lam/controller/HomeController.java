@@ -11,10 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,8 +52,8 @@ public class HomeController {
 
     }
     @GetMapping("/recruiter/jobs")
-    public String getJob(Model model) {
-        List<Job> jobList = jobService.getAllJob();
+    public String getJob(Model model , @RequestParam String email) {
+        List<Job> jobList = jobService.getAllJobByRecruiter(email);
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         model.addAttribute("recruiterList",recruiterList);
         model.addAttribute("jobList",jobList);

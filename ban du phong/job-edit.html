@@ -108,8 +108,9 @@
                     <div class="row" id="update-form">
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="name-update" class="form-label">Công ty</label>
-                                <input type="text" class="form-control" id="name-update"
+                                <input type="hidden" id="jobId" name="jobId">
+                                <label for="name" class="form-label">Công ty</label>
+                                <input th:value="${job.recruiter.name}" type="text" class="form-control" id="name"
                                        name="name">
 
                             </div>
@@ -119,8 +120,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                                <input type="date" class="form-control" id="dueDateTime" name="dueDateTime">
-
+                                <input th:value="${job.dueDateTime}" type="date" class="form-control" id="dueDateTime"
+                                       name="dueDateTime">
                             </div>
                             <div class="mb-3">
                                 <label for="location" class="form-label">Địa chỉ</label>
@@ -259,38 +260,10 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    window.onload = function () {
-        const jwtToken = localStorage.getItem("jwtToken");
-
-        if (!jwtToken) {
-            // Chưa đăng nhập, chuyển hướng về trang đăng nhập
-            window.location.href = "http://localhost:8080/splash";
-        } else {
-            // lấy ra roles ở dạng string
-            const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
-            const userRoles = userInfomation.roles[0];
-            console.log(userRoles)
-
-
-            // Kiểm tra vai trò và chuyển hướng người dùng
-            const pathName = window.location.pathname;
-
-            // chỉ admin được vào trang /admin/** ko có role ADMIN chuyển về trang chủ
-            if (pathName.startsWith('/admin/') && !userRoles.includes("ADMIN")) {
-                window.location.href = "http://localhost:8080";
-
-                // chỉ admin và recruiter được vào trang /recruiter/**  ko có role ADMIN hoặc RECRUITER chuyển về trang chủ
-            } else if (pathName.startsWith('/recruiter/') && !userRoles.includes("RECRUITER") && !userRoles.includes("ADMIN")) {
-                window.location.href = "http://localhost:8080";
-            }
-        }
-    };
-</script>
 <script th:inline="javascript">
     // Truy cập vào các thành phần
     const name = document.getElementById("name")
@@ -305,120 +278,112 @@
     const benefit = document.getElementById("benefit")
     const detail = document.getElementById("detail")
     const requirement = document.getElementById("requirement")
-j
+
+
 </script>
 <script th:inline="javascript">
     const skill = $("#skill-update");
     skill.select2({
         placeholder: "- Chọn chủ đề",
     });
-    let job = [[${job}]]
-    console.log(job)
+    let jobid = [[${job.id}]]
+    console.log(jobid)
+    $.ajax({
+        url: '/api/v1/jobs/' + [[${job.id}]],
+        type: 'GET',
+        success: function (response) {
+            console.log(response)
+            $('#name').val(response.name);
+            $('#title').text(response.title);
+            $('#dueDateTime').val(response.dueDateTime);
+            $('#location').val(response.location);
+            $('#jobStatus').val(response.jobStatus);
+            $('#yoe').val(response.yoe);
+            $('#salaryFrom').val(response.salaryFrom);
+            $('#salaryTo').val(response.salaryTo);
+            $('#literacy').val(response.literacy);
+            $('#benefit').val(response.benefit);
+            $('#detail').val(response.detail);
+            $('#requirement').val(response.requirement);
+            let skillsArray = response.skill.replace(/\[|\]|\s/g, '').split(',');
+            let skillSelect = $("#skill-update");
+            skillSelect.val(skillsArray);
+            skillSelect.trigger("change");
 
-    $('#name-update').val(job.recruiter.name);
-    $('#title').text(job.title);
-    $('#dueDateTime').val(job.dueDateTime);
-    $('#location').val(job.location);
-    $('#jobStatus').val(job.jobStatus);
-    $('#yoe').val(job.yoe);
-    $('#salaryFrom').val(job.salaryFrom);
-    $('#salaryTo').val(job.salaryTo);
-    $('#literacy').val(job.literacy);
-    $('#benefit').val(job.benefit);
-    $('#detail').val(job.detail);
-    $('#requirement').val(job.requirement);
-    let skillsArray = job.skill.replace(/\[|\]|\s/g, '').split(',');
-    let skillSelect = $("#skill-update");
-    skillSelect.val(skillsArray);
-    skillSelect.trigger("change");
-
-    $('.btn-update-job').click(function () {
-
-        let title = $("#title").val();
-        let name = $("#name").val();
-        let location = $("#location").val();
-        let skill = $("#skill-update").val();
-        let salaryFrom = $("#salaryFrom").val();
-        let salaryTo = $("#salaryTo").val();
-        let dueDateTime = $("#dueDateTime").val();
-        let introduce = $("#introduce").val();
-        let benefit = $("#benefit").val();
-        let jobStatus = $("#jobStatus").val();
-        let detail = $("#detail").val();
-        let literacy = $("#literacy").val();
-        let yoe = $("#yoe").val();
-        let requirement = $("#requirement").val();
-
-
-        let request = {
-            name: name,
-            title: title,
-            salaryFrom: salaryFrom,
-            salaryTo: salaryTo,
-            dueDateTime: dueDateTime,
-            location: location,
-            skill: skill,
-            introduce: introduce,
-            benefit: benefit,
-            jobStatus: jobStatus,
-            detail: detail,
-            literacy: literacy,
-            yoe: yoe,
-            requirement: requirement
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
         }
-        let jwtToken = localStorage.getItem("jwtToken")
-        if (jwtToken) {
-            $.ajax({
-                url: "/api/v1/jobs/" + [[${job.id}]],
-                type: 'PUT',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(request),
-                headers: {
-                    'Authorization': 'Bearer' + " " + jwtToken
-                },
-                success: function (response) {
-                    toastr.success("Cập nhật công việc thành công");
-                    setTimeout(function () {
-                        window.location.href = "/recruiter/jobs/";
-                    }, 2000);
-                },
-                error: function (data) {
-                    toastr.warning(data.responseJSON.message);
-                }
-            });
-        } else {
-            toastr.warning("Bạn chưa đăng nhập")
-        }
-
     });
+        $('.btn-update-job').click(function () {
 
-    $('.btn-delete-job').click(function () {
-        confirm("bạn có chắc muốn xóa không")
-        let jwtToken = localStorage.getItem("jwtToken")
-        if (jwtToken) {
+            let title = $("#title").val();
+            let name = $("#name").val();
+            let location = $("#location").val();
+            let skill = $("#skill-update").val();
+            let salaryFrom = $("#salaryFrom").val();
+            let salaryTo = $("#salaryTo").val();
+            let dueDateTime = $("#dueDateTime").val();
+            let introduce = $("#introduce").val();
+            let benefit = $("#benefit").val();
+            let jobStatus = $("#jobStatus").val();
+            let detail = $("#detail").val();
+            let literacy = $("#literacy").val();
+            let yoe = $("#yoe").val();
+            let requirement = $("#requirement").val();
+
+            let request = {
+                name: name,
+                title: title,
+                salaryFrom: salaryFrom,
+                salaryTo: salaryTo,
+                dueDateTime: dueDateTime,
+                location: location,
+                skill: skill,
+                introduce: introduce,
+                benefit: benefit,
+                jobStatus: jobStatus,
+                detail: detail,
+                literacy: literacy,
+                yoe: yoe,
+                requirement: requirement
+            }
+            console.log(request)
+
+                $.ajax({
+                    url: "/api/v1/jobs/" + [[${job.id}]],
+                    type: 'PUT',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(request),
+                    success: function (response) {
+                        toastr.success("Cập nhật công việc thành công");
+
+                        window.location.href = 'http://localhost:8080/recruiter/jobs'
+                    },
+                    error: function (data) {
+                        toastr.warning(data.responseJSON.message);
+                    }
+                });
+
+        });
+
+        $('.btn-delete-job').click(function () {
+            confirm("bạn có chắc muốn xóa không")
             $.ajax({
                 url: '/api/v1/jobs/' + [[${job.id}]],
                 type: 'DELETE',
                 contentType: "application/json; charset=utf-8",
-                headers: {
-                    'Authorization': 'Bearer' + " " + jwtToken
-                },
                 success: function (data) {
                     toastr.success("Xóa công việc thành công");
                     setTimeout(function () {
-                        window.location.href = "/recruiter/jobs/";
-                    }, 2000);
+                        location.href = "/recruiter/jobs/";
+                    }, 1000);
                 },
                 error: function (data) {
-                    toastr.error("Xóa thất bại");
+                    toastr.warning(data.responseJSON.message);
                 },
             });
-        } else {
-            toastr.warning("Bạn chưa đăng nhập")
-
-        }
-    })
-    ;
+        })
 
 </script>
 </body>

@@ -37,6 +37,8 @@ public class JobResponse {
 
     String salary;
 
+    String requirement;
+
     List<String> skill;
 
     JobStatus jobStatus;

@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,8 +37,12 @@ public class JobService {
 
     List<Job> jobs;
 
-    public List<Job> getAllJob() {
+    public List<Job> getAllJob(){
         return jobRepository.findAll();
+    }
+
+    public List<Job> getAllJobByRecruiter(String email) {
+        return jobRepository.findByRecruiterEmail(email);
     }
 
     public void createJob(JobRequest jobRequest) {
@@ -67,12 +72,19 @@ public class JobService {
                 .skill(String.valueOf(jobRequest.getSkill()))
                 .title(jobRequest.getTitle())
                 .workType(jobRequest.getWorkType())
+                .requirement(jobRequest.getRequirement())
                 .yoe(jobRequest.getYoe())
                 .build();
         jobRepository.save(job);
     }
 
     public Job updateJob(Long id, JobRequest jobRequest) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        Recruiter recruiter = recruiterRepository.findByUserId(customUserDetails.getId())
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found recruiter with id = " + jobRequest.getId());
+                });
         Job job = jobRepository.findById(id)
                 .orElseThrow(() -> {
                     throw new NotFoundException("Not found job with id = " + id);
@@ -87,11 +99,14 @@ public class JobService {
         job.setDueDateTime(jobRequest.getDueDateTime());
         job.setPublishDateTime(jobRequest.getPublishDateTime());
         job.setRecruiter(jobRequest.getRecruiter());
+        job.setRequirement(jobRequest.getRequirement());
         job.setSalaryFrom(jobRequest.getSalaryFrom());
         job.setSalaryTo(jobRequest.getSalaryTo());
         job.setTitle(jobRequest.getTitle());
         job.setWorkType(jobRequest.getWorkType());
         job.setYoe(jobRequest.getYoe());
+        job.setSkill("[" + String.join(", ", jobRequest.getSkill()) + "]");
+        job.setRecruiter(recruiter);
 
         jobRepository.save(job);
         return job;

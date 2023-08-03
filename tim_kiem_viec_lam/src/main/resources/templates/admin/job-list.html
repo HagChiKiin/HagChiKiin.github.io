@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -89,38 +89,33 @@
                 <tr>
                     <th>STT</th>
                     <th>Tên công việc</th>
-                    <td>Kỹ năng</td>
+                    <th>Kỹ năng</th>
                     <th>Mức lương từ</th>
                     <th>Mức lương đến</th>
                     <th>Công ty</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="job, info: ${jobList}">
-                    <td th:text="${info.index + 1}">1</td>
-                    <td>
-                        <a th:href="@{/recruiter/jobs/{id} (id=${job.id})}" th:text="${job.title}">Legacy IT Agent</a>
-                    </td>
-                    <td>
-                        <span class="me-1 badge bg-warning text-dark" th:text="${job.skill}">Devops</span>
-                    </td>
-                    <td th:text="${job.salaryFrom}">29,194,223 VNĐ</td>
-                    <td th:text="${job.salaryTo}">29,194,223 VNĐ</td>
-                    <td >
-                        <a th:text="${job.recruiter.name}">Haley, Bailey and Brakus</a>
-                    </td>
+                <!--                <tr th:each="job, info: ${jobList}">-->
+                <!--                    <td th:text="${info.index + 1}">1</td>-->
+                <!--                    <td>-->
+                <!--                        <a th:href="@{/recruiter/jobs/{id} (id=${job.id})}" th:text="${job.title}">Legacy IT Agent</a>-->
+                <!--                    </td>-->
+                <!--                    <td>-->
+                <!--                        <span class="me-1 badge bg-warning text-dark" th:text="${job.skill}">Devops</span>-->
+                <!--                    </td>-->
+                <!--                    <td th:text="${job.salaryFrom}">29,194,223 VNĐ</td>-->
+                <!--                    <td th:text="${job.salaryTo}">29,194,223 VNĐ</td>-->
+                <!--                    <td >-->
+                <!--                        <a th:text="${job.recruiter.name}">Haley, Bailey and Brakus</a>-->
+                <!--                    </td>-->
 
-                </tr>
+                <!--                </tr>-->
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- axios -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -139,6 +134,54 @@
         integrity="sha512-1zzZ0ynR2KXnFskJ1C2s+7TIEewmkB2y+5o/+ahF7mwNj9n3PnzARpqalvtjSbUETwx6yuxP5AJXZCpnjEJkQw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script th:inline="javascript">
+    function hasAccessToJob(job) {
+        // Lấy thông tin người dùng đã đăng nhập từ localStorage
+        const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+        const loggedInEmail = userInfomation.username;
+
+        // Kiểm tra xem người dùng đã đăng nhập có cùng email với người tạo công việc hay không
+        return job.recruiter.user.email === loggedInEmail;
+    }
+
+    $(document).ready(function () {
+        // Lấy danh sách công việc từ biến jobList đã có
+        const jobList = [[${jobList}]];
+
+        const tbody = $(".job-table tbody");
+        tbody.empty(); // Xóa nội dung tbody cũ
+
+        // Tạo các hàng trong bảng dựa vào dữ liệu công việc
+        $.each(jobList, function (index, job) {
+            // Kiểm tra xem người dùng có quyền truy cập vào công việc hay không
+            const hasAccess = hasAccessToJob(job);
+
+            const tr = $("<tr>");
+            tr.html(`
+            <td>${index + 1}</td>
+            <td><a href="/recruiter/jobs/${job.id}">${job.title}</a></td>
+            <td><span class="me-1 badge bg-warning text-dark">${job.skill}</span></td>
+            <td>${job.salaryFrom}</td>
+            <td>${job.salaryTo}</td>
+            <td><a>${job.recruiter.name}</a></td>
+        `);
+            // Nếu người dùng không có quyền truy cập, vô hiệu hóa liên kết và thêm lớp CSS "disabled-link" để định dạng liên kết
+            if (!hasAccess) {
+                toastr.success("Bạn không có quyền truy cập vào job của Recruiter khác");
+                setTimeout(function () {
+                    window.location.href = "http://localhost:8080/splash";
+                }, 2000)
+            }
+
+            tbody.append(tr);
+        });
+    });
+
+</script>
 </body>
 
 </html>
