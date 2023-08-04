@@ -65,15 +65,15 @@ $(document).ready(function () {
 
                 userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
                 const loggedInEmail = userInfomation.username;
-                console.log(loggedInEmail)
 
+                const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
 
                 if (response.roles[0] === "ADMIN") {
                     window.location.href = 'http://localhost:8080/admin/companies'
                 } else if (response.roles[0] === "USER") {
                     window.location.href = 'http://localhost:8080/'
                 } else {
-                    window.location.href = 'http://localhost:8080/recruiter/jobs?email=' + loggedInEmail;
+                    window.location.href = 'http://localhost:8080/recruiter/jobs?email=' + loggedInEmailWithoutDomain;
                 }
             },
             error: function (data) {

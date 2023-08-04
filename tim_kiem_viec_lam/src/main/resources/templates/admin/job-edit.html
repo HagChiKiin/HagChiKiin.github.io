@@ -56,7 +56,7 @@
 
                     <ul class="sub-menu">
                         <li class="sub-menu-item">
-                            <a href="/recruiter/jobs">Danh sách công việc</a>
+                            <a class="btn-back">Danh sách công việc</a>
                         </li>
                         <li class="sub-menu-item">
                             <a href="/recruiter/jobs-create">Tạo công việc</a>
@@ -419,6 +419,16 @@ j
         }
     })
     ;
+
+    // Lấy thông tin người dùng đã đăng nhập từ localStorage
+    const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+    const loggedInEmail = userInfomation.username;
+    const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
+
+    // Sự kiện khi nhấn nút "Quay lại"
+    $(".btn-back").click(function () {
+        window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
+    });
 
 </script>
 </body>

@@ -57,7 +57,7 @@
 
                     <ul class="sub-menu">
                         <li class="sub-menu-item">
-                            <a href="/recruiter/jobs">Danh sách công việc</a>
+                            <a class="btn-back">Danh sách công việc</a>
                         </li>
                         <li class="sub-menu-item">
                             <a href="/recruiter/jobs-create">Tạo công việc</a>
@@ -77,10 +77,10 @@
                 <span><i class="fa-solid fa-plus"></i></span>
                 Tạo công việc
             </a>
-            <a href="/recruiter/jobs" class="btn-custom btn-refresh">
+            <button class="btn-custom btn-refresh btn-back">
                 <span><i class="fa-solid fa-arrow-rotate-right"></i></span>
                 Refresh
-            </a>
+            </button>
         </div>
 
         <div class="job-list-inner p-2">
@@ -145,7 +145,15 @@
         const loggedInEmail = userInfomation.username;
 
         // Kiểm tra xem người dùng đã đăng nhập có cùng email với người tạo công việc hay không
-        return job.recruiter.user.email === loggedInEmail;
+        // Tách phần email trước ký tự '.'
+        const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
+        console.log(loggedInEmailWithoutDomain)
+
+        // Tách phần email của người tạo công việc trước ký tự '@'
+        const jobEmailWithoutDomain = job.recruiter.user.email.split('.')[0];
+
+        // Kiểm tra xem người dùng đã đăng nhập có cùng email với người tạo công việc hay không
+        return jobEmailWithoutDomain === loggedInEmailWithoutDomain;
     }
 
     $(document).ready(function () {
@@ -169,7 +177,7 @@
             <td>${job.salaryTo}</td>
             <td><a>${job.recruiter.name}</a></td>
         `);
-            // Nếu người dùng không có quyền truy cập, vô hiệu hóa liên kết và thêm lớp CSS "disabled-link" để định dạng liên kết
+            // Nếu Recruiter truy cập sang đường link của Recruiter khác, đẩy về trang chủ
             if (!hasAccess) {
                 toastr.success("Bạn không có quyền truy cập vào job của Recruiter khác");
                 setTimeout(function () {
@@ -178,6 +186,15 @@
             }
 
             tbody.append(tr);
+        });
+
+        // Lấy thông tin người dùng đã đăng nhập từ localStorage
+        const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+        const loggedInEmail = userInfomation.username;
+
+        // Sự kiện khi nhấn nút "Quay lại"
+        $(".btn-back").click(function () {
+            window.location.href = "/recruiter/jobs?email=" + loggedInEmail;
         });
     });
 

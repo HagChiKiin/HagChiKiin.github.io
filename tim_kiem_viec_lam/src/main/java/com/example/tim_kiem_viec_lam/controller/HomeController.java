@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -53,6 +54,11 @@ public class HomeController {
     }
     @GetMapping("/recruiter/jobs")
     public String getJob(Model model , @RequestParam String email) {
+        // Cắt chuỗi email để loại bỏ phần domain (ví dụ: .com')
+        int atIndex = email.indexOf(".");
+        if (atIndex != -1) {
+            email = email.substring(0, atIndex);
+        }
         List<Job> jobList = jobService.getAllJobByRecruiter(email);
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         model.addAttribute("recruiterList",recruiterList);
@@ -72,8 +78,6 @@ public class HomeController {
 
     }
 
-
-
     @GetMapping("/recruiter/jobs-create")
     public String createJob(Model model) {
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
@@ -85,11 +89,6 @@ public class HomeController {
     public String updateJob() {
         return "admin/job-edit";
     }
-
-//    @GetMapping("/recruiter")
-//    public String getUser(){
-//        return "user/index-recruiter";
-//    }
 
     @GetMapping("/jd-page")
     public String getJobDetail(){
@@ -135,4 +134,12 @@ public class HomeController {
     public String showSplashPage() {
         return "user/splash-page"; // Trang trung gian (splash page)
     }
+
+//    @GetMapping("/search")
+//    public ModelAndView searchBook(JobSearchRequest request) {
+//        ModelAndView modelAndView = new ModelAndView("user/index");
+////        modelAndView.setViewName();
+//        modelAndView.addObject("bookSearchData", jobService.searchJob(request));
+//        return modelAndView;
+//    }
 }
