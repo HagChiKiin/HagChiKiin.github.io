@@ -179,10 +179,10 @@
         `);
             // Nếu Recruiter truy cập sang đường link của Recruiter khác, đẩy về trang chủ
             if (!hasAccess) {
-                toastr.success("Bạn không có quyền truy cập vào job của Recruiter khác");
+                // toastr.success("Bạn không có quyền truy cập vào job của Recruiter khác");
                 setTimeout(function () {
                     window.location.href = "http://localhost:8080/splash";
-                }, 2000)
+                }, 1000)
             }
 
             tbody.append(tr);
@@ -191,10 +191,11 @@
         // Lấy thông tin người dùng đã đăng nhập từ localStorage
         const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
         const loggedInEmail = userInfomation.username;
+        const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
 
         // Sự kiện khi nhấn nút "Quay lại"
         $(".btn-back").click(function () {
-            window.location.href = "/recruiter/jobs?email=" + loggedInEmail;
+            window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
         });
     });
 

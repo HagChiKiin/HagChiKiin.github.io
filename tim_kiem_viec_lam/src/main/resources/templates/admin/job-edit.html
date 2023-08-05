@@ -34,6 +34,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
+    <!--    alert-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
 
     <!-- Link tự viết -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-admin.css}">
@@ -72,7 +74,7 @@
 <div class="job-container mt-4 mb-4">
     <div class="container">
         <div class="mb-4">
-            <a href="/recruiter/jobs" class="btn-custom btn-refresh">
+            <a class="btn-custom btn-refresh btn-back">
                 <span><i class="fa-solid fa-angle-left"></i></span>
                 Quay lại
             </a>
@@ -262,6 +264,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     window.onload = function () {
@@ -305,9 +309,20 @@
     const benefit = document.getElementById("benefit")
     const detail = document.getElementById("detail")
     const requirement = document.getElementById("requirement")
-j
+    j
 </script>
 <script th:inline="javascript">
+
+    // Lấy thông tin người dùng đã đăng nhập từ localStorage
+    const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+    const loggedInEmail = userInfomation.username;
+    const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
+
+    // Sự kiện khi nhấn nút "Quay lại"
+    $(".btn-back").click(function () {
+        window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
+    });
+
     const skill = $("#skill-update");
     skill.select2({
         placeholder: "- Chọn chủ đề",
@@ -349,7 +364,6 @@ j
         let yoe = $("#yoe").val();
         let requirement = $("#requirement").val();
 
-
         let request = {
             name: name,
             title: title,
@@ -379,11 +393,11 @@ j
                 success: function (response) {
                     toastr.success("Cập nhật công việc thành công");
                     setTimeout(function () {
-                        window.location.href = "/recruiter/jobs/";
+                        window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
                     }, 2000);
                 },
                 error: function (data) {
-                    toastr.warning(data.responseJSON.message);
+                    toastr.error("Cập nhật công việc thất bại");
                 }
             });
         } else {
@@ -393,42 +407,53 @@ j
     });
 
     $('.btn-delete-job').click(function () {
-        confirm("bạn có chắc muốn xóa không")
-        let jwtToken = localStorage.getItem("jwtToken")
-        if (jwtToken) {
-            $.ajax({
-                url: '/api/v1/jobs/' + [[${job.id}]],
-                type: 'DELETE',
-                contentType: "application/json; charset=utf-8",
-                headers: {
-                    'Authorization': 'Bearer' + " " + jwtToken
-                },
-                success: function (data) {
-                    toastr.success("Xóa công việc thành công");
-                    setTimeout(function () {
-                        window.location.href = "/recruiter/jobs/";
-                    }, 2000);
-                },
-                error: function (data) {
-                    toastr.error("Xóa thất bại");
-                },
-            });
-        } else {
-            toastr.warning("Bạn chưa đăng nhập")
-
-        }
-    })
-    ;
-
-    // Lấy thông tin người dùng đã đăng nhập từ localStorage
-    const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
-    const loggedInEmail = userInfomation.username;
-    const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
-
-    // Sự kiện khi nhấn nút "Quay lại"
-    $(".btn-back").click(function () {
-        window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
+        // Sử dụng swal() của SweetAlert2 thay vì confirm()
+        Swal.fire({
+            title: 'Bạn có chắc muốn xóa không?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let jwtToken = localStorage.getItem("jwtToken")
+                if (jwtToken) {
+                    $.ajax({
+                        url: '/api/v1/jobs/' + [[${job.id}]],
+                        type: 'DELETE',
+                        contentType: "application/json; charset=utf-8",
+                        headers: {
+                            'Authorization': 'Bearer' + " " + jwtToken
+                        },
+                        success: function (data) {
+                            Swal.fire({
+                                title: 'Xóa công việc thành công',
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                            setTimeout(function () {
+                                window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
+                            }, 2000);
+                        },
+                        error: function (data) {
+                            Swal.fire({
+                                title: 'Xóa thất bại',
+                                icon: 'error',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        },
+                    });
+                } else {
+                    toastr.warning("Bạn chưa đăng nhập")
+                }
+            }
+        });
     });
+
 
 </script>
 </body>

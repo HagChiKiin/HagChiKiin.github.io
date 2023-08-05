@@ -5,14 +5,20 @@ import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.exception.NotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.JobRequest;
+import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
+import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
+import com.example.tim_kiem_viec_lam.model.response.JobResponse;
 import com.example.tim_kiem_viec_lam.repository.ApplicationRepository;
 import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.RecruiterRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
+import com.example.tim_kiem_viec_lam.repository.custom.JobCustomRepository;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -23,6 +29,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JobService {
 
     ObjectMapper objectMapper;
@@ -37,7 +44,9 @@ public class JobService {
 
     List<Job> jobs;
 
-    public List<Job> getAllJob(){
+    JobCustomRepository jobCustomRepository;
+
+    public List<Job> getAllJob() {
         return jobRepository.findAll();
     }
 
@@ -47,9 +56,6 @@ public class JobService {
 
     public void createJob(JobRequest jobRequest) {
 
-//        Job job = objectMapper.convertValue(jobRequest, Job.class);
-//        jobRepository.save(job);
-//        return objectMapper.convertValue(job, JobResponse.class);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Recruiter recruiter = recruiterRepository.findByUserId(customUserDetails.getId())
@@ -137,5 +143,26 @@ public class JobService {
                 .orElseThrow(() -> {
                     throw new NotFoundException("Not found job with id = " + id);
                 });
+    }
+
+    public CommonResponse<?> searchJob(JobSearchRequest request) {
+        try {
+            List<JobResponse> jobs = jobCustomRepository.searchJob(request);
+            Integer pageIndex = request.getPageIndex();
+            Integer pageSize = request.getPageSize();
+
+            int pageNumber = (int) Math.ceil((float) jobs.size() / pageSize);
+
+            PaginationUtils<JobResponse> paginationUtils = new PaginationUtils<>();
+            jobs = paginationUtils.searchData(jobs, pageIndex, pageSize);
+
+
+            return CommonResponse.builder()
+                    .pageNumber(pageNumber)
+                    .data(jobs)
+                    .build();
+        } catch (Exception e) {
+            throw new NotFoundException("Page index out of bound");
+        }
     }
 }

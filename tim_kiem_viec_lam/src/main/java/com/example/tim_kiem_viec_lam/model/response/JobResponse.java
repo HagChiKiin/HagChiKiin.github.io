@@ -35,7 +35,9 @@ public class JobResponse {
 
     String benefit;
 
-    String salary;
+    String salaryTo;
+
+    String salaryFrom;
 
     String requirement;
 

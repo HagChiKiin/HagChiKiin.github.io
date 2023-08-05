@@ -3,6 +3,7 @@ package com.example.tim_kiem_viec_lam.controller;
 import com.example.tim_kiem_viec_lam.entity.FileEntity;
 import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
+import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
 import com.example.tim_kiem_viec_lam.service.FileService;
 import com.example.tim_kiem_viec_lam.service.JobService;
 import com.example.tim_kiem_viec_lam.service.RecruiterService;
@@ -54,7 +55,7 @@ public class HomeController {
     }
     @GetMapping("/recruiter/jobs")
     public String getJob(Model model , @RequestParam String email) {
-        // Cắt chuỗi email để loại bỏ phần domain (ví dụ: .com')
+        // Cắt chuỗi email để loại bỏ phần (.com)
         int atIndex = email.indexOf(".");
         if (atIndex != -1) {
             email = email.substring(0, atIndex);
@@ -95,10 +96,6 @@ public class HomeController {
         return "user/jd-page";
     }
 
-    @GetMapping("/search")
-    public String searchJob(){
-        return "user/search";
-    }
 
     @GetMapping("/register-employees")
     public String registerCandidate(){
@@ -137,9 +134,8 @@ public class HomeController {
 
 //    @GetMapping("/search")
 //    public ModelAndView searchBook(JobSearchRequest request) {
-//        ModelAndView modelAndView = new ModelAndView("user/index");
-////        modelAndView.setViewName();
-//        modelAndView.addObject("bookSearchData", jobService.searchJob(request));
+//        ModelAndView modelAndView = new ModelAndView("user/search");
+//        modelAndView.addObject("jobSearchData", jobService.searchJob(request));
 //        return modelAndView;
 //    }
 }

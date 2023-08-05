@@ -93,8 +93,7 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Công ty</label>
                             <select type="text" class="form-control" id="name" name="name">
-                                <option th:each="recruiter : ${recruiterList}" th:value="${recruiter.id}"
-                                        th:text="${recruiter.name}">
+                                <option th:each="recruiter : ${recruiterList}" th:value="${recruiter.id}" th:text="${recruiter.name}">
 
                                 </option>
                             </select>
@@ -239,9 +238,21 @@
     };
 
     $(document).ready(function () {
+
+        // Lấy thông tin người dùng đã đăng nhập từ localStorage
+        const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+        const loggedInEmail = userInfomation.username;
+        const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
+
+        // Sự kiện khi nhấn nút "Quay lại"
+        $(".btn-back").click(function () {
+            window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
+        });
+
         $("#skill").select2({
             placeholder: "- Chọn chủ đề",
         });
+
         $("#create-job-form").validate({
             onfocusout: false,
             onkeyup: false,
@@ -386,7 +397,7 @@
                     success: function (response) {
                         toastr.success("Thêm công việc thành công");
 
-                        window.location.href = 'http://localhost:8080/recruiter/jobs'
+                        window.location.href = '/recruiter/jobs?email=' + loggedInEmailWithoutDomain
                     },
                     error: function (data) {
                         console.log(data);
@@ -399,16 +410,6 @@
 
         })
 
-
-        // Lấy thông tin người dùng đã đăng nhập từ localStorage
-        const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
-        const loggedInEmail = userInfomation.username;
-        const loggedInEmailWithoutDomain = loggedInEmail.split('.')[0];
-
-        // Sự kiện khi nhấn nút "Quay lại"
-        $(".btn-back").click(function () {
-            window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
-        });
     })
     ;
 
