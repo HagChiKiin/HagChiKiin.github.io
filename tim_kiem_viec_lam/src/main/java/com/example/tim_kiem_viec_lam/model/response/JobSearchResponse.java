@@ -28,4 +28,9 @@ public class JobSearchResponse {
 
     LocalDate published;
 
+    String companyName;
+
+    String avatar;
+    String dueDatetime;
+
 }

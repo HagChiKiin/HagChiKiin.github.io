@@ -67,7 +67,7 @@ public class UserService {
 
     final JwtUtils jwtUtils;
 
-    private static final String LOCAL_FOLDER = "D:/img/user-avatar";
+    private static final String LOCAL_FOLDER = "D:/img/user-avatar/";
 
     @Value("${application.user.avatar-folder}")
     private String userAvatarFolder;

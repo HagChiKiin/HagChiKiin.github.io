@@ -7,6 +7,7 @@ import com.example.tim_kiem_viec_lam.repository.BaseRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
@@ -21,10 +22,14 @@ public class JobCustomRepository extends BaseRepository {
         sql.append("    j.skill, ");
         sql.append("    j.title, ");
         sql.append("    j.salary_to, ");
-        sql.append("    j.salary_from ");
+        sql.append("    j.salary_from, ");
+        sql.append("    j.due_datetime, ");
+        sql.append("    r.name as companyName, ");
+        sql.append("    f.name as avatar ");
         sql.append("FROM ");
         sql.append("    jobs j ");
         sql.append("    LEFT JOIN recruiters r ON j.recruiter_id = r.id ");
+        sql.append("    LEFT JOIN files f ON f.id = r.file_id ");
         sql.append("WHERE ");
         sql.append("    1 = 1 ");
 
@@ -59,6 +64,9 @@ public class JobCustomRepository extends BaseRepository {
                     .title(jobSearchResponse.getTitle())
                     .salaryTo(jobSearchResponse.getSalaryTo())
                     .salaryFrom(jobSearchResponse.getSalaryFrom())
+                    .companyName(jobSearchResponse.getCompanyName())
+                    .avatar(jobSearchResponse.getAvatar())
+                    .dueDateTime(LocalDateTime.now())
                     .build();
             jobResponseList.add(jobResponse);
         });

@@ -16,6 +16,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class JobResponse {
     Long id;
+    String companyName;
 
     String avatar;
 

@@ -4,6 +4,7 @@ import com.example.tim_kiem_viec_lam.entity.FileEntity;
 import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
+import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
 import com.example.tim_kiem_viec_lam.service.FileService;
 import com.example.tim_kiem_viec_lam.service.JobService;
 import com.example.tim_kiem_viec_lam.service.RecruiterService;
@@ -132,10 +133,9 @@ public class HomeController {
         return "user/splash-page"; // Trang trung gian (splash page)
     }
 
-//    @GetMapping("/search")
-//    public ModelAndView searchBook(JobSearchRequest request) {
-//        ModelAndView modelAndView = new ModelAndView("user/search");
-//        modelAndView.addObject("jobSearchData", jobService.searchJob(request));
-//        return modelAndView;
-//    }
+    @GetMapping("/search")
+    @ResponseBody
+    public CommonResponse<?> searchBook(JobSearchRequest request) {
+        return jobService.searchJob(request);
+    }
 }
