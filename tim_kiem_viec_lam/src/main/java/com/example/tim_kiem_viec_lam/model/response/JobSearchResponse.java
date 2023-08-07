@@ -14,8 +14,6 @@ public class JobSearchResponse {
 
     Long id;
 
-    String name;
-
     String title;
 
     String location;
@@ -26,11 +24,10 @@ public class JobSearchResponse {
 
     String skill;
 
-    LocalDate published;
-
     String companyName;
 
     String avatar;
-    String dueDatetime;
+
+    LocalDate dueDateTime;
 
 }

@@ -8,6 +8,7 @@ import com.example.tim_kiem_viec_lam.model.request.JobRequest;
 import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
 import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
 import com.example.tim_kiem_viec_lam.model.response.JobResponse;
+import com.example.tim_kiem_viec_lam.model.response.JobSearchResponse;
 import com.example.tim_kiem_viec_lam.repository.ApplicationRepository;
 import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.RecruiterRepository;
@@ -146,23 +147,9 @@ public class JobService {
     }
 
     public CommonResponse<?> searchJob(JobSearchRequest request) {
-        try {
-            List<JobResponse> jobs = jobCustomRepository.searchJob(request);
-            Integer pageIndex = request.getPageIndex();
-            Integer pageSize = request.getPageSize();
-
-            int pageNumber = (int) Math.ceil((float) jobs.size() / pageSize);
-
-            PaginationUtils<JobResponse> paginationUtils = new PaginationUtils<>();
-            jobs = paginationUtils.searchData(jobs, pageIndex, pageSize);
-
-
-            return CommonResponse.builder()
-                    .pageNumber(pageNumber)
-                    .data(jobs)
-                    .build();
-        } catch (Exception e) {
-            throw new NotFoundException("Page index out of bound");
-        }
+        List<JobSearchResponse> jobs = jobCustomRepository.searchJob(request);
+        return CommonResponse.builder()
+                .data(jobs)
+                .build();
     }
 }

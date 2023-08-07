@@ -9,6 +9,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommonResponse<T> {
-    Integer pageNumber;
+//    Integer pageNumber;
     T data;
 }

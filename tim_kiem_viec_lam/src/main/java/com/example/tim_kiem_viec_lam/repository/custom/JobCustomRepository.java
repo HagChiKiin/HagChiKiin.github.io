@@ -7,12 +7,15 @@ import com.example.tim_kiem_viec_lam.repository.BaseRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static org.springframework.jdbc.core.BeanPropertyRowMapper.*;
+
 @Repository
 public class JobCustomRepository extends BaseRepository {
-    public List<JobResponse> searchJob(JobSearchRequest request) {
+    public List<JobSearchResponse> searchJob(JobSearchRequest request) {
 
         StringBuilder sql = new StringBuilder();
         Map<String, Object> parameters = new HashMap<>();
@@ -21,6 +24,7 @@ public class JobCustomRepository extends BaseRepository {
         sql.append("    j.id, ");
         sql.append("    j.skill, ");
         sql.append("    j.title, ");
+        sql.append("    j.location, ");
         sql.append("    j.salary_to, ");
         sql.append("    j.salary_from, ");
         sql.append("    j.due_datetime, ");
@@ -39,7 +43,7 @@ public class JobCustomRepository extends BaseRepository {
         }
 
         if (request.getLocation() != null && !request.getLocation().trim().equals("")) {
-            sql.append("AND LOWER(r.location) LIKE :location ");
+            sql.append("AND LOWER(j.location) LIKE :location ");
             parameters.put("location", "%" + request.getLocation().toLowerCase() + "%");
         }
 
@@ -52,24 +56,6 @@ public class JobCustomRepository extends BaseRepository {
             sql.append("AND LOWER(r.name) LIKE :name ");
             parameters.put("name", "%" + request.getName().toLowerCase() + "%");
         }
-
-        List<JobSearchResponse> jobSearchResponses = getNamedParameterJdbcTemplate()
-                .query(sql.toString(), parameters, BeanPropertyRowMapper.newInstance(JobSearchResponse.class));
-
-        List<JobResponse> jobResponseList = new ArrayList<>();
-        jobSearchResponses.forEach(jobSearchResponse -> {
-            JobResponse jobResponse = JobResponse.builder()
-                    .id(jobSearchResponse.getId())
-                    .skill(Arrays.asList(jobSearchResponse.getSkill().split(", ")))
-                    .title(jobSearchResponse.getTitle())
-                    .salaryTo(jobSearchResponse.getSalaryTo())
-                    .salaryFrom(jobSearchResponse.getSalaryFrom())
-                    .companyName(jobSearchResponse.getCompanyName())
-                    .avatar(jobSearchResponse.getAvatar())
-                    .dueDateTime(LocalDateTime.now())
-                    .build();
-            jobResponseList.add(jobResponse);
-        });
-        return jobResponseList;
+        return getNamedParameterJdbcTemplate().query(sql.toString(), parameters, newInstance(JobSearchResponse.class));
     }
 }

@@ -3,9 +3,12 @@ package com.example.tim_kiem_viec_lam.model.response;
 import com.example.tim_kiem_viec_lam.statics.JobStatus;
 import com.example.tim_kiem_viec_lam.statics.Literacy;
 import com.example.tim_kiem_viec_lam.statics.WorkType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.Column;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,6 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class JobResponse {
     Long id;
+
     String companyName;
 
     String avatar;
@@ -48,9 +52,9 @@ public class JobResponse {
 
     LocalDateTime publishDateTime;
 
-    LocalDateTime dueDateTime;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    LocalDate dueDateTime;
 
     LocalDateTime closeDateTime;
-
 
 }

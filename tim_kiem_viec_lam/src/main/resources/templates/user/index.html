@@ -165,6 +165,10 @@
                     <a class="nav-link snav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                        aria-controls="profile" aria-selected="false">Tìm công ty</a>
                 </li>
+                <li class="nav-item search-nav-item">
+                    <a class="nav-link snav-link" id="salary-tab" data-toggle="tab" href="#salary" role="tab"
+                       aria-controls="profile" aria-selected="false">Tìm theo lương</a>
+                </li>
             </ul>
             <div class="tab-content search-tab-content" id="myTabContent">
                 <!-- content tab 1 -->
@@ -174,24 +178,28 @@
                             <div class="col-md-10 col-sm-12">
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <div class="input-group s-input-group">
-                                            <input type="text" class="form-control sinput"
-                                                   placeholder="Nhập kỹ năng, công việc,...">
+                                        <div class="input-group s-input-group" >
+                                            <input id="title-search" type="text" class="form-control sinput job-search"
+                                                   placeholder="Nhập tên công việc...">
                                             <span><i class="fa fa-search"></i></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <select id="computer-languages">
                                             <option value="" selected hidden>Tất cả ngôn ngữ</option>
-                                            <option>Java</option>
-                                            <option>.NET</option>
-                                            <option>Javascript</option>
-                                            <option>Php</option>
-                                            <option>Python</option>
-                                            <option>QC QC</option>
-                                            <option>Business Analyst</option>
-                                            <option>Tester</option>
-                                            <option>Ruby</option>
+                                            <option> Javascript</option>
+                                            <option >Java</option>
+                                            <option >Golang</option>
+                                            <option >PHP</option>
+                                            <option >React</option>
+                                            <option >AWS</option>
+                                            <option >Devops</option>
+                                            <option >.Net</option>
+                                            <option >Vue</option>
+                                            <option >Angular</option>
+                                            <option >Python</option>
+                                            <option >C#</option>
+                                            <option >SQL</option>
                                         </select>
                                         <i class="fa fa-code sfa" aria-hidden="true"></i>
                                     </div>
@@ -204,6 +212,7 @@
                                             <option>Buôn Ma Thuột</option>
                                             <option>Quy Nhơn</option>
                                             <option>Nha Trang</option>
+
                                         </select>
                                         <i class="fa fa-map-marker sfa" aria-hidden="true"></i>
                                     </div>
@@ -218,17 +227,41 @@
                 <!-- (end) content tab 1 -->
                 <!-- content tab 2 -->
                 <div class="tab-pane stab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form class="bn-search-form">
+                    <form class="bn-search-form" onsubmit="return false;">
                         <div class="row">
                             <div class="col-md-10 col-sm-12">
-                                <div class="input-group s-input-group w-100">
-                                    <input type="text" class="form-control sinput"
-                                           placeholder="Nhập kỹ năng, công việc,...">
+                                <div class="input-group s-input-group w-100 ">
+                                    <input id="company-search" type="text" class="form-control sinput"
+                                           placeholder="Nhập tên công ty...">
                                     <span><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-12">
-                                <button type="submit" class="btn btn-primary btn-search col-sm-12">Tìm kiếm</button>
+                                <button type="button" onclick="performSearch()" class="btn btn-primary btn-search col-sm-12">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane stab-pane fade" id="salary" role="tabpanel" aria-labelledby="profile-tab">
+                    <form class="bn-search-form" onsubmit="return false;">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12">
+                                <div class="input-group s-input-group w-100 ">
+                                    <input id="salaryFrom-search" type="number" class="form-control sinput"
+                                           placeholder="Salary from" >
+                                    <span><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-12">
+                                <div class="input-group s-input-group w-100 ">
+                                    <input id="salaryTo-search" type="number" class="form-control sinput"
+                                           placeholder="Salary to">
+                                    <span><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-12">
+                                <button type="button" onclick="performSearch()" class="btn btn-primary btn-search col-sm-12">Tìm kiếm</button>
                             </div>
                         </div>
                     </form>
@@ -266,10 +299,9 @@
                                         <a href="#" th:text="${job.title}">Fullstack .NET Developer (Angular/React)</a>
                                     </div>
                                     <div class="job-company">
-                                        <a href="#" th:text="${job.recruiter.name}">Orient Software</a> | <a href="#"
-                                                                                                         class="job-address"><i
-                                            class="fa fa-map-marker" aria-hidden="true"></i>
-                                        Hà Nội</a>
+                                        <a href="#" th:text="${job.recruiter.name}">Orient Software</a> | <a href="#"class="job-address" ><i
+                                            class="fa fa-map-marker" aria-hidden="true" th:text="${job.location}"></i>
+                                        </a>
                                     </div>
 
                                     <div class="job-inf">
@@ -280,10 +312,8 @@
                                         </div>
                                         <div class="job-salary">
                                             <i class="fa fa-money" aria-hidden="true"></i>
-                                            <span class="salary-min" th:text="${job.salaryFrom}">15<em
-                                                    class="salary-unit">triệu</em></span>
-                                            <span class="salary-max" th:text="${job.salaryTo}">35 <em
-                                                    class="salary-unit">triệu</em></span>
+                                            <span class="salary-min" th:text="${job.salaryFrom}"</span>
+                                            <span class="salary-max" th:text="${job.salaryTo}"></span>
                                         </div>
                                         <div class="job-deadline">
                                             <span><i class="fa fa-clock-o" aria-hidden="true"></i>  Hạn nộp: <strong

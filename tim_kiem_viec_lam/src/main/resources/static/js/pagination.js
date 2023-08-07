@@ -158,6 +158,6 @@
 
 /* This part is just for the demo,
 not actually part of the plugin */
-$('.pagi').paginate(4);
+$('.pagi').paginate(6);
 
 

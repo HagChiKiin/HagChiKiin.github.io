@@ -32,19 +32,20 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String getAll(Model model){
+    public String getAll(Model model) {
         List<Job> jobList = jobService.getAllJob();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         List<FileEntity> fileList = fileService.getAllFile();
-        model.addAttribute("recruiterList",recruiterList);
-        model.addAttribute("jobList",jobList);
-        model.addAttribute("fileList",fileList);
+        model.addAttribute("recruiterList", recruiterList);
+        model.addAttribute("jobList", jobList);
+        model.addAttribute("fileList", fileList);
         return "user/index";
     }
+
     @GetMapping("admin/companies")
-    public String getAdmin(Model model){
+    public String getAdmin(Model model) {
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
-        model.addAttribute("recruiterList",recruiterList);
+        model.addAttribute("recruiterList", recruiterList);
         return "admin/company-list";
     }
 
@@ -54,8 +55,9 @@ public class HomeController {
         return "admin/company-create";
 
     }
+
     @GetMapping("/recruiter/jobs")
-    public String getJob(Model model , @RequestParam String email) {
+    public String getJob(Model model, @RequestParam String email) {
         // Cắt chuỗi email để loại bỏ phần (.com)
         int atIndex = email.indexOf(".");
         if (atIndex != -1) {
@@ -63,19 +65,20 @@ public class HomeController {
         }
         List<Job> jobList = jobService.getAllJobByRecruiter(email);
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
-        model.addAttribute("recruiterList",recruiterList);
-        model.addAttribute("jobList",jobList);
+        model.addAttribute("recruiterList", recruiterList);
+        model.addAttribute("jobList", jobList);
         return "admin/job-list";
 
     }
+
     @GetMapping("/recruiter/jobs/{id}")
     public String getDetailJob(@PathVariable Long id, Model model) {
         List<Job> jobList = jobService.getAllJob();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         Job job = jobService.getJobById(id);
-        model.addAttribute("recruiterList",recruiterList);
-        model.addAttribute("jobList",jobList);
-        model.addAttribute("job",job);
+        model.addAttribute("recruiterList", recruiterList);
+        model.addAttribute("jobList", jobList);
+        model.addAttribute("job", job);
         return "admin/job-edit";
 
     }
@@ -83,7 +86,7 @@ public class HomeController {
     @GetMapping("/recruiter/jobs-create")
     public String createJob(Model model) {
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
-        model.addAttribute("recruiterList",recruiterList);
+        model.addAttribute("recruiterList", recruiterList);
         return "admin/job-create";
     }
 
@@ -93,18 +96,18 @@ public class HomeController {
     }
 
     @GetMapping("/jd-page")
-    public String getJobDetail(){
+    public String getJobDetail() {
         return "user/jd-page";
     }
 
 
     @GetMapping("/register-employees")
-    public String registerCandidate(){
+    public String registerCandidate() {
         return "user/register-employees";
     }
 
     @GetMapping("/register-employers")
-    public String registerRecruiter(){
+    public String registerRecruiter() {
         return "user/register-employers";
     }
 
@@ -119,12 +122,12 @@ public class HomeController {
     }
 
     @GetMapping("/login-employers")
-    public String loginEmployer(){
+    public String loginEmployer() {
         return "recruiter/login-employers";
     }
 
     @GetMapping("/recruiter/published-recruitment")
-    public String publishRecruitment(){
+    public String publishRecruitment() {
         return "recruiter/published-recruitment";
     }
 
