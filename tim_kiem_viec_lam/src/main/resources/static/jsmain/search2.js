@@ -1,22 +1,18 @@
 // Function to perform the search using AJAX
 function performSearch() {
-    let title = $('#title-search').val();
-    let location = $('#s-provinces').val();
-    let companyName = $('#company-search').val();
-    let skill = $('#computer-languages').val();
-    let salaryFrom = $('#salaryFrom').val();
-    let salaryTo = $('#salaryTo').val();
+    var keyword = $('#keyword').val();
+    var language = $('#language').val();
+    var location = $('#location').val();
+    var skill = $('#computer-languages').val()
 
     $.ajax({
         type: 'GET',
         url: '/search',
         data: {
-            title: title,
+            keyword: keyword,
+            language: language,
             location: location,
-            skill: skill,
-            name: companyName,
-            salaryFrom : salaryFrom,
-            salaryTo : salaryTo
+            skill: skill
         },
         success: function (data) {
             displaySearchResults(data.data);
@@ -29,15 +25,15 @@ function performSearch() {
 
 // Function to display the search results on the page
 function displaySearchResults(jobs) {
-    let searchResultsDiv = $('#job-group');
+    var searchResultsDiv = $('#job-group');
     searchResultsDiv.empty();
 
     if (jobs.length === 0) {
         searchResultsDiv.append('<p>No jobs found.</p>');
     } else {
         jobs.forEach(function (job) {
-            let avatar = "/api/v1/files/" + job.avatar;
-            let jobItem = `<div class="job pagi">
+            var avatar = "/api/v1/files/" + job.avatar;
+            var jobItem = `<div class="job pagi">
                             <div class="job-content">
                                 <div class="job-logo">
                                     <a href="#">
@@ -52,8 +48,8 @@ function displaySearchResults(jobs) {
                                     <div class="job-company">
                                         <a href="#">${job.companyName}</a> | <a href="#"
                                                                                     class="job-address"><i
-                                                class="fa fa-map-marker" aria-hidden="true" > ${job.location}</i>
-                                        </a>
+                                                class="fa fa-map-marker" aria-hidden="true"></i>
+                                        Hà Nội</a>
                                     </div>
                                     <div class="job-inf">
                                         <div class="job-main-skill">
@@ -62,8 +58,10 @@ function displaySearchResults(jobs) {
                                         </div>
                                         <div class="job-salary">
                                             <i class="fa fa-money" aria-hidden="true"></i>
-                                            <span class="salary-min">${job.salaryFrom}</span>
-                                            <span class="salary-max">${job.salaryTo}</span>
+                                            <span class="salary-min">${job.salaryFrom}<em
+                                                    class="salary-unit">triệu</em></span>
+                                            <span class="salary-max">${job.salaryTo} <em
+                                                    class="salary-unit">triệu</em></span>
                                         </div>
                                         <div class="job-deadline">
                                             <span><i class="fa fa-clock-o" aria-hidden="true"></i>  Hạn nộp: <strong>${job.dueDateTime}</strong></span>
@@ -78,8 +76,12 @@ function displaySearchResults(jobs) {
             searchResultsDiv.append(jobItem);
         });
 
-        $('.pagi').paginate(6);
 
     }
 }
 
+// Attach the submit event to the search form
+$('#searchForm').submit(function (event) {
+    event.preventDefault();
+    performSearch();
+});

@@ -31,7 +31,6 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body>
@@ -40,7 +39,7 @@
     <div class="container cnt-tnar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light tjnav-bar">
             <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-            <a href="#" class="nav-logo">
+            <a href="/" class="nav-logo">
                 <img src="img/techjobs_bgb.png">
             </a>
             <button class="navbar-toggler tnavbar-toggler" type="button" data-toggle="collapse"
@@ -165,10 +164,7 @@
                     <a class="nav-link snav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                        aria-controls="profile" aria-selected="false">Tìm công ty</a>
                 </li>
-                <li class="nav-item search-nav-item">
-                    <a class="nav-link snav-link" id="salary-tab" data-toggle="tab" href="#salary" role="tab"
-                       aria-controls="profile" aria-selected="false">Tìm theo lương</a>
-                </li>
+
             </ul>
             <div class="tab-content search-tab-content" id="myTabContent">
                 <!-- content tab 1 -->
@@ -178,7 +174,7 @@
                             <div class="col-md-10 col-sm-12">
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <div class="input-group s-input-group" >
+                                        <div class="input-group s-input-group">
                                             <input id="title-search" type="text" class="form-control sinput job-search"
                                                    placeholder="Nhập tên công việc...">
                                             <span><i class="fa fa-search"></i></span>
@@ -188,18 +184,18 @@
                                         <select id="computer-languages">
                                             <option value="" selected hidden>Tất cả ngôn ngữ</option>
                                             <option> Javascript</option>
-                                            <option >Java</option>
-                                            <option >Golang</option>
-                                            <option >PHP</option>
-                                            <option >React</option>
-                                            <option >AWS</option>
-                                            <option >Devops</option>
-                                            <option >.Net</option>
-                                            <option >Vue</option>
-                                            <option >Angular</option>
-                                            <option >Python</option>
-                                            <option >C#</option>
-                                            <option >SQL</option>
+                                            <option>Java</option>
+                                            <option>Golang</option>
+                                            <option>PHP</option>
+                                            <option>React</option>
+                                            <option>AWS</option>
+                                            <option>Devops</option>
+                                            <option>.Net</option>
+                                            <option>Vue</option>
+                                            <option>Angular</option>
+                                            <option>Python</option>
+                                            <option>C#</option>
+                                            <option>SQL</option>
                                         </select>
                                         <i class="fa fa-code sfa" aria-hidden="true"></i>
                                     </div>
@@ -219,7 +215,9 @@
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-12">
-                                <button type="button" onclick="performSearch()" class="btn btn-primary btn-search col-sm-12">Tìm kiếm</button>
+                                <button type="button" onclick="performSearch()"
+                                        class="btn btn-primary btn-search col-sm-12">Tìm kiếm
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -229,43 +227,37 @@
                 <div class="tab-pane stab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <form class="bn-search-form" onsubmit="return false;">
                         <div class="row">
-                            <div class="col-md-10 col-sm-12">
+                            <div class="col-md-4 col-sm-12">
                                 <div class="input-group s-input-group w-100 ">
                                     <input id="company-search" type="text" class="form-control sinput"
                                            placeholder="Nhập tên công ty...">
                                     <span><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-sm-12">
-                                <button type="button" onclick="performSearch()" class="btn btn-primary btn-search col-sm-12">Tìm kiếm</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="tab-pane stab-pane fade" id="salary" role="tabpanel" aria-labelledby="profile-tab">
-                    <form class="bn-search-form" onsubmit="return false;">
-                        <div class="row">
-                            <div class="col-md-5 col-sm-12">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="input-group s-input-group w-100 ">
-                                    <input id="salaryFrom-search" type="number" class="form-control sinput"
-                                           placeholder="Salary from" >
+                                    <input id="salaryFrom" type="number" class="form-control sinput"
+                                           placeholder="Salary from">
                                     <span><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
-                            <div class="col-md-5 col-sm-12">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="input-group s-input-group w-100 ">
-                                    <input id="salaryTo-search" type="number" class="form-control sinput"
+                                    <input id="salaryTo" type="number" class="form-control sinput"
                                            placeholder="Salary to">
                                     <span><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-12">
-                                <button type="button" onclick="performSearch()" class="btn btn-primary btn-search col-sm-12">Tìm kiếm</button>
+                                <button type="button" onclick="performSearch()"
+                                        class="btn btn-primary btn-search col-sm-12">Tìm kiếm
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
+
+
                 <!-- (end) content tab 2 -->
             </div>
 
@@ -287,10 +279,11 @@
 
                     <div id="job-group" class="job-group">
                         <div class="job pagi" th:each="job : ${jobList}">
-                            <div class="job-content" >
-                                <div class="job-logo" >
+                            <div class="job-content">
+                                <div class="job-logo">
                                     <a href="#">
-                                        <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}" class="job-logo-ima" alt="job-logo">
+                                        <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}" class="job-logo-ima"
+                                             alt="job-logo">
                                     </a>
                                 </div>
 
@@ -299,9 +292,10 @@
                                         <a href="#" th:text="${job.title}">Fullstack .NET Developer (Angular/React)</a>
                                     </div>
                                     <div class="job-company">
-                                        <a href="#" th:text="${job.recruiter.name}">Orient Software</a> | <a href="#"class="job-address" ><i
+                                        <a href="#" th:text="${job.recruiter.name}">Orient Software</a> | <a href="#"
+                                                                                                             class="job-address"><i
                                             class="fa fa-map-marker" aria-hidden="true" th:text="${job.location}"></i>
-                                        </a>
+                                    </a>
                                     </div>
 
                                     <div class="job-inf">
@@ -312,7 +306,7 @@
                                         </div>
                                         <div class="job-salary">
                                             <i class="fa fa-money" aria-hidden="true"></i>
-                                            <span class="salary-min" th:text="${job.salaryFrom}"</span>
+                                            <span class="salary-min" th:text="${job.salaryFrom}"></span>
                                             <span class="salary-max" th:text="${job.salaryTo}"></span>
                                         </div>
                                         <div class="job-deadline">

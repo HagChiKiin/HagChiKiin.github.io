@@ -9,9 +9,9 @@ public class JobSearchRequest extends BaseSearchRequest{
 
     String title;
 
-    String salaryFrom;
+    Integer salaryFrom;
 
-    String salaryTo;
+    Integer salaryTo;
 
     String skill;
 

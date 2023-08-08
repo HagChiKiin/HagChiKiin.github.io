@@ -69,7 +69,7 @@ public class Job extends BaseEntity{
     LocalDateTime publishDateTime;
 
     @Column(name = "due_datetime")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
     LocalDate dueDateTime;
 
     @Column(name = "close_datetime")
