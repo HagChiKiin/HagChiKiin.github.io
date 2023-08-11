@@ -1,16 +1,17 @@
 package com.example.tim_kiem_viec_lam.controller;
 
-import com.example.tim_kiem_viec_lam.entity.FileEntity;
-import com.example.tim_kiem_viec_lam.entity.Job;
-import com.example.tim_kiem_viec_lam.entity.Recruiter;
+import com.example.tim_kiem_viec_lam.entity.*;
 import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
 import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
-import com.example.tim_kiem_viec_lam.service.FileService;
-import com.example.tim_kiem_viec_lam.service.JobService;
-import com.example.tim_kiem_viec_lam.service.RecruiterService;
+import com.example.tim_kiem_viec_lam.model.response.UserResponse;
+import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
+import com.example.tim_kiem_viec_lam.service.*;
+import com.sun.xml.bind.v2.TODO;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,12 +31,22 @@ public class HomeController {
 
     FileService fileService;
 
+    CandidateService candidateService;
+
+    UserService userService;
+
 
     @GetMapping("/")
-    public String getAll(Model model) {
+    public String getAll(Model model ) {
         List<Job> jobList = jobService.getAllJob();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         List<FileEntity> fileList = fileService.getAllFile();
+        // TODO: ko biết lấy ra id của user đang đăng nhập để truyền vào phần html thông tin cá nhân
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+//        User user = userService.getUserById(id)
+
+        model.addAttribute("userId", customUserDetails.getId());
         model.addAttribute("recruiterList", recruiterList);
         model.addAttribute("jobList", jobList);
         model.addAttribute("fileList", fileList);
@@ -74,9 +85,7 @@ public class HomeController {
     @GetMapping("/recruiter/jobs/{id}")
     public String getDetailJob(@PathVariable Long id, Model model) {
         List<Job> jobList = jobService.getAllJob();
-        List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         Job job = jobService.getJobById(id);
-        model.addAttribute("recruiterList", recruiterList);
         model.addAttribute("jobList", jobList);
         model.addAttribute("job", job);
         return "admin/job-edit";
@@ -90,16 +99,12 @@ public class HomeController {
         return "admin/job-create";
     }
 
-    @PutMapping("/recruiter/jobs-edit/{id}")
-    public String updateJob() {
-        return "admin/job-edit";
-    }
-
-    @GetMapping("/jd-page")
-    public String getJobDetail() {
+    @GetMapping("/jd-page/{id}")
+    public String getJobDetail(@PathVariable Long id, Model model) {
+        Job job = jobService.getJobById(id);
+        model.addAttribute("job", job);
         return "user/jd-page";
     }
-
 
     @GetMapping("/register-employees")
     public String registerCandidate() {
@@ -131,10 +136,20 @@ public class HomeController {
         return "recruiter/published-recruitment";
     }
 
+    @GetMapping("/candidate/info/{id}")
+    public String getInfoCandidate(@PathVariable Long id, Model model) {
+        User user = userService.getUserById(id);
+        List<Candidate> candidate = candidateService.getAllCandidate();
+        model.addAttribute("user",user);
+        model.addAttribute("candidate",candidate);
+        return "candidate/candidate-info";
+    }
+
     @GetMapping("/splash")
     public String showSplashPage() {
         return "user/splash-page"; // Trang trung gian (splash page)
     }
+
 
     @GetMapping("/search")
     @ResponseBody

@@ -1,10 +1,7 @@
 package com.example.tim_kiem_viec_lam.service;
 
 import com.example.tim_kiem_viec_lam.entity.*;
-import com.example.tim_kiem_viec_lam.exception.ActivatedAccountException;
-import com.example.tim_kiem_viec_lam.exception.ExistedUserException;
-import com.example.tim_kiem_viec_lam.exception.OtpExpiredException;
-import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
+import com.example.tim_kiem_viec_lam.exception.*;
 import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
 import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
 import com.example.tim_kiem_viec_lam.model.request.RegistrationRequest;
@@ -260,4 +257,13 @@ public class UserService {
     }
 
 
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found recruiter with id = " + id);
+                });
+    }
+    public List<User> getAlluser(){
+        return userRepository.findAll();
+    }
 }

@@ -105,7 +105,6 @@ public class JobService {
         job.setCloseDateTime(jobRequest.getCloseDateTime());
         job.setDueDateTime(jobRequest.getDueDateTime());
         job.setPublishDateTime(jobRequest.getPublishDateTime());
-        job.setRecruiter(jobRequest.getRecruiter());
         job.setRequirement(jobRequest.getRequirement());
         job.setSalaryFrom(jobRequest.getSalaryFrom());
         job.setSalaryTo(jobRequest.getSalaryTo());
@@ -145,6 +144,8 @@ public class JobService {
                     throw new NotFoundException("Not found job with id = " + id);
                 });
     }
+
+
 
     public CommonResponse<?> searchJob(JobSearchRequest request) {
         List<JobSearchResponse> jobs = jobCustomRepository.searchJob(request);

@@ -47,7 +47,7 @@ function displaySearchResults(jobs) {
                                 </div>
                                 <div class="job-desc">
                                     <div class="job-title">
-                                        <a href="#">${job.title}</a>
+                                        <a  href="/jd-page/${job.id}">${job.title}</a>
                                     </div>
                                     <div class="job-company">
                                         <a href="#">${job.companyName}</a> | <a href="#"

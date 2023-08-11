@@ -83,7 +83,7 @@
                         <a class="nav-link" href="/login-employees">Đăng Nhập</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             VI
                         </a>
@@ -96,7 +96,7 @@
                             Tuyển Dụng</a>
                     </li>
                     <li class="navbar-right item group " id="loggedInUserNavItem" style="display: none">
-                        <div class="dropdown">
+                        <div class="dropdown" >
                             <a class="d-inline-block avatar rounded-circle"
                                id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,9 +106,9 @@
                             </a>
                             <div class="dropdown-menu" style=" background-color: #2f55d4"
                                  aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Thông
-                                    tin cá nhân</a>
-                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Đổi
+                                <a id="user" class="dropdown-item"  th:href="@{/candidate/info/{id}id=${user.id})}" style="color: white; background-color: #2f55d4 ">Thông tin cá nhân</a>
+                                <a id="recruiter" class="dropdown-item" href="" style="color: white; background-color: #2f55d4 ">Tạo việc làm</a>
+                                <a class="dropdown-item" href="/recruiter/jobs-create" style="color: white; background-color: #2f55d4 ">Đổi
                                     mật khẩu</a>
                                 <a id="logout-button" class="dropdown-item" href="#"
                                    style="color: white; background-color: #2f55d4 ;"><i
@@ -202,12 +202,71 @@
                                     <div class="col-md-3">
                                         <select id="s-provinces">
                                             <option value="" selected hidden>Tất cả địa điểm</option>
-                                            <option>Đà Nẵng</option>
-                                            <option>Hà Nội</option>
-                                            <option>Hồ Chí Minh</option>
-                                            <option>Buôn Ma Thuột</option>
-                                            <option>Quy Nhơn</option>
-                                            <option>Nha Trang</option>
+                                            <option >Hồ Chí Minh</option>
+                                            <option >Hà Nội</option>
+                                            <option >An Giang</option>
+                                            <option>Bạc Liêu</option>
+                                            <option >Bà Rịa-Vũng Tàu</option>
+                                            <option >Bắc Cạn</option>
+                                            <option >Bắc Giang</option>
+                                            <option >Bắc Ninh</option>
+                                            <option >Bến Tre</option>
+                                            <option >Bình Dương</option>
+                                            <option >Bình Định</option>
+                                            <option >Bình Phước</option>
+                                            <option >Bình Thuận</option>
+                                            <option >Cao Bằng</option>
+                                            <option >Cà Mau</option>
+                                            <option >Cần Thơ</option>
+                                            <option >Đà Nẵng</option>
+                                            <option >Đắk Lắk</option>
+                                            <option >Đắk Nông</option>
+                                            <option >Điện Biên</option>
+                                            <option>Đồng Nai</option>
+                                            <option >Đồng Tháp</option>
+                                            <option >Gia Lai</option>
+                                            <option>Hà Giang</option>
+                                            <option >Hà Nam</option>
+                                            <option >Hà Tĩnh</option>
+                                            <option >Hải Dương</option>
+                                            <option >Hải Phòng</option>
+                                            <option >Hậu Giang</option>
+                                            <option >Hòa Bình</option>
+                                            <option >Hưng Yên</option>
+                                            <option >Khánh Hòa</option>
+                                            <option >Kiên Giang</option>
+                                            <option >Kon Tum</option>
+                                            <option >Lai Châu</option>
+                                            <option >Lạng Sơn</option>
+                                            <option >Lào Cai</option>
+                                            <option >Lâm Đồng</option>
+                                            <option >Long An</option>
+                                            <option >Nam Định</option>
+                                            <option >Nghệ An</option>
+                                            <option >Ninh Bình</option>
+                                            <option >Ninh Thuận</option>
+                                            <option >Phú Thọ</option>
+                                            <option >Phú Yên</option>
+                                            <option >Quảng Bình</option>
+                                            <option >Quảng Nam</option>
+                                            <option >Quảng Ngãi</option>
+                                            <option >Quảng Ninh</option>
+                                            <option >Quảng Trị</option>
+                                            <option >Sóc Trăng</option>
+                                            <option >Sơn La</option>
+                                            <option >Tây Ninh</option>
+                                            <option >Thái Bình</option>
+                                            <option >Thái Nguyên</option>
+                                            <option >Thanh Hóa</option>
+                                            <option >Thừa Thiên-Huế</option>
+                                            <option >Tiền Giang</option>
+                                            <option >Trà Vinh</option>
+                                            <option >Tuyên Quang</option>
+                                            <option >Vĩnh Long</option>
+                                            <option >Vĩnh Phúc</option>
+                                            <option >Yên Bái</option>
+                                            <option >Toàn quốc</option>
+                                            <option >Nước ngoài</option>
 
                                         </select>
                                         <i class="fa fa-map-marker sfa" aria-hidden="true"></i>
@@ -289,7 +348,7 @@
 
                                 <div class="job-desc">
                                     <div class="job-title">
-                                        <a href="#" th:text="${job.title}">Fullstack .NET Developer (Angular/React)</a>
+                                        <a  th:href="@{/jd-page/{id}(id=${job.id})}" th:text="${job.title}">Fullstack .NET Developer (Angular/React)</a>
                                     </div>
                                     <div class="job-company">
                                         <a href="#" th:text="${job.recruiter.name}">Orient Software</a> | <a href="#"
@@ -685,11 +744,19 @@
         const userInfomationStr = localStorage.getItem("userInfomation");
         if (userInfomationStr) {
             const userInfomation = JSON.parse(userInfomationStr)
-            if (userInfomation.username) {
+            if (userInfomation.username ) {
                 $('#registerNavItem').hide();
                 $('#loginNavItem').hide();
                 $('#loggedInUserNavItem').show();
 
+                // Ẩn/hiện các thẻ <a> tương ứng
+                if (userInfomation.roles[0] === 'USER') {
+                    $('#user').show();
+                    $('#recruiter').hide();
+                } else if (userInfomation.roles[0] === 'RECRUITER') {
+                    $('#user').hide();
+                    $('#recruiter').show();
+                }
             }
         }
 
@@ -1739,7 +1806,7 @@
                     <span>Tất cả tỉnh thành</span>
                 </h2>
                 <ul class="footer-list">
-                    <li><a href="#">Hồ Chính Minh</a></li>
+                    <li><a href="#">Hồ Chí Minh</a></li>
                     <li><a href="#">Hà Nội</a></li>
                     <li><a href="#">Đà Nẵng</a></li>
                     <li><a href="#">Buôn Ma Thuột</a></li>

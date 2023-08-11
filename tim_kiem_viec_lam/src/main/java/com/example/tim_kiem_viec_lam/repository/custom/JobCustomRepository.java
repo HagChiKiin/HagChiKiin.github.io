@@ -32,32 +32,32 @@ public class JobCustomRepository extends BaseRepository {
         sql.append("WHERE  1 = 1 ");
 
         if (request.getTitle() != null && !request.getTitle().trim().equals("")) {
-            sql.append("AND LOWER(j.title) LIKE :title");
+            sql.append("AND LOWER(j.title) LIKE :title\n");
             parameters.put("title", "%" + request.getTitle().toLowerCase() + "%");
         }
 
         if (request.getLocation() != null && !request.getLocation().trim().equals("")) {
-            sql.append("AND LOWER(j.location) LIKE :location");
+            sql.append("AND LOWER(j.location) LIKE :location\n");
             parameters.put("location", "%" + request.getLocation().toLowerCase() + "%");
         }
 
         if (request.getSkill() != null && !request.getSkill().trim().equals("")) {
-            sql.append("AND LOWER(j.skill) LIKE :skill");
+            sql.append("AND LOWER(j.skill) LIKE :skill\n");
             parameters.put("skill", "%" + request.getSkill().toLowerCase() + "%");
         }
 
         if (request.getSalaryFrom() != null) {
-            sql.append("AND j.salary_from >= :salaryFrom");
+            sql.append("AND j.salary_from >= :salaryFrom\n");
             parameters.put("salaryFrom",  request.getSalaryFrom());
         }
 
         if (request.getSalaryTo() != null ) {
-            sql.append("AND j.salary_to <= :salaryTo");
+            sql.append("AND j.salary_to <= :salaryTo\n");
             parameters.put("salaryTo", request.getSalaryTo());
         }
 
         if (request.getName() != null && !request.getName().trim().equals("")) {
-            sql.append("AND LOWER(r.name) LIKE :name");
+            sql.append("AND LOWER(r.name) LIKE :name\n");
             parameters.put("name", "%" + request.getName().toLowerCase() + "%");
         }
         return getNamedParameterJdbcTemplate().query(sql.toString(), parameters, newInstance(JobSearchResponse.class));

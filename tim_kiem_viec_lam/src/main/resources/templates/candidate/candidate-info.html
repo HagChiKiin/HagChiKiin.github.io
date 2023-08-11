@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layout/layout :: main-fragment(~{:: title}, ~{:: #css}, ~{:: .job-search}, ~{:: #js})">
+<head>
+    <meta charset="UTF-8">
+    <title>TechJobs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+<div class="job-search">
+    <!-- recuiter Nav -->
+    <nav class="navbar navbar-expand-lg navbar-light nav-recuitment">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNava"
+                aria-controls="navbarNava" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse container" id="navbarNava">
+            <ul class="navbar-nav nav-recuitment-li">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Quản lý hồ sơ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Việc làm của tôi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Việc làm đã lưu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cài đặt</a>
+                </li>
+            </ul>
+            <ul class="rec-nav-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tạo hồ sơ</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--  recuiter Nav -->
+
+    <!-- widget recuitment  -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="home-ads">
+                        <a href="#">
+                            <img src="/img/hna2.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- (end) widget recuitment  -->
+
+    <!-- published recuitment -->
+    <div class="container-fluid published-recuitment-wrapper">
+        <div class="container published-recuitment-content">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 col-12 recuitment-inner">
+                    <form class="employee-form">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card recuitment-card">
+                                <div class="card-header recuitment-card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <a class="btn btn-link btn-block text-left recuitment-header" type="button"
+                                           data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                           aria-controls="collapseOne">
+                                            Thông tin tài khoản
+                                            <span id="clickc1_advance2" class="clicksd">
+                      <i class="fa fa fa-angle-up"></i>
+                    </span>
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body recuitment-body row">
+                                        <div class="col-md-3">
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                                                    <label for="imageUpload"></label>
+                                                </div>
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview"
+                                                         style="background-image: url(https://i.pravatar.cc/500?img=7);">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right label" for="name">Họ tên<span
+                                                        style="color: red" class="pl-2">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Nhập họ và tên" id="name" name="name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right label" for="phone">Số điện
+                                                    thoại<span
+                                                            style="color: red" class="pl-2">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control"  id="phone" name="phone">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right label" for="gender">Giới tính<span
+                                                        style="color: red" class="pl-2">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <select type="text" class="form-control" id="gender" name="gender">
+                                                        <option value="">Chọn giới tính</option>
+                                                        <option value="MALE">MALE</option>
+                                                        <option value="FEMALE">FEMALE</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right label" for="dob">Ngày
+                                                    sinh<span
+                                                            style="color: red" class="pl-2">*</span></label>
+                                                <div class="col-sm-9 ">
+                                                    <input type="date" class="form-control" id="dob" name="dob">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right label" for="address">Địa chỉ
+                                                    <span style="color: red" class="pl-2">*</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="address" name="address">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right label" for="experience">Kinh nghiệm
+                                                    </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="" id="experience" name="experience">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label text-right label" for="skill">Kĩ năng
+                                                    </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="" id="skill" name="skill">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card recuitment-card">
+                                <div class="card-header recuitment-card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <a class="btn btn-link btn-block text-left collapsed recuitment-header"
+                                           type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                           aria-expanded="false" aria-controls="collapseTwo">
+                                            File đính kèm
+                                            <span id="clickc1_advance3" class="clicksd">
+                      <i class="fa fa fa-angle-up"></i>
+                    </span>
+
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body recuitment-body">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label text-right label">Chọn hồ sơ đính
+                                                kèm<span style="color: red" class="pl-2">*</span></label>
+                                            <div class="col-sm-9">
+                                                <input type="file" id="file" class="recuitment-card-acttachment"/>
+                                                <label for="file" class="btn-1"><i class="fa fa-paperclip pr-2"></i>Chọn
+                                                    file</label>
+                                                <!-- jQuery lấy tên file -->
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $('.recuitment-card-acttachment').change(function (e) {
+                                                            var fileName = e.target.files[0].name;
+                                                            document.getElementById("previewFileName").innerHTML = fileName;
+                                                            $(".output-file").append('<style>.output-file:before{display:inline-block !important;}</style>');
+                                                        });
+                                                    });
+                                                </script>
+                                                <p class="output-file">
+                                                    <span id="previewFileName"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="rec-submit">
+                            <button type="button" class="btn-submit-recuitment mb-3 ml-3" name="">
+                                <i class="fa fa-floppy-o pr-2"></i>Lưu Hồ Sơ
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- Side bar -->
+                <div class="col-md-4 col-sm-12 col-12">
+                    <div class="recuiter-info">
+                        <div class="recuiter-info-avt">
+                            <img src="/img/icon_avatar.jpg">
+                        </div>
+                        <div class="clearfix list-rec">
+                            <h4>Hồ Quốc Hiếu</h4>
+                            <ul>
+                                <li><a href="#">Nhà tuyển dụng của tôi <strong>(0)</strong></a></li>
+                                <li><a href="#">Việc làm đã lưu <strong>(450)</strong></a></li>
+                                <li><a href="#">Việc làm đã nộp <strong>(1150)</strong></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="block-sidebar" style="margin-bottom: 20px;">
+                        <header>
+                            <h3 class="title-sidebar font-roboto bg-primary">
+                                Trung tâm quản lý
+                            </h3>
+                        </header>
+                        <div class="content-sidebar menu-trung-tam-ql menu-ql-employer">
+                            <h3 class="menu-ql-ntv">
+                                Hồ sơ của bạn
+                            </h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Quản lý Tài khoản
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Quản lý hồ sơ
+                                    </a>
+                                </li>
+                            </ul>
+                            <h3 class="menu-ql-ntv">
+                                Việc làm của bạn
+                            </h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Việc làm đã lưu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        Việc làm đã ứng tuyển
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- (end) published recuitment -->
+
+    <div class="clearfix"></div>
+
+
+</div>
+<th:block id="js">
+    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript">
+        // Avatar upload and preview
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                    // $('#imagePreview').hide();
+                    // $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imageUpload").change(function () {
+            readURL(this);
+        });
+    </script>
+
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+
+            if (userInfomation) {
+                const id = userInfomation.userId;
+                console.log(id)
+                const isCreating = !id;
+
+                $('.btn-submit-recuitment').click(function (event) {
+                    event.preventDefault();
+
+                    const hasData = $("#name").val() || $("#phone").val() || $("#gender").val() || $("#dob").val() || $("#address").val() || $("#experience").val() || $("#skill").val();
+
+                    // Lấy dữ liệu từ các ô input
+                    const name = $("#name").val();
+                    const phone = $("#phone").val();
+                    const gender = $("#gender").val();
+                    const dob = $("#dob").val();
+                    const address = $("#address").val();
+                    const experience = $("#experience").val();
+                    const skill = $("#skill").val();
+
+                    const formData = {
+                        id: id,
+                        name: name,
+                        phone: phone,
+                        gender: gender,
+                        dob: dob,
+                        address: address,
+                        experience: experience,
+                        skill: skill
+                    };
+
+                    const url = isCreating ? '/api/v1/candidate' : '/api/v1/candidate/' + id;
+                    const requestType = hasData ? 'PUT' : 'POST';
+
+                    $.ajax({
+                        url: url,
+                        type: requestType,
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(formData),
+                        success: function (response) {
+                            if (!requestType) {
+                                toastr.success('Hồ sơ đã được tạo thành công!');
+                            } else {
+                                toastr.success('Thông tin tài khoản đã được cập nhật thành công!');
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error('Đã có lỗi xảy ra trong quá trình xử lý.');
+                        }
+                    });
+                });
+            } else {
+                // Người dùng chưa đăng nhập, thực hiện xử lý tương ứng
+                toastr.error("Người dùng chưa đăng nhập");
+            }
+        });
+    </script>
+</th:block>
+
+
+</body>
+</html>

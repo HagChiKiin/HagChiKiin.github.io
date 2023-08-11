@@ -55,5 +55,12 @@ public class RecruiterService {
                 );
         recruiterRepository.delete(recruiter);
     }
+
+    public Recruiter getRecruiterById(Long id){
+        return recruiterRepository.findById(id)
+                .orElseThrow(() -> {
+                    throw new NotFoundException("Not found recruiter with id = " + id);
+                });
+    }
 }
 

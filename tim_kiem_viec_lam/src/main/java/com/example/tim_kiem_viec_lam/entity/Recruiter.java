@@ -34,6 +34,7 @@ public class Recruiter extends BaseEntity {
 
     @Column(name = "phone")
     String phone;
+
     @OneToOne(targetEntity = FileEntity.class)
     @JoinColumn(name = "file_id")
     FileEntity fileId;

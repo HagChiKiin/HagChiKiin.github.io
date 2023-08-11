@@ -43,4 +43,8 @@ public class Candidate extends BaseEntity {
     @Column(name = "address")
     String address;
 
+    @OneToOne(targetEntity = FileEntity.class)
+    @JoinColumn(name = "file_id")
+    FileEntity fileId;
+
 }

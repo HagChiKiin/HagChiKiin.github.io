@@ -1,117 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Tạo tin tuyển dụng</title>
-
-    <!-- Roboto Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&display=swap" rel="stylesheet">
-
-    <!-- bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-
-
-
-    <!-- Font Awesome -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-    <!-- select 2 css -->
-    <link rel="stylesheet" href="css/select2.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Owl Stylesheets -->
-    <link rel="stylesheet" href="css/owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owlcarousel/owl.theme.default.min.css">
-    <!-- main css -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <title>Thêm ứng viên</title>
 </head>
 <body>
-<div class="job-list mt-4 mb-4">
-    <div class="container">
-        <div class="mb-4">
-            <button class="btn-custom btn-create-job">
-                <span><i class="fa-solid fa-plus"></i></span>
-                Tạo
-            </button>
-            <a th:href="@{/}" class="btn-custom btn-refresh">
-                <span><i class="fa-solid fa-angle-left"></i></span>
-                Quay lại
-            </a>
-        </div>
+<h2>Thêm ứng viên</h2>
+<form th:action="@{/save-candidate}" method="post">
+    <label for="avatar">Avatar:</label>
+    <input type="text" id="avatar" name="avatar"><br>
 
-        <div class="job-content">
-            <div class="job-logo">
-                <a href="#">
-                    <img src="img/fpt-logo.png" class="job-logo-ima" alt="job-logo">
-                </a>
-            </div>
+    <label for="name">Tên:</label>
+    <input type="text" id="name" name="name"><br>
 
-            <div class="job-desc">
-                <div class="job-title">
-                    <label for="title" class="form-label fw-bold">Title</label>
-                    <input type="text" class="form-control" id="title">
-<!--                    <a href="#">[HCM] 02 Solution Architects–Up to $2000</a>-->
-                </div>
-                <div class="job-company">
-                    <label for="recruiter" class="form-label fw-bold">Recruiter</label>
-                    <input type="text" class="form-control" id="recruiter"> |
-                    <label for="location" class="form-label fw-bold">Location</label>
-                    <input type="text" class="form-control" id="location">
-<!--                    <a href="#">Fpt Software</a> | <a href="#" class="job-address"><i class="fa fa-map-marker" aria-hidden="true"></i>-->
-<!--                    Đà Nẵng</a>-->
-                </div>
+    <label for="gender">Giới tính:</label>
+    <select id="gender" name="gender">
+        <option value="MALE">Nam</option>
+        <option value="FEMALE">Nữ</option>
+    </select><br>
 
-                <div class="job-inf">
-                    <div class="job-main-skill">
-                        <label for="skill" class="form-label fw-bold">Skill</label>
-                        <input type="text" class="form-control" id="skill">
-<!--                        <i class="fa fa-code" aria-hidden="true"></i>  <a href="#"> Java</a>-->
-                    </div>
-                    <div class="job-salary">
-                        <label for="fromSalary" class="form-label fw-bold">fromSalary</label>
-                        <input type="text" class="form-control" id="fromSalary">
-<!--                        <i class="fa fa-money" aria-hidden="true"></i>-->
-                        <label for="toSalary" class="form-label fw-bold">toSalary</label>
-                        <input type="text" class="form-control" id="toSalary">
-<!--                        <span class="salary-min">15<em class="salary-unit">triệu</em></span>-->
-<!--                        <span class="salary-max">35 <em class="salary-unit">triệu</em></span>-->
-                    </div>
-                    <div class="job-deadline">
-                        <label for="dueDateTime" class="form-label fw-bold">dueDateTime</label>
-                        <input type="text" class="form-control" id="dueDateTime">
-<!--                        <span><i class="fa fa-clock-o" aria-hidden="true"></i>  Hạn nộp: <strong>31/12/2019</strong></span>-->
-                    </div>
-                </div>
-            </div>
-            <div class="wrap-btn-appl">
-                <a href="#" class="btn btn-appl">Apply Now</a>
-            </div>
-        </div>
-    </div>
-</div>
+    <label for="dob">Ngày sinh:</label>
+    <input type="text" id="dob" name="dob"><br>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<!--<script src="js/jquery-3.4.1.slim.min.js"></script>-->
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/select2.min.js"></script>
-<script src="js/jobdata.js"></script>
+    <label for="phone">Số điện thoại:</label>
+    <input type="text" id="phone" name="phone"><br>
 
-<script type="text/javascript" src="js/pagination.js"></script>
-<!-- Owl Stylesheets Javascript -->
-<script src="js/owlcarousel/owl.carousel.js"></script>
-<!-- Read More Plugin -->
-<!--<script type="text/javascript" src="jsmain/signin.js"></script>-->
-<!--<script type="text/javascript" src="jsmain/logout.js"></script>-->
+    <label for="experience">Kinh nghiệm:</label>
+    <input type="text" id="experience" name="experience"><br>
 
-<script type="javascript">
-    
+    <label for="skill">Kỹ năng:</label>
+    <input type="text" id="skill" name="skill"><br>
 
-</script>
+    <label for="address">Địa chỉ:</label>
+    <input type="text" id="address" name="address"><br>
+
+    <input type="submit" value="Thêm">
+</form>
 </body>
 </html>

@@ -1,13 +1,9 @@
 package com.example.tim_kiem_viec_lam.controller.recruiter;
 
-import com.example.tim_kiem_viec_lam.model.request.JobRequest;
 import com.example.tim_kiem_viec_lam.model.request.RecruiterRequest;
-import com.example.tim_kiem_viec_lam.model.response.JobResponse;
 import com.example.tim_kiem_viec_lam.service.RecruiterService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
