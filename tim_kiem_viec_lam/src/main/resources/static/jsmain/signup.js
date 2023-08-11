@@ -67,7 +67,6 @@ $(document).ready(function () {
             data: JSON.stringify(formData),
             success: function (response) {
                 console.log(response);
-                localStorage.setItem("userRole", "USER");
                 toastr.success('Đăng Kí Thành Công! Vui lòng truy cập email của bạn và xác thực tài khoản');
 
                 setTimeout(function () {

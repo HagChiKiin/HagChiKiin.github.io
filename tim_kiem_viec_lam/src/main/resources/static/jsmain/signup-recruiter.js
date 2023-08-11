@@ -124,8 +124,6 @@ $(document).ready(function () {
             contentType: false,
             type: 'POST',
             success: function (response) {
-                localStorage.setItem("userRole", "RECRUITER");
-                // localStorage.setItem("userRole", response.userInfomation.roles[0]);
                 toastr.success('Đăng Kí Thành Công! Vui lòng truy cập email của bạn và xác thực tài khoản');
 
                 setTimeout(function () {

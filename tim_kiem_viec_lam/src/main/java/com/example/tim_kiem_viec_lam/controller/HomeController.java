@@ -5,6 +5,7 @@ import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
 import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
+import com.example.tim_kiem_viec_lam.security.SecurityUtils;
 import com.example.tim_kiem_viec_lam.service.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -35,15 +37,13 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String getAll(Model model ) {
+    public String getAll(Model model) {
         List<Job> jobList = jobService.getAllJob();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         List<FileEntity> fileList = fileService.getAllFile();
-        // TODO: ko biết lấy ra id của user đang đăng nhập để truyền vào phần html thông tin cá nhân
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-//
-        model.addAttribute("users", customUserDetails.getId());
+
+        Optional<Long> currentUserLoginId = SecurityUtils.getCurrentUserLoginId();
+        currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
         model.addAttribute("recruiterList", recruiterList);
         model.addAttribute("jobList", jobList);
         model.addAttribute("fileList", fileList);
@@ -136,9 +136,9 @@ public class HomeController {
     @GetMapping("/candidate/info/{id}")
     public String getInfoCandidate(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
-        List<Candidate> candidate = candidateService.getAllCandidate();
-        model.addAttribute("user",user);
-        model.addAttribute("candidate",candidate);
+        Candidate candidate = candidateService.getCandidateByUserId(id);
+        model.addAttribute("users", user);
+        model.addAttribute("candidate", candidate);
         return "candidate/candidate-info";
     }
 

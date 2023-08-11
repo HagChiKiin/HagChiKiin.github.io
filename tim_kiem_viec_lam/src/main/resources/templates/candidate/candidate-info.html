@@ -93,24 +93,27 @@
                                         </div>
                                         <div class="col-md-9">
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="name">Họ tên<span
-                                                        style="color: red" class="pl-2">*</span></label>
+                                                <label class="col-sm-3 col-form-label text-right label" for="name">Họ
+                                                    tên<span
+                                                            style="color: red" class="pl-2">*</span></label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control"
                                                            placeholder="Nhập họ và tên" id="name" name="name">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="phone">Số điện
+                                                <label class="col-sm-3 col-form-label text-right label" for="phone">Số
+                                                    điện
                                                     thoại<span
                                                             style="color: red" class="pl-2">*</span></label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control"  id="phone" name="phone">
+                                                    <input type="number" class="form-control" id="phone" name="phone">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="gender">Giới tính<span
-                                                        style="color: red" class="pl-2">*</span></label>
+                                                <label class="col-sm-3 col-form-label text-right label" for="gender">Giới
+                                                    tính<span
+                                                            style="color: red" class="pl-2">*</span></label>
                                                 <div class="col-sm-9">
                                                     <select type="text" class="form-control" id="gender" name="gender">
                                                         <option value="">Chọn giới tính</option>
@@ -129,24 +132,29 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="address">Địa chỉ
+                                                <label class="col-sm-3 col-form-label text-right label" for="address">Địa
+                                                    chỉ
                                                     <span style="color: red" class="pl-2">*</span></label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="address" name="address">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="experience">Kinh nghiệm
-                                                    </label>
+                                                <label class="col-sm-3 col-form-label text-right label"
+                                                       for="experience">Kinh nghiệm
+                                                </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" id="experience" name="experience">
+                                                    <input type="text" class="form-control" placeholder=""
+                                                           id="experience" name="experience">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="skill">Kĩ năng
-                                                    </label>
+                                                <label class="col-sm-3 col-form-label text-right label" for="skill">Kĩ
+                                                    năng
+                                                </label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" id="skill" name="skill">
+                                                    <input type="text" class="form-control" placeholder="" id="skill"
+                                                           name="skill">
                                                 </div>
                                             </div>
                                         </div>
@@ -179,15 +187,15 @@
                                                 <label for="file" class="btn-1"><i class="fa fa-paperclip pr-2"></i>Chọn
                                                     file</label>
                                                 <!-- jQuery lấy tên file -->
-                                                <script>
-                                                    $(document).ready(function () {
-                                                        $('.recuitment-card-acttachment').change(function (e) {
-                                                            var fileName = e.target.files[0].name;
-                                                            document.getElementById("previewFileName").innerHTML = fileName;
-                                                            $(".output-file").append('<style>.output-file:before{display:inline-block !important;}</style>');
-                                                        });
-                                                    });
-                                                </script>
+<!--                                                <script>-->
+<!--                                                    $(document).ready(function () {-->
+<!--                                                        $('.recuitment-card-acttachment').change(function (e) {-->
+<!--                                                            var fileName = e.target.files[0].name;-->
+<!--                                                            document.getElementById("previewFileName").innerHTML = fileName;-->
+<!--                                                            $(".output-file").append('<style>.output-file:before{display:inline-block !important;}</style>');-->
+<!--                                                        });-->
+<!--                                                    });-->
+<!--                                                </script>-->
                                                 <p class="output-file">
                                                     <span id="previewFileName"></span>
                                                 </p>
@@ -298,64 +306,69 @@
     </script>
 
     <script th:inline="javascript">
-        $(document).ready(function () {
-            const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+        const candidate = [[${candidate}]];
 
-            if (userInfomation) {
-                const id = userInfomation.userId;
-                console.log(id)
-                const isCreating = !id;
+        $("#name").val(candidate.name)
+        $("#phone").val(candidate.phone)
+        $("#gender").val(candidate.gender)
+        $("#dob").val(candidate.dob)
+        $("#address").val(candidate.address)
+        $("#experience").val(candidate.experience)
+        $("#skill").val(candidate.skill)
 
-                $('.btn-submit-recuitment').click(function (event) {
-                    event.preventDefault();
+        // Lấy thông tin người dùng đã đăng nhập từ localStorage
+        const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+        const loggedInEmail = userInfomation.username;
 
-                    const hasData = $("#name").val() || $("#phone").val() || $("#gender").val() || $("#dob").val() || $("#address").val() || $("#experience").val() || $("#skill").val();
+        const userEmail = candidate.user.email   // lấy thông tin email trang
+        console.log(userEmail)
+        console.log(loggedInEmail)
 
-                    // Lấy dữ liệu từ các ô input
-                    const name = $("#name").val();
-                    const phone = $("#phone").val();
-                    const gender = $("#gender").val();
-                    const dob = $("#dob").val();
-                    const address = $("#address").val();
-                    const experience = $("#experience").val();
-                    const skill = $("#skill").val();
+        if(userEmail === loggedInEmail){
+            $('.btn-submit-recuitment').click(function (event) {
 
-                    const formData = {
-                        id: id,
-                        name: name,
-                        phone: phone,
-                        gender: gender,
-                        dob: dob,
-                        address: address,
-                        experience: experience,
-                        skill: skill
-                    };
+                const name = $("#name").val();
+                const phone = $("#phone").val();
+                const gender = $("#gender").val();
+                const dob = $("#dob").val();
+                const address = $("#address").val();
+                const experience = $("#experience").val();
+                const skill = $("#skill").val();
 
-                    const url = isCreating ? '/api/v1/candidate' : '/api/v1/candidate/' + id;
-                    const requestType = hasData ? 'PUT' : 'POST';
-
+                const formData = {
+                    name: name,
+                    phone: phone,
+                    gender: gender,
+                    dob: dob,
+                    address: address,
+                    experience: experience,
+                    skill: skill
+                };
+                let jwtToken = localStorage.getItem("jwtToken")
+                if (jwtToken) {
                     $.ajax({
-                        url: url,
-                        type: requestType,
+                        url: '/api/v1/candidate/' + [[${candidate.id}]],
+                        type: 'PUT',
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify(formData),
+                        headers: {
+                            'Authorization': 'Bearer' + " " + jwtToken
+                        },
                         success: function (response) {
-                            if (!requestType) {
-                                toastr.success('Hồ sơ đã được tạo thành công!');
-                            } else {
-                                toastr.success('Thông tin tài khoản đã được cập nhật thành công!');
-                            }
+                            toastr.success('Thông tin tài khoản đã được cập nhật thành công!');
                         },
                         error: function (error) {
-                            toastr.error('Đã có lỗi xảy ra trong quá trình xử lý.');
+                            toastr.error('Đã có lỗi xảy ra trong quá trình cập nhật.');
                         }
                     });
-                });
-            } else {
-                // Người dùng chưa đăng nhập, thực hiện xử lý tương ứng
-                toastr.error("Người dùng chưa đăng nhập");
-            }
-        });
+                } else {
+                    // Người dùng chưa đăng nhập, thực hiện xử lý tương ứng
+                    toastr.error("Người dùng chưa đăng nhập");
+                }
+            });
+        }else {
+            window.location.href = "http://localhost:8080/splash";
+        }
     </script>
 </th:block>
 

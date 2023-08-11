@@ -31,28 +31,11 @@ public class CandidateService {
 
     CandidateRepository candidateRepository;
 
-    public void createCandidate(CandidateRequest request) {
+
+    public void updateCandidate(Long id, CandidateRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         User user = userRepository.findById(customUserDetails.getId())
-                .orElseThrow(() -> {
-                    throw new NotFoundException("Not found recruiter with id = " + request.getId());
-                });
-        Candidate candidate = Candidate.builder()
-                .user(user)
-                .name(request.getName())
-                .address(request.getAddress())
-                .phone(request.getPhone())
-                .experience(request.getExperience())
-                .avatar(request.getAvatar())
-                .dob(request.getDob())
-                .gender(Gender.valueOf(request.getGender()))
-                .build();
-        candidateRepository.save(candidate);
-    }
-
-    public void updateCandidate(Long id, CandidateRequest request) {
-        User user = userRepository.findById(id)
                 .orElseThrow(() -> {
                     throw new NotFoundException("Not found recruiter with id = " + request.getId());
                 });
@@ -75,7 +58,7 @@ public class CandidateService {
     public Candidate getCandidateById(Long id){
         return candidateRepository.findByUserId(id)
                 .orElseThrow(() -> {
-                    throw new NotFoundException("Not found recruiter with id = " + id);
+                    throw new NotFoundException("Not found candidate with id = " + id);
                 });
     }
 
@@ -83,34 +66,9 @@ public class CandidateService {
         return candidateRepository.findAll();
     }
 
-//    public void createOrUpdateCandidate(CandidateRequest request, Long id) {
-//        Optional<Candidate> existingCandidate = candidateRepository.findByUserId(id);
-//
-//        Candidate candidate;
-//        if (existingCandidate.isPresent()) {
-//            candidate = existingCandidate.get();
-//            candidate.setName(request.getName());
-//            candidate.setAddress(request.getAddress());
-//            candidate.setDob(request.getDob());
-//            candidate.setSkill(request.getSkill());
-//            candidate.setAvatar(request.getAvatar());
-//            candidate.setPhone(request.getPhone());
-//            candidate.setExperience(request.getExperience());
-//            candidate.setGender(Gender.valueOf(request.getGender()));
-//
-//        } else {
-//
-//            candidate = Candidate.builder()
-//                    .name(request.getName())
-//                    .address(request.getAddress())
-//                    .avatar(request.getAvatar())
-//                    .phone(request.getPhone())
-//                    .experience(request.getExperience())
-//                    .dob(request.getDob())
-//                    .gender(Gender.valueOf(request.getGender()))
-//                    .build();
-//        }
-//        candidateRepository.save(candidate);
-//    }
+    public Candidate getCandidateByUserId(Long userId) {
+        return candidateRepository.findByUser_Id(userId);
+    }
+
 }
 

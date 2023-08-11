@@ -12,6 +12,7 @@ import com.example.tim_kiem_viec_lam.repository.*;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.security.JwtUtils;
 import com.example.tim_kiem_viec_lam.security.SecurityUtils;
+import com.example.tim_kiem_viec_lam.statics.Gender;
 import com.example.tim_kiem_viec_lam.statics.Roles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
@@ -39,6 +40,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Set.of;
+
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserService {
@@ -58,6 +61,8 @@ public class UserService {
     final RefreshTokenRepository refreshTokenRepository;
 
     final EmailService emailService;
+
+    final CandidateRepository candidateRepository;
 
     FileRepository fileRepository;
 
@@ -83,7 +88,7 @@ public class UserService {
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository,
                        RecruiterRepository recruiterRepository, RoleRepository roleRepository, ObjectMapper objectMapper,
                        OtpRepository otpRepository, RefreshTokenRepository refreshTokenRepository,
-                       EmailService emailService, FileRepository fileRepository, JwtUtils jwtUtils) {
+                       EmailService emailService, CandidateRepository candidateRepository, FileRepository fileRepository, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.recruiterRepository = recruiterRepository;
@@ -92,26 +97,32 @@ public class UserService {
         this.otpRepository = otpRepository;
         this.refreshTokenRepository = refreshTokenRepository;
         this.emailService = emailService;
+        this.candidateRepository = candidateRepository;
         this.fileRepository = fileRepository;
         this.jwtUtils = jwtUtils;
     }
 
     public void registerUser(RegistrationRequest registrationRequest) {
-        Optional<Role> optionalRole = roleRepository.findByName(Roles.USER);
-        Set<Role> roles = new HashSet<>();
-        roles.add(optionalRole.get());
-        User user = User.builder()
-                .email(registrationRequest.getEmail())
-                .password(passwordEncoder.encode(registrationRequest.getPassword()))
-                .roles(roles)
+        User user = saveUserRole(registrationRequest);
+        Candidate candidate = Candidate.builder()
+                .user(user)
+                .dob("")
+                .gender(Gender.MALE)
+                .address("")
+                .experience("")
+                .name("")
+                .avatar("")
                 .build();
-        userRepository.save(user);
+        candidate.setCreatedBy(user.getEmail());
+        candidateRepository.save(candidate);
         emailService.sendActivationEmail(user.getEmail(), user.getId());
+
+//
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void registerRecruiter(RegistrationRequest registrationRequest, MultipartFile avatar) throws IOException {
-        User user = saveUser(registrationRequest);
+        User user = saveRecuiterRole(registrationRequest);
         FileEntity fileEntity = saveAvatar(avatar);
         String avatarPath = fileEntity.getPath();
         saveRecruiter(fileEntity, user, registrationRequest, avatarPath);
@@ -147,10 +158,17 @@ public class UserService {
         return fileEntity;
     }
 
-    private User saveUser(RegistrationRequest registrationRequest) {
-        Optional<Role> optionalRole = roleRepository.findByName(Roles.RECRUITER);
+    private User saveRecuiterRole(RegistrationRequest registrationRequest) {
+        Role recruiterRole = roleRepository.findByName(Roles.RECRUITER)
+                .orElseThrow(() -> new RuntimeException("Recruiter role not found!"));
+
+        return getUser(registrationRequest, recruiterRole);
+    }
+
+    private User getUser(RegistrationRequest registrationRequest, Role recruiterRole) {
         Set<Role> roles = new HashSet<>();
-        roles.add(optionalRole.get());
+        roles.add(recruiterRole); // Thêm vai trò "RECRUITER" vào tập hợp roles
+
         User user = User.builder()
                 .email(registrationRequest.getEmail())
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
@@ -158,6 +176,13 @@ public class UserService {
                 .build();
         userRepository.save(user);
         return user;
+    }
+
+    private User saveUserRole(RegistrationRequest registrationRequest) {
+        Role userRole = roleRepository.findByName(Roles.USER)
+                .orElseThrow(() -> new RuntimeException("Recruiter role not found!"));
+
+        return getUser(registrationRequest, userRole);
     }
 
     public List<UserResponse> getAll() {

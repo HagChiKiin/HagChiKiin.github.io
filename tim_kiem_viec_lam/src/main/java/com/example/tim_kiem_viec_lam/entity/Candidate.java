@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "candidates")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Candidate extends BaseEntity {
-    @ManyToOne(targetEntity = User.class)
+    @OneToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     User user;
 
