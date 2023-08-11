@@ -6,7 +6,6 @@ import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.service.*;
-import com.sun.xml.bind.v2.TODO;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -15,7 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -44,9 +42,8 @@ public class HomeController {
         // TODO: ko biết lấy ra id của user đang đăng nhập để truyền vào phần html thông tin cá nhân
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-//        User user = userService.getUserById(id)
-
-        model.addAttribute("userId", customUserDetails.getId());
+//
+        model.addAttribute("users", customUserDetails.getId());
         model.addAttribute("recruiterList", recruiterList);
         model.addAttribute("jobList", jobList);
         model.addAttribute("fileList", fileList);

@@ -28,6 +28,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -170,7 +172,7 @@ public class UserService {
         return userRepository.findById(id).map(u -> objectMapper.convertValue(u, UserResponse.class)).orElseThrow(ClassNotFoundException::new);
     }
 
-    public JwtResponse refreshToken(RefreshTokenRequest request) throws RefreshTokenNotFoundException {
+    public JwtResponse refreshToken(RefreshTokenRequest request, HttpServletResponse response) throws RefreshTokenNotFoundException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         String newToken = userRepository.findById(userDetails.getId())
@@ -187,10 +189,16 @@ public class UserService {
                         }))
                 .orElseThrow(() -> new UsernameNotFoundException("Tài khoản không tồn tại"));
 
-
         if (newToken == null) {
             throw new RefreshTokenNotFoundException();
         }
+        JwtResponse jwtResponse = JwtResponse.builder()
+                .jwt(newToken)
+                .build();
+
+        Cookie jwtCookie = new Cookie("jwtToken", jwtResponse.getJwt());
+        jwtCookie.setPath("/");
+        response.addCookie(jwtCookie);
         return JwtResponse.builder()
                 .jwt(newToken)
                 .build();

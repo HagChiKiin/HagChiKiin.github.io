@@ -2,6 +2,7 @@ package com.example.tim_kiem_viec_lam.controller;
 
 import com.example.tim_kiem_viec_lam.entity.RefreshToken;
 import com.example.tim_kiem_viec_lam.entity.User;
+import com.example.tim_kiem_viec_lam.exception.AccountNotActiveException;
 import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.LoginRequest;
 import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
@@ -29,6 +30,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Set;
@@ -57,7 +60,7 @@ public class AuthenticationController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest request) {
+    public JwtResponse  authenticateUser(@Valid @RequestBody LoginRequest request, HttpServletResponse response) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -71,7 +74,7 @@ public class AuthenticationController {
         User user = userRepository.findById(userDetails.getId()).get();
 
         if (!user.isActivated()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            throw new AccountNotActiveException("Account not activated");
         }
 
         String refreshToken = UUID.randomUUID().toString();
@@ -80,6 +83,7 @@ public class AuthenticationController {
                 .user(userRepository.findById(userDetails.getId()).get())
                 .build();
         refreshTokenRepository.save(refreshTokenEntity);
+
         JwtResponse jwtResponse = JwtResponse.builder()
                 .jwt(jwt)
                 .refreshToken(refreshToken)
@@ -87,7 +91,10 @@ public class AuthenticationController {
                 .username(userDetails.getUsername())
                 .roles(roles)
                 .build();
-        return ResponseEntity.ok(jwtResponse);
+        Cookie jwtCookie = new Cookie("jwtToken", jwtResponse.getJwt());
+        jwtCookie.setPath("/");
+        response.addCookie(jwtCookie);
+        return jwtResponse;
     }
 
     @PostMapping("/signup")
@@ -124,16 +131,21 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh-token")
-    public ResponseEntity<?> refreshToken(@RequestBody @Valid RefreshTokenRequest request) {
+    public ResponseEntity<?> refreshToken(@RequestBody @Valid RefreshTokenRequest request, HttpServletResponse response) {
         try {
-            return ResponseEntity.ok(userService.refreshToken(request));
+            return ResponseEntity.ok(userService.refreshToken(request, response));
         } catch (RefreshTokenNotFoundException | UsernameNotFoundException ex) {
             return new ResponseEntity<>("Thông tin refreshToken không chính xác", HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout() {
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        Cookie jwtCookie = new Cookie("jwtToken", null);
+        jwtCookie.setMaxAge(0);
+        jwtCookie.setPath("/");
+        response.addCookie(jwtCookie);
+
         userService.logout();
         return ResponseEntity.ok(null);
     }

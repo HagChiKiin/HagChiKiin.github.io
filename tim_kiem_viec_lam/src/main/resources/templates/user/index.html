@@ -96,26 +96,24 @@
                             Tuyển Dụng</a>
                     </li>
                     <li class="navbar-right item group " id="loggedInUserNavItem" style="display: none">
-                        <div class="dropdown" >
-                            <a class="d-inline-block avatar rounded-circle"
-                               id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://www.topcv.vn/images/avatar-default.jpg"
-                                     style="height: 38px; width: 38px"
-                                     alt="Tiểu Phàm TRương">
+                    <div class="dropdown" >
+                        <a class="d-inline-block avatar rounded-circle"
+                           id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="https://www.topcv.vn/images/avatar-default.jpg"
+                                 style="height: 38px; width: 38px"
+                                 alt="Tiểu Phàm TRương">
+                        </a>
+                        <div class="dropdown-menu" style="background-color: #2f55d4" aria-labelledby="dropdownMenuButton">
+                            <a id="user" class="dropdown-item" th:href="@{/candidate/info/{id}(id=${users})}" style="color: white; background-color: #2f55d4">Thông tin cá nhân</a>
+                            <a id="recruiter" class="dropdown-item" href="" style="color: white; background-color: #2f55d4">Tạo việc làm</a>
+                            <a class="dropdown-item" href="/recruiter/jobs-create" style="color: white; background-color: #2f55d4">Đổi mật khẩu</a>
+                            <a id="logout-button" class="dropdown-item" href="#" style="color: white; background-color: #2f55d4;">
+                                <i class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất
                             </a>
-                            <div class="dropdown-menu" style=" background-color: #2f55d4"
-                                 aria-labelledby="dropdownMenuButton">
-                                <a id="user" class="dropdown-item"  th:href="@{/candidate/info/{id}id=${user.id})}" style="color: white; background-color: #2f55d4 ">Thông tin cá nhân</a>
-                                <a id="recruiter" class="dropdown-item" href="" style="color: white; background-color: #2f55d4 ">Tạo việc làm</a>
-                                <a class="dropdown-item" href="/recruiter/jobs-create" style="color: white; background-color: #2f55d4 ">Đổi
-                                    mật khẩu</a>
-                                <a id="logout-button" class="dropdown-item" href="#"
-                                   style="color: white; background-color: #2f55d4 ;"><i
-                                        class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất</a>
-                            </div>
                         </div>
-                    </li>
+                    </div>
+                </li>
                 </ul>
             </div>
         </nav>
