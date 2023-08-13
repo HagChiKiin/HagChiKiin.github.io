@@ -80,15 +80,19 @@
                                     <div class="card-body recuitment-body row">
                                         <div class="col-md-3">
                                             <div class="avatar-upload">
-                                                <div class="avatar-edit">
-                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
-                                                    <label for="imageUpload"></label>
-                                                </div>
-                                                <div class="avatar-preview">
-                                                    <div id="imagePreview"
-                                                         style="background-image: url(https://i.pravatar.cc/500?img=7);">
-                                                    </div>
-                                                </div>
+                                                <img id="recruiter-avatar" class="rounded-circle"
+                                                     style="width: 200px; height: 200px" alt="Avatar"
+                                                     th:src="${candidate.avatar}"/>
+                                                <input type="file" hidden="hidden" id="avatar-input" accept="image/*"/>
+                                                <!--                                                <div class="avatar-edit">-->
+                                                <!--                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>-->
+                                                <!--                                                    <label for="imageUpload"></label>-->
+                                                <!--                                                </div>-->
+                                                <!--                                                <div class="avatar-preview">-->
+                                                <!--                                                    <div id="imagePreview"-->
+                                                <!--                                                         style="background-image: url(https://i.pravatar.cc/500?img=7);">-->
+                                                <!--                                                    </div>-->
+                                                <!--                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="col-md-9">
@@ -187,15 +191,15 @@
                                                 <label for="file" class="btn-1"><i class="fa fa-paperclip pr-2"></i>Chọn
                                                     file</label>
                                                 <!-- jQuery lấy tên file -->
-<!--                                                <script>-->
-<!--                                                    $(document).ready(function () {-->
-<!--                                                        $('.recuitment-card-acttachment').change(function (e) {-->
-<!--                                                            var fileName = e.target.files[0].name;-->
-<!--                                                            document.getElementById("previewFileName").innerHTML = fileName;-->
-<!--                                                            $(".output-file").append('<style>.output-file:before{display:inline-block !important;}</style>');-->
-<!--                                                        });-->
-<!--                                                    });-->
-<!--                                                </script>-->
+                                                <!--                                                <script>-->
+                                                <!--                                                    $(document).ready(function () {-->
+                                                <!--                                                        $('.recuitment-card-acttachment').change(function (e) {-->
+                                                <!--                                                            var fileName = e.target.files[0].name;-->
+                                                <!--                                                            document.getElementById("previewFileName").innerHTML = fileName;-->
+                                                <!--                                                            $(".output-file").append('<style>.output-file:before{display:inline-block !important;}</style>');-->
+                                                <!--                                                        });-->
+                                                <!--                                                    });-->
+                                                <!--                                                </script>-->
                                                 <p class="output-file">
                                                     <span id="previewFileName"></span>
                                                 </p>
@@ -286,26 +290,22 @@
 </div>
 <th:block id="js">
     <script type="text/javascript" src="/js/main.js"></script>
-    <script type="text/javascript">
-        // Avatar upload and preview
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                    // $('#imagePreview').hide();
-                    // $('#imagePreview').fadeIn(650);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#imageUpload").change(function () {
-            readURL(this);
-        });
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
     <script th:inline="javascript">
+
+        let firebaseConfig = {
+            apiKey: "AIzaSyBd79sSD4tMr-HWBxg1zJNJMvG_lVcncx8",
+            projectId: "job-hunt-c9d49",
+            storageBucket: "job-hunt-c9d49.appspot.com",
+        };
+        // Khởi tạo Firebase
+        firebase.initializeApp(firebaseConfig);
+        // Lấy tham chiếu đến Firebase Storage bucket
+        let storage = firebase.storage();
+        let storageRef = storage.ref();
+
         const candidate = [[${candidate}]];
 
         $("#name").val(candidate.name)
@@ -324,8 +324,30 @@
         console.log(userEmail)
         console.log(loggedInEmail)
 
-        if(userEmail === loggedInEmail){
-            $('.btn-submit-recuitment').click(function (event) {
+        if (userEmail === loggedInEmail) {
+            $("#recruiter-avatar").click(() => {
+                $("#avatar-input").click();
+            });
+
+            let chosenFile = null;
+            $('#avatar-input').change(event => {
+                const tempFiles = event.target.files;
+                const maxSizeInBytes = 5242880;
+                if (!tempFiles || tempFiles.length === 0) {
+                    return;
+                }
+                chosenFile = tempFiles[0];
+                if (chosenFile && chosenFile.size > maxSizeInBytes) {
+                    alert("File size exceeded the allowed limit (5MB)!");
+                    this.value = '';
+                    return;
+                }
+                const imageBlob = new Blob([chosenFile], {type: chosenFile.type});
+                const imageUrl = URL.createObjectURL(imageBlob);
+                $("#recruiter-avatar").attr("src", imageUrl);
+            });
+
+            $('.btn-submit-recuitment').click(async function (event) {
 
                 const name = $("#name").val();
                 const phone = $("#phone").val();
@@ -342,31 +364,59 @@
                     dob: dob,
                     address: address,
                     experience: experience,
-                    skill: skill
+                    skill: skill,
+                    avatar: "",
                 };
-                let jwtToken = localStorage.getItem("jwtToken")
-                if (jwtToken) {
-                    $.ajax({
-                        url: '/api/v1/candidate/' + [[${candidate.id}]],
-                        type: 'PUT',
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(formData),
-                        headers: {
-                            'Authorization': 'Bearer' + " " + jwtToken
-                        },
-                        success: function (response) {
-                            toastr.success('Thông tin tài khoản đã được cập nhật thành công!');
-                        },
-                        error: function (error) {
-                            toastr.error('Đã có lỗi xảy ra trong quá trình cập nhật.');
-                        }
-                    });
+
+                if (chosenFile != null) {
+                    formData.avatar = await uploadImage(chosenFile)
+                    updateUser(formData);
                 } else {
-                    // Người dùng chưa đăng nhập, thực hiện xử lý tương ứng
-                    toastr.error("Người dùng chưa đăng nhập");
+                    updateUser(formData);
                 }
             });
-        }else {
+
+            async function uploadImage(chosenFile) {
+                try {
+                    let imageName = chosenFile.name;
+                    let imageRef = storageRef.child("images/" + imageName);
+                    let snapshort = await imageRef.put(chosenFile);
+                    return await snapshort.ref.getDownloadURL();
+                } catch (error) {
+                    throw error;
+                }
+            }
+
+            function updateUser(formData) {
+                $.ajax({
+                    url: '/api/v1/candidate/' + [[${candidate.id}]],
+                    type: 'PUT',
+                    contentType: "application/json",
+                    data: JSON.stringify(formData),
+                    success: function () {
+                        toastr.success("Thông tin tài khoản đã được cập nhật thành công!!");
+                        setTimeout(function () {
+                            // saveNewInformation(formData);
+                            window.location.reload();
+                        }, 1000)
+                    },
+                    error: function () {
+                        toastr.warning("Đã có lỗi xảy ra trong quá trình cập nhật");
+                    }
+                })
+            }
+
+            // function saveNewInformation(newInfo) {
+            //     let userInfomation = JSON.parse(localStorage.getItem("userInfomation"))
+            //     let userData = {
+            //         "username": userInfomation.username,
+            //         "userId": userInfomation.userId,
+            //         "role": userInfomation.roles,
+            //         "avatar": newInfo.avatar === '' ? userInfomation.avatar : newInfo.avatar,
+            //     };
+            //     localStorage.setItem('userInfomation', JSON.stringify(userData))
+            // }
+        } else {
             window.location.href = "http://localhost:8080/splash";
         }
     </script>

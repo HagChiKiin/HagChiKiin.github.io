@@ -1,5 +1,6 @@
 package com.example.tim_kiem_viec_lam.controller;
 
+import com.example.tim_kiem_viec_lam.entity.Candidate;
 import com.example.tim_kiem_viec_lam.entity.RefreshToken;
 import com.example.tim_kiem_viec_lam.entity.User;
 import com.example.tim_kiem_viec_lam.exception.AccountNotActiveException;
@@ -90,6 +91,7 @@ public class AuthenticationController {
                 .id(userDetails.getId())
                 .username(userDetails.getUsername())
                 .roles(roles)
+                .avatar("")
                 .build();
         Cookie jwtCookie = new Cookie("jwtToken", jwtResponse.getJwt());
         jwtCookie.setPath("/");

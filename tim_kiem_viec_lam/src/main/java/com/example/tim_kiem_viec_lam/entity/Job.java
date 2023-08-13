@@ -78,4 +78,7 @@ public class Job extends BaseEntity{
     @Column(name = "deleted_datetime")
     LocalDateTime deletedDateTime;
 
+
+    @OneToMany(mappedBy="job", fetch = FetchType.LAZY)
+    List<Application> applications;
 }

@@ -58,7 +58,8 @@ $(document).ready(function () {
                 let userInfomation = {
                     username: response.username,
                     userId: response.id,
-                    roles: response.roles
+                    roles: response.roles,
+                    avatar: response.avatar
                 }
                 localStorage.setItem('userInfomation', JSON.stringify(userInfomation))
                 toastr.success("Đăng nhập thành công");

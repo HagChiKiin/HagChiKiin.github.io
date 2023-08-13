@@ -7,19 +7,20 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "interviews")
+@Table(name = "applications")
+@Getter
+@Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Application extends  BaseEntity {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     User user;
 
-    @ManyToOne(targetEntity = Job.class)
+    @ManyToOne
     @JoinColumn(name = "job_id")
     Job job;
 
