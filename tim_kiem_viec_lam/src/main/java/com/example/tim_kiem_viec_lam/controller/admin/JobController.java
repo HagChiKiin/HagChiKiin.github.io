@@ -46,9 +46,9 @@ public class JobController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{job_id}/application")
-    public ResponseEntity<?> applyToJob(@PathVariable("jobId") Long id, @RequestBody @Valid Application application ){
-        jobService.applyToJob(id, application);
-        return ResponseEntity.ok("Ứng tuyển vào công việc thành công");
-    }
+//    @PostMapping("/{job_id}/application")
+//    public ResponseEntity<?> applyToJob(@PathVariable("jobId") Long id, @RequestBody @Valid Application application ){
+//        jobService.applyToJob(id, application);
+//        return ResponseEntity.ok("Ứng tuyển vào công việc thành công");
+//    }
 }

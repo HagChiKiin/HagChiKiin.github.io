@@ -64,7 +64,7 @@ public class UserService {
 
     final CandidateRepository candidateRepository;
 
-    FileRepository fileRepository;
+    final FileRepository fileRepository;
 
     @Value("${application.security.refreshToken.tokenValidityMilliseconds}")
     long refreshTokenValidityMilliseconds;

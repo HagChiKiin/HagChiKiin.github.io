@@ -1,6 +1,7 @@
 package com.example.tim_kiem_viec_lam.entity;
 
 import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -20,13 +21,25 @@ public class Application extends  BaseEntity {
     @JoinColumn(name = "user_id")
     User user;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Job.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "job_id")
+    @JsonIgnore
     Job job;
 
-    @Lob
-    @Column(name = "cv", columnDefinition = "LONGBLOB")
-    byte[] data;
+    @Column(name = "cv")
+    String cv;
+
+    @Column(name = "name")
+    String name;
+
+    @Column(name = "phone")
+    String phone;
+
+    @Column(name = "email")
+    String email;
+
+    @Column(name = "descriptipn")
+    String description;
 
     @Column(name = "application_time")
     LocalDateTime applicationTime;

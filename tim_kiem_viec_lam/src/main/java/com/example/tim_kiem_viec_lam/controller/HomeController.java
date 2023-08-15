@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,8 @@ public class HomeController {
     CandidateService candidateService;
 
     UserService userService;
+
+    ApplicationService applicationService;
 
 
     @GetMapping("/")
@@ -99,7 +102,10 @@ public class HomeController {
     @GetMapping("/jd-page/{id}")
     public String getJobDetail(@PathVariable Long id, Model model) {
         Job job = jobService.getJobById(id);
+        model.addAttribute("application", job.getApplications());
+        job.setApplications(null);
         model.addAttribute("job", job);
+
         return "user/jd-page";
     }
 
@@ -146,7 +152,6 @@ public class HomeController {
     public String showSplashPage() {
         return "user/splash-page"; // Trang trung gian (splash page)
     }
-
 
     @GetMapping("/search")
     @ResponseBody

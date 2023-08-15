@@ -125,25 +125,19 @@ public class JobService {
         jobRepository.delete(job);
     }
 
-    public void applyToJob(Long id, Application application) {
-        Job job = jobRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Công việc không tồn tại"));
-
-        // Thiết lập thông tin ứng tuyển
-        application.setJob(job);
-        application.setApplicationTime(LocalDateTime.now());
-        application.setApplicationStatus(ApplicationStatus.UNDER_REVIEW);
-
-        // Lưu thông tin ứng tuyển
-        applicationRepository.save(application);
-    }
-
     public Job getJobById(Long id) {
         return jobRepository.findById(id)
                 .orElseThrow(() -> {
                     throw new NotFoundException("Not found job with id = " + id);
                 });
     }
+
+//    public Job findByJobId(Long id) {
+//        return (Job) jobRepository.findByJobId(id)
+//                .orElseThrow(() -> {
+//                    throw new NotFoundException("Not found job with id = " + id);
+//                });
+//    }
 
 
 

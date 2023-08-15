@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 @Getter
 @Setter
 @Entity
@@ -77,7 +76,6 @@ public class Job extends BaseEntity{
 
     @Column(name = "deleted_datetime")
     LocalDateTime deletedDateTime;
-
 
     @OneToMany(mappedBy="job", fetch = FetchType.LAZY)
     List<Application> applications;
