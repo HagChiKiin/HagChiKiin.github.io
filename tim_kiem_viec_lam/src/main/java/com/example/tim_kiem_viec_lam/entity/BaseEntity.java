@@ -1,5 +1,6 @@
 package com.example.tim_kiem_viec_lam.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -24,6 +25,7 @@ public class BaseEntity {
     Long id;
 
     @CreatedDate
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime createdDateTime;
 
     @CreatedBy

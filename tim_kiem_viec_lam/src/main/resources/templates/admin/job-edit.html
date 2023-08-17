@@ -8,7 +8,7 @@
 
     <title th:text="'Công việc ' + ${job.id}"></title>
 
-    <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+    <!--    <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">-->
 
     <!-- Link google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,8 +110,8 @@
                     <div class="row" id="update-form">
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="name-update" class="form-label">Công ty</label>
-                                <input type="text" class="form-control" id="name-update"
+                                <label for="name" class="form-label">Công ty</label>
+                                <input th:value="${job.recruiter.name}" type="text" class="form-control" id="name"
                                        name="name">
 
                             </div>
@@ -121,7 +121,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                                <input type="date" class="form-control" id="dueDateTime" name="dueDateTime">
+                                <input th:value="${job.dueDateTime}" type="date" class="form-control" id="dueDateTime"
+                                       name="dueDateTime">
 
                             </div>
                             <div class="mb-3">
@@ -147,19 +148,22 @@
                             <div class="mb-3">
                                 <label for="skill-update" class="form-label">Kỹ năng</label>
                                 <select id="skill-update" class="form-control" multiple="multiple" name="skill-update">
-                                    <option value="Javascript">Javascript</option>
-                                    <option value="Java">Java</option>
-                                    <option value="Golang">Golang</option>
-                                    <option value="PHP">PHP</option>
-                                    <option value="React">React</option>
-                                    <option value="AWS">AWS</option>
-                                    <option value="Devops">Devops</option>
-                                    <option value=".Net">.Net</option>
-                                    <option value="Vue">Vue</option>
-                                    <option value="Angular">Angular</option>
-                                    <option value="Python">Python</option>
-                                    <option value="C#">C#</option>
-                                    <option value="SQL">SQL</option>
+                                    <option value="JavaScript" th:selected="${job.skill.contains('JavaScript')}">
+                                        Javascript
+                                    </option>
+                                    <option value="Java" th:selected="${job.skill.contains('Java')}">Java</option>
+                                    <option value="Golang" th:selected="${job.skill.contains('Golang')}">Golang</option>
+                                    <option value="PHP" th:selected="${job.skill.contains('PHP')}">PHP</option>
+                                    <option value="React" th:selected="${job.skill.contains('React')}">React</option>
+                                    <option value="AWS" th:selected="${job.skill.contains('AWS')}">AWS</option>
+                                    <option value="Devops" th:selected="${job.skill.contains('Devops')}">Devops</option>
+                                    <option value=".Net" th:selected="${job.skill.contains('.Net')}">.Net</option>
+                                    <option value="Vue" th:selected="${job.skill.contains('Vue')}">Vue</option>
+                                    <option value="Angular" th:selected="${job.skill.contains('Angular')}">Angular
+                                    </option>
+                                    <option value="Python" th:selected="${job.skill.contains('Python')}">Python</option>
+                                    <option value="C#" th:selected="${job.skill.contains('C#')}">C#</option>
+                                    <option value="SQL" th:selected="${job.skill.contains('SQL')}">SQL</option>
                                 </select>
                             </div>
 
@@ -219,13 +223,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Noah Lott</td>
-                            <td class="w-50">Deleniti
-                            </td>
-                            <td><a href="" target="_blank">Xem chi tiết</a></td>
-                        </tr>
+
+<!--                        <tr th:each="app : ${application}">-->
+<!--                            <td th:text="${app.name}"></td>-->
+<!--                            <td th:text="${app.phone}"></td>-->
+<!--                            <td th:text="${app.description}"></td>-->
+<!--                            <td><a th:href="${app.cv}" target="_blank">Xem chi tiết</a></td>-->
+<!--                        </tr>-->
+                        </tbody>
+                        <tbody>
                         <tr>
                             <td>2</td>
                             <td>Penny Bunn</td>
@@ -242,32 +248,32 @@
 </div>
 
 <!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- axios -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!--  toastr.js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="/js/main.js"></script>
 <!-- Components JS -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
+
     window.onload = function () {
         const jwtToken = localStorage.getItem("jwtToken");
 
@@ -294,24 +300,6 @@
             }
         }
     };
-</script>
-<script th:inline="javascript">
-    // Truy cập vào các thành phần
-    const name = document.getElementById("name")
-    const title = document.getElementById("title")
-    const dueDateTime = document.getElementById("dueDateTime")
-    const location = document.getElementById("location")
-    const jobStatus = document.getElementById("jobStatus")
-    const yoe = document.getElementById("yoe")
-    const salaryFrom = document.getElementById("salaryFrom")
-    const salaryTo = document.getElementById("salaryTo")
-    const literacy = document.getElementById("literacy")
-    const benefit = document.getElementById("benefit")
-    const detail = document.getElementById("detail")
-    const requirement = document.getElementById("requirement")
-    j
-</script>
-<script th:inline="javascript">
 
     // Lấy thông tin người dùng đã đăng nhập từ localStorage
     const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
@@ -327,32 +315,17 @@
     skill.select2({
         placeholder: "- Chọn chủ đề",
     });
-    let job = [[${job}]]
-    console.log(job)
 
-    $('#name-update').val(job.recruiter.name);
-    $('#title').text(job.title);
-    $('#dueDateTime').val(job.dueDateTime);
-    $('#location').val(job.location);
-    $('#jobStatus').val(job.jobStatus);
-    $('#yoe').val(job.yoe);
-    $('#salaryFrom').val(job.salaryFrom);
-    $('#salaryTo').val(job.salaryTo);
-    $('#literacy').val(job.literacy);
-    $('#benefit').val(job.benefit);
-    $('#detail').val(job.detail);
-    $('#requirement').val(job.requirement);
-    let skillsArray = job.skill.replace(/\[|\]|\s/g, '').split(',');
-    let skillSelect = $("#skill-update");
-    skillSelect.val(skillsArray);
-    skillSelect.trigger("change");
+    var currentURL = window.location.href;
+    var urlParts = currentURL.split('/');
+    var jobId = urlParts[urlParts.length - 1];
+    console.log(jobId)
 
     $('.btn-update-job').click(function () {
 
         let title = $("#title").val();
         let name = $("#name").val();
         let location = $("#location").val();
-        let skill = $("#skill-update").val();
         let salaryFrom = $("#salaryFrom").val();
         let salaryTo = $("#salaryTo").val();
         let dueDateTime = $("#dueDateTime").val();
@@ -363,6 +336,11 @@
         let literacy = $("#literacy").val();
         let yoe = $("#yoe").val();
         let requirement = $("#requirement").val();
+        let selectedSkills = $("#skill-update").val();
+        // let selectedSkills =  $("#skill-update").val();
+        // $("#skill-update").on('change', function () {
+        //     selectedSkills = $(this).val();
+        // });
 
         let request = {
             name: name,
@@ -371,7 +349,7 @@
             salaryTo: salaryTo,
             dueDateTime: dueDateTime,
             location: location,
-            skill: skill,
+            skill: selectedSkills,
             introduce: introduce,
             benefit: benefit,
             jobStatus: jobStatus,
@@ -380,10 +358,12 @@
             yoe: yoe,
             requirement: requirement
         }
+
+
         let jwtToken = localStorage.getItem("jwtToken")
         if (jwtToken) {
             $.ajax({
-                url: "/api/v1/jobs/" + [[${job.id}]],
+                url: "/api/v1/jobs/" + jobId,
                 type: 'PUT',
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(request),
@@ -421,7 +401,7 @@
                 let jwtToken = localStorage.getItem("jwtToken")
                 if (jwtToken) {
                     $.ajax({
-                        url: '/api/v1/jobs/' + [[${job.id}]],
+                        url: '/api/v1/jobs/' + jobId,
                         type: 'DELETE',
                         contentType: "application/json; charset=utf-8",
                         headers: {

@@ -84,7 +84,7 @@
                                 <div class="welfare-list">
                                     <ul>
                                         <li>
-                                            <p th:text="${job.benefit}"><i class="fa fa-usd icn-welfare"></i></p>
+                                            <p  th:text="${job.benefit}"><i class="fa fa-usd icn-welfare"></i></p>
                                         </li>
                                         <!--                                        <li>-->
                                         <!--                                            <p><i class="fa fa-user icn-welfare"></i>Working under energisitic,-->
@@ -131,21 +131,21 @@
                                         <span class="ji-title">Nơi làm việc:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <span class="ji-main" th:text="${job.benefit}">Đà Nẵng</span>
+                                        <span class="ji-main" th:text="${job.location}"></span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="job-info-list">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <span class="ji-title">Cấp bậc:</span>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <span class="ji-main">Nhân viên</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--                            <div class="job-info-list">-->
+                            <!--                                <div class="row">-->
+                            <!--                                    <div class="col-sm-4">-->
+                            <!--                                        <span class="ji-title">Cấp bậc:</span>-->
+                            <!--                                    </div>-->
+                            <!--                                    <div class="col-sm-8">-->
+                            <!--                                        <span class="ji-main">Nhân viên</span>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
 
                             <div class="job-info-list">
                                 <div class="row">
@@ -224,10 +224,10 @@
                                 <i class="fa fa-map-marker ja-icn"></i>
                                 <span th:text="${job.recruiter.address}">Trụ sở: 212 Phan Đăng Lưu - Hòa Cường Bắc - Hải Châu - Đà Nẵng </span>
                             </li>
-                            <li>
-                                <i class="fa fa-bar-chart ja-icn"></i>
-                                <span>Quy mô công ty: 50-100 người</span>
-                            </li>
+                            <!--                            <li>-->
+                            <!--                                <i class="fa fa-bar-chart ja-icn"></i>-->
+                            <!--                                <span>Quy mô công ty: 50-100 người</span>-->
+                            <!--                            </li>-->
                         </ul>
 
                         <div class="wrap-comp-info mb-2">
@@ -241,56 +241,25 @@
                             <span>Việc làm tương tự</span>
                         </h2>
 
-                        <div class="job-tt-contain">
-                            <div class="job-tt-item">
 
-                                <a href="#" class="thumb">
-                                    <div style="background-image: url(/img/alipay-logo.png);"></div>
-                                </a>
+                            <div class="job-tt-contain" th:each="job :${SimilarListJob}">
 
-                                <div class="info">
-                                    <a href="#" class="jobname">
-                                        Fullstack .NET Developer (Angular/React)
+                                <div class="job-tt-item">
+                                    <a th:href="@{/jd-page/{id}(id=${job.id})}" class="thumb">
+                                        <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}">
                                     </a>
-                                    <a href="#" class="company">
-                                        Alipay Software
-                                    </a>
+
+                                    <div class="info">
+                                        <a th:href="@{/jd-page/{id}(id=${job.id})}" class="jobname" th:text="${job.title}">
+
+                                        </a>
+                                        <a th:href="@{/jd-page/{id}(id=${job.id})}" class="company" th:text="${job.recruiter.name}"></a>
+
+
+                                    </div>
                                 </div>
+
                             </div>
-
-                            <div class="job-tt-item">
-
-                                <a href="#" class="thumb">
-                                    <div style="background-image: url(/img/fpt-logo.png);"></div>
-                                </a>
-
-                                <div class="info">
-                                    <a href="#" class="jobname">
-                                        [HCM] 02 Solution Architects–Up to $2000
-                                    </a>
-                                    <a href="#" class="company">
-                                        FPT Software
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="job-tt-item">
-
-                                <a href="#" class="thumb">
-                                    <div style="background-image: url(/img/alipay-logo.png);"></div>
-                                </a>
-
-                                <div class="info">
-                                    <a href="#" class="jobname">
-                                        Fullstack .NET Developer (Angular/React)
-                                    </a>
-                                    <a href="#" class="company">
-                                        Alipay Software
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
 
                     <div class="side-bar mb-3">
@@ -320,6 +289,7 @@
 
 <th:block id="js">
     <script type="text/javascript" th:src="@{/js/readmore.js}"></script>
+    <script type="text/javascript" src="/jsmain/signin.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
     <script type="text/javascript">

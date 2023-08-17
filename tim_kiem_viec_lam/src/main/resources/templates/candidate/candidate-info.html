@@ -224,10 +224,10 @@
                 <div class="col-md-4 col-sm-12 col-12">
                     <div class="recuiter-info">
                         <div class="recuiter-info-avt">
-                            <img src="/img/icon_avatar.jpg">
+                            <img  th:src="${candidate.avatar}">
                         </div>
                         <div class="clearfix list-rec">
-                            <h4>Hồ Quốc Hiếu</h4>
+                            <h4 th:text="${candidate.name}"></h4>
                             <ul>
                                 <li><a href="#">Nhà tuyển dụng của tôi <strong>(0)</strong></a></li>
                                 <li><a href="#">Việc làm đã lưu <strong>(450)</strong></a></li>
@@ -290,6 +290,7 @@
 </div>
 <th:block id="js">
     <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/jsmain/signin.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 

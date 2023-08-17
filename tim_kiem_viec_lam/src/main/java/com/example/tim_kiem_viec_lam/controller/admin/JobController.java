@@ -29,15 +29,11 @@ public class JobController {
         return ResponseEntity.ok(null);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> getJob(@PathVariable("id") long id){
-//        return ResponseEntity.ok(jobService.getJobById(id));
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateJob(@PathVariable Long id, @RequestBody @Valid JobRequest jobRequest) {
-        Job job = jobService.updateJob(id, jobRequest);
-        return ResponseEntity.ok(job);
+       jobService.updateJob(id, jobRequest);
+        return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("{id}")
@@ -46,9 +42,4 @@ public class JobController {
         return ResponseEntity.noContent().build();
     }
 
-//    @PostMapping("/{job_id}/application")
-//    public ResponseEntity<?> applyToJob(@PathVariable("jobId") Long id, @RequestBody @Valid Application application ){
-//        jobService.applyToJob(id, application);
-//        return ResponseEntity.ok("Ứng tuyển vào công việc thành công");
-//    }
 }

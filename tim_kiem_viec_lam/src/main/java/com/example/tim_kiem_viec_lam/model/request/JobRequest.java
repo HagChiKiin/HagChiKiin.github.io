@@ -50,9 +50,9 @@ public class JobRequest {
 
     String benefit;
 
-    String salaryFrom;
+    Integer salaryFrom;
 
-    String salaryTo;
+    Integer salaryTo;
 
     JobStatus jobStatus;
 

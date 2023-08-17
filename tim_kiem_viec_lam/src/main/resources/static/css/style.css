@@ -1547,7 +1547,7 @@ p.copyright-content a {
 
 .job-inner-over-item .extra-info .salary,
 .job-inner-over-item .extra-info .place {
-    font-size: 13px;
+    font-size: 14px;
     color: #28a745;
     font-weight: 500;
     display: block;
@@ -1825,11 +1825,12 @@ p.jd-view {
     background-repeat: no-repeat;
 }
 .job-tt-item .thumb {
-    width: 100px;
-    height: 100%;
+    width: 150px;
+    height: auto;
     overflow: hidden;
     display: flex;
     margin-right: 15px;
+    /*object-fit: cover*/
 }
 
 .job-tt-item .jobname {

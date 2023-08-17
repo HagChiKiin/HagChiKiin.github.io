@@ -42,6 +42,9 @@ public class HomeController {
     @GetMapping("/")
     public String getAll(Model model) {
         List<Job> jobList = jobService.getAllJob();
+        List<Job> jobListBySalary = jobService.getJobSortHighestSalary();
+        List<Job> jobListByNewest = jobService.getNewestJobs();
+        List<Job> jobListAttractive = jobService.getAttractiveJobs();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         List<FileEntity> fileList = fileService.getAllFile();
 
@@ -49,6 +52,9 @@ public class HomeController {
         currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
         model.addAttribute("recruiterList", recruiterList);
         model.addAttribute("jobList", jobList);
+        model.addAttribute("jobListBySalary", jobListBySalary);
+        model.addAttribute("jobListByNewest", jobListByNewest);
+        model.addAttribute("jobListAttractive", jobListAttractive);
         model.addAttribute("fileList", fileList);
         return "user/index";
     }
@@ -81,12 +87,11 @@ public class HomeController {
         return "admin/job-list";
 
     }
-
     @GetMapping("/recruiter/jobs/{id}")
     public String getDetailJob(@PathVariable Long id, Model model) {
-        List<Job> jobList = jobService.getAllJob();
         Job job = jobService.getJobById(id);
-        model.addAttribute("jobList", jobList);
+        model.addAttribute("application", job.getApplications());
+        job.setApplications(null);
         model.addAttribute("job", job);
         return "admin/job-edit";
 
@@ -102,6 +107,9 @@ public class HomeController {
     @GetMapping("/jd-page/{id}")
     public String getJobDetail(@PathVariable Long id, Model model) {
         Job job = jobService.getJobById(id);
+        String jobSkill = job.getSkill();
+        List<Job> SimilarListJob = jobService.getSimilarJob(jobSkill, id);
+        model.addAttribute("SimilarListJob", SimilarListJob);
         model.addAttribute("application", job.getApplications());
         job.setApplications(null);
         model.addAttribute("job", job);
@@ -119,11 +127,6 @@ public class HomeController {
         return "user/register-employers";
     }
 
-    @GetMapping("/candidate/job-search")
-    public String getJobSearch() {
-        return "candidate/job-search";
-    }
-
     @GetMapping("/login-employees")
     public String loginEmployee() {
         return "candidate/login-employees";
@@ -132,11 +135,6 @@ public class HomeController {
     @GetMapping("/login-employers")
     public String loginEmployer() {
         return "recruiter/login-employers";
-    }
-
-    @GetMapping("/recruiter/published-recruitment")
-    public String publishRecruitment() {
-        return "recruiter/published-recruitment";
     }
 
     @GetMapping("/candidate/info/{id}")

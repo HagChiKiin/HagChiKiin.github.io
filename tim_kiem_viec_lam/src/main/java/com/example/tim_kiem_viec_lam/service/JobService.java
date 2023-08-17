@@ -1,22 +1,16 @@
 package com.example.tim_kiem_viec_lam.service;
 
-import com.example.tim_kiem_viec_lam.entity.Application;
 import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.exception.NotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.JobRequest;
 import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
 import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
-import com.example.tim_kiem_viec_lam.model.response.JobResponse;
 import com.example.tim_kiem_viec_lam.model.response.JobSearchResponse;
-import com.example.tim_kiem_viec_lam.repository.ApplicationRepository;
 import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.RecruiterRepository;
-import com.example.tim_kiem_viec_lam.repository.UserRepository;
 import com.example.tim_kiem_viec_lam.repository.custom.JobCustomRepository;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
-import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -24,8 +18,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,17 +25,11 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class JobService {
 
-    ObjectMapper objectMapper;
-
     JobRepository jobRepository;
 
-    ApplicationRepository applicationRepository;
 
     RecruiterRepository recruiterRepository;
 
-    UserRepository userRepository;
-
-    List<Job> jobs;
 
     JobCustomRepository jobCustomRepository;
 
@@ -51,8 +37,24 @@ public class JobService {
         return jobRepository.findAll();
     }
 
+    public List<Job> getJobSortHighestSalary() {
+        return jobRepository.findTop10ByHighestSalary();
+    }
+
+    public List<Job> getNewestJobs() {
+        return jobRepository.findTop16ByNewestJobs();
+    }
+
     public List<Job> getAllJobByRecruiter(String email) {
         return jobRepository.findByRecruiterEmail(email);
+    }
+
+    public List<Job> getAttractiveJobs() {
+        return jobRepository.findTop16ByHighestSalaryFrom();
+    }
+
+    public List<Job> getSimilarJob(String skill, Long jobId) {
+        return jobRepository.findRandomJobsBySkillAndExcludeCurrentJob(skill, jobId);
     }
 
     public void createJob(JobRequest jobRequest) {
@@ -85,7 +87,7 @@ public class JobService {
         jobRepository.save(job);
     }
 
-    public Job updateJob(Long id, JobRequest jobRequest) {
+    public void updateJob(Long id, JobRequest jobRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Recruiter recruiter = recruiterRepository.findByUserId(customUserDetails.getId())
@@ -115,7 +117,6 @@ public class JobService {
         job.setRecruiter(recruiter);
 
         jobRepository.save(job);
-        return job;
     }
 
     public void deleteJob(Long id) throws NotFoundException {
@@ -132,19 +133,11 @@ public class JobService {
                 });
     }
 
-//    public Job findByJobId(Long id) {
-//        return (Job) jobRepository.findByJobId(id)
-//                .orElseThrow(() -> {
-//                    throw new NotFoundException("Not found job with id = " + id);
-//                });
-//    }
-
-
-
     public CommonResponse<?> searchJob(JobSearchRequest request) {
         List<JobSearchResponse> jobs = jobCustomRepository.searchJob(request);
         return CommonResponse.builder()
                 .data(jobs)
                 .build();
     }
+
 }

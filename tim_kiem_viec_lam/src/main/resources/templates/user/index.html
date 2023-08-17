@@ -96,24 +96,29 @@
                             Tuyển Dụng</a>
                     </li>
                     <li class="navbar-right item group " id="loggedInUserNavItem" style="display: none">
-                    <div class="dropdown" >
-                        <a class="d-inline-block avatar rounded-circle"
-                           id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="https://www.topcv.vn/images/avatar-default.jpg"
-                                 style="height: 38px; width: 38px"
-                                 alt="Tiểu Phàm TRương">
-                        </a>
-                        <div class="dropdown-menu" style="background-color: #2f55d4" aria-labelledby="dropdownMenuButton">
-                            <a id="user" class="dropdown-item" th:href="@{/candidate/info/{id}(id=${users})}" style="color: white; background-color: #2f55d4">Thông tin cá nhân</a>
-                            <a id="recruiter" class="dropdown-item" href="" style="color: white; background-color: #2f55d4">Tạo việc làm</a>
-                            <a class="dropdown-item" href="/recruiter/jobs-create" style="color: white; background-color: #2f55d4">Đổi mật khẩu</a>
-                            <a id="logout-button" class="dropdown-item" href="#" style="color: white; background-color: #2f55d4;">
-                                <i class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất
+                        <div class="dropdown">
+                            <a class="d-inline-block avatar rounded-circle"
+                               id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="https://www.topcv.vn/images/avatar-default.jpg"
+                                     style="height: 38px; width: 38px"
+                                     alt="Tiểu Phàm TRương">
                             </a>
+                            <div class="dropdown-menu" style="background-color: #2f55d4"
+                                 aria-labelledby="dropdownMenuButton">
+                                <a id="user" class="dropdown-item" th:href="@{/candidate/info/{id}(id=${users})}"
+                                   style="color: white; background-color: #2f55d4">Thông tin cá nhân</a>
+                                <a id="recruiter" class="dropdown-item" href=""
+                                   style="color: white; background-color: #2f55d4">Tạo việc làm</a>
+                                <a class="dropdown-item" href="/recruiter/jobs-create"
+                                   style="color: white; background-color: #2f55d4">Đổi mật khẩu</a>
+                                <a id="logout-button" class="dropdown-item" href="#"
+                                   style="color: white; background-color: #2f55d4;">
+                                    <i class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -200,71 +205,71 @@
                                     <div class="col-md-3">
                                         <select id="s-provinces">
                                             <option value="" selected hidden>Tất cả địa điểm</option>
-                                            <option >Hồ Chí Minh</option>
-                                            <option >Hà Nội</option>
-                                            <option >An Giang</option>
+                                            <option>Hồ Chí Minh</option>
+                                            <option>Hà Nội</option>
+                                            <option>An Giang</option>
                                             <option>Bạc Liêu</option>
-                                            <option >Bà Rịa-Vũng Tàu</option>
-                                            <option >Bắc Cạn</option>
-                                            <option >Bắc Giang</option>
-                                            <option >Bắc Ninh</option>
-                                            <option >Bến Tre</option>
-                                            <option >Bình Dương</option>
-                                            <option >Bình Định</option>
-                                            <option >Bình Phước</option>
-                                            <option >Bình Thuận</option>
-                                            <option >Cao Bằng</option>
-                                            <option >Cà Mau</option>
-                                            <option >Cần Thơ</option>
-                                            <option >Đà Nẵng</option>
-                                            <option >Đắk Lắk</option>
-                                            <option >Đắk Nông</option>
-                                            <option >Điện Biên</option>
+                                            <option>Bà Rịa-Vũng Tàu</option>
+                                            <option>Bắc Cạn</option>
+                                            <option>Bắc Giang</option>
+                                            <option>Bắc Ninh</option>
+                                            <option>Bến Tre</option>
+                                            <option>Bình Dương</option>
+                                            <option>Bình Định</option>
+                                            <option>Bình Phước</option>
+                                            <option>Bình Thuận</option>
+                                            <option>Cao Bằng</option>
+                                            <option>Cà Mau</option>
+                                            <option>Cần Thơ</option>
+                                            <option>Đà Nẵng</option>
+                                            <option>Đắk Lắk</option>
+                                            <option>Đắk Nông</option>
+                                            <option>Điện Biên</option>
                                             <option>Đồng Nai</option>
-                                            <option >Đồng Tháp</option>
-                                            <option >Gia Lai</option>
+                                            <option>Đồng Tháp</option>
+                                            <option>Gia Lai</option>
                                             <option>Hà Giang</option>
-                                            <option >Hà Nam</option>
-                                            <option >Hà Tĩnh</option>
-                                            <option >Hải Dương</option>
-                                            <option >Hải Phòng</option>
-                                            <option >Hậu Giang</option>
-                                            <option >Hòa Bình</option>
-                                            <option >Hưng Yên</option>
-                                            <option >Khánh Hòa</option>
-                                            <option >Kiên Giang</option>
-                                            <option >Kon Tum</option>
-                                            <option >Lai Châu</option>
-                                            <option >Lạng Sơn</option>
-                                            <option >Lào Cai</option>
-                                            <option >Lâm Đồng</option>
-                                            <option >Long An</option>
-                                            <option >Nam Định</option>
-                                            <option >Nghệ An</option>
-                                            <option >Ninh Bình</option>
-                                            <option >Ninh Thuận</option>
-                                            <option >Phú Thọ</option>
-                                            <option >Phú Yên</option>
-                                            <option >Quảng Bình</option>
-                                            <option >Quảng Nam</option>
-                                            <option >Quảng Ngãi</option>
-                                            <option >Quảng Ninh</option>
-                                            <option >Quảng Trị</option>
-                                            <option >Sóc Trăng</option>
-                                            <option >Sơn La</option>
-                                            <option >Tây Ninh</option>
-                                            <option >Thái Bình</option>
-                                            <option >Thái Nguyên</option>
-                                            <option >Thanh Hóa</option>
-                                            <option >Thừa Thiên-Huế</option>
-                                            <option >Tiền Giang</option>
-                                            <option >Trà Vinh</option>
-                                            <option >Tuyên Quang</option>
-                                            <option >Vĩnh Long</option>
-                                            <option >Vĩnh Phúc</option>
-                                            <option >Yên Bái</option>
-                                            <option >Toàn quốc</option>
-                                            <option >Nước ngoài</option>
+                                            <option>Hà Nam</option>
+                                            <option>Hà Tĩnh</option>
+                                            <option>Hải Dương</option>
+                                            <option>Hải Phòng</option>
+                                            <option>Hậu Giang</option>
+                                            <option>Hòa Bình</option>
+                                            <option>Hưng Yên</option>
+                                            <option>Khánh Hòa</option>
+                                            <option>Kiên Giang</option>
+                                            <option>Kon Tum</option>
+                                            <option>Lai Châu</option>
+                                            <option>Lạng Sơn</option>
+                                            <option>Lào Cai</option>
+                                            <option>Lâm Đồng</option>
+                                            <option>Long An</option>
+                                            <option>Nam Định</option>
+                                            <option>Nghệ An</option>
+                                            <option>Ninh Bình</option>
+                                            <option>Ninh Thuận</option>
+                                            <option>Phú Thọ</option>
+                                            <option>Phú Yên</option>
+                                            <option>Quảng Bình</option>
+                                            <option>Quảng Nam</option>
+                                            <option>Quảng Ngãi</option>
+                                            <option>Quảng Ninh</option>
+                                            <option>Quảng Trị</option>
+                                            <option>Sóc Trăng</option>
+                                            <option>Sơn La</option>
+                                            <option>Tây Ninh</option>
+                                            <option>Thái Bình</option>
+                                            <option>Thái Nguyên</option>
+                                            <option>Thanh Hóa</option>
+                                            <option>Thừa Thiên-Huế</option>
+                                            <option>Tiền Giang</option>
+                                            <option>Trà Vinh</option>
+                                            <option>Tuyên Quang</option>
+                                            <option>Vĩnh Long</option>
+                                            <option>Vĩnh Phúc</option>
+                                            <option>Yên Bái</option>
+                                            <option>Toàn quốc</option>
+                                            <option>Nước ngoài</option>
 
                                         </select>
                                         <i class="fa fa-map-marker sfa" aria-hidden="true"></i>
@@ -346,12 +351,15 @@
 
                                 <div class="job-desc">
                                     <div class="job-title">
-                                        <a  th:href="@{/jd-page/{id}(id=${job.id})}" th:text="${job.title}">Fullstack .NET Developer (Angular/React)</a>
+                                        <a th:href="@{/jd-page/{id}(id=${job.id})}" th:text="${job.title}">Fullstack
+                                            .NET Developer (Angular/React)</a>
                                     </div>
                                     <div class="job-company">
                                         <a href="#" th:text="${job.recruiter.name}">Orient Software</a> | <a href="#"
-                                                                                                             class="job-address"><i
-                                            class="fa fa-map-marker" aria-hidden="true" th:text="${job.location}"></i>
+                                                                                                             class="job-address">
+                                        <i class="fa fa-map-marker" aria-hidden="true">
+                                            <span th:text="${job.location}"> </span>
+                                        </i>
                                     </a>
                                     </div>
 
@@ -363,8 +371,9 @@
                                         </div>
                                         <div class="job-salary">
                                             <i class="fa fa-money" aria-hidden="true"></i>
-                                            <span class="salary-min" th:text="${job.salaryFrom}"></span>
-                                            <span class="salary-max" th:text="${job.salaryTo}"></span>
+                                            <span class="salary"
+                                                  th:text="${job.salaryFrom} + ' triệu - ' + ${job.salaryTo} + ' triệu'"></span>
+                                            <!--                                            <span class="salary-max" th:text="${job.salaryTo}"></span>-->
                                         </div>
                                         <div class="job-deadline">
                                             <span><i class="fa fa-clock-o" aria-hidden="true"></i>  Hạn nộp: <strong
@@ -372,9 +381,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wrap-btn-appl">
-                                    <a href="#" class="btn btn-appl">Apply Now</a>
-                                </div>
+<!--                                <div class="wrap-btn-appl">-->
+<!--                                    <a href="#" class="btn btn-appl">Apply Now</a>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="readmorestyle-wrap">
@@ -435,62 +444,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>HR</em>
-                </span>
-                                    <span class="cate-count">(300)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>HR</em>
-                </span>
-                                    <span class="cate-count">(300)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>HR</em>
-                </span>
-                                    <span class="cate-count">(300)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>HR</em>
-                </span>
-                                    <span class="cate-count">(300)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>HR</em>
-                </span>
-                                    <span class="cate-count">(300)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>HR</em>
-                </span>
-                                    <span class="cate-count">(300)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>HR</em>
-                </span>
-                                    <span class="cate-count">(300)</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="#" class="readallstyle reads1">Xem tất cả</a>
                             </li>
 
@@ -523,211 +476,17 @@
             </div>
             <div class="col-md-12 job-board2-wrap">
                 <div class="owl-carousel owl-theme job-board2-contain">
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
+                    <div class="item job-latest-item" th:each="job: ${jobListByNewest}">
+                        <a th:href="@{/jd-page/{id}(id=${job.id})}" class="job-latest-group">
                             <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
+                                <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}">
                             </div>
                             <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000 #1</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/alipay-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>Fullstack .NET Developer (Angular/React) #2</h3>
-                                <a class="company" href="#">Orient Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/nvg-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>Frontend Developer (JavaScript, ReactJS)</h3>
-                                <a class="company" href="#">mgm technology</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/luxoft-vietnam-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>IVI System Test Engineer</h3>
-                                <a class="company" href="#">LUXOFT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item job-latest-item">
-                        <a href="#" class="job-latest-group">
-                            <div class="job-lt-logo">
-                                <img src="img/fpt-logo.png">
-                            </div>
-                            <div class="job-lt-info">
-                                <h3>[HCM] 02 Solution Architects–Up to $2000</h3>
-                                <a class="company" href="#">FPT Software</a>
-                                <p class="address"><i class="fa fa-map-marker pr-1" aria-hidden="true"></i> Đà Nẵng
-                                </p>
+                                <h3 th:text="${job.title}"></h3>
+                                <a class="company" th:href="@{/jd-page/{id}(id=${job.id})}"
+                                   th:text="${job.recruiter.name}"></a>
+                                <p class="address mr-1"><i class="fa fa-map-marker pr-1 " aria-hidden="true"></i> <span
+                                        th:text="${job.location}"></span></p>
                             </div>
                         </a>
                     </div>
@@ -742,7 +501,7 @@
         const userInfomationStr = localStorage.getItem("userInfomation");
         if (userInfomationStr) {
             const userInfomation = JSON.parse(userInfomationStr)
-            if (userInfomation.username ) {
+            if (userInfomation.username) {
                 $('#registerNavItem').hide();
                 $('#loginNavItem').hide();
                 $('#loggedInUserNavItem').show();
@@ -800,86 +559,16 @@
         <div class="row">
             <div class="col-md-12 top-employer-contain">
                 <div class="header">
-                    <h3>Nhà tuyển dùng hàng đầu</h3>
+                    <h3>Nhà tuyển dụng hàng đầu</h3>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
+                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap" th:each="recruiter: ${recruiterList}">
                         <div class="top-employer-item">
                             <a href="#">
                                 <div class="emp-img-thumb">
-                                    <img src="img/fpt-logo.png">
+                                    <img th:src="'/api/v1/files/'+${recruiter.fileId.name}">
                                 </div>
-                                <h3 class="company">FPT Software</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
-                        <div class="top-employer-item">
-                            <a href="#">
-                                <div class="emp-img-thumb">
-                                    <img src="img/nvg-logo.png">
-                                </div>
-                                <h3 class="company">mgm technology</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
-                        <div class="top-employer-item">
-                            <a href="#">
-                                <div class="emp-img-thumb">
-                                    <img src="img/alipay-logo.png">
-                                </div>
-                                <h3 class="company">ALIPAY Software</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
-                        <div class="top-employer-item">
-                            <a href="#">
-                                <div class="emp-img-thumb">
-                                    <img src="img/luxoft-vietnam-logo.png">
-                                </div>
-                                <h3 class="company">Luxoft Software</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
-                        <div class="top-employer-item">
-                            <a href="#">
-                                <div class="emp-img-thumb">
-                                    <img src="img/techcombank-logo.png">
-                                </div>
-                                <h3 class="company">Techcombank</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
-                        <div class="top-employer-item">
-                            <a href="#">
-                                <div class="emp-img-thumb">
-                                    <img src="img/home-credit.png">
-                                </div>
-                                <h3 class="company">Home Credit</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
-                        <div class="top-employer-item">
-                            <a href="#">
-                                <div class="emp-img-thumb">
-                                    <img src="img/grab-vietnam.png">
-                                </div>
-                                <h3 class="company">Grab (Vietnam) Ltd.</h3>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap">
-                        <div class="top-employer-item">
-                            <a href="#">
-                                <div class="emp-img-thumb">
-                                    <img src="img/HINH.png">
-                                </div>
-                                <h3 class="company">Techbase Vietnam</h3>
+                                <h3 class="company" th:text="${recruiter.name}">FPT Software</h3>
                             </a>
                         </div>
                     </div>
@@ -902,342 +591,37 @@
             </div>
         </div>
         <div class="row job-best-salary-inner">
-            <div class="col-md-6 job-over-item">
+            <div class="col-md-6 job-over-item" th:each="job :${jobListByNewest}">
                 <div class="job-inner-over-item">
                     <a href="#wrap">
                         <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
+                            <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}" alt="company logo image">
                         </div>
                         <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
+                            <div class="job-name" th:text="${job.title}">
                             </div>
-                            <a href="#company" class="company">
-                                Fitech
+                            <a href="#company" class="company" th:text="${job.recruiter.name}">
+
                             </a>
                         </div>
                         <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
+                            <p class="salary mt-2">
+                                <i class="fa fa-money py-1">
+                                    <span th:text="${job.salaryFrom} + ' - ' + ${job.salaryTo} + ' triệu'">
+
+                                    </span>
+                                </i>
+                            </p>
+                            <p class="place pb-2">
+                                <i class="fa fa-map-marker ">
+                                    <span th:text="${job.location}"></span>
+                                </i>
+                            </p>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/hdbank-logo.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                Java Developer (.NET, PL/SQL)
-                            </div>
-                            <a href="#company" class="company">
-                                HD Bank
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>15 - 35 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hồ Chí Minh</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/SCS_Logo_original.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                Senior .NET Developers
-                            </div>
-                            <a href="#company" class="company">
-                                SCS Solution
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>20 - 40 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fpt-logo.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                Senior .NET Dev – Signing bonus upto 30M
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>35 - 70 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/novaon-digital-group-logo.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET Developer (C#, ASP.NET) Up to $1200
-                            </div>
-                            <a href="#company" class="company">
-                                NOVAON
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -1267,342 +651,38 @@
             </div>
         </div>
         <div class="row job-best-salary-inner">
-            <div class="col-md-6 job-over-item">
+            <div class="col-md-6 job-over-item" th:each="job: ${jobListBySalary}">
                 <div class="job-inner-over-item">
                     <a href="#wrap">
                         <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
+                            <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}" alt="company logo image">
                         </div>
                         <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
+                            <div class="job-name" th:text="${job.title}">
                             </div>
-                            <a href="#company" class="company">
-                                Fitech
+                            <a href="#company" class="company" th:text="${job.recruiter.name}">
                             </a>
                         </div>
                         <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
+                            <p class="salary  py-1">
+                                <i class="fa fa-money">
+                                    <span th:text="${job.salaryFrom} + ' - ' + ${job.salaryTo} + ' triệu'">
+
+                                    </span>
+                                </i>
+                            </p>
+                            <p class="place my-2">
+                                <i class="fa fa-map-marker ">
+                                    <span th:text="${job.location}">
+
+                                    </span>
+                                </i>
+                            </p>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/hdbank-logo.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                Java Developer (.NET, PL/SQL)
-                            </div>
-                            <a href="#company" class="company">
-                                HD Bank
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>15 - 35 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hồ Chí Minh</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/SCS_Logo_original.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                Senior .NET Developers
-                            </div>
-                            <a href="#company" class="company">
-                                SCS Solution
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>20 - 40 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fpt-logo.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                Senior .NET Dev – Signing bonus upto 30M
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>35 - 70 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/novaon-digital-group-logo.png" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET Developer (C#, ASP.NET) Up to $1200
-                            </div>
-                            <a href="#company" class="company">
-                                NOVAON
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 job-over-item">
-                <div class="job-inner-over-item">
-                    <a href="#wrap">
-                        <div class="thumbnail">
-                            <img src="img/fitech-logo.jpg" alt="company logo image">
-                        </div>
-                        <div class="content">
-                            <div class="job-name">
-                                .NET/C# developers ($1,000-$1,500 net)
-                            </div>
-                            <a href="#company" class="company">
-                                Fitech
-                            </a>
-                        </div>
-                        <div class="extra-info">
-                            <p class="salary mt-2"><i class="fa fa-money pr-2"></i>10 - 20 triệu</p>
-                            <p class="place"><i class="fa fa-map-marker pr-2"></i>Hà Nội</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

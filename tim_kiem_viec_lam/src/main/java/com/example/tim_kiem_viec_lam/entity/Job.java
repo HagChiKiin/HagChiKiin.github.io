@@ -4,6 +4,7 @@ import com.example.tim_kiem_viec_lam.statics.JobStatus;
 import com.example.tim_kiem_viec_lam.statics.Literacy;
 import com.example.tim_kiem_viec_lam.statics.WorkType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @Entity
 @Table(name = "jobs")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Job extends BaseEntity{
+public class Job extends BaseEntity {
     @ManyToOne(targetEntity = Recruiter.class)
     @JoinColumn(name = "recruiter_id")
     Recruiter recruiter;
@@ -49,10 +50,10 @@ public class Job extends BaseEntity{
     String benefit;
 
     @Column(name = "salary_from")
-    String salaryFrom;
+    Integer salaryFrom;
 
     @Column(name = "salary_to")
-    String salaryTo;
+    Integer salaryTo;
 
     @Column(name = "skill")
     String skill;
@@ -77,6 +78,6 @@ public class Job extends BaseEntity{
     @Column(name = "deleted_datetime")
     LocalDateTime deletedDateTime;
 
-    @OneToMany(mappedBy="job", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
     List<Application> applications;
 }

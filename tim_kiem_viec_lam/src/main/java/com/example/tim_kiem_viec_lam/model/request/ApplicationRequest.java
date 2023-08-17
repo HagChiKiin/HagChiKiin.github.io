@@ -12,10 +12,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApplicationRequest {
 
-    Long id;
-
-    Long jobId;
-
     String name;
 
     String cv;

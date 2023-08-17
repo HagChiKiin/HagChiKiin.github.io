@@ -20,7 +20,6 @@ public class AnonymousController {
 
     JobService jobService;
 
-
 //    @GetMapping("/search")
 //    public String allBook(Model model, JobSearchRequest request) {
 //        CommonResponse<?> commonResponse = jobService.searchJob(request);

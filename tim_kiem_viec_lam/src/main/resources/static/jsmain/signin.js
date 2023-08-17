@@ -120,7 +120,7 @@ $(document).ready(function () {
                 type: 'POST',
                 contentType: 'application/json',
                 headers: {
-                    'Authorization': 'Bearer' + " " + jwtToken
+                    'Authorization': 'Bearer ' + " " + jwtToken
                 },
                 success: function () {
                     localStorage.clear()
@@ -156,7 +156,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify(formData),
             headers: {
-                'Authorization': 'Bearer' + " " + jwt
+                'Authorization': 'Bearer ' + " " + jwt
             },
             success: function (response) {
                 localStorage.setItem('jwtToken', response.jwt);

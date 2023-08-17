@@ -1,6 +1,7 @@
 package com.example.tim_kiem_viec_lam.entity;
 
 import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -16,14 +17,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Application extends  BaseEntity {
+public class Application extends BaseEntity {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     User user;
 
-    @ManyToOne(targetEntity = Job.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Job.class)
     @JoinColumn(name = "job_id")
-    @JsonIgnore
+    @JsonBackReference
     Job job;
 
     @Column(name = "cv")
@@ -38,7 +39,7 @@ public class Application extends  BaseEntity {
     @Column(name = "email")
     String email;
 
-    @Column(name = "descriptipn")
+    @Column(name = "description")
     String description;
 
     @Column(name = "application_time")
