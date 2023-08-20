@@ -18,9 +18,9 @@ public class JobSearchResponse {
 
     String location;
 
-    String salaryFrom;
+    Integer salaryFrom;
 
-    String salaryTo;
+    Integer salaryTo;
 
     String skill;
 

@@ -93,6 +93,7 @@
                     <th>Mức lương từ</th>
                     <th>Mức lương đến</th>
                     <th>Công ty</th>
+                    <th>Trạng thái</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -177,6 +178,7 @@
             <td>${job.salaryFrom}</td>
             <td>${job.salaryTo}</td>
             <td><a>${job.recruiter.name}</a></td>
+            <td>${job.jobStatus}</td>
         `);
             // Nếu Recruiter truy cập sang đường link của Recruiter khác, đẩy về trang chủ
             if (!hasAccess) {

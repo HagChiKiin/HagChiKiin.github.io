@@ -60,16 +60,18 @@ public class HomeController {
     }
 
     @GetMapping("admin/companies")
-    public String getAdmin(Model model) {
+    public String getCompanyByAdmin(Model model) {
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         model.addAttribute("recruiterList", recruiterList);
         return "admin/company-list";
     }
 
 
-    @GetMapping("/admin/companies-create")
-    public String getCompany() {
-        return "admin/company-create";
+    @GetMapping("/admin/companies/{id}")
+    public String updateCompanyByAdmin(@PathVariable Long id, Model model) {
+        Recruiter recruiter = recruiterService.getRecruiterById(id);
+        model.addAttribute("recruiter", recruiter);
+        return "admin/company-edit";
 
     }
 

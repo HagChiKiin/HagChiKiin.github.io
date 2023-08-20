@@ -38,7 +38,7 @@
 <!--HEADER-->
 <div class="header">
     <div class="logo">
-        <a href="/admin/companies">
+        <a href="/">
             <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px" alt="logo">
         </a>
     </div>
@@ -53,20 +53,20 @@
                         <li class="sub-menu-item">
                             <a href="/admin/companies">Danh sách công ty</a>
                         </li>
-                        <li class="sub-menu-item">
-                            <a href="/admin/companies-create">Tạo công ty</a>
-                        </li>
+                        <!--                        <li class="sub-menu-item">-->
+                        <!--                            <a href="/admin/companies-create">Tạo công ty</a>-->
+                        <!--                        </li>-->
                     </ul>
                 </li>
-                <li class="menu-item">
-                    Quản lý công việc <span><i class="fa-solid fa-caret-down"></i></span>
+                <!--                <li class="menu-item">-->
+                <!--                    Quản lý công việc <span><i class="fa-solid fa-caret-down"></i></span>-->
 
-                    <ul class="sub-menu">
-                        <li class="sub-menu-item">
-                            <a href="/recruiter/jobs">Danh sách công việc</a>
-                        </li>
-                    </ul>
-                </li>
+                <!--                    <ul class="sub-menu">-->
+                <!--                        <li class="sub-menu-item">-->
+                <!--                            <a href="/recruiter/jobs">Danh sách công việc</a>-->
+                <!--                        </li>-->
+                <!--                    </ul>-->
+                <!--                </li>-->
             </ul>
         </div>
     </div>
@@ -76,10 +76,10 @@
 <div class="company-list mt-4 mb-4">
     <div class="container">
         <div class="mb-4">
-            <a href="/admin/companies-create" class="btn-custom btn-create-company">
-                <span><i class="fa-solid fa-plus"></i></span>
-                Tạo công ty
-            </a>
+            <!--            <a href="/admin/companies-create" class="btn-custom btn-create-company">-->
+            <!--                <span><i class="fa-solid fa-plus"></i></span>-->
+            <!--                Tạo công ty-->
+            <!--            </a>-->
             <a href="/admin/companies" class="btn-custom btn-refresh">
                 <span><i class="fa-solid fa-arrow-rotate-right"></i></span>
                 Refresh
@@ -95,19 +95,22 @@
                     <th>Địa chỉ</th>
                     <th>Website</th>
                     <th>Phone</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="recruiter, info: ${recruiterList}">
                     <td th:text="${info.index + 1}">1</td>
                     <td>
-                        <a th:href="@{/admin/companies/{id} (id=${recruiter.id})}" th:text="${recruiter.name}" >Haley, Bailey and Brakus</a>
+                        <a th:href="@{/admin/companies/{id} (id=${recruiter.id})}" th:text="${recruiter.name}">Haley,
+                            Bailey and Brakus</a>
                     </td>
-                    <th  th:text="${recruiter.address}">Thành phố Hồ Chí Minh</th>
+                    <th th:text="${recruiter.address}">Thành phố Hồ Chí Minh</th>
                     <td>
-                        <a th:text="${recruiter.contactInfo}" href="www.flatleyllc.net">www.flatleyllc.net</a>
+                        <a th:text="${recruiter.contactInfo}" th:href="'https://'+ @{recruiter.contactInfo}"></a>
                     </td>
-                    <td th:text="${recruiter.phone}" >0913465789</td>
+                    <td th:text="${recruiter.phone}">0913465789</td>
+                    <td th:text="${recruiter.recruiterStatus}"></td>
                 </tr>
 
                 </tbody>
@@ -129,28 +132,30 @@
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    window.onload = function () {
-        const jwtToken = localStorage.getItem("jwtToken");
 
-        if (!jwtToken) {
-            // Chưa đăng nhập, chuyển hướng về trang đăng nhập
-            window.location.href = "http://localhost:8080/";
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    if (!jwtToken) {
+        // Chưa đăng nhập, chuyển hướng về trang đăng nhập
+        window.location.href = "http://localhost:8080/splash";
+    } else {
+        // Lấy ra roles ở dạng mảng
+        const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+        const userRoles = userInfomation.roles;
+        console.log(userRoles);
+
+        // Kiểm tra vai trò và chuyển hướng người dùng
+        const pathName = window.location.pathname;
+
+        // Nếu URL bắt đầu bằng "/admin/" và người dùng có vai trò ADMIN, cho phép truy cập.
+        if (pathName.startsWith('/admin/') && userRoles.includes("ADMIN")) {
         } else {
-            const userRoles = ["RECRUITER"]; // Giả định bạn đã lấy thông tin vai trò từ server
-
-            // Kiểm tra vai trò và chuyển hướng người dùng
-            const pathName = window.location.pathname;
-
-            if (pathName.startsWith('/admin/') && !userRoles.includes("ADMIN")) {
-                window.location.href = "http://localhost:8080";
-            } else if (pathName.startsWith('/recruiter/') && !userRoles.includes("RECRUITER")) {
-                window.location.href = "http://localhost:8080";
-            } else {
-                // Có quyền truy cập, tiếp tục xử lý khác
-                // ...
-            }
+            // Người dùng không có vai trò ADMIN hoặc URL không phù hợp, chuyển về trang chủ.
+            window.location.href = "http://localhost:8080";
         }
-    };
+    }
+    ;
+
 </script>
 </body>
 

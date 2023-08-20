@@ -5,6 +5,7 @@ import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.exception.NotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.RecruiterRequest;
 import com.example.tim_kiem_viec_lam.repository.RecruiterRepository;
+import com.example.tim_kiem_viec_lam.statics.RecruiterStatus;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ public class RecruiterService {
                 .phone(recruiterRequest.getPhone())
                 .contactInfo(recruiterRequest.getContactInfo())
                 .avatar(recruiterRequest.getAvatar())
+                .recruiterStatus(RecruiterStatus.ACTIVE)
                 .build();
         recruiterRepository.save(recruiter);
     }
@@ -45,6 +47,7 @@ public class RecruiterService {
         recruiter.setContactInfo(request.getContactInfo());
         recruiter.setIntroduce(request.getIntroduce());
         recruiter.setAvatar(request.getAvatar());
+        recruiter.setRecruiterStatus(RecruiterStatus.valueOf(request.getStatus()));
         recruiter.setPhone(recruiter.getPhone());
       recruiterRepository.save(recruiter);
     }

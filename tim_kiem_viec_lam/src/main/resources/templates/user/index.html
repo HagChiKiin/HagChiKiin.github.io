@@ -108,9 +108,9 @@
                                  aria-labelledby="dropdownMenuButton">
                                 <a id="user" class="dropdown-item" th:href="@{/candidate/info/{id}(id=${users})}"
                                    style="color: white; background-color: #2f55d4">Thông tin cá nhân</a>
-                                <a id="recruiter" class="dropdown-item" href=""
+                                <a id="recruiter" class="dropdown-item" href="/recruiter/jobs-create"
                                    style="color: white; background-color: #2f55d4">Tạo việc làm</a>
-                                <a class="dropdown-item" href="/recruiter/jobs-create"
+                                <a class="dropdown-item" href=""
                                    style="color: white; background-color: #2f55d4">Đổi mật khẩu</a>
                                 <a id="logout-button" class="dropdown-item" href="#"
                                    style="color: white; background-color: #2f55d4;">
@@ -513,6 +513,9 @@
                 } else if (userInfomation.roles[0] === 'RECRUITER') {
                     $('#user').hide();
                     $('#recruiter').show();
+                } else {
+                    $('#user').hide();
+                    $('#recruiter').hide();
                 }
             }
         }
@@ -593,14 +596,14 @@
         <div class="row job-best-salary-inner">
             <div class="col-md-6 job-over-item" th:each="job :${jobListByNewest}">
                 <div class="job-inner-over-item">
-                    <a href="#wrap">
+                    <a th:href="@{/jd-page/{id}(id=${job.id})}">
                         <div class="thumbnail">
                             <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}" alt="company logo image">
                         </div>
                         <div class="content">
                             <div class="job-name" th:text="${job.title}">
                             </div>
-                            <a href="#company" class="company" th:text="${job.recruiter.name}">
+                            <a th:href="@{/jd-page/{id}(id=${job.id})}" class="company" th:text="${job.recruiter.name}">
 
                             </a>
                         </div>
@@ -653,14 +656,14 @@
         <div class="row job-best-salary-inner">
             <div class="col-md-6 job-over-item" th:each="job: ${jobListBySalary}">
                 <div class="job-inner-over-item">
-                    <a href="#wrap">
+                    <a th:href="@{/jd-page/{id}(id=${job.id})}">
                         <div class="thumbnail">
                             <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}" alt="company logo image">
                         </div>
                         <div class="content">
                             <div class="job-name" th:text="${job.title}">
                             </div>
-                            <a href="#company" class="company" th:text="${job.recruiter.name}">
+                            <a th:href="@{/jd-page/{id}(id=${job.id})}" class="company" th:text="${job.recruiter.name}">
                             </a>
                         </div>
                         <div class="extra-info">

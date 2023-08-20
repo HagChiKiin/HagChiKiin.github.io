@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum NotificationStatus {
-    READ,
-    UNREAD
+public enum RecruiterStatus {
+    ACTIVE,
+    LOCKED;
+
 }

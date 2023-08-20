@@ -33,4 +33,6 @@ public class RecruiterRequest {
 
     String name;
 
+    String status;
+
 }

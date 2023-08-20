@@ -47,13 +47,13 @@ $(document).ready(function () {
             success: function (data) {
                 toastr.success("Đổi mật khẩu thành công");
                 setTimeout(function () {
-                    window.location.href = 'http://localhost:8080/login'
+                    window.location.href = 'http://localhost:8080/'
                 }, 1000)
             },
             error: function () {
                 toastr.warning("Đã có lỗi xảy ra");
                 setTimeout(function () {
-                    window.location.href = 'http://localhost:8080/login'
+                    window.location.href = 'http://localhost:8080/'
                 }, 1500)
             }
         });

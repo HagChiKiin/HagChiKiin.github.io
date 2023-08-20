@@ -39,6 +39,7 @@ public class Application extends BaseEntity {
     @Column(name = "email")
     String email;
 
+
     @Column(name = "description")
     String description;
 

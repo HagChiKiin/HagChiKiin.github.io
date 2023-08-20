@@ -1,5 +1,6 @@
 package com.example.tim_kiem_viec_lam.entity;
 
+import com.example.tim_kiem_viec_lam.statics.RecruiterStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -34,6 +35,10 @@ public class Recruiter extends BaseEntity {
 
     @Column(name = "phone")
     String phone;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    RecruiterStatus recruiterStatus;
 
     @OneToOne(targetEntity = FileEntity.class)
     @JoinColumn(name = "file_id")

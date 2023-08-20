@@ -133,11 +133,8 @@
                             <div class="mb-3">
                                 <label for="jobStatus" class="form-label">Trạng thái</label>
                                 <select type="text" class="form-control" id="jobStatus" name="jobStatus">
-                                    <option>OPEN</option>
-                                    <option>ONGOING_INTERVIEWS</option>
-                                    <option>HIRED</option>
-                                    <option>CLOSED</option>
-                                    <option>CANCELLED</option>
+                                    <option value="OPEN">OPEN</option>
+                                    <option value="CLOSED">CLOSED</option>
                                 </select>
 
                             </div>
@@ -169,12 +166,12 @@
 
                             <div class="mb-3">
                                 <label for="salaryFrom" class="form-label">Mức lương từ</label>
-                                <input th:value="${job.salaryFrom}" type="text" class="form-control" id="salaryFrom"
+                                <input th:value="${job.salaryFrom}" type="number" class="form-control" id="salaryFrom"
                                        name="salaryFrom">
                             </div>
                             <div class="mb-3">
                                 <label for="salaryTo" class="form-label">đến</label>
-                                <input th:value="${job.salaryTo}" type="text" class="form-control" id="salaryTo"
+                                <input th:value="${job.salaryTo}" type="number" class="form-control" id="salaryTo"
                                        name="salaryTo">
                             </div>
                             <div class="mb-3">
@@ -219,26 +216,29 @@
                             <th>STT</th>
                             <th>Tên ứng viên</th>
                             <th>Mô tả ngắn</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Status</th>
                             <th>Link CV</th>
                         </tr>
                         </thead>
                         <tbody>
 
-<!--                        <tr th:each="app : ${application}">-->
-<!--                            <td th:text="${app.name}"></td>-->
-<!--                            <td th:text="${app.phone}"></td>-->
-<!--                            <td th:text="${app.description}"></td>-->
-<!--                            <td><a th:href="${app.cv}" target="_blank">Xem chi tiết</a></td>-->
-<!--                        </tr>-->
+                        <!--                        <tr th:each="app : ${application}">-->
+                        <!--                            <td th:text="${app.name}"></td>-->
+                        <!--                            <td th:text="${app.phone}"></td>-->
+                        <!--                            <td th:text="${app.description}"></td>-->
+                        <!--                            <td><a th:href="${app.cv}" target="_blank">Xem chi tiết</a></td>-->
+                        <!--                        </tr>-->
                         </tbody>
                         <tbody>
-                        <tr>
-                            <td>2</td>
-                            <td>Penny Bunn</td>
-                            <td class="w-50">Qui
-                            </td>
-                            <td><a href="" target="_blank">Xem chi tiết</a></td>
-                        </tr>
+                        <!--                        <tr>-->
+                        <!--                            <td>2</td>-->
+                        <!--                            <td>Penny Bunn</td>-->
+                        <!--                            <td class="w-50">Qui-->
+                        <!--                            </td>-->
+                        <!--                            <td><a href="" target="_blank">Xem chi tiết</a></td>-->
+                        <!--                        </tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -272,8 +272,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script>
-
+<script th:inline="javascript">
     window.onload = function () {
         const jwtToken = localStorage.getItem("jwtToken");
 
@@ -386,54 +385,80 @@
 
     });
 
+    console.log(jobStatus)
     $('.btn-delete-job').click(function () {
         // Sử dụng swal() của SweetAlert2 thay vì confirm()
-        Swal.fire({
-            title: 'Bạn có chắc muốn xóa không?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Xóa',
-            cancelButtonText: 'Hủy',
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                let jwtToken = localStorage.getItem("jwtToken")
-                if (jwtToken) {
-                    $.ajax({
-                        url: '/api/v1/jobs/' + jobId,
-                        type: 'DELETE',
-                        contentType: "application/json; charset=utf-8",
-                        headers: {
-                            'Authorization': 'Bearer' + " " + jwtToken
-                        },
-                        success: function (data) {
-                            Swal.fire({
-                                title: 'Xóa công việc thành công',
-                                icon: 'success',
-                                timer: 2000,
-                                showConfirmButton: false
-                            });
-                            setTimeout(function () {
-                                window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
-                            }, 2000);
-                        },
-                        error: function (data) {
-                            Swal.fire({
-                                title: 'Xóa thất bại',
-                                icon: 'error',
-                                timer: 2000,
-                                showConfirmButton: false
-                            });
-                        },
-                    });
-                } else {
-                    toastr.warning("Bạn chưa đăng nhập")
+        let jobStatus = $("#jobStatus").val();
+        if (jobStatus === 'LOCKED') {
+            Swal.fire({
+                title: 'Bạn có chắc muốn xóa không?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let jwtToken = localStorage.getItem("jwtToken")
+                    if (jwtToken) {
+                        $.ajax({
+                            url: '/api/v1/jobs/' + jobId,
+                            type: 'DELETE',
+                            contentType: "application/json; charset=utf-8",
+                            headers: {
+                                'Authorization': 'Bearer' + " " + jwtToken
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    title: 'Xóa công việc thành công',
+                                    icon: 'success',
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+                                setTimeout(function () {
+                                    window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
+                                }, 2000);
+                            },
+                            error: function (data) {
+                                Swal.fire({
+                                    title: 'Xóa thất bại',
+                                    icon: 'error',
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
+                            },
+                        });
+                    } else {
+                        toastr.warning("Bạn chưa đăng nhập")
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            toastr.warning("Bạn không thể xóa công việc với trạng thái hiện tại.");
+        }
     });
 
+    // render ra hồ sơ ứng viên - fail vì lỗi biến th:inline javascript
+    const application = [[${application}]];
+
+    const tbody = $(".applicant-table tbody");
+    tbody.empty(); // Xóa nội dung tbody cũ
+
+    $.each(application, function (index, appli) {
+
+        const tr = $("<tr>");
+        tr.html(`
+            <td>${index + 1}</td>
+            <td>${appli.name}</td>
+            <td>${appli.description}</td>
+            <td>${appli.phone}</td>
+            <td>${appli.email}</td>
+            <td>${appli.cv}</td>
+            <td>${appli.applicationStatus}</td>
+        `);
+        });
+        tbody.append(tr);
 
 </script>
 </body>

@@ -7,9 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum JobStatus {
     OPEN,  // Đang mở tuyển dụng
-    ONGOING_INTERVIEWS, // Đang tiến hành phỏng vấn
-    HIRED, // Đã tuyển dụng thành công
     CLOSED, // Đã đóng tuyển dụng
-    CANCELLED// Đã hủy tuyển dụng
 
 }

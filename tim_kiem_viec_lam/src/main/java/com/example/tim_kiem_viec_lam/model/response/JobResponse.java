@@ -40,9 +40,9 @@ public class JobResponse {
 
     String benefit;
 
-    String salaryTo;
+    Integer salaryTo;
 
-    String salaryFrom;
+    Integer salaryFrom;
 
     String requirement;
 
