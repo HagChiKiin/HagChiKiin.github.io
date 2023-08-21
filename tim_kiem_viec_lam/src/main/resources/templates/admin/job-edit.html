@@ -132,9 +132,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="jobStatus" class="form-label">Trạng thái</label>
-                                <select type="text" class="form-control" id="jobStatus" name="jobStatus">
-                                    <option value="OPEN">OPEN</option>
-                                    <option value="CLOSED">CLOSED</option>
+                                <select  type="text" class="form-control" id="jobStatus" name="jobStatus">
+                                    <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.JobStatus).values()}"
+                                            th:value="${state}"
+                                            th:selected="${state} == ${job.jobStatus}"
+                                            th:text="${state}">
+                                    </option>
                                 </select>
 
                             </div>
@@ -176,18 +179,29 @@
                             </div>
                             <div class="mb-3">
                                 <label for="literacy" class="form-label">Trình độ học vấn</label>
-                                <select th:value="${job.literacy}" type="text" class="form-control" id="literacy"
+                                <select type="text" class="form-control" id="literacy"
                                         name="literacy">
-                                    <option>UNIVERSITY</option>
-                                    <option>COLLEGE</option>
-                                    <option>INTERMEDIATE</option>
-                                    <option>NONE</option>
+                                    <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.Literacy).values()}"
+                                            th:value="${state}"
+                                            th:selected="${state} == ${job.literacy}"
+                                            th:text="${state}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="workType" class="form-label">Hình thức làm việc </label>
+                                <select type="text" class="form-control" id="workType" name="workType">
+                                    <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.WorkType).values()}"
+                                            th:value="${state}"
+                                            th:selected="${state} == ${job.workType}"
+                                            th:text="${state}">
+                                    </option>
                                 </select>
                             </div>
 
                         </div>
-                        <div class="col-md-9">
-                            <div class="mb-3">
+                        <div class="col-md-9" >
+                            <div class="mb-3  " >
                                 <label for="benefit" class="form-label">Phúc lợi</label>
                                 <textarea th:text="${job.benefit}" rows="10" class="form-control" id="benefit"
                                           name="benefit"
@@ -231,15 +245,7 @@
                         <!--                            <td><a th:href="${app.cv}" target="_blank">Xem chi tiết</a></td>-->
                         <!--                        </tr>-->
                         </tbody>
-                        <tbody>
-                        <!--                        <tr>-->
-                        <!--                            <td>2</td>-->
-                        <!--                            <td>Penny Bunn</td>-->
-                        <!--                            <td class="w-50">Qui-->
-                        <!--                            </td>-->
-                        <!--                            <td><a href="" target="_blank">Xem chi tiết</a></td>-->
-                        <!--                        </tr>-->
-                        </tbody>
+
                     </table>
                 </div>
             </div>
@@ -271,9 +277,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<script th:inline="javascript">
+<input id="applicationJson" type="hidden" th:value="${applications}"/>
+<script>
     window.onload = function () {
+
         const jwtToken = localStorage.getItem("jwtToken");
 
         if (!jwtToken) {
@@ -332,6 +339,7 @@
         let benefit = $("#benefit").val();
         let jobStatus = $("#jobStatus").val();
         let detail = $("#detail").val();
+        let workType = $("#workType").val();
         let literacy = $("#literacy").val();
         let yoe = $("#yoe").val();
         let requirement = $("#requirement").val();
@@ -353,6 +361,7 @@
             benefit: benefit,
             jobStatus: jobStatus,
             detail: detail,
+            workType: workType,
             literacy: literacy,
             yoe: yoe,
             requirement: requirement
@@ -389,7 +398,7 @@
     $('.btn-delete-job').click(function () {
         // Sử dụng swal() của SweetAlert2 thay vì confirm()
         let jobStatus = $("#jobStatus").val();
-        if (jobStatus === 'LOCKED') {
+        if (jobStatus === 'CLOSED') {
             Swal.fire({
                 title: 'Bạn có chắc muốn xóa không?',
                 icon: 'warning',
@@ -440,8 +449,8 @@
     });
 
     // render ra hồ sơ ứng viên - fail vì lỗi biến th:inline javascript
-    const application = [[${application}]];
-
+    const application =  JSON.parse($("#applicationJson").val());
+    console.log(application)
     const tbody = $(".applicant-table tbody");
     tbody.empty(); // Xóa nội dung tbody cũ
 
@@ -454,11 +463,12 @@
             <td>${appli.description}</td>
             <td>${appli.phone}</td>
             <td>${appli.email}</td>
-            <td>${appli.cv}</td>
             <td>${appli.applicationStatus}</td>
+            <td><a  href="${appli.cv}">Click vào để xem</a></td>
         `);
-        });
         tbody.append(tr);
+        });
+
 
 </script>
 </body>

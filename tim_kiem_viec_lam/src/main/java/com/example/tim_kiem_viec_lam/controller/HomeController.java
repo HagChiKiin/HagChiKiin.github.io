@@ -3,15 +3,14 @@ package com.example.tim_kiem_viec_lam.controller;
 import com.example.tim_kiem_viec_lam.entity.*;
 import com.example.tim_kiem_viec_lam.model.request.JobSearchRequest;
 import com.example.tim_kiem_viec_lam.model.response.CommonResponse;
-import com.example.tim_kiem_viec_lam.model.response.UserResponse;
-import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.security.SecurityUtils;
 import com.example.tim_kiem_viec_lam.service.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +35,7 @@ public class HomeController {
 
     UserService userService;
 
-    ApplicationService applicationService;
+    ObjectMapper objectMapper;
 
 
     @GetMapping("/")
@@ -89,12 +88,17 @@ public class HomeController {
         return "admin/job-list";
 
     }
+
     @GetMapping("/recruiter/jobs/{id}")
     public String getDetailJob(@PathVariable Long id, Model model) {
         Job job = jobService.getJobById(id);
-        model.addAttribute("application", job.getApplications());
-        job.setApplications(null);
+        ObjectWriter ow = objectMapper.writer().withDefaultPrettyPrinter();
         model.addAttribute("job", job);
+        try {
+            model.addAttribute("applications", ow.writeValueAsString(job.getApplications()));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return "admin/job-edit";
 
     }

@@ -6,10 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ApplicationStatus {
-    NOT_REVIEW,
-    UNDER_REVIEW,
-    APPROVED,
-    REJECTED,
-    INVITED_FOR_INTERVIEW,
-    INTERVIEWED;
+    NOT_REVIEW, // chưa xem
+    REJECTED,  // từ chối
+    INTERVIEW_SCHEDULED, // hẹn phỏng vấn
 }

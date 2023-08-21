@@ -11,11 +11,13 @@ import com.example.tim_kiem_viec_lam.repository.ApplicationRepository;
 import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
+import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,6 +44,8 @@ public class ApplicationService {
                 .cv(request.getCv())
                 .job(job)
                 .user(user)
+                .applicationStatus(ApplicationStatus.NOT_REVIEW)
+                .applicationTime(LocalDateTime.now())
                 .build();
         applicationRepository.save(application);
     }

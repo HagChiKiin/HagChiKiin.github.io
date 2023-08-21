@@ -1810,6 +1810,7 @@ p.jd-view {
     font-size: .9rem;
     padding: 1rem;
     line-height: 1.5;
+    white-space: pre-line;
 }
 .job-tt-item {
     display: flex;
@@ -2771,5 +2772,6 @@ ul.navbar-nav.nav-recuitment-li li a {
     color: #fff!important;
     font-size: 15px;
 }
+
 
 /*(end)Recuitment nav*/

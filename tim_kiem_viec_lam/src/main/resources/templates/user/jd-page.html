@@ -79,24 +79,7 @@
                             <span>Phúc lợi</span>
                         </h2>
                         <!-- content -->
-                        <div class="welfare-wrap">
-                            <div class="row">
-                                <div class="welfare-list">
-                                    <ul>
-                                        <li>
-                                            <p  th:text="${job.benefit}"><i class="fa fa-usd icn-welfare"></i></p>
-                                        </li>
-                                        <!--                                        <li>-->
-                                        <!--                                            <p><i class="fa fa-user icn-welfare"></i>Working under energisitic,-->
-                                        <!--                                                innovative, friendly environment.</p>-->
-                                        <!--                                        </li>-->
-                                        <!--                                        <li>-->
-                                        <!--                                            <p><i class="fa fa-check-circle icn-welfare"></i>Competitive salary and-->
-                                        <!--                                                attractive benefits packages.</p>-->
-                                        <!--                                        </li>-->
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="jd-content"  th:text="${job.benefit}">
                         </div>
                         <h2 class="widget-title">
                             <span>Mô tả công việc</span>
@@ -345,6 +328,9 @@
                         this.value = '';
                         return;
                     }
+
+                    $("#user-cv").text(chosenFile.name);
+
                     const imageBlob = new Blob([chosenFile], {type: chosenFile.type});
                     const imageUrl = URL.createObjectURL(imageBlob);
                     $("#user-cv").attr("src", imageUrl);
@@ -352,6 +338,8 @@
 
 
                 $('#save-cv').click(async () => {
+                    // Tắt nút nộp CV
+                    $('#save-cv').prop('disabled', true);
                     // Lấy nội dung trong ô input
                     let phone = $("#phone").val();
                     let name = $("#name").val();
@@ -392,6 +380,9 @@
                             data: JSON.stringify(request),
                             success: function (response) {
                                 toastr.success("Nộp cv thành công");
+
+                                // Bật lại nút nộp CV sau khi hoàn thành
+                                $('#save-cv').prop('disabled', false);
                                 setTimeout(function () {
                                     window.location.href = '/';
                                 }, 1000)
@@ -400,6 +391,9 @@
                             error: function (data) {
                                 console.log(data);
                                 toastr.error("Lỗi khi nộp cv");
+
+                                // Bật lại nút nộp CV sau khi xảy ra lỗi
+                                $('#save-cv').prop('disabled', false);
                             }
                         });
                     }

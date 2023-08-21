@@ -159,6 +159,13 @@
                                 <option>NONE</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="workType" class="form-label">Hình thức làm việc </label>
+                            <select type="text" class="form-control" id="workType" name="workType">
+                                <option>FULL_TIME</option>
+                                <option>PAST_TIME</option>
+                            </select>
+                        </div>
 
                     </div>
                     <div class="col-md-9">
@@ -289,6 +296,9 @@
                 "jobStatus": {
                     required: true,
                 },
+                "workType":{
+                    required: true,
+                },
                 "detail": {
                     required: true,
                 },
@@ -334,6 +344,9 @@
                 "detail": {
                     required: "Bắt buộc nhập mô tả công việc",
                 },
+                "workType": {
+                    required: "Bắt buộc nhập hình thức làm việc",
+                },
                 "yoe": {
                     required: "Bắt buộc nhập số năm kinh nghiệm",
                     min: "Số năm kinh nghiệm phải lớn hơn hoặc bằng 0"
@@ -359,6 +372,7 @@
             let benefit = $("#benefit").val();
             let jobStatus = $("#jobStatus").val();
             let detail = $("#detail").val();
+            let workType = $("#workType").val();
             let literacy = $("#literacy").val();
             let yoe = $("#yoe").val();
             let requirement = $("#requirement").val();
@@ -373,6 +387,7 @@
                 skill: skill,
                 introduce: introduce,
                 benefit: benefit,
+                workType:workType,
                 jobStatus: jobStatus,
                 detail: detail,
                 literacy: literacy,
