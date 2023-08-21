@@ -9,10 +9,12 @@ import com.example.tim_kiem_viec_lam.service.CandidateService;
 import com.example.tim_kiem_viec_lam.service.JobService;
 import com.example.tim_kiem_viec_lam.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -29,4 +31,16 @@ public class ApplicationController {
         applicationService.createApplication(request, job);
         return ResponseEntity.ok(null);
     }
+
+    @PostMapping("/update-status/{id}")
+    public ResponseEntity<?> updateApplicationStatus( @RequestParam("status") String status, @PathVariable Long id) {
+
+        try {
+            applicationService.updateApplicationStatus(id, status);
+            return ResponseEntity.ok("Cập nhật trạng thái thành công");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
+        }
+    }
+
 }

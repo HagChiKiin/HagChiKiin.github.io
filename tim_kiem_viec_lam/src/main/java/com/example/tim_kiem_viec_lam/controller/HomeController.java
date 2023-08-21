@@ -162,4 +162,5 @@ public class HomeController {
     public CommonResponse<?> searchBook(JobSearchRequest request) {
         return jobService.searchJob(request);
     }
+
 }

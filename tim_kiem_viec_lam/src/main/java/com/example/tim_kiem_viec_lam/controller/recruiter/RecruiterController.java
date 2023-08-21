@@ -3,6 +3,7 @@ package com.example.tim_kiem_viec_lam.controller.recruiter;
 import com.example.tim_kiem_viec_lam.model.request.RecruiterRequest;
 import com.example.tim_kiem_viec_lam.service.RecruiterService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,6 @@ public class RecruiterController {
         recruiterService.deleteRecruiter(recruiter_id);
         return ResponseEntity.noContent().build();
     }
+
 }
 

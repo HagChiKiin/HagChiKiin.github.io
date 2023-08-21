@@ -16,9 +16,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&amp;display=swap"
           rel="stylesheet">
 
+
     <!-- Link bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Link Bootstrap Select CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" rel="stylesheet">
 
     <!-- Link icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -118,6 +122,10 @@
     </div>
 </div>
 
+
+
+
+
 <!-- axios -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -131,16 +139,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"
         integrity="sha512-1zzZ0ynR2KXnFskJ1C2s+7TIEewmkB2y+5o/+ahF7mwNj9n3PnzARpqalvtjSbUETwx6yuxP5AJXZCpnjEJkQw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<!-- Link Bootstrap Select JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script th:inline="javascript">
+
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+    });
+
     function hasAccessToJob(job) {
         // Lấy thông tin người dùng đã đăng nhập từ localStorage
         const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
@@ -158,7 +176,6 @@
         return jobEmailWithoutDomain === loggedInEmailWithoutDomain;
     }
 
-    $(document).ready(function () {
         // Lấy danh sách công việc từ biến jobList đã có
         const jobList = [[${jobList}]];
 
@@ -178,7 +195,12 @@
             <td>${job.salaryFrom}</td>
             <td>${job.salaryTo}</td>
             <td><a>${job.recruiter.name}</a></td>
-            <td>${job.jobStatus}</td>
+            <td>
+            <select class="status-dropdown selectpicker"  data-job-id="${job.id}" data-style="${job.jobStatus === 'CLOSED' ? 'btn-danger' : 'btn-success'}">
+                 <option value="OPEN" ${job.jobStatus === 'OPEN' ? 'selected' : ''} >Đang hoạt động</option>
+                 <option value="CLOSED" ${job.jobStatus === 'CLOSED' ? 'selected' : ''} >Khóa</option>
+            </select>
+        </td>
         `);
             // Nếu Recruiter truy cập sang đường link của Recruiter khác, đẩy về trang chủ
             if (!hasAccess) {
@@ -191,6 +213,33 @@
             tbody.append(tr);
         });
 
+
+
+        // Thay đổi trạng thái của công ty
+        $('.status-dropdown').change(function() {
+            const jobId = $(this).data('job-id');
+            const newStatus = $(this).val();
+
+            const button = $(this).closest('tr').find('button');
+            if (newStatus === 'CLOSED') {
+                button.removeClass('btn-success').addClass('btn-danger'); // Chuyển sang màu đỏ khi chọn 'Khóa'
+            } else {
+                button.removeClass('btn-danger').addClass('btn-success'); // Chuyển lại màu xanh khi chọn 'Đang hoạt động' hoặc các lựa chọn khác
+            }
+            // Gửi yêu cầu cập nhật trạng thái lên máy chủ ở đây
+            $.ajax({
+                url: `/api/v1/jobs/update-status/${jobId}`,
+                type: 'POST',
+                data: { status: newStatus },
+                success: function(response) {
+                    toastr.success("Cập nhật trạng thái thành công");
+                },
+                error: function(error) {
+                    toastr.warning("Cập nhật trạng thái thất bại")
+                }
+            });
+        });
+
         // Lấy thông tin người dùng đã đăng nhập từ localStorage
         const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
         const loggedInEmail = userInfomation.username;
@@ -200,7 +249,7 @@
         $(".btn-back").click(function () {
             window.location.href = "/recruiter/jobs?email=" + loggedInEmailWithoutDomain;
         });
-    });
+
 
 </script>
 </body>

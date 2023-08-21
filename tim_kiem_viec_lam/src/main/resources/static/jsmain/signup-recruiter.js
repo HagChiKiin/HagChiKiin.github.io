@@ -99,6 +99,7 @@ $(document).ready(function () {
         let name = $('#name').val();
         let address = $('#address').val();
         let introduce = $('#introduce').val();
+        let status = 'ACTIVE';
 
         // Tạo object chứa dữ liệu đăng ký
         let formData = {
@@ -109,7 +110,8 @@ $(document).ready(function () {
             phone: phone,
             name: name,
             address: address,
-            introduce: introduce
+            introduce: introduce,
+            recruiterStatus: status
         };
 
         var fd = new FormData();

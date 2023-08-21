@@ -70,9 +70,7 @@ function displaySearchResults(jobs) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wrap-btn-appl">
-                                    <a href="#" class="btn btn-appl">Apply Now</a>
-                                </div>
+                               
                             </div>
                         </div>`;
             searchResultsDiv.append(jobItem);

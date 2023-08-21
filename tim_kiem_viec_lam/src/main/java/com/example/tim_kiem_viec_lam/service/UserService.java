@@ -13,6 +13,7 @@ import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
 import com.example.tim_kiem_viec_lam.security.JwtUtils;
 import com.example.tim_kiem_viec_lam.security.SecurityUtils;
 import com.example.tim_kiem_viec_lam.statics.Gender;
+import com.example.tim_kiem_viec_lam.statics.RecruiterStatus;
 import com.example.tim_kiem_viec_lam.statics.Roles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
@@ -137,6 +138,7 @@ public class UserService {
                 .contactInfo(registrationRequest.getContactInfo())
                 .address(registrationRequest.getAddress())
                 .introduce(registrationRequest.getIntroduce())
+                .recruiterStatus(RecruiterStatus.ACTIVE)
                 .avatar(avatarPath)
                 .fileId(fileEntity)
                 .build();

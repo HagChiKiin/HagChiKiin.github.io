@@ -1,5 +1,6 @@
 package com.example.tim_kiem_viec_lam.service;
 
+import com.example.tim_kiem_viec_lam.entity.Application;
 import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.exception.NotFoundException;
@@ -11,6 +12,8 @@ import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.RecruiterRepository;
 import com.example.tim_kiem_viec_lam.repository.custom.JobCustomRepository;
 import com.example.tim_kiem_viec_lam.security.CustomUserDetails;
+import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
+import com.example.tim_kiem_viec_lam.statics.JobStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -140,4 +143,14 @@ public class JobService {
                 .build();
     }
 
+    public void updateJobStatus(Long id, String status) {
+        Job job = jobRepository.findById(id).orElse(null);
+
+        if (job == null) {
+            throw new NotFoundException("Không tìm thấy coogn việc với ID: " + id);
+        }
+
+        job.setJobStatus(JobStatus.valueOf(status));
+        jobRepository.save(job);
+    }
 }

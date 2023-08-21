@@ -30,4 +30,5 @@ public class CandidateController {
         candidateService.updateCandidate(id, request);
         return ResponseEntity.ok(null);
     }
+
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum WorkType {
-    FULL_TIME,
-    PART_TIME;
+    FULL_TIME("Toàn thời gian"),
+    PART_TIME("Bán thời gian");
+
+    String name;
 }

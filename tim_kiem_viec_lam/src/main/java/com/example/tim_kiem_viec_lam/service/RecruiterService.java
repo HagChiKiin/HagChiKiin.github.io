@@ -1,10 +1,12 @@
 package com.example.tim_kiem_viec_lam.service;
 
+import com.example.tim_kiem_viec_lam.entity.Application;
 import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.exception.NotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.RecruiterRequest;
 import com.example.tim_kiem_viec_lam.repository.RecruiterRepository;
+import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
 import com.example.tim_kiem_viec_lam.statics.RecruiterStatus;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -64,6 +66,18 @@ public class RecruiterService {
                 .orElseThrow(() -> {
                     throw new NotFoundException("Not found recruiter with id = " + id);
                 });
+    }
+
+    public void updateRecruiterStatus(Long id, String status) {
+        Recruiter recruiter = recruiterRepository.findById(id).orElse(null);
+
+        if (recruiter == null) {
+            throw new NotFoundException("Không tìm thấy nhà tuyển dụng với ID: " + id);
+        }
+
+        recruiter.setRecruiterStatus(RecruiterStatus.valueOf(status));
+        recruiterRepository.save(recruiter);
+
     }
 }
 

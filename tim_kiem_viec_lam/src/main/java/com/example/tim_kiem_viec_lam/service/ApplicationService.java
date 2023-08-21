@@ -54,4 +54,14 @@ public class ApplicationService {
         return applicationRepository.findAll();
     }
 
+    public void updateApplicationStatus(Long id, String newStatus) {
+        Application application = applicationRepository.findById(id).orElse(null);
+
+        if (application == null) {
+            throw new NotFoundException("Không tìm thấy ứng viên với ID: " + id);
+        }
+
+        application.setApplicationStatus(ApplicationStatus.valueOf(newStatus));
+        applicationRepository.save(application);
+    }
 }

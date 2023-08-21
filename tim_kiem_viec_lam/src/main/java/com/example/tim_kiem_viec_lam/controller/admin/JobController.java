@@ -10,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,4 +43,15 @@ public class JobController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @PostMapping("/update-status/{id}")
+    public ResponseEntity<?> updateJobStatus( @RequestParam("status") String status, @PathVariable Long id) {
+
+        try {
+            jobService.updateJobStatus(id, status);
+            return ResponseEntity.ok("Cập nhật trạng thái thành công");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
+        }
+    }
 }

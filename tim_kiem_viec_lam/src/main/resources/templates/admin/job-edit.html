@@ -20,6 +20,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- Link Bootstrap Select CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" rel="stylesheet">
+
+
     <!-- Link icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -132,7 +136,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="jobStatus" class="form-label">Trạng thái</label>
-                                <select  type="text" class="form-control" id="jobStatus" name="jobStatus">
+                                <select type="text" class="form-control" id="jobStatus" name="jobStatus">
                                     <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.JobStatus).values()}"
                                             th:value="${state}"
                                             th:selected="${state} == ${job.jobStatus}"
@@ -200,8 +204,8 @@
                             </div>
 
                         </div>
-                        <div class="col-md-9" >
-                            <div class="mb-3  " >
+                        <div class="col-md-9">
+                            <div class="mb-3  ">
                                 <label for="benefit" class="form-label">Phúc lợi</label>
                                 <textarea th:text="${job.benefit}" rows="10" class="form-control" id="benefit"
                                           name="benefit"
@@ -232,8 +236,9 @@
                             <th>Mô tả ngắn</th>
                             <th>Số điện thoại</th>
                             <th>Email</th>
-                            <th>Status</th>
+<!--                            <th>Status</th>-->
                             <th>Link CV</th>
+                            <th>Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -272,6 +277,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
+<!-- Link Bootstrap Select JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -448,8 +457,9 @@
         }
     });
 
+
     // render ra hồ sơ ứng viên - fail vì lỗi biến th:inline javascript
-    const application =  JSON.parse($("#applicationJson").val());
+    const application = JSON.parse($("#applicationJson").val());
     console.log(application)
     const tbody = $(".applicant-table tbody");
     tbody.empty(); // Xóa nội dung tbody cũ
@@ -463,11 +473,49 @@
             <td>${appli.description}</td>
             <td>${appli.phone}</td>
             <td>${appli.email}</td>
-            <td>${appli.applicationStatus}</td>
+<!--            <td>${appli.applicationStatus}</td>-->
             <td><a  href="${appli.cv}">Click vào để xem</a></td>
+            <td>
+            <select class="status-dropdown selectpicker" data-application-id="${appli.id}" data-style="${appli.applicationStatus === 'REJECTED' ? 'btn-danger' : (appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'btn-success' : 'btn-primary')}">
+    <option value="NOT_REVIEW" ${appli.applicationStatus === 'NOT_REVIEW' ? 'selected' : ''}>Chưa xem</option>
+    <option value="REJECTED" ${appli.applicationStatus === 'REJECTED' ? 'selected' : ''}>Từ chối</option>
+    <option value="INTERVIEW_SCHEDULED" ${appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'selected' : ''}>Hẹn phỏng vấn</option>
+</select>
+        </td>
         `);
         tbody.append(tr);
+    });
+
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker();
+    });
+    $('.status-dropdown').change(function() {
+        const applicationId = $(this).data('application-id');
+        const newStatus = $(this).val();
+
+        const button = $(this).closest('td').find('button');
+
+        if (newStatus === 'REJECTED') {
+            button.removeClass('btn-primary btn-success').addClass('btn-danger');
+        } else if (newStatus === 'INTERVIEW_SCHEDULED') {
+            button.removeClass('btn-primary btn-danger').addClass('btn-success');
+        } else {
+            button.removeClass('btn-danger btn-success').addClass('btn-primary');
+        }
+
+        // Gửi yêu cầu cập nhật trạng thái lên máy chủ ở đây, ví dụ:
+        $.ajax({
+            url: `/api/v1/applications/update-status/${applicationId}`,
+            type: 'POST',
+            data: { status: newStatus },
+            success: function(response) {
+                toastr.success("Cập nhật trạng thái thành công");
+            },
+            error: function(error) {
+                toastr.warning("Cập nhật trạng thái thất bại")
+            }
         });
+    });
 
 
 </script>
