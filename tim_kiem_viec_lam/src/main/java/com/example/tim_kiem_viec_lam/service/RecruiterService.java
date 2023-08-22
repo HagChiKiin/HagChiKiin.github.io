@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -77,6 +78,11 @@ public class RecruiterService {
 
         recruiter.setRecruiterStatus(RecruiterStatus.valueOf(status));
         recruiterRepository.save(recruiter);
+
+    }
+
+    public List<Recruiter> gettopRecruiterList() {
+        return recruiterRepository.findTopRecruitersWithMostJobs();
 
     }
 }

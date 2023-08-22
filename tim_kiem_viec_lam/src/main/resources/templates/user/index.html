@@ -139,14 +139,14 @@
         <h3>1000+ Jobs For Developers</h3>
         <div class="banner-tags">
             <ul>
-                <li><a href="#">Java</a></li>
-                <li><a href="#">Python</a></li>
-                <li><a href="#">Tester</a></li>
-                <li><a href="#">QA QC</a></li>
-                <li><a href="#">.NET</a></li>
-                <li><a href="#">Javascript</a></li>
-                <li><a href="#">Business Analyst</a></li>
-                <li><a href="#">Designer</a></li>
+                <li><a href="#" class="language-link">Java</a></li>
+                <li><a href="#" class="language-link">Python</a></li>
+                <li><a href="#" class="language-link">Golang</a></li>
+                <li><a href="#" class="language-link">PHP</a></li>
+                <li><a href="#" class="language-link">.Net</a></li>
+                <li><a href="#" class="language-link">Javascript</a></li>
+                <li><a href="#" class="language-link">React</a></li>
+                <li><a href="#" class="language-link">Angular</a></li>
             </ul>
         </div>
     </div>
@@ -343,7 +343,7 @@
                         <div class="job pagi" th:each="job : ${jobList}">
                             <div class="job-content">
                                 <div class="job-logo">
-                                    <a href="#">
+                                    <a th:href="@{/jd-page/{id}(id=${job.id})}">
                                         <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}" class="job-logo-ima"
                                              alt="job-logo">
                                     </a>
@@ -398,59 +398,10 @@
             <!-- sidebar -->
             <div class="col-md-4 col-sm-12 col-12 clear-left">
                 <div class="job-sidebar">
-                    <h2 class="widget-title">
-                        <span>Ngành Nghề</span>
-                    </h2>
-                    <div class="catelog-list">
-                        <ul>
-                            <li>
-                                <a href="#">
-                <span class="cate-img">
-                  <em>Lập trình viên</em>
-                </span>
-                                    <span class="cate-count">(1100)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>Nhân viên kiểm thử</em>
-                </span>
-                                    <span class="cate-count">(230)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>Kỹ sư cầu nối</em>
-                </span>
-                                    <span class="cate-count">(110)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>Designer</em>
-                </span>
-                                    <span class="cate-count">(2300)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                  <span class="cate-img">
-                  <em>Product Manager</em>
-                </span>
-                                    <span class="cate-count">(99)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="readallstyle reads1">Xem tất cả</a>
-                            </li>
-
-                        </ul>
+                    <div class="sb-banner">
+                        <img src="./img/tuyen-dung-da-nang.png" >
                     </div>
                 </div>
-
                 <div class="job-sidebar">
                     <div class="sb-banner">
                         <img src="img/ads1.jpg" class="advertisement">
@@ -565,7 +516,7 @@
                     <h3>Nhà tuyển dụng hàng đầu</h3>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap" th:each="recruiter: ${recruiterList}">
+                    <div class="col-md-3 col-sm-6 col-12 top-employer-wrap" th:each="recruiter: ${topRecruiterList}">
                         <div class="top-employer-item">
                             <a href="#">
                                 <div class="emp-img-thumb">

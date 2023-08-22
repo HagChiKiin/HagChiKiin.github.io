@@ -1,3 +1,4 @@
+
 // Function to perform the search using AJAX
 function performSearch() {
     let title = $('#title-search').val();
@@ -26,6 +27,30 @@ function performSearch() {
         }
     });
 }
+function formatDateToYYYYMMDD(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Thêm số 0 phía trước nếu tháng chỉ có một chữ số
+    const day = String(date.getDate()).padStart(2, '0'); // Thêm số 0 phía trước nếu ngày chỉ có một chữ số
+    return `${year}-${month}-${day}`;
+}
+
+function displayNoJobsFound() {
+    const noJobsDiv = document.createElement('div');
+    noJobsDiv.classList.add('no-jobs');
+    const noJobsMessage = document.createElement('p');
+    noJobsMessage.textContent = 'Không tìm thấy công việc nào';
+
+    // Tùy chỉnh kiểu dáng của thông báo
+    noJobsDiv.style.textAlign = 'center';
+    noJobsMessage.style.fontSize = '22px';
+    noJobsMessage.style.color = '#ff0000';
+    noJobsMessage.style.marginTop = '20px';
+
+    // Thêm thông báo vào trang web
+    noJobsDiv.appendChild(noJobsMessage);
+    document.getElementById('job-group').appendChild(noJobsDiv);
+}
+
 
 // Function to display the search results on the page
 function displaySearchResults(jobs) {
@@ -33,9 +58,12 @@ function displaySearchResults(jobs) {
     searchResultsDiv.empty();
 
     if (jobs.length === 0) {
-        searchResultsDiv.append('<p>No jobs found.</p>');
+        displayNoJobsFound();
     } else {
         jobs.forEach(function (job) {
+            const dueDate = new Date(job.dueDateTime);
+            const formattedDueDate = formatDateToYYYYMMDD(dueDate);
+
             let avatar = "/api/v1/files/" + job.avatar;
             let jobItem = `<div class="job pagi">
                             <div class="job-content">
@@ -66,7 +94,7 @@ function displaySearchResults(jobs) {
                                             <span class="salary-max">${job.salaryTo}</span>
                                         </div>
                                         <div class="job-deadline">
-                                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>  Hạn nộp: <strong>${job.dueDateTime}</strong></span>
+                                            <span><i class="fa fa-clock-o" aria-hidden="true"></i>  Hạn nộp: <strong>${formattedDueDate}</strong></span>
                                         </div>
                                     </div>
                                 </div>

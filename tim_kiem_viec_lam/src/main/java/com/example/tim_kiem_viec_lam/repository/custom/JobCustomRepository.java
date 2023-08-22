@@ -31,6 +31,9 @@ public class JobCustomRepository extends BaseRepository {
         sql.append("    LEFT JOIN files f ON f.id = r.file_id ");
         sql.append("WHERE  1 = 1 ");
 
+        sql.append("AND j.job_status <> 'CLOSED' ");
+        sql.append("AND r.status <> 'LOCKED' ");
+
         if (request.getTitle() != null && !request.getTitle().trim().equals("")) {
             sql.append("AND LOWER(j.title) LIKE :title\n");
             parameters.put("title", "%" + request.getTitle().toLowerCase() + "%");

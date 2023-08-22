@@ -21,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,15 +38,23 @@ public class JobService {
     JobCustomRepository jobCustomRepository;
 
     public List<Job> getAllJob() {
-        return jobRepository.findAll();
+        return jobRepository.findAllExceptClosedAndLocked();
     }
 
     public List<Job> getJobSortHighestSalary() {
-        return jobRepository.findTop10ByHighestSalary();
+        List<Job> top10Jobs = jobRepository.findTop10ByHighestSalary();
+        if (top10Jobs.size() > 10) {
+            top10Jobs = top10Jobs.subList(0, 10);
+        }
+        return top10Jobs;
     }
 
     public List<Job> getNewestJobs() {
-        return jobRepository.findTop16ByNewestJobs();
+        List<Job> top16Jobs = jobRepository.findTop16ByNewestJobs();
+        if (top16Jobs.size() > 10) {
+            top16Jobs = top16Jobs.subList(0, 10);
+        }
+        return top16Jobs;
     }
 
     public List<Job> getAllJobByRecruiter(String email) {
@@ -53,11 +62,19 @@ public class JobService {
     }
 
     public List<Job> getAttractiveJobs() {
-        return jobRepository.findTop16ByHighestSalaryFrom();
+        List<Job> top16Jobs = jobRepository.findTop16ByHighestSalaryFrom();
+        if (top16Jobs.size() > 16) {
+            top16Jobs = top16Jobs.subList(0, 16);
+        }
+        return top16Jobs;
     }
 
     public List<Job> getSimilarJob(String skill, Long jobId) {
-        return jobRepository.findRandomJobsBySkillAndExcludeCurrentJob(skill, jobId);
+        List<Job> top3Jobs = jobRepository.findRandomJobsBySkillAndExcludeCurrentJob(skill, jobId);
+        if (top3Jobs.size() > 3) {
+            top3Jobs = top3Jobs.subList(0, 3);
+        }
+        return top3Jobs;
     }
 
     public void createJob(JobRequest jobRequest) {

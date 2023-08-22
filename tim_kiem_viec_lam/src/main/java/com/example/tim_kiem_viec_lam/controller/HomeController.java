@@ -46,10 +46,12 @@ public class HomeController {
         List<Job> jobListAttractive = jobService.getAttractiveJobs();
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         List<FileEntity> fileList = fileService.getAllFile();
+        List<Recruiter> topRecruiterList = recruiterService.gettopRecruiterList();
 
         Optional<Long> currentUserLoginId = SecurityUtils.getCurrentUserLoginId();
         currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
         model.addAttribute("recruiterList", recruiterList);
+        model.addAttribute("topRecruiterList", topRecruiterList);
         model.addAttribute("jobList", jobList);
         model.addAttribute("jobListBySalary", jobListBySalary);
         model.addAttribute("jobListByNewest", jobListByNewest);
