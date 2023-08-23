@@ -38,13 +38,12 @@
 <body>
 <!--HEADER-->
 <div class="header">
-    <div class="logo">
-        <a href="/admin/companies">
-            <img th:src="@{/img/techjobs_bgw.png}"style="width: 100px" alt="logo">
-        </a>
-    </div>
-
-    <div class="sidebar ms-5">
+    <div class="sidebar">
+        <div class="logo">
+            <a href="/">
+                <img th:src="@{/img/techjobs_bgb.png}" style="width: 100px" alt="logo">
+            </a>
+        </div>
         <div class="menu">
             <ul>
                 <li class="menu-item">
@@ -54,25 +53,13 @@
                         <li class="sub-menu-item">
                             <a href="/admin/companies">Danh sách công ty</a>
                         </li>
-<!--                        <li class="sub-menu-item">-->
-<!--                            <a href="/admin/companies-create">Tạo công ty</a>-->
-<!--                        </li>-->
                     </ul>
                 </li>
-<!--                <li class="menu-item">-->
-<!--                    Quản lý công việc <span><i class="fa-solid fa-caret-down"></i></span>-->
-
-<!--                    <ul class="sub-menu">-->
-<!--                        <li class="sub-menu-item">-->
-<!--                            <a href="/admin/jobs">Danh sách công việc</a>-->
-<!--                        </li>-->
-<!--                        <li class="sub-menu-item">-->
-<!--                            <a href="/admin/jobs-create">Tạo công việc</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
             </ul>
         </div>
+    </div>
+    <div class="login-right">
+        <a href="/" class="btn btn-return">Return Home</a>
     </div>
 </div>
 

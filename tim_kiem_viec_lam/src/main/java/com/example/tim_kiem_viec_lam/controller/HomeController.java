@@ -37,6 +37,8 @@ public class HomeController {
 
     ObjectMapper objectMapper;
 
+    ApplicationService applicationService;
+
 
     @GetMapping("/")
     public String getAll(Model model) {
@@ -50,6 +52,13 @@ public class HomeController {
 
         Optional<Long> currentUserLoginId = SecurityUtils.getCurrentUserLoginId();
         currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
+
+        if (currentUserLoginId.isPresent()) {
+            Long userId = currentUserLoginId.get();
+            Candidate candidate = candidateService.getCandidateByUserId(userId);
+            model.addAttribute("candidate", candidate);
+        }
+
         model.addAttribute("recruiterList", recruiterList);
         model.addAttribute("topRecruiterList", topRecruiterList);
         model.addAttribute("jobList", jobList);
@@ -57,10 +66,12 @@ public class HomeController {
         model.addAttribute("jobListByNewest", jobListByNewest);
         model.addAttribute("jobListAttractive", jobListAttractive);
         model.addAttribute("fileList", fileList);
+
+
         return "user/index";
     }
 
-    @GetMapping("admin/companies")
+    @GetMapping("/admin/companies")
     public String getCompanyByAdmin(Model model) {
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
         model.addAttribute("recruiterList", recruiterList);
@@ -151,7 +162,19 @@ public class HomeController {
         Candidate candidate = candidateService.getCandidateByUserId(id);
         model.addAttribute("users", user);
         model.addAttribute("candidate", candidate);
+
+        Long countApplications = applicationService.countApplicationsByUserId(id);
+        model.addAttribute("countApplications", countApplications);
+
         return "candidate/candidate-info";
+    }
+    @GetMapping("/applications/{userId}")
+    public String getApplications(@PathVariable Long userId, Model model) {
+        Optional<Long> currentUserLoginId = SecurityUtils.getCurrentUserLoginId();
+        currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
+        List<Application> applications = applicationService.getApplicationsByUserId(userId);
+        model.addAttribute("applications", applications);
+        return "candidate/application"; // Tên template HTML của bạn
     }
 
     @GetMapping("/splash")

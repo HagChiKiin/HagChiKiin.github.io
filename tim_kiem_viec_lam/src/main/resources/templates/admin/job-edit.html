@@ -21,7 +21,8 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Link Bootstrap Select CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+          rel="stylesheet">
 
 
     <!-- Link icon -->
@@ -43,18 +44,20 @@
 
     <!-- Link tự viết -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-admin.css}">
+
+    <!--  validate-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
 </head>
 
 <body>
 <!--HEADER-->
 <div class="header">
-    <div class="logo">
-        <a href="/">
-            <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px" alt="logo">
-        </a>
-    </div>
-
-    <div class="sidebar ms-5">
+    <div class="sidebar">
+        <div class="logo">
+            <a href="/">
+                <img th:src="@{/img/techjobs_bgb.png}" style="width: 100px" alt="logo">
+            </a>
+        </div>
         <div class="menu">
             <ul>
                 <li class="menu-item">
@@ -71,6 +74,9 @@
                 </li>
             </ul>
         </div>
+    </div>
+    <div class="login-right">
+        <a href="/" class="btn btn-return">Return Home</a>
     </div>
 </div>
 
@@ -111,120 +117,131 @@
                             Xóa
                         </button>
                     </div>
-                    <div class="row" id="update-form">
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Công ty</label>
-                                <input th:value="${job.recruiter.name}" type="text" class="form-control" id="name"
-                                       name="name">
+                    <form id="update-job-form">
+                        <div class="row" id="update-form">
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Công ty</label>
+                                    <input th:value="${job.recruiter.name}" type="text" class="form-control" id="name"
+                                           name="name">
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Tên công việc</label>
+                                    <input th:value="${job.title}" type="text" class="form-control" id="title"
+                                           name="title">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dueDateTime" class="form-label">Hạn nộp</label>
+                                    <input th:value="${job.dueDateTime}" type="date" class="form-control"
+                                           id="dueDateTime"
+                                           name="dueDateTime">
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">Địa chỉ</label>
+                                    <input th:value="${job.location}" type="text" class="form-control" id="location"
+                                           name="location">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jobStatus" class="form-label">Trạng thái</label>
+                                    <select type="text" class="form-control" id="jobStatus" name="jobStatus">
+                                        <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.JobStatus).values()}"
+                                                th:value="${state}"
+                                                th:selected="${state} == ${job.jobStatus}"
+                                                th:text="${state}">
+                                        </option>
+                                    </select>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="yoe" class="form-label">Kinh nghiệm</label>
+                                    <input th:value="${job.yoe}" type="number" class="form-control" id="yoe" name="yoe">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="skill-update" class="form-label">Kỹ năng</label>
+                                    <select id="skill-update" class="form-control" multiple="multiple"
+                                            name="skill-update">
+                                        <option value="JavaScript" th:selected="${job.skill.contains('JavaScript')}">
+                                            Javascript
+                                        </option>
+                                        <option value="Java" th:selected="${job.skill.contains('Java')}">Java</option>
+                                        <option value="Golang" th:selected="${job.skill.contains('Golang')}">Golang
+                                        </option>
+                                        <option value="PHP" th:selected="${job.skill.contains('PHP')}">PHP</option>
+                                        <option value="React" th:selected="${job.skill.contains('React')}">React
+                                        </option>
+                                        <option value="AWS" th:selected="${job.skill.contains('AWS')}">AWS</option>
+                                        <option value="Devops" th:selected="${job.skill.contains('Devops')}">Devops
+                                        </option>
+                                        <option value=".Net" th:selected="${job.skill.contains('.Net')}">.Net</option>
+                                        <option value="Vue" th:selected="${job.skill.contains('Vue')}">Vue</option>
+                                        <option value="Angular" th:selected="${job.skill.contains('Angular')}">Angular
+                                        </option>
+                                        <option value="Python" th:selected="${job.skill.contains('Python')}">Python
+                                        </option>
+                                        <option value="C#" th:selected="${job.skill.contains('C#')}">C#</option>
+                                        <option value="SQL" th:selected="${job.skill.contains('SQL')}">SQL</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="salaryFrom" class="form-label">Mức lương từ</label>
+                                    <input th:value="${job.salaryFrom}" type="number" class="form-control"
+                                           id="salaryFrom"
+                                           name="salaryFrom">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="salaryTo" class="form-label">đến</label>
+                                    <input th:value="${job.salaryTo}" type="number" class="form-control" id="salaryTo"
+                                           name="salaryTo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="literacy" class="form-label">Trình độ học vấn</label>
+                                    <select type="text" class="form-control" id="literacy"
+                                            name="literacy">
+                                        <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.Literacy).values()}"
+                                                th:value="${state}"
+                                                th:selected="${state} == ${job.literacy}"
+                                                th:text="${state}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="workType" class="form-label">Hình thức làm việc </label>
+                                    <select type="text" class="form-control" id="workType" name="workType">
+                                        <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.WorkType).values()}"
+                                                th:value="${state}"
+                                                th:selected="${state} == ${job.workType}"
+                                                th:text="${state}">
+                                        </option>
+                                    </select>
+                                </div>
 
                             </div>
-                            <div class="mb-3">
-                                <label for="title" class="form-label">Tên công việc</label>
-                                <input th:value="${job.title}" type="text" class="form-control" id="title" name="title">
+                            <div class="col-md-9">
+                                <div class="mb-3  ">
+                                    <label for="benefit" class="form-label">Phúc lợi</label>
+                                    <textarea th:text="${job.benefit}" rows="10" class="form-control" id="benefit"
+                                              name="benefit"
+                                    ></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="detail" class="form-label">Mô tả công việc</label>
+                                    <textarea th:text="${job.detail}" rows="10" type="text" class="form-control"
+                                              id="detail"
+                                              name="detail"
+                                    ></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="requirement" class="form-label">Yêu cầu công việc</label>
+                                    <textarea th:text="${job.requirement}" rows="10" type="text" class="form-control"
+                                              id="requirement" name="requirement"
+                                    ></textarea>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="dueDateTime" class="form-label">Hạn nộp</label>
-                                <input th:value="${job.dueDateTime}" type="date" class="form-control" id="dueDateTime"
-                                       name="dueDateTime">
-
-                            </div>
-                            <div class="mb-3">
-                                <label for="location" class="form-label">Địa chỉ</label>
-                                <input th:value="${job.location}" type="text" class="form-control" id="location"
-                                       name="location">
-                            </div>
-                            <div class="mb-3">
-                                <label for="jobStatus" class="form-label">Trạng thái</label>
-                                <select type="text" class="form-control" id="jobStatus" name="jobStatus">
-                                    <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.JobStatus).values()}"
-                                            th:value="${state}"
-                                            th:selected="${state} == ${job.jobStatus}"
-                                            th:text="${state}">
-                                    </option>
-                                </select>
-
-                            </div>
-                            <div class="mb-3">
-                                <label for="yoe" class="form-label">Kinh nghiệm</label>
-                                <input th:value="${job.yoe}" type="number" class="form-control" id="yoe" name="yoe">
-                            </div>
-                            <div class="mb-3">
-                                <label for="skill-update" class="form-label">Kỹ năng</label>
-                                <select id="skill-update" class="form-control" multiple="multiple" name="skill-update">
-                                    <option value="JavaScript" th:selected="${job.skill.contains('JavaScript')}">
-                                        Javascript
-                                    </option>
-                                    <option value="Java" th:selected="${job.skill.contains('Java')}">Java</option>
-                                    <option value="Golang" th:selected="${job.skill.contains('Golang')}">Golang</option>
-                                    <option value="PHP" th:selected="${job.skill.contains('PHP')}">PHP</option>
-                                    <option value="React" th:selected="${job.skill.contains('React')}">React</option>
-                                    <option value="AWS" th:selected="${job.skill.contains('AWS')}">AWS</option>
-                                    <option value="Devops" th:selected="${job.skill.contains('Devops')}">Devops</option>
-                                    <option value=".Net" th:selected="${job.skill.contains('.Net')}">.Net</option>
-                                    <option value="Vue" th:selected="${job.skill.contains('Vue')}">Vue</option>
-                                    <option value="Angular" th:selected="${job.skill.contains('Angular')}">Angular
-                                    </option>
-                                    <option value="Python" th:selected="${job.skill.contains('Python')}">Python</option>
-                                    <option value="C#" th:selected="${job.skill.contains('C#')}">C#</option>
-                                    <option value="SQL" th:selected="${job.skill.contains('SQL')}">SQL</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="salaryFrom" class="form-label">Mức lương từ</label>
-                                <input th:value="${job.salaryFrom}" type="number" class="form-control" id="salaryFrom"
-                                       name="salaryFrom">
-                            </div>
-                            <div class="mb-3">
-                                <label for="salaryTo" class="form-label">đến</label>
-                                <input th:value="${job.salaryTo}" type="number" class="form-control" id="salaryTo"
-                                       name="salaryTo">
-                            </div>
-                            <div class="mb-3">
-                                <label for="literacy" class="form-label">Trình độ học vấn</label>
-                                <select type="text" class="form-control" id="literacy"
-                                        name="literacy">
-                                    <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.Literacy).values()}"
-                                            th:value="${state}"
-                                            th:selected="${state} == ${job.literacy}"
-                                            th:text="${state}">
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="workType" class="form-label">Hình thức làm việc </label>
-                                <select type="text" class="form-control" id="workType" name="workType">
-                                    <option th:each="state : ${T(com.example.tim_kiem_viec_lam.statics.WorkType).values()}"
-                                            th:value="${state}"
-                                            th:selected="${state} == ${job.workType}"
-                                            th:text="${state}">
-                                    </option>
-                                </select>
-                            </div>
-
                         </div>
-                        <div class="col-md-9">
-                            <div class="mb-3  ">
-                                <label for="benefit" class="form-label">Phúc lợi</label>
-                                <textarea th:text="${job.benefit}" rows="10" class="form-control" id="benefit"
-                                          name="benefit"
-                                ></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="detail" class="form-label">Mô tả công việc</label>
-                                <textarea th:text="${job.detail}" rows="10" type="text" class="form-control" id="detail"
-                                          name="detail"
-                                ></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="requirement" class="form-label">Yêu cầu công việc</label>
-                                <textarea th:text="${job.requirement}" rows="10" type="text" class="form-control"
-                                          id="requirement" name="requirement"
-                                ></textarea>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="tab-pane fade" id="applicant" role="tabpanel" aria-labelledby="applicant-tab">
 
@@ -236,7 +253,7 @@
                             <th>Mô tả ngắn</th>
                             <th>Số điện thoại</th>
                             <th>Email</th>
-<!--                            <th>Status</th>-->
+                            <!--                            <th>Status</th>-->
                             <th>Link CV</th>
                             <th>Trạng thái</th>
                         </tr>
@@ -281,7 +298,7 @@
 <!-- Link Bootstrap Select JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
@@ -331,12 +348,126 @@
         placeholder: "- Chọn chủ đề",
     });
 
-    var currentURL = window.location.href;
-    var urlParts = currentURL.split('/');
-    var jobId = urlParts[urlParts.length - 1];
+    const currentURL = window.location.href;
+    const urlParts = currentURL.split('/');
+    const jobId = urlParts[urlParts.length - 1];
     console.log(jobId)
 
+    $("#update-job-form").validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        errorPlacement: function (error, element) {
+            error.addClass("error-message");
+            error.insertAfter(element.parent());
+        },
+        rules: {
+            "name": {
+                required: true,
+                maxlength: 255
+            },
+            "title": {
+                required: true,
+                maxlength: 255
+            },
+            "salaryFrom": {
+                required: true,
+                min: 0, // Salary From phải lớn hơn hoặc bằng 0
+                lessThanSalaryTo: true // Sử dụng quy tắc tùy chỉnh lessThanSalaryTo
+            },
+            "salaryTo": {
+                required: true,
+                min: 0 // Salary To phải lớn hơn hoặc bằng 0
+            },
+            "dueDateTime": {
+                required: true,
+            },
+            "location": {
+                required: true,
+                maxlength: 255
+            },
+            "introduce": {
+                required: true,
+            },
+            "benefit": {
+                required: true,
+            },
+            "jobStatus": {
+                required: true,
+            },
+            "workType": {
+                required: true,
+            },
+            "detail": {
+                required: true,
+            },
+            "yoe": {
+                required: true,
+                min: 0
+            },
+            "requirement": {
+                required: true,
+            },
+        },
+        messages: {
+            "name": {
+                required: "Bắt buộc nhập tên công việc",
+                maxlength: "Hãy nhập tối đa 255 ký tự"
+            },
+            "title": {
+                required: "Bắt buộc nhập tiêu đề tuyển dụng",
+                maxlength: "Hãy nhập tối đa 255 ký tự"
+            },
+            "salaryFrom": {
+                required: "Bắt buộc nhập mức lương từ",
+                min: "Mức lương tối thiểu phải lớn hơn hoặc bằng 0"
+            },
+            "salaryTo": {
+                required: "Bắt buộc nhập mức lương đến",
+                min: "Mức lương tối đa phải lớn hơn hoặc bằng 0"
+            },
+            "dueDateTime": {
+                required: "Hãy nhập hạn nộp"
+            },
+            "location": {
+                required: "Bắt buộc nhập địa điểm",
+                maxlength: "Hãy nhập tối đa 255 ký tự"
+            },
+            "introduce": {
+                required: "Bắt buộc nhập giới thiệu công việc",
+            },
+            "benefit": {
+                required: "Bắt buộc nhập quyền lợi công việc",
+            },
+            "jobStatus": {
+                required: "Bắt buộc chọn trạng thái công việc",
+            },
+            "detail": {
+                required: "Bắt buộc nhập mô tả công việc",
+            },
+            "workType": {
+                required: "Bắt buộc nhập hình thức làm việc",
+            },
+            "yoe": {
+                required: "Bắt buộc nhập số năm kinh nghiệm",
+                min: "Số năm kinh nghiệm phải lớn hơn hoặc bằng 0"
+            },
+            "requirement": {
+                required: "Bắt buộc nhập yêu cầu công việc",
+            },
+        }
+    })
+    // Thêm quy tắc tùy chỉnh lessThanSalaryTo
+    $.validator.addMethod("lessThanSalaryTo", function (value, element) {
+        let salaryFrom = parseFloat(value);
+        let salaryTo = parseFloat($("#salaryTo").val());
+
+        return salaryFrom < salaryTo;
+    }, "Mức lương tối thiểu phải nhỏ hơn mức lương tối đa");
+
     $('.btn-update-job').click(function () {
+        let isValidForm = $("#update-job-form").valid()
+        if (!isValidForm) return
 
         let title = $("#title").val();
         let name = $("#name").val();
@@ -403,7 +534,6 @@
 
     });
 
-    console.log(jobStatus)
     $('.btn-delete-job').click(function () {
         // Sử dụng swal() của SweetAlert2 thay vì confirm()
         let jobStatus = $("#jobStatus").val();
@@ -473,14 +603,13 @@
             <td>${appli.description}</td>
             <td>${appli.phone}</td>
             <td>${appli.email}</td>
-<!--            <td>${appli.applicationStatus}</td>-->
             <td><a  href="${appli.cv}">Click vào để xem</a></td>
             <td>
             <select class="status-dropdown selectpicker" data-application-id="${appli.id}" data-style="${appli.applicationStatus === 'REJECTED' ? 'btn-danger' : (appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'btn-success' : 'btn-primary')}">
-    <option value="NOT_REVIEW" ${appli.applicationStatus === 'NOT_REVIEW' ? 'selected' : ''}>Chưa xem</option>
-    <option value="REJECTED" ${appli.applicationStatus === 'REJECTED' ? 'selected' : ''}>Từ chối</option>
-    <option value="INTERVIEW_SCHEDULED" ${appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'selected' : ''}>Hẹn phỏng vấn</option>
-</select>
+                <option value="NOT_REVIEW" ${appli.applicationStatus === 'NOT_REVIEW' ? 'selected' : ''}>Chưa xem</option>
+                <option value="REJECTED" ${appli.applicationStatus === 'REJECTED' ? 'selected' : ''}>Từ chối</option>
+                <option value="INTERVIEW_SCHEDULED" ${appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'selected' : ''}>Hẹn phỏng vấn</option>
+            </select>
         </td>
         `);
         tbody.append(tr);
@@ -489,7 +618,7 @@
     $(document).ready(function () {
         $('.selectpicker').selectpicker();
     });
-    $('.status-dropdown').change(function() {
+    $('.status-dropdown').change(function () {
         const applicationId = $(this).data('application-id');
         const newStatus = $(this).val();
 
@@ -507,11 +636,11 @@
         $.ajax({
             url: `/api/v1/applications/update-status/${applicationId}`,
             type: 'POST',
-            data: { status: newStatus },
-            success: function(response) {
+            data: {status: newStatus},
+            success: function (response) {
                 toastr.success("Cập nhật trạng thái thành công");
             },
-            error: function(error) {
+            error: function (error) {
                 toastr.warning("Cập nhật trạng thái thất bại")
             }
         });

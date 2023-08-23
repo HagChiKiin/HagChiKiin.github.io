@@ -46,13 +46,12 @@
 <body>
 <!--HEADER-->
 <div class="header">
-    <div class="logo">
-        <a href="/">
-            <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px" alt="logo">
-        </a>
-    </div>
-
-    <div class="sidebar ms-5">
+    <div class="sidebar">
+        <div class="logo">
+            <a href="/">
+                <img th:src="@{/img/techjobs_bgb.png}" style="width: 100px" alt="logo">
+            </a>
+        </div>
         <div class="menu">
             <ul>
                 <li class="menu-item">
@@ -69,6 +68,9 @@
                 </li>
             </ul>
         </div>
+    </div>
+    <div class="login-right">
+        <a href="/" class="btn btn-return">Return Home</a>
     </div>
 </div>
 
@@ -276,9 +278,12 @@
                 },
                 "salaryFrom": {
                     required: true,
+                    min: 0, // Salary From phải lớn hơn hoặc bằng 0
+                    lessThanSalaryTo: true // Sử dụng quy tắc tùy chỉnh lessThanSalaryTo
                 },
                 "salaryTo": {
                     required: true,
+                    min: 0 // Salary To phải lớn hơn hoặc bằng 0
                 },
                 "dueDateTime": {
                     required: true,
@@ -303,7 +308,7 @@
                     required: true,
                 },
                 "yoe": {
-                    required: false,
+                    required: true,
                     min: 0
                 },
                 "requirement": {
@@ -356,6 +361,15 @@
                 },
             }
         })
+
+        // Thêm quy tắc tùy chỉnh lessThanSalaryTo
+        $.validator.addMethod("lessThanSalaryTo", function (value, element) {
+            let salaryFrom = parseFloat(value);
+            let salaryTo = parseFloat($("#salaryTo").val());
+
+            return salaryFrom < salaryTo;
+        }, "Mức lương tối thiểu phải nhỏ hơn mức lương tối đa");
+
         $('#job-create-btn').click(function () {
             let isValidForm = $("#create-job-form").valid()
             if (!isValidForm) return

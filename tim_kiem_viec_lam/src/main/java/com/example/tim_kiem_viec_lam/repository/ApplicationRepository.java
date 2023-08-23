@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
+    // Đếm số lượng hồ sơ theo user_id đã nộp
+    Long countByUserId(Long userId);
+
+    List<Application> findByUserId(Long id);
 }

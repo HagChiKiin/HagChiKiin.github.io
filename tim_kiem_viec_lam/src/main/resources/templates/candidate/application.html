@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Danh sách công việc ứng viên đã nộp</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+
+    <!-- Link google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&amp;display=swap"
+          rel="stylesheet">
+
+    <!-- Link bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Bootstrap Select CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+          rel="stylesheet">
+
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!--    toastr.js-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+          integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Link tự viết -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style-admin.css}">
+</head>
+
+<body>
+<!--HEADER-->
+<div class="header">
+    <div class="logo">
+        <a href="/">
+            <img th:src="@{/img/techjobs_bgw.png}" style="width: 100px" alt="logo">
+        </a>
+    </div>
+
+    <div class="sidebar ms-5">
+        <div class="menu">
+            <ul>
+                <li class="menu-item">
+                    Quản lý công ty <span><i class="fa-solid fa-caret-down"></i></span>
+
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- BODY -->
+<div class="company-list mt-4 mb-4">
+    <div class="container">
+
+
+        <div class="company-list-inner p-2">
+            <table class="table company-table">
+                <thead>
+                <tr>
+                    <th>Tên ứng viên</th>
+                    <th>Tên công việc</th>
+                    <th>Tên công ty</th>
+                    <th>Thời gian nộp</th>
+                    <th>Trạng thái</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="app : ${applications}">
+                    <td th:text="${app.name}"></td>
+                    <td th:text="${app.job.title}"></td>
+                    <td th:text="${app.job.recruiter.name}"></td>
+                    <td th:text="${app.applicationTime}"></td>
+                    <td th:style="${app.applicationStatus.name == 'Hẹn phỏng vấn' ? 'background-color:green; color:white;' : (app.applicationStatus.name == 'Từ chối' ? 'background-color:red; color:white;' : 'background-color:blue   ; color:white;')}">
+                        <span th:text="${app.applicationStatus.name}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<!-- Bootstrap Select JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
+
+<!-- axios -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!--  toastr.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    // so sánh userId của ứng viên đang đăng nhập vs trên URL, nếu bằng nhau mới cho phép vào trang
+    const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
+    const loggedInId = userInfomation.userId;
+
+    const currentURL = window.location.href;
+    const urlParts = currentURL.split('/');
+    const userIdString = urlParts[urlParts.length - 1];
+    const userId = parseInt(userIdString, 10);
+
+    if (userId !== loggedInId) {
+        window.location.href = "http://localhost:8080/splash";
+    }
+</script>

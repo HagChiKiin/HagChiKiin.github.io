@@ -50,9 +50,6 @@ public class ApplicationService {
         applicationRepository.save(application);
     }
 
-    public List<Application> getAllApplication() {
-        return applicationRepository.findAll();
-    }
 
     public void updateApplicationStatus(Long id, String newStatus) {
         Application application = applicationRepository.findById(id).orElse(null);
@@ -63,5 +60,14 @@ public class ApplicationService {
 
         application.setApplicationStatus(ApplicationStatus.valueOf(newStatus));
         applicationRepository.save(application);
+    }
+
+    public Long countApplicationsByUserId(Long userId) {
+        return applicationRepository.countByUserId(userId);
+    }
+
+
+    public List<Application> getApplicationsByUserId(Long userId) {
+        return applicationRepository.findByUserId(userId);
     }
 }

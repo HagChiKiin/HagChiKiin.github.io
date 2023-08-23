@@ -15,25 +15,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse container" id="navbarNava">
-            <ul class="navbar-nav nav-recuitment-li">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Quản lý hồ sơ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Việc làm của tôi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Việc làm đã lưu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cài đặt</a>
-                </li>
-            </ul>
-            <ul class="rec-nav-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tạo hồ sơ</a>
-                </li>
-            </ul>
+
         </div>
     </nav>
     <!--  recuiter Nav -->
@@ -44,7 +26,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="home-ads">
-                        <a href="#">
+                        <a href="https://www.vietnamworks.com/hrinsider/">
                             <img src="/img/hna2.jpg">
                         </a>
                     </div>
@@ -59,7 +41,8 @@
         <div class="container published-recuitment-content">
             <div class="row">
                 <div class="col-md-8 col-sm-12 col-12 recuitment-inner">
-                    <form class="employee-form">
+                    <div class="employee-form">
+
                         <div class="accordion" id="accordionExample">
                             <div class="card recuitment-card">
                                 <div class="card-header recuitment-card-header" id="headingOne">
@@ -69,170 +52,126 @@
                                            aria-controls="collapseOne">
                                             Thông tin tài khoản
                                             <span id="clickc1_advance2" class="clicksd">
-                      <i class="fa fa fa-angle-up"></i>
-                    </span>
+                                                 <i class="fa fa fa-angle-up"></i>
+                                            </span>
                                         </a>
                                     </h2>
                                 </div>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body recuitment-body row">
-                                        <div class="col-md-3">
-                                            <div class="avatar-upload">
-                                                <img id="recruiter-avatar" class="rounded-circle"
-                                                     style="width: 200px; height: 200px" alt="Avatar"
-                                                     th:src="${candidate.avatar}"/>
-                                                <input type="file" hidden="hidden" id="avatar-input" accept="image/*"/>
-                                                <!--                                                <div class="avatar-edit">-->
-                                                <!--                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>-->
-                                                <!--                                                    <label for="imageUpload"></label>-->
-                                                <!--                                                </div>-->
-                                                <!--                                                <div class="avatar-preview">-->
-                                                <!--                                                    <div id="imagePreview"-->
-                                                <!--                                                         style="background-image: url(https://i.pravatar.cc/500?img=7);">-->
-                                                <!--                                                    </div>-->
-                                                <!--                                                </div>-->
-                                            </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="name">Họ
-                                                    tên<span
-                                                            style="color: red" class="pl-2">*</span></label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control"
-                                                           placeholder="Nhập họ và tên" id="name" name="name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="phone">Số
-                                                    điện
-                                                    thoại<span
-                                                            style="color: red" class="pl-2">*</span></label>
-                                                <div class="col-sm-9">
-                                                    <input type="number" class="form-control" id="phone" name="phone">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="gender">Giới
-                                                    tính<span
-                                                            style="color: red" class="pl-2">*</span></label>
-                                                <div class="col-sm-9">
-                                                    <select type="text" class="form-control" id="gender" name="gender">
-                                                        <option value="">Chọn giới tính</option>
-                                                        <option value="MALE">MALE</option>
-                                                        <option value="FEMALE">FEMALE</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="dob">Ngày
-                                                    sinh<span
-                                                            style="color: red" class="pl-2">*</span></label>
-                                                <div class="col-sm-9 ">
-                                                    <input type="date" class="form-control" id="dob" name="dob">
+
+                                <form id="candidate-update-form">
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                         data-parent="#accordionExample">
+
+                                        <div class="card-body recuitment-body row">
+                                            <div class="col-md-3">
+                                                <div class="avatar-upload">
+                                                    <img id="recruiter-avatar" class="rounded-circle"
+                                                         style="width: 200px; height: 200px" alt="Avatar"
+                                                         th:src="${candidate.avatar}"/>
+                                                    <input type="file" hidden="hidden" id="avatar-input" name="avatar"
+                                                           accept="image/*"/>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="address">Địa
-                                                    chỉ
-                                                    <span style="color: red" class="pl-2">*</span></label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="address" name="address">
+                                            <div class="col-md-9">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label text-right label" for="name">Họ
+                                                        tên<span
+                                                                style="color: red" class="pl-2">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Nhập họ và tên" id="name" name="name">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label"
-                                                       for="experience">Kinh nghiệm
-                                                </label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder=""
-                                                           id="experience" name="experience">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label text-right label" for="phone">Số
+                                                        điện
+                                                        thoại<span
+                                                                style="color: red" class="pl-2">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="number" class="form-control" id="phone"
+                                                               name="phone">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label text-right label" for="skill">Kĩ
-                                                    năng
-                                                </label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" id="skill"
-                                                           name="skill">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label text-right label"
+                                                           for="gender">Giới
+                                                        tính<span
+                                                                style="color: red" class="pl-2">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <select type="text" class="form-control" id="gender"
+                                                                name="gender">
+                                                            <option value="">Chọn giới tính</option>
+                                                            <option value="MALE">MALE</option>
+                                                            <option value="FEMALE">FEMALE</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label text-right label" for="dob">Ngày
+                                                        sinh<span
+                                                                style="color: red" class="pl-2">*</span></label>
+                                                    <div class="col-sm-9 ">
+                                                        <input type="date" class="form-control" id="dob" name="dob">
+                                                    </div>
+                                                </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card recuitment-card">
-                                <div class="card-header recuitment-card-header" id="headingTwo">
-                                    <h2 class="mb-0">
-                                        <a class="btn btn-link btn-block text-left collapsed recuitment-header"
-                                           type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                           aria-expanded="false" aria-controls="collapseTwo">
-                                            File đính kèm
-                                            <span id="clickc1_advance3" class="clicksd">
-                      <i class="fa fa fa-angle-up"></i>
-                    </span>
-
-                                        </a>
-                                    </h2>
-                                </div>
-                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body recuitment-body">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label text-right label">Chọn hồ sơ đính
-                                                kèm<span style="color: red" class="pl-2">*</span></label>
-                                            <div class="col-sm-9">
-                                                <input type="file" id="file" class="recuitment-card-acttachment"/>
-                                                <label for="file" class="btn-1"><i class="fa fa-paperclip pr-2"></i>Chọn
-                                                    file</label>
-                                                <!-- jQuery lấy tên file -->
-                                                <!--                                                <script>-->
-                                                <!--                                                    $(document).ready(function () {-->
-                                                <!--                                                        $('.recuitment-card-acttachment').change(function (e) {-->
-                                                <!--                                                            var fileName = e.target.files[0].name;-->
-                                                <!--                                                            document.getElementById("previewFileName").innerHTML = fileName;-->
-                                                <!--                                                            $(".output-file").append('<style>.output-file:before{display:inline-block !important;}</style>');-->
-                                                <!--                                                        });-->
-                                                <!--                                                    });-->
-                                                <!--                                                </script>-->
-                                                <p class="output-file">
-                                                    <span id="previewFileName"></span>
-                                                </p>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label text-right label"
+                                                           for="address">Địa
+                                                        chỉ
+                                                        <span style="color: red" class="pl-2">*</span></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="address"
+                                                               name="address">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label text-right label"
+                                                           for="experience">Kinh nghiệm
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" placeholder=""
+                                                               id="experience" name="experience">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label text-right label" for="skill">Kĩ
+                                                        năng
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" placeholder=""
+                                                               id="skill"
+                                                               name="skill">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
+
                             </div>
-
-
                         </div>
+
 
                         <div class="rec-submit">
                             <button type="button" class="btn-submit-recuitment mb-3 ml-3" name="">
                                 <i class="fa fa-floppy-o pr-2"></i>Lưu Hồ Sơ
                             </button>
                         </div>
-                    </form>
+                    </div>
 
                 </div>
                 <!-- Side bar -->
                 <div class="col-md-4 col-sm-12 col-12">
                     <div class="recuiter-info">
                         <div class="recuiter-info-avt">
-                            <img  th:src="${candidate.avatar}">
+                            <img th:src="${candidate.avatar}">
                         </div>
                         <div class="clearfix list-rec">
                             <h4 th:text="${candidate.name}"></h4>
-                            <ul>
-                                <li><a href="#">Nhà tuyển dụng của tôi <strong>(0)</strong></a></li>
-                                <li><a href="#">Việc làm đã lưu <strong>(450)</strong></a></li>
-                                <li><a href="#">Việc làm đã nộp <strong>(1150)</strong></a></li>
-                            </ul>
+
                         </div>
                     </div>
 
@@ -244,32 +183,16 @@
                             </h3>
                         </header>
                         <div class="content-sidebar menu-trung-tam-ql menu-ql-employer">
-                            <h3 class="menu-ql-ntv">
-                                Hồ sơ của bạn
-                            </h3>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Quản lý Tài khoản
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Quản lý hồ sơ
-                                    </a>
-                                </li>
-                            </ul>
+
                             <h3 class="menu-ql-ntv">
                                 Việc làm của bạn
                             </h3>
                             <ul>
-                                <li>
-                                    <a href="#">
-                                        Việc làm đã lưu
-                                    </a>
+                                <li><a href="#">Số việc làm đã nộp: <strong th:text="${countApplications}"></strong></a>
                                 </li>
+
                                 <li>
-                                    <a href="#" target="_blank">
+                                    <a th:href="@{/applications/{id}(id=${users.id})}" target="_blank">
                                         Việc làm đã ứng tuyển
                                     </a>
                                 </li>
@@ -289,6 +212,7 @@
 
 </div>
 <th:block id="js">
+
     <script type="text/javascript" src="/js/main.js"></script>
     <script type="text/javascript" src="/jsmain/signin.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
@@ -317,6 +241,149 @@
         $("#experience").val(candidate.experience)
         $("#skill").val(candidate.skill)
 
+        $("#candidate-update-form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            errorPlacement: function (error, element) {
+                error.addClass("error-message");
+                error.insertAfter(element.parent());
+            },
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 255
+                },
+                "phone": {
+                    required: true,
+                },
+                "gender": {
+                    required: true,
+                },
+                "dob": {
+                    required: true,
+                },
+                "address": {
+                    required: true,
+                    maxlength: 255
+                },
+                "experience": {
+                    required: false,
+                },
+                "skill": {
+                    required: false,
+                },
+            },
+            messages: {
+                "name": {
+                    required: "Bắt buộc nhập tên",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+                "phone": {
+                    required: "Bắt buộc nhập số điện thoại",
+                },
+                "gender": {
+                    required: "Bắt buộc chọn giới tính",
+                },
+                "dob": {
+                    required: "Bắt buộc nhập ngày sinh",
+                },
+                "address": {
+                    required: "Bắt buộc nhập địa chỉ",
+                    maxlength: "Hãy nhập tối đa 255 ký tự"
+                },
+            },
+        });
+
+        $("#recruiter-avatar").click(() => {
+            $("#avatar-input").click();
+        });
+
+        let chosenFile = null;
+        $('#avatar-input').change(event => {
+            const tempFiles = event.target.files;
+            const maxSizeInBytes = 5242880;
+            if (!tempFiles || tempFiles.length === 0) {
+                return;
+            }
+            chosenFile = tempFiles[0];
+            if (chosenFile && chosenFile.size > maxSizeInBytes) {
+                alert("File size exceeded the allowed limit (5MB)!");
+                this.value = '';
+                return;
+            }
+            const imageBlob = new Blob([chosenFile], {type: chosenFile.type});
+            const imageUrl = URL.createObjectURL(imageBlob);
+            $("#recruiter-avatar").attr("src", imageUrl);
+        });
+
+        $('.btn-submit-recuitment').click(async function () {
+            $(this).prop('disabled', true);
+
+            let isValidForm = $("#candidate-update-form").valid();
+            if (!isValidForm)  return;
+
+
+            const name = $("#name").val();
+            const phone = $("#phone").val();
+            const gender = $("#gender").val();
+            const dob = $("#dob").val();
+            const address = $("#address").val();
+            const experience = $("#experience").val();
+            const skill = $("#skill").val();
+
+            const formData = {
+                name: name,
+                phone: phone,
+                gender: gender,
+                dob: dob,
+                address: address,
+                experience: experience,
+                skill: skill,
+                avatar: candidate.avatar,
+            };
+
+            if (chosenFile != null) {
+                formData.avatar = await uploadImage(chosenFile)
+                updateUser(formData);
+            } else {
+                updateUser(formData);
+            }
+        });
+
+        async function uploadImage(chosenFile) {
+            try {
+                let imageName = chosenFile.name;
+                let imageRef = storageRef.child("images/" + imageName);
+                let snapshort = await imageRef.put(chosenFile);
+                return await snapshort.ref.getDownloadURL();
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        function updateUser(formData) {
+            $.ajax({
+                url: '/api/v1/candidate/' + [[${candidate.id}]],
+                type: 'PUT',
+                contentType: "application/json",
+                data: JSON.stringify(formData),
+                success: function () {
+                    toastr.success("Thông tin tài khoản đã được cập nhật thành công!!");
+
+                    setTimeout(function () {
+                        // saveNewInformation(formData);
+                        $('.btn-submit-recuitment').prop('disabled', false);
+                        window.location.reload();
+                    }, 1000)
+                },
+                error: function () {
+                    toastr.warning("Đã có lỗi xảy ra trong quá trình cập nhật");
+                    $('.btn-submit-recuitment').prop('disabled', false);
+                }
+            })
+        }
+
         // Lấy thông tin người dùng đã đăng nhập từ localStorage
         const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
         const loggedInEmail = userInfomation.username;
@@ -325,101 +392,10 @@
         console.log(userEmail)
         console.log(loggedInEmail)
 
-        if (userEmail === loggedInEmail) {
-            $("#recruiter-avatar").click(() => {
-                $("#avatar-input").click();
-            });
-
-            let chosenFile = null;
-            $('#avatar-input').change(event => {
-                const tempFiles = event.target.files;
-                const maxSizeInBytes = 5242880;
-                if (!tempFiles || tempFiles.length === 0) {
-                    return;
-                }
-                chosenFile = tempFiles[0];
-                if (chosenFile && chosenFile.size > maxSizeInBytes) {
-                    alert("File size exceeded the allowed limit (5MB)!");
-                    this.value = '';
-                    return;
-                }
-                const imageBlob = new Blob([chosenFile], {type: chosenFile.type});
-                const imageUrl = URL.createObjectURL(imageBlob);
-                $("#recruiter-avatar").attr("src", imageUrl);
-            });
-
-            $('.btn-submit-recuitment').click(async function (event) {
-
-                const name = $("#name").val();
-                const phone = $("#phone").val();
-                const gender = $("#gender").val();
-                const dob = $("#dob").val();
-                const address = $("#address").val();
-                const experience = $("#experience").val();
-                const skill = $("#skill").val();
-
-                const formData = {
-                    name: name,
-                    phone: phone,
-                    gender: gender,
-                    dob: dob,
-                    address: address,
-                    experience: experience,
-                    skill: skill,
-                    avatar: candidate.avatar,
-                };
-
-                if (chosenFile != null) {
-                    formData.avatar = await uploadImage(chosenFile)
-                    updateUser(formData);
-                } else {
-                    updateUser(formData);
-                }
-            });
-
-            async function uploadImage(chosenFile) {
-                try {
-                    let imageName = chosenFile.name;
-                    let imageRef = storageRef.child("images/" + imageName);
-                    let snapshort = await imageRef.put(chosenFile);
-                    return await snapshort.ref.getDownloadURL();
-                } catch (error) {
-                    throw error;
-                }
-            }
-
-            function updateUser(formData) {
-                $.ajax({
-                    url: '/api/v1/candidate/' + [[${candidate.id}]],
-                    type: 'PUT',
-                    contentType: "application/json",
-                    data: JSON.stringify(formData),
-                    success: function () {
-                        toastr.success("Thông tin tài khoản đã được cập nhật thành công!!");
-                        setTimeout(function () {
-                            // saveNewInformation(formData);
-                            window.location.reload();
-                        }, 1000)
-                    },
-                    error: function () {
-                        toastr.warning("Đã có lỗi xảy ra trong quá trình cập nhật");
-                    }
-                })
-            }
-
-            // function saveNewInformation(newInfo) {
-            //     let userInfomation = JSON.parse(localStorage.getItem("userInfomation"))
-            //     let userData = {
-            //         "username": userInfomation.username,
-            //         "userId": userInfomation.userId,
-            //         "role": userInfomation.roles,
-            //         "avatar": newInfo.avatar === '' ? userInfomation.avatar : newInfo.avatar,
-            //     };
-            //     localStorage.setItem('userInfomation', JSON.stringify(userData))
-            // }
-        } else {
+        if (userEmail !== loggedInEmail) {
             window.location.href = "http://localhost:8080/splash";
         }
+
     </script>
 </th:block>
 

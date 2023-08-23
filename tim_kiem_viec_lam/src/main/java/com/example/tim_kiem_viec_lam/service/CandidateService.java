@@ -62,13 +62,10 @@ public class CandidateService {
                 });
     }
 
-    public List<Candidate> getAllCandidate() {
-        return candidateRepository.findAll();
-    }
-
     public Candidate getCandidateByUserId(Long userId) {
         return candidateRepository.findByUser_Id(userId);
     }
+
 
 }
 

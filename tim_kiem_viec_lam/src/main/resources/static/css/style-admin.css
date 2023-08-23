@@ -52,16 +52,15 @@ table, tr, th, td {
 
 /*Style header*/
 .header {
-    background-color: #3c4385 ;
+    background-color: #3c4385;
     padding: 0 15px;
     height: 60px;
     color: rgba(255, 255, 255, 0.55);
     box-shadow: 0px 10px 60px 0px rgb(0 0 0 / 5%);
-
     display: flex;
     align-items: center;
+    justify-content: space-between; /* Đảm bảo các thành phần nằm ở các vị trí cụ thể */
 }
-
 .sidebar {
     display: flex;
     align-items: center;
@@ -164,4 +163,23 @@ table, tr, th, td {
     height: 100%;
     object-fit: cover;
 }
+.menu {
+    margin-left: 0;
+}
 
+.login-right {
+    color: #fff;
+    font-size: 15px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-return {
+    background: #e8f3ff;
+    color: #007bff;
+    border-radius: 20px;
+    padding: .375rem 1.2rem;
+    font-size: .9rem;
+}

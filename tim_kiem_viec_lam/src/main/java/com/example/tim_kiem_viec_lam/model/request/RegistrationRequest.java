@@ -24,14 +24,18 @@ public class RegistrationRequest {
     @NotBlank
     String password;
 
+    @NotBlank
     String phone;
 
+    @NotBlank
     String name;
 
+    @NotBlank
     String address;
 
     String introduce;
 
+    @NotBlank
     String contactInfo;
 
 }

@@ -58,18 +58,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Tin Tức</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div class="dropdown-menu tdropdown" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
+
                 </ul>
                 <ul class="navbar-nav mr-auto my-2 my-lg-0 tnav-right tn-nav">
                     <li class="nav-item active">
@@ -100,9 +89,11 @@
                             <a class="d-inline-block avatar rounded-circle"
                                id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://www.topcv.vn/images/avatar-default.jpg"
+                                <img th:if="${candidate != null}" th:src="${candidate.avatar}"
                                      style="height: 38px; width: 38px"
-                                     alt="Tiểu Phàm TRương">
+                                     alt="">
+                                <img th:unless="${candidate != null}" src="https://www.topcv.vn/images/avatar-default.jpg"
+                                     style="height: 38px; width: 38px" alt="Default Avatar">
                             </a>
                             <div class="dropdown-menu" style="background-color: #2f55d4"
                                  aria-labelledby="dropdownMenuButton">
@@ -366,7 +357,7 @@
                                     <div class="job-inf">
                                         <div class="job-main-skill">
                                             <i class="fa fa-code" aria-hidden="true"></i> <a href="#"
-                                                                                             th:text="${job.skill}">
+                                                                                             th:text="${job.skill.substring(1, job.skill.length() - 1)}">
                                             .NET</a>
                                         </div>
                                         <div class="job-salary">
@@ -398,14 +389,18 @@
             <!-- sidebar -->
             <div class="col-md-4 col-sm-12 col-12 clear-left">
                 <div class="job-sidebar">
+                    <a href="https://www.danang43.vn/">
                     <div class="sb-banner">
                         <img src="./img/tuyen-dung-da-nang.png" >
                     </div>
+                    </a>
                 </div>
                 <div class="job-sidebar">
+                    <a href="https://www.topcv.vn/viec-lam">
                     <div class="sb-banner">
                         <img src="img/ads1.jpg" class="advertisement">
                     </div>
+                    </a>
                 </div>
             </div>
             <!-- (end) sidebar -->
@@ -587,7 +582,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="home-ads">
-                    <a href="#">
+                    <a href="https://danangjob.vn/">
                         <img src="img/hna.jpg">
                     </a>
                 </div>
@@ -647,7 +642,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="home-ads">
-                    <a href="#">
+                    <a href="https://www.vietnamworks.com/hrinsider/">
                         <img src="img/hna2.jpg">
                     </a>
                 </div>
@@ -667,7 +662,7 @@
             </div>
             <div class="col-md-4 col-sm-12 col-12 news-item">
                 <div class="news-item-inner">
-                    <a href="#wrap">
+                    <a href="https://www.vietnamworks.com/hrinsider/5-thoi-diem-doanh-nghiep-khong-duoc-buoc-nguoi-lao-dong-thoi-viec.html">
                         <div class="news-thumb" style="background-image: url(img/news1.jpg);"></div>
                     </a>
                     <div class="news-details">
@@ -675,7 +670,7 @@
                             <a href="#tag1">Quyền lợi nhân viên</a>
                         </div>
                         <div class="title">
-                            <a href="#">
+                            <a href="">
                                 5 thời điểm doanh nghiệp không được buộc người lao động thôi việc
                             </a>
                         </div>
@@ -690,7 +685,7 @@
             </div>
             <div class="col-md-4 col-sm-12 col-12 news-item">
                 <div class="news-item-inner">
-                    <a href="#wrap">
+                    <a href="https://www.vietnamworks.com/hrinsider/nhay-viec-va-nhung-con-so-ban-can-phai-luu-tam.html">
                         <div class="news-thumb" style="background-image: url(img/news2.jpg);"></div>
                     </a>
                     <div class="news-details">
@@ -698,7 +693,7 @@
                             <a href="#tag1">Trước khi nhảy việc</a>
                         </div>
                         <div class="title">
-                            <a href="#">
+                            <a href="">
                                 Nhảy việc và những con số bạn cần phải lưu tâm
                             </a>
                         </div>
@@ -711,8 +706,8 @@
             </div>
             <div class="col-md-4 col-sm-12 col-12 news-item">
                 <div class="news-item-inner">
-                    <a href="#wrap">
-                        <div class="news-thumb" style="background-image: url(img/news3.png);"></div>
+                    <a href="https://www.vietnamworks.com/hrinsider/danh-gia-buoc-dem-can-thiet-trong-viec-dao-tao-huan-luyen-nhan-vien.html?utm_source=google&utm_medium=ppc&utm_campaign=google_ppc_inhouse_04-DSA-all-all-001_adg002&gclid=Cj0KCQjwuZGnBhD1ARIsACxbAVgXldtfSp_sGCOaG0ZfpSOwlgngdaiNL3Cgms08CQkZ0oaCODPpGGgaAuotEALw_wcB">
+                        <div class="news-thumb" style="background-image: url(/img/news3.png);"></div>
                     </a>
                     <div class="news-details">
                         <div class="tags">
@@ -819,8 +814,7 @@
                 <ul class="footer-list">
                     <li><a href="#">Lập trình viên</a></li>
                     <li><a href="#">Kiểm thử phần mềm</a></li>
-                    <li><a href="#">Kỹ sư cầu nối</a></li>
-                    <li><a href="#">Quản lý dự án</a></li>
+                    <li><a href="#">Web Developer</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6 col-12">
@@ -841,7 +835,6 @@
                     <li><a href="#">Hồ Chí Minh</a></li>
                     <li><a href="#">Hà Nội</a></li>
                     <li><a href="#">Đà Nẵng</a></li>
-                    <li><a href="#">Buôn Ma Thuột</a></li>
                 </ul>
             </div>
 
