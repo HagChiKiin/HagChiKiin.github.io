@@ -1,21 +1,10 @@
 package com.example.tim_kiem_viec_lam.service;
 
-import com.example.tim_kiem_viec_lam.entity.Application;
-import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Otp;
 import com.example.tim_kiem_viec_lam.entity.User;
-import com.example.tim_kiem_viec_lam.exception.NotFoundException;
-import com.example.tim_kiem_viec_lam.model.request.JobRequest;
-import com.example.tim_kiem_viec_lam.model.response.JobResponse;
-import com.example.tim_kiem_viec_lam.repository.ApplicationRepository;
-import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.OtpRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
-import com.example.tim_kiem_viec_lam.statics.ApplicationStatus;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -25,8 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -97,5 +84,32 @@ public class EmailService {
             System.out.println("Error while sending mail!!!");
         }
 
+    }
+
+    @Async
+    public void sendInterviewInvitationEmail(String candidateEmail, String jobTitle, String company,String name) {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+            helper.setFrom(sender);
+            helper.setTo(candidateEmail);
+
+            helper.setSubject(company + " - Lời Mời Phỏng Vấn");
+
+            String emailContent = "<html><body>" +
+                    "<p>Chào bạn " + name + "</p>" +
+                    "<p>Bạn đã được mời tham gia phỏng vấn cho vị trí công việc: " + jobTitle + ". Vui lòng liên hệ với chúng tôi" +
+                    " để sắp xếp thời gian phỏng vấn.</p>" +
+                    "<p>Trân trọng.</p>" +
+                    "</body></html>";
+
+            helper.setText(emailContent, true);
+
+            javaMailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            System.out.println("Lỗi khi gửi email!!!");
+            e.printStackTrace();
+        }
     }
 }

@@ -1,4 +1,10 @@
 
+$('#title-search').on('keydown', function(event) {
+    if (event.key === 'Enter') {
+        performSearch(); // Gọi hàm tìm kiếm khi nhấn Enter
+    }
+});
+
 // Function to perform the search using AJAX
 function performSearch() {
     let title = $('#title-search').val();

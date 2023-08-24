@@ -6,7 +6,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum RecruiterStatus {
-    ACTIVE,
-    LOCKED;
+    ACTIVE("Đang hoạt động"),
+    LOCKED("Khóa");
+
+    String name;
 
 }

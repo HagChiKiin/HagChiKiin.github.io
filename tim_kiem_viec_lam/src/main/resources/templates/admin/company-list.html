@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -36,6 +36,36 @@
 
     <!-- Link tự viết -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/style-admin.css}">
+
+    <style>
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        #searchInput {
+            flex: 1;
+            padding: 10px;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        #searchButton {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #searchButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -67,16 +97,21 @@
 </div>
 
 <!-- BODY -->
-<div class="company-list mt-4 mb-4">
+<div class="company-list mt-4 mb-4 ">
     <div class="container">
-        <div class="mb-4">
-            <a href="/admin/companies" class="btn-custom btn-refresh">
+        <div class="mb-4" style="display: grid; grid-template-columns: auto 1fr; gap: 10px;">
+            <a href="/admin/companies" class="btn-custom btn-refresh btn-refresh-small">
                 <span><i class="fa-solid fa-arrow-rotate-right"></i></span>
                 Refresh
             </a>
+            <div class="search-box " >
+                <input type="text" id="searchInput" placeholder="Tên công ty...">
+                <button id="searchButton" onclick="performSearch()">Tìm kiếm</button>
+            </div>
         </div>
 
-        <div class="company-list-inner p-2">
+
+        <div class="company-list-inner p-2  pagi">
             <table class="table company-table">
                 <thead>
                 <tr>
@@ -88,9 +123,53 @@
                     <th>Status</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="companyTableBody" >
+<!--                 Sử dụng Thymeleaf để lặp qua danh sách công ty và hiển thị -->
+<!--                <tr th:each="company, companyStat : ${pageInfo.content}">-->
+<!--                    <td th:text="${companyStat.index + 1}"></td>-->
+<!--                    <td>-->
+<!--                        <a th:href="@{'/admin/companies/' + ${company.id}}" th:text="${company.name}"></a>-->
+<!--                    </td>-->
+<!--                    <td th:text="${company.address}"></td>-->
+<!--                    <td>-->
+<!--                        <a th:href="${company.contactInfo}" target="_blank" th:text="${company.contactInfo}"></a>-->
+<!--                    </td>-->
+<!--                    <td th:text="${company.phone}"></td>-->
+<!--                    <td>-->
+<!--                        <select class="status-dropdown selectpicker" th:data-company-id="${company.id}"-->
+<!--                                th:data-style="${company.recruiterStatus == 'LOCKED' ? 'btn-danger' : 'btn-success'}">-->
+<!--                            <option value="ACTIVE" th:attr="selected=${company.recruiterStatus == 'ACTIVE'}">Đang hoạt động</option>-->
+<!--                            <option value="LOCKED" th:attr="selected=${company.recruiterStatus == 'LOCKED'}">Khóa</option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                </tr>-->
                 </tbody>
             </table>
+            <div class="pagination"></div>
+
+            </div>
+
+<!--             Phân trang sử dụng Thymeleaf-->
+<!--            <nav aria-label="Page navigation" class="d-flex justify-content-center">-->
+<!--                <ul class="pagination">-->
+<!--                    <li class="page-item" th:classappend="${pageInfo.first ? 'disabled' : ''}">-->
+<!--                        <a class="page-link" th:href="@{/admin/companies(page=1)}">First</a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item" th:classappend="${pageInfo.first ? 'disabled' : ''}">-->
+<!--                        <a class="page-link" th:href="@{/admin/companies(page=${currentPage - 1})}">Previous</a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item" th:each="page : ${#numbers.sequence(1, pageInfo.totalPages)}"-->
+<!--                        th:classappend="${currentPage == page ? 'active' : ''}">-->
+<!--                        <a class="page-link" th:href="@{/admin/companies(page=${page})}"><span th:text="${page}"></span></a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item" th:classappend="${pageInfo.last ? 'disabled' : ''}">-->
+<!--                        <a class="page-link" th:href="@{/admin/companies(page=${currentPage + 1})}">Next</a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item" th:classappend="${pageInfo.last ? 'disabled' : ''}">-->
+<!--                        <a class="page-link" th:href="@{/admin/companies(page=${pageInfo.totalPages})}">Last</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
         </div>
     </div>
 </div>
@@ -110,13 +189,12 @@
 <!-- axios -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
 <!--  toastr.js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script th:inline="javascript">
-
-
 
     $(document).ready(function () {
         $('.selectpicker').selectpicker();
@@ -172,13 +250,10 @@
         tbody.append(tr);
     });
 
-    $(document).ready(function () {
-        $('.selectpicker').selectpicker();
-    });
 
 
     // Thay đổi trạng thái của công ty
-    $('.status-dropdown').change(function() {
+    $('.status-dropdown').change(function () {
         const companyId = $(this).data('company-id');
         const newStatus = $(this).val();
 
@@ -192,15 +267,126 @@
         $.ajax({
             url: `/api/v1/companies/update-status/${companyId}`,
             type: 'POST',
-            data: { status: newStatus },
-            success: function(response) {
+            data: {status: newStatus},
+            success: function (response) {
                 toastr.success("Cập nhật trạng thái thành công");
             },
-            error: function(error) {
+            error: function (error) {
                 toastr.warning("Cập nhật trạng thái thất bại")
             }
         });
     });
+
+    $('#searchInput').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            performSearch(); // Gọi hàm tìm kiếm khi nhấn Enter
+        }
+    });
+
+    function performSearch() {
+        const name = $('#searchInput').val();
+
+        // Gửi yêu cầu tìm kiếm bằng Ajax
+        $.ajax({
+            type: 'GET',
+            url: '/api/v1/companies/search',
+            data: {
+                name: name
+            },
+            success: function (response) {
+                displaySearchResults(response.data);
+            },
+            error: function (error) {
+                console.error('Lỗi tìm kiếm:', error);
+            }
+        });
+    }
+
+    // Function to display the search results on the page
+    function displaySearchResults(recruiters) {
+        const tbody = $('.company-table tbody');
+        tbody.empty(); // Xóa nội dung tbody cũ
+
+        $('.no-companies').remove();
+
+        if (recruiters.length === 0) {
+            // Nếu không tìm thấy công ty nào, hiển thị thông báo
+            displayNoCompaniesFound();
+        } else {
+            // Nếu có kết quả tìm kiếm, hiển thị kết quả
+            recruiters.forEach(function (recruiter, index) {
+                const tr = $('<tr>');
+                tr.html(`
+                <td>${index + 1}</td>
+                <td>
+                    <a href="/admin/companies/${recruiter.id}">${recruiter.name}</a>
+                </td>
+                <td>${recruiter.address}</td>
+                <td>
+                    <a href="${recruiter.contactInfo}" target="_blank">${recruiter.contactInfo}</a>
+                </td>
+                <td>${recruiter.phone}</td>
+               <td>
+               <select class="status-dropdown selectpicker" data-company-id="${recruiter.id}" data-style="${recruiter.recruiterStatus === 'LOCKED' ? 'btn-danger' : 'btn-success'}">
+                        <option value="ACTIVE" ${recruiter.recruiterStatus === 'ACTIVE' ? 'selected' : ''}>Đang hoạt động</option>
+                        <option value="LOCKED" ${recruiter.recruiterStatus === 'LOCKED' ? 'selected' : ''}>Khóa</option>
+                    </select>
+                </td>
+             `);
+                tbody.append(tr);
+                tr.find('.status-dropdown').change(function () {
+                    const companyId = $(this).data('company-id')
+                    const newStatus = $(this).val();
+
+                    // Thực hiện cập nhật trạng thái trên máy chủ và cập nhật màu sắc
+                    updateStatus(companyId, newStatus, $(this));
+
+                });
+            });
+            $('.status-dropdown.selectpicker').selectpicker('refresh');
+        }
+    }
+
+    function updateStatus(companyId, newStatus, selectElement) {
+        // Gửi yêu cầu cập nhật trạng thái lên máy chủ ở đây,
+        $.ajax({
+            url: `/api/v1/companies/update-status/${companyId}`,
+            type: 'POST',
+            data: { status: newStatus },
+            success: function(response) {
+                toastr.success("Cập nhật trạng thái thành công");
+
+                const button = selectElement.closest('tr').find('button');
+
+                // Cập nhật màu sắc cho phần tử <select>
+                if (newStatus === 'LOCKED') {
+                    button.removeClass('btn-success').addClass('btn-danger');
+                } else {
+                    button.removeClass('btn-danger').addClass('btn-success');
+                }
+            },
+            error: function(error) {
+                toastr.warning("Cập nhật trạng thái thất bại");
+            }
+        });
+    }
+
+    // Function để hiển thị thông báo khi không tìm thấy công ty nào
+    function displayNoCompaniesFound() {
+        const noCompaniesDiv = $('<div>');
+        noCompaniesDiv.addClass('no-companies');
+        const noCompaniesMessage = $('<p>');
+        noCompaniesMessage.text('Không tìm thấy công ty nào');
+
+        noCompaniesDiv.css('text-align', 'center');
+        noCompaniesMessage.css('font-size', '22px');
+        noCompaniesMessage.css('color', '#ff0000');
+        noCompaniesMessage.css('margin-top', '20px');
+
+        noCompaniesDiv.append(noCompaniesMessage);
+        $('.company-list-inner').append(noCompaniesDiv);
+    }
+
 
 </script>
 </body>

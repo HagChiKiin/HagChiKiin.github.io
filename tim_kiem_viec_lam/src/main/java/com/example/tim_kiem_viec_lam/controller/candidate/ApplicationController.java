@@ -1,13 +1,12 @@
 package com.example.tim_kiem_viec_lam.controller.candidate;
 
+import com.example.tim_kiem_viec_lam.entity.Application;
 import com.example.tim_kiem_viec_lam.entity.Job;
+import com.example.tim_kiem_viec_lam.entity.User;
 import com.example.tim_kiem_viec_lam.model.request.ApplicationRequest;
 import com.example.tim_kiem_viec_lam.model.request.CandidateRequest;
 import com.example.tim_kiem_viec_lam.model.request.RecruiterRequest;
-import com.example.tim_kiem_viec_lam.service.ApplicationService;
-import com.example.tim_kiem_viec_lam.service.CandidateService;
-import com.example.tim_kiem_viec_lam.service.JobService;
-import com.example.tim_kiem_viec_lam.service.UserService;
+import com.example.tim_kiem_viec_lam.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +24,10 @@ public class ApplicationController {
 
     JobService jobService;
 
+    EmailService emailService;
+
+    UserService userService ;
+
     @PostMapping("/{id}")
     public ResponseEntity<?> applyJob(@RequestBody ApplicationRequest request, @PathVariable Long id) {
         Job job = jobService.getJobById(id);
@@ -33,10 +36,16 @@ public class ApplicationController {
     }
 
     @PostMapping("/update-status/{id}")
-    public ResponseEntity<?> updateApplicationStatus( @RequestParam("status") String status, @PathVariable Long id) {
-
+    public ResponseEntity<?> updateApplicationStatus(@RequestParam("status") String status, @PathVariable Long id) {
         try {
-            applicationService.updateApplicationStatus(id, status);
+            Application updatedApplication = applicationService.updateApplicationStatus(id, status);
+
+            if ("INTERVIEW_SCHEDULED".equals(status)) {
+                // Nếu trạng thái được cập nhật thành "hẹn phỏng vấn", gửi email mời phỏng vấn
+                emailService.sendInterviewInvitationEmail(updatedApplication.getEmail(),
+                        updatedApplication.getJob().getTitle(), updatedApplication.getJob().getRecruiter().getName(),updatedApplication.getName());
+            }
+
             return ResponseEntity.ok("Cập nhật trạng thái thành công");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");

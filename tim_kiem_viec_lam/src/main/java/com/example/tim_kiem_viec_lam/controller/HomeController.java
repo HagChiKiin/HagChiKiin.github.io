@@ -11,6 +11,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -72,8 +75,15 @@ public class HomeController {
     }
 
     @GetMapping("/admin/companies")
-    public String getCompanyByAdmin(Model model) {
+    public String getCompanyByAdmin(@RequestParam(required = false, defaultValue = "1") int  page,
+                                    @RequestParam(required = false, defaultValue = "6") int  pageSize,
+                                    Model model) {
+
+        Page<Recruiter> companyPage  = recruiterService.getRecruiters(page,pageSize);
         List<Recruiter> recruiterList = recruiterService.getAllRecruiter();
+//        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("pageInfo", companyPage );
+        model.addAttribute("currentPage", page);
         model.addAttribute("recruiterList", recruiterList);
         return "admin/company-list";
     }
@@ -136,6 +146,12 @@ public class HomeController {
         return "user/jd-page";
     }
 
+    @GetMapping("/change-password")
+    public String editProfile(Model model) {
+
+        return "user/change-password";
+    }
+
     @GetMapping("/register-employees")
     public String registerCandidate() {
         return "user/register-employees";
@@ -168,6 +184,7 @@ public class HomeController {
 
         return "candidate/candidate-info";
     }
+
     @GetMapping("/applications/{userId}")
     public String getApplications(@PathVariable Long userId, Model model) {
         Optional<Long> currentUserLoginId = SecurityUtils.getCurrentUserLoginId();

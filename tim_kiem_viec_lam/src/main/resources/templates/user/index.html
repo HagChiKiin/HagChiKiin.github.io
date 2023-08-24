@@ -97,11 +97,13 @@
                             </a>
                             <div class="dropdown-menu" style="background-color: #2f55d4"
                                  aria-labelledby="dropdownMenuButton">
-                                <a id="user" class="dropdown-item" th:href="@{/candidate/info/{id}(id=${users})}"
-                                   style="color: white; background-color: #2f55d4">Thông tin cá nhân</a>
-                                <a id="recruiter" class="dropdown-item" href="/recruiter/jobs-create"
+                                <a id="user" class="dropdown-item candidate" th:href="@{/candidate/info/{id}(id=${users})}"
+                                   style="color: white; background-color: #2f55d4">Thông tin ứng viên</a>
+                                <a id="recruiter" class="dropdown-item recruiter" href="/recruiter/jobs-create"
                                    style="color: white; background-color: #2f55d4">Tạo việc làm</a>
-                                <a class="dropdown-item" href=""
+                                <a class="dropdown-item admin" href="/admin/companies"
+                                   style="color: white; background-color: #2f55d4">Nhà tuyển dụng</a>
+                                <a class="dropdown-item " href="/change-password"
                                    style="color: white; background-color: #2f55d4">Đổi mật khẩu</a>
                                 <a id="logout-button" class="dropdown-item" href="#"
                                    style="color: white; background-color: #2f55d4;">
@@ -456,12 +458,15 @@
                 if (userInfomation.roles[0] === 'USER') {
                     $('#user').show();
                     $('#recruiter').hide();
+                    $('.admin').hide();
                 } else if (userInfomation.roles[0] === 'RECRUITER') {
                     $('#user').hide();
                     $('#recruiter').show();
+                    $('.admin').hide();
                 } else {
                     $('#user').hide();
                     $('#recruiter').hide();
+                    $('.admin').show();
                 }
             }
         }

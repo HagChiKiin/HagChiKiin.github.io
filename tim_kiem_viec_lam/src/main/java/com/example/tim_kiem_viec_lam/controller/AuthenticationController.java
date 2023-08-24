@@ -4,7 +4,9 @@ import com.example.tim_kiem_viec_lam.entity.Candidate;
 import com.example.tim_kiem_viec_lam.entity.RefreshToken;
 import com.example.tim_kiem_viec_lam.entity.User;
 import com.example.tim_kiem_viec_lam.exception.AccountNotActiveException;
+import com.example.tim_kiem_viec_lam.exception.BadRequestException;
 import com.example.tim_kiem_viec_lam.exception.RefreshTokenNotFoundException;
+import com.example.tim_kiem_viec_lam.model.request.ChangePasswordRequest;
 import com.example.tim_kiem_viec_lam.model.request.LoginRequest;
 import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
 import com.example.tim_kiem_viec_lam.model.request.RegistrationRequest;
@@ -152,7 +154,15 @@ public class AuthenticationController {
         return ResponseEntity.ok(null);
     }
 
-
+    @PutMapping("/password-change")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+        try {
+            userService.changePassword(request);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } catch (BadRequestException e) {
+            return new ResponseEntity<>("Thay đổi mật khẩu không thành công!", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
 
 

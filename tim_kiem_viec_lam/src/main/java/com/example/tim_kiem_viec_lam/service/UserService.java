@@ -2,10 +2,7 @@ package com.example.tim_kiem_viec_lam.service;
 
 import com.example.tim_kiem_viec_lam.entity.*;
 import com.example.tim_kiem_viec_lam.exception.*;
-import com.example.tim_kiem_viec_lam.model.request.CreateUserRequest;
-import com.example.tim_kiem_viec_lam.model.request.RefreshTokenRequest;
-import com.example.tim_kiem_viec_lam.model.request.RegistrationRequest;
-import com.example.tim_kiem_viec_lam.model.request.ResetPasswordRequest;
+import com.example.tim_kiem_viec_lam.model.request.*;
 import com.example.tim_kiem_viec_lam.model.response.JwtResponse;
 import com.example.tim_kiem_viec_lam.model.response.UserResponse;
 import com.example.tim_kiem_viec_lam.repository.*;
@@ -130,7 +127,7 @@ public class UserService {
         emailService.sendActivationEmail(user.getEmail(), user.getId());
     }
 
-    private void saveRecruiter(FileEntity fileEntity,User user, RegistrationRequest registrationRequest, String avatarPath) {
+    private void saveRecruiter(FileEntity fileEntity, User user, RegistrationRequest registrationRequest, String avatarPath) {
         Recruiter recruiter = Recruiter.builder()
                 .user(user)
                 .phone(registrationRequest.getPhone())
@@ -298,7 +295,20 @@ public class UserService {
                     throw new NotFoundException("Not found recruiter with id = " + id);
                 });
     }
-    public List<User> getAlluser(){
+
+    public List<User> getAlluser() {
         return userRepository.findAll();
+    }
+
+
+    public void changePassword(ChangePasswordRequest request) throws BadRequestException {
+        Long currentUserLoginId = SecurityUtils.getCurrentUserLoginId().get();
+        User user = userRepository.findById(currentUserLoginId).get();
+        String newPassword = request.getNewPassword();
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
+            throw new BadRequestException();
+        }
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }

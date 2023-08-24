@@ -2,11 +2,9 @@ package com.example.tim_kiem_viec_lam.service;
 
 import com.example.tim_kiem_viec_lam.entity.Application;
 import com.example.tim_kiem_viec_lam.entity.Job;
-import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import com.example.tim_kiem_viec_lam.entity.User;
 import com.example.tim_kiem_viec_lam.exception.NotFoundException;
 import com.example.tim_kiem_viec_lam.model.request.ApplicationRequest;
-import com.example.tim_kiem_viec_lam.model.request.RecruiterRequest;
 import com.example.tim_kiem_viec_lam.repository.ApplicationRepository;
 import com.example.tim_kiem_viec_lam.repository.JobRepository;
 import com.example.tim_kiem_viec_lam.repository.UserRepository;
@@ -51,7 +49,7 @@ public class ApplicationService {
     }
 
 
-    public void updateApplicationStatus(Long id, String newStatus) {
+    public Application updateApplicationStatus(Long id, String newStatus) {
         Application application = applicationRepository.findById(id).orElse(null);
 
         if (application == null) {
@@ -60,6 +58,7 @@ public class ApplicationService {
 
         application.setApplicationStatus(ApplicationStatus.valueOf(newStatus));
         applicationRepository.save(application);
+        return application;
     }
 
     public Long countApplicationsByUserId(Long userId) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="layout/layout :: main-fragment(~{:: title}, ~{:: #css}, ~{:: .candidate-information}, ~{:: #js})">
+<html lang="en" th:replace="layout/layout :: main-fragment(~{:: title}, ~{:: #css}, ~{:: .recruiter-information}, ~{:: #js})">
 <head>
     <meta charset="UTF-8">
     <title>TechJobs</title>
@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="candidate-information">
+<div class="recruiter-information">
     <!-- recuiter Nav -->
     <nav class="navbar navbar-expand-lg navbar-light nav-recuitment">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNava"
@@ -50,7 +50,7 @@
                                         <a class="btn btn-link btn-block text-left recuitment-header" type="button"
                                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
                                            aria-controls="collapseOne">
-                                            Thông tin tài khoản
+                                            Thông tin nhà tuyển dụng
                                             <span id="clickc1_advance2" class="clicksd">
                                                  <i class="fa fa fa-angle-up"></i>
                                             </span>
@@ -68,7 +68,7 @@
                                                 <div class="avatar-upload">
                                                     <img id="recruiter-avatar" class="rounded-circle"
                                                          style="width: 200px; height: 200px" alt="Avatar"
-                                                         th:src="${candidate.avatar}"/>
+                                                         th:src="'/api/v1/files/'+${recruiter.fileId.name}"/>
                                                     <input type="file" hidden="hidden" id="avatar-input" name="avatar"
                                                            accept="image/*"/>
                                                 </div>
@@ -76,12 +76,11 @@
 
                                             <div class="col-md-9">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label text-right label" for="name">Họ
-                                                        tên<span
+                                                    <label class="col-sm-3 col-form-label text-right label" for="name">Tên công ty<span
                                                                 style="color: red" class="pl-2">*</span></label>
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control"
-                                                               placeholder="Nhập họ và tên" id="name" name="name">
+                                                               placeholder="Tên công ty" id="name" name="name">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -94,26 +93,24 @@
                                                                name="phone">
                                                     </div>
                                                 </div>
+<!--                                                <div class="form-group row">-->
+<!--                                                    <label class="col-sm-3 col-form-label text-right label"-->
+<!--                                                           for="recruiterStatus">Trạng thái<span-->
+<!--                                                                style="color: red" class="pl-2">*</span></label>-->
+<!--                                                    <div class="col-sm-9">-->
+<!--                                                        <select type="text" class="form-control" id="recruiterStatus"-->
+<!--                                                                name="recruiterStatus">-->
+<!--                                                            <option value="MALE">MALE</option>-->
+<!--                                                            <option value="FEMALE">FEMALE</option>-->
+<!--                                                        </select>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label text-right label"
-                                                           for="gender">Giới
-                                                        tính<span
-                                                                style="color: red" class="pl-2">*</span></label>
-                                                    <div class="col-sm-9">
-                                                        <select type="text" class="form-control" id="gender"
-                                                                name="gender">
-                                                            <option value="">Chọn giới tính</option>
-                                                            <option value="MALE">MALE</option>
-                                                            <option value="FEMALE">FEMALE</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label text-right label" for="dob">Ngày
-                                                        sinh<span
+                                                    <label class="col-sm-3 col-form-label text-right label" for="contactInfo">Website
+                                                        <span
                                                                 style="color: red" class="pl-2">*</span></label>
                                                     <div class="col-sm-9 ">
-                                                        <input type="date" class="form-control" id="dob" name="dob">
+                                                        <input type="text" class="form-control" id="contactInfo" name="contactInfo">
                                                     </div>
                                                 </div>
 
@@ -125,25 +122,6 @@
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control" id="address"
                                                                name="address">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label text-right label"
-                                                           for="experience">Kinh nghiệm
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" placeholder=""
-                                                               id="experience" name="experience">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label text-right label" for="skill">Kĩ
-                                                        năng
-                                                    </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" placeholder=""
-                                                               id="skill"
-                                                               name="skill">
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,17 +197,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
     <script th:inline="javascript">
-
-        let firebaseConfig = {
-            apiKey: "AIzaSyBd79sSD4tMr-HWBxg1zJNJMvG_lVcncx8",
-            projectId: "job-hunt-c9d49",
-            storageBucket: "job-hunt-c9d49.appspot.com",
-        };
-        // Khởi tạo Firebase
-        firebase.initializeApp(firebaseConfig);
-        // Lấy tham chiếu đến Firebase Storage bucket
-        let storage = firebase.storage();
-        let storageRef = storage.ref();
+        
 
         const candidate = [[${candidate}]];
 

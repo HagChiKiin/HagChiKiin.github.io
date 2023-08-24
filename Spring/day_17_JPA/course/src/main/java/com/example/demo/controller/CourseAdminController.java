@@ -35,7 +35,6 @@ public class CourseAdminController {
                                @RequestParam(required = false, defaultValue = "6") Integer pageSize,
                                Model model) {
         Page<Course> pageInfo = courseService.getAllCourse(page, pageSize);
-        List<Topic> topicList = topicService.getAllTopic();
 
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("currentPage", page);
