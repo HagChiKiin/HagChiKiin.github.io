@@ -43,7 +43,8 @@ public class ApplicationController {
             if ("INTERVIEW_SCHEDULED".equals(status)) {
                 // Nếu trạng thái được cập nhật thành "hẹn phỏng vấn", gửi email mời phỏng vấn
                 emailService.sendInterviewInvitationEmail(updatedApplication.getEmail(),
-                        updatedApplication.getJob().getTitle(), updatedApplication.getJob().getRecruiter().getName(),updatedApplication.getName());
+                        updatedApplication.getJob().getTitle(), updatedApplication.getJob().getRecruiter().getName(),updatedApplication.getName(),
+                        updatedApplication.getJob().getRecruiter().getUser().getEmail(), updatedApplication.getJob().getRecruiter().getPhone());
             }
 
             return ResponseEntity.ok("Cập nhật trạng thái thành công");

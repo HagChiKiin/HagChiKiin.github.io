@@ -87,7 +87,7 @@ public class EmailService {
     }
 
     @Async
-    public void sendInterviewInvitationEmail(String candidateEmail, String jobTitle, String company,String name) {
+    public void sendInterviewInvitationEmail(String candidateEmail, String jobTitle, String company,String name, String recruiterEmail, String recruiterPhone) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -98,10 +98,12 @@ public class EmailService {
             helper.setSubject(company + " - Lời Mời Phỏng Vấn");
 
             String emailContent = "<html><body>" +
-                    "<p>Chào bạn " + name + "</p>" +
-                    "<p>Bạn đã được mời tham gia phỏng vấn cho vị trí công việc: " + jobTitle + ". Vui lòng liên hệ với chúng tôi" +
-                    " để sắp xếp thời gian phỏng vấn.</p>" +
-                    "<p>Trân trọng.</p>" +
+                    "<p>Chào bạn<strong> " + name.toUpperCase() + "</strong></p>" +
+                    "<p>Bạn đã được mời tham gia phỏng vấn cho vị trí công việc: <strong>" + jobTitle + "</strong>. Vui lòng liên hệ với chúng tôi" +
+                    " để sắp xếp thời gian, địa điểm, và hình thức phỏng vấn.</p>" +
+                    "<p>Email liên hệ: <strong>" + recruiterEmail + "</strong><p>" +
+                    "<p>Sđt liên hệ: <strong>" + recruiterPhone + "</strong><p>" +
+                    "<p><strong>Trân trọng</strong></p>" +
                     "</body></html>";
 
             helper.setText(emailContent, true);

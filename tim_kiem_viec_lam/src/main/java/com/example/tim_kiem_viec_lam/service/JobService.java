@@ -17,6 +17,7 @@ import com.example.tim_kiem_viec_lam.statics.JobStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,8 @@ public class JobService {
 
     public List<Job> getNewestJobs() {
         List<Job> top16Jobs = jobRepository.findTop16ByNewestJobs();
-        if (top16Jobs.size() > 10) {
-            top16Jobs = top16Jobs.subList(0, 10);
+        if (top16Jobs.size() > 16) {
+            top16Jobs = top16Jobs.subList(0, 16);
         }
         return top16Jobs;
     }
@@ -70,6 +71,7 @@ public class JobService {
     }
 
     public List<Job> getSimilarJob(String skill, Long jobId) {
+        skill = StringUtils.isNotEmpty(skill)?skill.replace("[","").replace("]",""):skill;
         List<Job> top3Jobs = jobRepository.findRandomJobsBySkillAndExcludeCurrentJob(skill, jobId);
         if (top3Jobs.size() > 3) {
             top3Jobs = top3Jobs.subList(0, 3);
