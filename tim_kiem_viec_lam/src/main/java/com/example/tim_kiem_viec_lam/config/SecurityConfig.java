@@ -70,6 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/applications/{id}" , "/candidate/info/{id}").hasAnyAuthority(Roles.USER.toString())
                 .antMatchers(HttpMethod.GET, "/recruiter/jobs/{id}" ,"/recruiter/jobs-create", "/recruiter/jobs").hasAnyAuthority(Roles.RECRUITER.toString())
                 .antMatchers(HttpMethod.GET, "/admin/companies/{id}" , "/admin/companies").hasAnyAuthority(Roles.ADMIN.toString())
+                .antMatchers(HttpMethod.GET, "/api/v1/applications/update-status/{id}").hasAnyAuthority(Roles.RECRUITER.toString())
+                .antMatchers(HttpMethod.GET, "/api/v1/companies/update-status/{id}").hasAnyAuthority(Roles.ADMIN.toString())
                 .anyRequest().permitAll()
                 .and()
                 .httpBasic()

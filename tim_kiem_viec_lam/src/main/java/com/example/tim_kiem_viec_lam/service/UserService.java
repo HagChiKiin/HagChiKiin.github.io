@@ -114,8 +114,6 @@ public class UserService {
         candidate.setCreatedBy(user.getEmail());
         candidateRepository.save(candidate);
         emailService.sendActivationEmail(user.getEmail(), user.getId());
-
-//
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -295,11 +293,6 @@ public class UserService {
                     throw new NotFoundException("Not found recruiter with id = " + id);
                 });
     }
-
-    public List<User> getAlluser() {
-        return userRepository.findAll();
-    }
-
 
     public void changePassword(ChangePasswordRequest request) throws BadRequestException {
         Long currentUserLoginId = SecurityUtils.getCurrentUserLoginId().get();
