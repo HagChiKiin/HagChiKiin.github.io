@@ -74,7 +74,7 @@ function displaySearchResults(jobs) {
             let jobItem = `<div class="job pagi">
                             <div class="job-content">
                                 <div class="job-logo">
-                                    <a href="#">
+                                    <a href="/jd-page/${job.id}">
                                         <img src="${avatar}" class="job-logo-ima"
                                              alt="job-logo">
                                     </a>

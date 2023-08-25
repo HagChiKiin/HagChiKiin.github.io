@@ -92,7 +92,7 @@ public class AuthenticationController {
                 .id(userDetails.getId())
                 .username(userDetails.getUsername())
                 .roles(roles)
-                .avatar("https://i.pravatar.cc/500?img=7")
+                .avatar("")
                 .build();
         Cookie jwtCookie = new Cookie("jwtToken", jwtResponse.getJwt());
         jwtCookie.setPath("/");

@@ -117,17 +117,6 @@
                                 </div>
                             </div>
 
-                            <!--                            <div class="job-info-list">-->
-                            <!--                                <div class="row">-->
-                            <!--                                    <div class="col-sm-4">-->
-                            <!--                                        <span class="ji-title">Cấp bậc:</span>-->
-                            <!--                                    </div>-->
-                            <!--                                    <div class="col-sm-8">-->
-                            <!--                                        <span class="ji-main">Nhân viên</span>-->
-                            <!--                                    </div>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-
                             <div class="job-info-list">
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -150,17 +139,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!--                            <div class="job-info-list">-->
-                            <!--                                <div class="row">-->
-                            <!--                                    <div class="col-sm-4">-->
-                            <!--                                        <span class="ji-title">Ngành nghề:</span>-->
-                            <!--                                    </div>-->
-                            <!--                                    <div class="col-sm-8">-->
-                            <!--                                        <span class="ji-main">Quảng cáo, Đối ngoại</span>-->
-                            <!--                                    </div>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
 
                             <div class="job-info-list">
                                 <div class="row">
@@ -225,10 +203,6 @@
                                 <i class="fa fa-map-marker ja-icn"></i>
                                 <span th:text="${job.recruiter.address}">Trụ sở: 212 Phan Đăng Lưu - Hòa Cường Bắc - Hải Châu - Đà Nẵng </span>
                             </li>
-                            <!--                            <li>-->
-                            <!--                                <i class="fa fa-bar-chart ja-icn"></i>-->
-                            <!--                                <span>Quy mô công ty: 50-100 người</span>-->
-                            <!--                            </li>-->
                         </ul>
 
                         <div class="wrap-comp-info mb-2">
@@ -315,11 +289,6 @@
         let storage = firebase.storage();
         let storageRef = storage.ref();
 
-        // Lấy thông tin người dùng đã đăng nhập từ localStorage
-        // const userInfomation = JSON.parse(localStorage.getItem("userInfomation"));
-        // const loggedInEmail = userInfomation.username;
-        // console.log(loggedInEmail)
-
         $('.btn-apply').click(() => {
             $('#application-modal').modal('show');
 
@@ -354,8 +323,45 @@
                     $("#user-cv").attr("src", imageUrl);
                 });
 
+                $("#application-modal-form").validate({
+                    onfocusout: false,
+                    onkeyup: false,
+                    onclick: false,
+                    errorPlacement: function (error, element) {
+                        error.addClass("error-message");
+                        error.insertAfter(element.parent());
+                    },
+                    rules: {
+                        name: {
+                            required: true,
+                        },
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        phone: {
+                            required: true,
+                        },
+                    },
+                    messages: {
+                        name: {
+                            required: "Vui lòng nhập tên",
+                        },
+                        email: {
+                            required: "Vui lòng nhập địa chỉ email",
+                            email: "Vui lòng nhập địa chỉ email hợp lệ"
+                        },
+                        phone: {
+                            required: "Vui lòng nhập số điện thoại"
+                        },
+                    }
+                });
 
                 $('#save-cv').click(async () => {
+                    let isValidForm = $("#application-modal-form").valid();
+                    if (!isValidForm) {
+                        return;
+                    }
                     // Tắt nút nộp CV
                     $('#save-cv').prop('disabled', true);
                     // Lấy nội dung trong ô input

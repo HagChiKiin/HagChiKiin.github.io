@@ -45,6 +45,12 @@ $(document).ready(function () {
         },
     });
 
+    $('#email, #password, #confirmPassword').on('keyup', function(event) {
+        if (event.key === 'Enter') {
+            $('#register-employees').click()
+        }
+    });
+
     $('#register-employees').click(function () {
         let isValidForm = $('.reg-form-candidate').valid();
         if (!isValidForm) return;

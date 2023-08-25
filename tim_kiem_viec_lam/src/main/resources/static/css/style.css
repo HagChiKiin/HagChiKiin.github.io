@@ -162,6 +162,11 @@ a:hover {
 	width: 100%;
 }
 
+.change-password {
+    width: 100%; /* Giảm chiều rộng của phần đổi mật khẩu */
+
+}
+
 .w-login {
 	max-width: 100%;
     margin-left: 16px;

@@ -27,6 +27,12 @@ $(document).ready(function () {
         }
     });
 
+    $('#password, #re-pass').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            $('#reset-btn').click()
+        }
+    });
+
     $("#reset-btn").click(() => {
         let isValidForm = $(".reset-form").valid();
         if (!isValidForm) {

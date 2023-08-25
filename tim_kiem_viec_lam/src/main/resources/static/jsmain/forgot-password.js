@@ -21,6 +21,12 @@ $(document).ready(function () {
         }
     });
 
+    $('#email').on('keydown', function(event) {
+        if (event.key === 'Enter') {
+            $('#submit-reset-modal').click()
+        }
+    });
+
     $("#submit-reset-modal").click(async event => {
         let isValidForm = $(".email-reset-form").valid();
         if (!isValidForm) {

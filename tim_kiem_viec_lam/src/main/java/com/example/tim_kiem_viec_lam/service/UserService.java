@@ -109,7 +109,7 @@ public class UserService {
                 .address("")
                 .experience("")
                 .name("")
-                .avatar("")
+                .avatar("https://i.pravatar.cc/500?img=7")
                 .build();
         candidate.setCreatedBy(user.getEmail());
         candidateRepository.save(candidate);
@@ -164,7 +164,7 @@ public class UserService {
 
     private User getUser(RegistrationRequest registrationRequest, Role recruiterRole) {
         Set<Role> roles = new HashSet<>();
-        roles.add(recruiterRole); // Thêm vai trò "RECRUITER" vào tập hợp roles
+        roles.add(recruiterRole);
 
         User user = User.builder()
                 .email(registrationRequest.getEmail())
