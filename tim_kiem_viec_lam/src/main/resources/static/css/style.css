@@ -533,7 +533,7 @@ ul.tn-nav li a {
 }
 
 ul.tn-nav li a:hover {
-	border-bottom: 2px solid blue;
+	border-bottom: 2px solid green;
 }
 
 .tjnav-bar {
@@ -605,8 +605,8 @@ ul.tnav-right {
 }
 
 .btn-employers {
-	background-color: #2f55d4 !important;
-    border: 1px solid #2f55d4 !important;
+	background-color: green !important;
+    border: 1px solid green !important;
     color: #ffffff !important;
     -webkit-box-shadow: 0 3px 5px 0 rgba(47, 85, 212, 0.3);
     box-shadow: 0 3px 5px 0 rgba(47, 85, 212, 0.3);
@@ -753,11 +753,11 @@ ul.tnav-right {
 
 .btn-search {
     padding: 10px;
-    background-color: #2f55d4 !important;
-    border: 1px solid #2f55d4 !important;
+    background-color: green !important;
+    border: 1px solid green !important;
     color: #ffffff !important;
-    -webkit-box-shadow: 0 3px 5px 0 rgba(47, 85, 212, 0.3);
-    box-shadow: 0 3px 5px 0 rgba(38, 88, 255, 0.3);
+    -webkit-box-shadow: 0 3px 5px 0 rgba(1, 255, 1, 0.3);
+    box-shadow: 0 3px 5px 0 rgba(1, 255, 1, 0.3);
     border-radius: 5px;
     padding: .65rem 1.5rem!important;
     font-size: 15px;
@@ -917,7 +917,7 @@ i.sfa {
   border: 1px solid #c7c7c7;
 }
 .select2-container .select2-dropdown .select2-results ul .select2-results__option--highlighted[aria-selected] {
-  background-color: #007bff;
+  background-color: green;
 }
 .select2-container--default .select2-results__group {
     cursor: default;

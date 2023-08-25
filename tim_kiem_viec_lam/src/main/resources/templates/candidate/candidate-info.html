@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="layout/layout :: main-fragment(~{:: title}, ~{:: #css}, ~{:: .candidate-information}, ~{:: #js})">
+<html lang="en"
+      th:replace="layout/layout :: main-fragment(~{:: title}, ~{:: #css}, ~{:: .candidate-information}, ~{:: #js})">
 <head>
     <meta charset="UTF-8">
     <title>TechJobs</title>
@@ -213,12 +214,31 @@
 </div>
 <th:block id="js">
 
+
     <script type="text/javascript" src="/js/main.js"></script>
     <script type="text/javascript" src="/jsmain/signin.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            const userInfomationStr = localStorage.getItem("userInfomation");
+            if (userInfomationStr) {
+                const userInfomation = JSON.parse(userInfomationStr)
+
+                // Ẩn/hiện các thẻ <a> tương ứng
+                if (userInfomation.roles[0] === 'USER') {
+                    $('#user').hide();
+                    $('#recruiter').hide();
+                    $('.admin').hide();
+                }
+            }
+
+        })
+    </script>
+
     <script th:inline="javascript">
+
 
         let firebaseConfig = {
             apiKey: "AIzaSyBd79sSD4tMr-HWBxg1zJNJMvG_lVcncx8",
@@ -321,7 +341,7 @@
             $(this).prop('disabled', true);
 
             let isValidForm = $("#candidate-update-form").valid();
-            if (!isValidForm)  return;
+            if (!isValidForm) return;
 
 
             const name = $("#name").val();

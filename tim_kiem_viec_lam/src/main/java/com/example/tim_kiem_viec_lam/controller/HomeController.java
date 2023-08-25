@@ -138,6 +138,15 @@ public class HomeController {
         Job job = jobService.getJobById(id);
         String jobSkill = job.getSkill();
         List<Job> SimilarListJob = jobService.getSimilarJob(jobSkill, id);
+        Optional<Long> currentUserLoginId = SecurityUtils.getCurrentUserLoginId();
+        currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
+
+        if (currentUserLoginId.isPresent()) {
+            Long userId = currentUserLoginId.get();
+            Candidate candidate = candidateService.getCandidateByUserId(userId);
+            model.addAttribute("candidate", candidate);
+        }
+
         model.addAttribute("SimilarListJob", SimilarListJob);
         model.addAttribute("application", job.getApplications());
         job.setApplications(null);
@@ -191,7 +200,7 @@ public class HomeController {
         currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
         List<Application> applications = applicationService.getApplicationsByUserId(userId);
         model.addAttribute("applications", applications);
-        return "candidate/application"; // Tên template HTML của bạn
+        return "candidate/application";
     }
 
     @GetMapping("/splash")
@@ -199,10 +208,5 @@ public class HomeController {
         return "user/splash-page"; // Trang trung gian (splash page)
     }
 
-    @GetMapping("/search")
-    @ResponseBody
-    public CommonResponse<?> searchBook(JobSearchRequest request) {
-        return jobService.searchJob(request);
-    }
 
 }

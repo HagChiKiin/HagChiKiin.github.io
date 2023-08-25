@@ -87,7 +87,7 @@
                     <li class="navbar-right item group " id="loggedInUserNavItem" style="display: none">
                         <div class="dropdown">
                             <a class="d-inline-block avatar rounded-circle"
-                               id="avatar_toggle" style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
+                               id="avatar_toggle" style=" height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img th:if="${candidate != null}" th:src="${candidate.avatar}"
                                      style="height: 38px; width: 38px"
@@ -95,18 +95,18 @@
                                 <img th:unless="${candidate != null}" src="https://www.topcv.vn/images/avatar-default.jpg"
                                      style="height: 38px; width: 38px" alt="Default Avatar">
                             </a>
-                            <div class="dropdown-menu" style="background-color: #2f55d4"
+                            <div class="dropdown-menu" style="background-color: green"
                                  aria-labelledby="dropdownMenuButton">
                                 <a id="user" class="dropdown-item candidate" th:href="@{/candidate/info/{id}(id=${users})}"
-                                   style="color: white; background-color: #2f55d4">Thông tin ứng viên</a>
+                                   style="color: white; background-color: green">Thông tin ứng viên</a>
                                 <a id="recruiter" class="dropdown-item recruiter" href="/recruiter/jobs-create"
-                                   style="color: white; background-color: #2f55d4">Tạo việc làm</a>
+                                   style="color: white; background-color: green">Tạo việc làm</a>
                                 <a class="dropdown-item admin" href="/admin/companies"
-                                   style="color: white; background-color: #2f55d4">Nhà tuyển dụng</a>
+                                   style="color: white; background-color: green">Nhà tuyển dụng</a>
                                 <a class="dropdown-item " href="/change-password"
-                                   style="color: white; background-color: #2f55d4">Đổi mật khẩu</a>
+                                   style="color: white; background-color: green">Đổi mật khẩu</a>
                                 <a id="logout-button" class="dropdown-item" href="#"
-                                   style="color: white; background-color: #2f55d4;">
+                                   style="color: white; background-color: green;">
                                     <i class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất
                                 </a>
                             </div>
@@ -292,14 +292,14 @@
                             <div class="col-md-3 col-sm-12">
                                 <div class="input-group s-input-group w-100 ">
                                     <input id="salaryFrom" type="number" class="form-control sinput"
-                                           placeholder="Salary from">
+                                           placeholder="Lương tối thiểu">
                                     <span><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="input-group s-input-group w-100 ">
                                     <input id="salaryTo" type="number" class="form-control sinput"
-                                           placeholder="Salary to">
+                                           placeholder="Lương tối đa">
                                     <span><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
@@ -871,6 +871,7 @@
 </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!--<script src="js/jquery-3.4.1.slim.min.js"></script>-->

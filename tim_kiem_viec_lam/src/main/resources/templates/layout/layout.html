@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org" th:fragment="main-fragment(title, css, content, js)">
 <head>
-  <meta charset="UTF-8">
-  <title th:replace="${title}">Title</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title th:replace="${title}">Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Roboto Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&display=swap" rel="stylesheet">
+    <!-- Roboto Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i&display=swap"
+          rel="stylesheet">
 
-  <!-- bootstrap css -->
-  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 
-  <!-- Font Awesome -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-  <!--  validate-->
-  <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <!--  validate-->
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
 
-  <!--    toastr-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!--    toastr-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-  <!-- select 2 css -->
-  <link rel="stylesheet" th:href="@{/css/select2.min.css}">
+    <!-- select 2 css -->
+    <link rel="stylesheet" th:href="@{/css/select2.min.css}">
 
 
-  <!-- main css -->
-  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <!-- main css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 
-  <!--CSS-->
-  <th:block th:replace="${css} ?: ~{}"></th:block>
+    <!--CSS-->
+    <th:block th:replace="${css} ?: ~{}"></th:block>
 </head>
 <body>
 <!--HEADER-->
@@ -66,18 +69,32 @@
 <!-- Read More Plugin -->
 <!--JS-->
 <script>
-  $(document).ready(function () {
-    const userInfomationStr = localStorage.getItem("userInfomation");
-    if(userInfomationStr) {
-      const userInfomation = JSON.parse(userInfomationStr)
-      if (userInfomation.username) {
-        $('#registerNavItem').hide();
-        $('#loginNavItem').hide();
-        $('#loggedInUserNavItem').show();
+    $(document).ready(function () {
+        const userInfomationStr = localStorage.getItem("userInfomation");
+        if (userInfomationStr) {
+            const userInfomation = JSON.parse(userInfomationStr)
+            if (userInfomation.username) {
+                $('#registerNavItem').hide();
+                $('#loginNavItem').hide();
+                $('#loggedInUserNavItem').show();
 
-      }
-    }
-  })
+                // Ẩn/hiện các thẻ <a> tương ứng
+                if (userInfomation.roles[0] === 'USER') {
+                    $('#user').show();
+                    $('#recruiter').hide();
+                    $('.admin').hide();
+                } else if (userInfomation.roles[0] === 'RECRUITER') {
+                    $('#user').hide();
+                    $('#recruiter').show();
+                    $('.admin').hide();
+                } else {
+                    $('#user').hide();
+                    $('#recruiter').hide();
+                    $('.admin').show();
+                }
+            }
+        }
+    })
 </script>
 <th:block th:replace="${js} ?: ~{}"></th:block>
 </body>

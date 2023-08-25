@@ -1,5 +1,5 @@
 
-$('#title-search').on('keydown', function(event) {
+$('#title-search, #company-search,#s-provinces,#computer-languages,#salaryFrom,#salaryTo').on('keydown', function(event) {
     if (event.key === 'Enter') {
         performSearch(); // Gọi hàm tìm kiếm khi nhấn Enter
     }

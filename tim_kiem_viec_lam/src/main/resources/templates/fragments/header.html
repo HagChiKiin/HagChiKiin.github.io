@@ -52,21 +52,29 @@
                     </li>
                     <li class="navbar-right item group "  id="loggedInUserNavItem"  style="display: none" >
                         <div class="dropdown">
-                            <a href="javascript:void(0)" class="d-inline-block avatar rounded-circle"
-                               id="avatar_toggle"  style="height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
+                            <a class="d-inline-block avatar rounded-circle"
+                               id="avatar_toggle" style=" height: 38px;width: 38px; object-fit: cover; overflow: hidden;"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://www.topcv.vn/images/avatar-default.jpg" style="height: 38px; width: 38px"
-                                     alt="Tiểu Phàm TRương">
+                                <img th:if="${candidate != null}" th:src="${candidate.avatar}"
+                                     style="height: 38px; width: 38px"
+                                     alt="">
+                                <img th:unless="${candidate != null}" src="https://www.topcv.vn/images/avatar-default.jpg"
+                                     style="height: 38px; width: 38px" alt="Default Avatar">
                             </a>
-                            <div class="dropdown-menu" style=" background-color: #2f55d4"
+                            <div class="dropdown-menu" style="background-color: green"
                                  aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Thông
-                                    tin cá nhân</a>
-                                <a class="dropdown-item" href="#" style="color: white; background-color: #2f55d4 ">Đổi
-                                    mật khẩu</a>
+                                <a id="user" class="dropdown-item candidate" th:href="@{/candidate/info/{id}(id=${users})}"
+                                   style="color: white; background-color: green">Thông tin ứng viên</a>
+                                <a id="recruiter" class="dropdown-item recruiter" href="/recruiter/jobs-create"
+                                   style="color: white; background-color: green">Tạo việc làm</a>
+                                <a class="dropdown-item admin" href="/admin/companies"
+                                   style="color: white; background-color: green">Nhà tuyển dụng</a>
+                                <a class="dropdown-item " href="/change-password"
+                                   style="color: white; background-color: green">Đổi mật khẩu</a>
                                 <a id="logout-button" class="dropdown-item" href="#"
-                                   style="color: white; background-color: #2f55d4 ;"><i
-                                        class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất</a>
+                                   style="color: white; background-color: green;">
+                                    <i class="icon fa-regular fa-arrow-right-from-bracket"></i> Đăng xuất
+                                </a>
                             </div>
                         </div>
                     </li>
