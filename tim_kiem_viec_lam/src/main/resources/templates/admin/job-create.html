@@ -259,6 +259,17 @@
             placeholder: "- Chọn chủ đề",
         });
 
+        $.validator.addMethod("futureDate", function(value, element) {
+            // Get the current date
+            var currentDate = new Date();
+
+            // Convert the value to a JavaScript Date object
+            var selectedDate = new Date(value);
+
+            // Compare the selected date with the current date
+            return selectedDate > currentDate;
+        }, "Hãy chọn một ngày trong tương lai.");
+
         $("#create-job-form").validate({
             onfocusout: false,
             onkeyup: false,
@@ -287,6 +298,7 @@
                 },
                 "dueDateTime": {
                     required: true,
+                    futureDate: true
                 },
                 "location": {
                     required: true,
