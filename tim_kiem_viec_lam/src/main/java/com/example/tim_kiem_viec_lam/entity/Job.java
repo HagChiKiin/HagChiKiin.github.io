@@ -36,7 +36,7 @@ public class Job extends BaseEntity {
     String detail;
 
     @Column(name = "yoe")
-    int yoe;
+    double yoe;
 
     @Column(name = "literacy")
     @Enumerated(EnumType.STRING)

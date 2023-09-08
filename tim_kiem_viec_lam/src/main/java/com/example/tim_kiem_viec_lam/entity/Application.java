@@ -7,6 +7,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -39,12 +40,17 @@ public class Application extends BaseEntity {
     @Column(name = "email")
     String email;
 
-
     @Column(name = "description")
     String description;
 
+    @Column(name = "interview_time")
+    LocalDateTime interviewTime;
+
+    @Column(name = "interview_location")
+    String interviewLocation;
+
     @Column(name = "application_time")
-    LocalDateTime applicationTime;
+    LocalDate applicationTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "application_status")

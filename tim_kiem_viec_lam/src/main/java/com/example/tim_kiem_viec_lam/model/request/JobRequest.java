@@ -52,7 +52,7 @@ public class JobRequest {
     String detail;
 
     @Min(value = 0, message = "Kinh nghiệm phải là số không âm")
-    int yoe;
+    double yoe;
 
     @NotNull(message = "Trình độ học vấn không được để trống")
     Literacy literacy;

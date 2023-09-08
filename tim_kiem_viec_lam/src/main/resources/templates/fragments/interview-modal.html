@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="interview-modal" class="modal fade" id="interview-modal">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Hẹn phỏng vấn</h4>
+                <button type="button" class="close close-modal" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form action="#" id="application-modal-form">
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <label for="interview-time">Thời gian phỏng vấn</label>
+                        <input type="datetime-local" class="form-control" id="interview-time" name="interview-time"
+                             />
+                    </div>
+
+                    <div class="form-group pt-3">
+                        <label for="interview-location">Địa điểm phỏng vấn</label>
+                        <input type="text" id="interview-location" name="interview-location" class="form-control"
+                               />
+                    </div>
+                </div>
+            </form>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="save-interview" >OK</button>
+                <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

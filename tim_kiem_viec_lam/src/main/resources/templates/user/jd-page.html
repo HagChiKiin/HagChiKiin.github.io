@@ -36,8 +36,7 @@
                                 <ul>
                                     <li><i class="fa fa-map-marker icn-jd"></i><span th:text="${job.location}"></span>
                                     </li>
-                                    <i class="fa fa-usd icn-jd"></i>
-                                    <span th:text="${job.salaryFrom} + ' triệu - ' + ${job.salaryTo} + ' triệu'"></span>
+                                    <li><i class="fa fa-usd icn-jd"></i><span th:if="${job.salaryFrom == 0 || job.salaryTo == 0}">Thỏa thuận</span><span th:unless="${job.salaryFrom == 0 || job.salaryTo == 0}" th:text="${job.salaryFrom + ' triệu - ' + job.salaryTo + ' triệu'}"></span></li>
                                     <li><i class="fa fa-calendar icn-jd"></i><span th:text="${job.dueDateTime}"></span>
                                     </li>
                                 </ul>
@@ -123,8 +122,8 @@
                                         <span class="ji-title">Lương:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <span class="ji-main"
-                                              th:text="${job.salaryFrom} + ' triệu - ' + ${job.salaryTo} + ' triệu'">1000$ - 3000$</span>
+                                        <span class="ji-main" th:if="${job.salaryFrom == 0 || job.salaryTo == 0}">Thỏa thuận</span>
+                                        <span th:unless="${job.salaryFrom == 0 || job.salaryTo == 0}" th:text="${job.salaryFrom + ' triệu - ' + job.salaryTo + ' triệu'}">1000$ - 3000$</span>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +157,7 @@
                                         <span class="ji-title">Kinh nghiệm:</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <span class="ji-main" th:text="${job.yoe} + ' năm'">1 năm</span>
+                                        <span class="ji-main" th:text="${job.yoe == job.yoe.intValue() ? job.yoe.intValue() : job.yoe} + ' năm'">1 năm</span>
                                     </div>
                                 </div>
                             </div>
@@ -238,6 +237,32 @@
                     </div>
 
                     <div class="side-bar mb-3">
+                        <h2 class="widget-title">
+                            <span>Việc làm cùng công ty</span>
+                        </h2>
+
+
+                        <div class="job-tt-contain" th:each="job :${SimilarListJob}">
+
+                            <div class="job-tt-item">
+                                <a th:href="@{/jd-page/{id}(id=${job.id})}" class="thumb">
+                                    <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}">
+                                </a>
+
+                                <div class="info">
+                                    <a th:href="@{/jd-page/{id}(id=${job.id})}" class="jobname" th:text="${job.title}">
+
+                                    </a>
+                                    <a th:href="@{/jd-page/{id}(id=${job.id})}" class="company" th:text="${job.recruiter.name}"></a>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="side-bar mb-3">
 
                         <div class="container">
                             <div class="row">
@@ -309,7 +334,21 @@
                     if (!tempFiles || tempFiles.length === 0) {
                         return;
                     }
-                    chosenFile = tempFiles[0];
+
+                    const chosenFile = tempFiles[0];
+
+                    // Kiểm tra xem có tệp đã chọn hay không
+                    if (!chosenFile) {
+                        return;
+                    }
+
+                    // Kiểm tra định dạng tệp có phải là PDF không
+                    if (!chosenFile.type.includes('pdf')) {
+                        alert('Vui lòng chọn một tệp có định dạng PDF.');
+                        event.target.value = ''; // Xóa giá trị trường tệp
+                        return;
+                    }
+
                     if (chosenFile && chosenFile.size > maxSizeInBytes) {
                         alert("File size exceeded the allowed limit (5MB)!");
                         this.value = '';

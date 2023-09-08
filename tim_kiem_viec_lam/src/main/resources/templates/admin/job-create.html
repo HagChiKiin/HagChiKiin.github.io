@@ -379,7 +379,7 @@
             let salaryFrom = parseFloat(value);
             let salaryTo = parseFloat($("#salaryTo").val());
 
-            return salaryFrom < salaryTo;
+            return salaryFrom <= salaryTo;
         }, "Mức lương tối thiểu phải nhỏ hơn mức lương tối đa");
 
         $('#job-create-btn').click(function () {

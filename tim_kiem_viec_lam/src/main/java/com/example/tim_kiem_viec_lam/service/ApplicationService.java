@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ApplicationService {
                 .job(job)
                 .user(user)
                 .applicationStatus(ApplicationStatus.NOT_REVIEW)
-                .applicationTime(LocalDateTime.now())
+                .applicationTime(LocalDate.now())
                 .build();
         applicationRepository.save(application);
     }

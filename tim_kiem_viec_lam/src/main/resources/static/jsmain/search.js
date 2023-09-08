@@ -65,12 +65,19 @@ function displaySearchResults(jobs) {
 
     if (jobs.length === 0) {
         displayNoJobsFound();
+        $('.pagination').hide();
     } else {
         jobs.forEach(function (job) {
             const dueDate = new Date(job.dueDateTime);
             const formattedDueDate = formatDateToYYYYMMDD(dueDate);
 
             let avatar = "/api/v1/files/" + job.avatar;
+            let salaryText = "";
+            if (job.salaryFrom === 0 || job.salaryTo === 0) {
+                salaryText = "Thỏa thuận";
+            } else {
+                salaryText = job.salaryFrom + " triệu - " + job.salaryTo + " triệu";
+            }
             let jobItem = `<div class="job pagi">
                             <div class="job-content">
                                 <div class="job-logo">
@@ -94,10 +101,9 @@ function displaySearchResults(jobs) {
                                             <i class="fa fa-code" aria-hidden="true"></i> <a href="#">
                                             ${job.skill}</a>
                                         </div>
-                                        <div class="job-salary">
+                                       <div class="job-salary">
                                             <i class="fa fa-money" aria-hidden="true"></i>
-                                            <span class="salary-min">${job.salaryFrom}</span>
-                                            <span class="salary-max">${job.salaryTo}</span>
+                                            <span class="salary-text">${salaryText}</span>
                                         </div>
                                         <div class="job-deadline">
                                             <span><i class="fa fa-clock-o" aria-hidden="true"></i>  Hạn nộp: <strong>${formattedDueDate}</strong></span>
@@ -110,7 +116,14 @@ function displaySearchResults(jobs) {
             searchResultsDiv.append(jobItem);
         });
 
-        $('.pagi').paginate(6);
+        // Chỉ kích hoạt phân trang nếu có hơn 6 job tìm kiếm được
+        if (jobs.length > 6) {
+            $('.pagination').show();
+            $('.pagi').paginate(6);
+        } else {
+            // Ẩn phân trang khi không có đủ công việc
+            $('.pagination').hide();
+        }
 
     }
 }

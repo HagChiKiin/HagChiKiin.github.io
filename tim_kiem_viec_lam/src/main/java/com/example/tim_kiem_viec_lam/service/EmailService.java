@@ -30,14 +30,14 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String sender;
 
-    public EmailService(JavaMailSender javaMailSender, UserRepository userRepository,OtpRepository otpRepository) {
+    public EmailService(JavaMailSender javaMailSender, UserRepository userRepository, OtpRepository otpRepository) {
         this.javaMailSender = javaMailSender;
-        this.userRepository =userRepository;
-        this.otpRepository=otpRepository;
+        this.userRepository = userRepository;
+        this.otpRepository = otpRepository;
     }
 
     @Async
-    public void sendActivationEmail(String email,Long id) {
+    public void sendActivationEmail(String email, Long id) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -86,8 +86,37 @@ public class EmailService {
 
     }
 
+    //    @Async
+//    public void sendInterviewInvitationEmail(String candidateEmail, String jobTitle, String company, String name,
+//                                             String recruiterEmail, String recruiterPhone, LocalDateTime interviewTime, String interviewLocation) {
+//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+//        try {
+//            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+//
+//            helper.setFrom(sender);
+//            helper.setTo(candidateEmail);
+//
+//            helper.setSubject(company + " - Lời Mời Phỏng Vấn");
+//
+//            String emailContent = "<html><body>" + "<p>Chào bạn<strong> " + name.toUpperCase() + "</strong></p>"
+//                    + "<p>Bạn đã được mời tham gia phỏng vấn cho vị trí công việc: <strong>" + jobTitle
+//                    + "</strong>. Vui lòng liên hệ với chúng tôi để xác nhận thời gian và địa điểm phỏng vấn.</p>"
+//                    + "<p>Thời gian phỏng vấn: <strong>" + interviewTime + "</strong></p>"
+//                    + "<p>Địa điểm phỏng vấn: <strong>" + interviewLocation + "</strong></p>"
+//                    + "<p>Email liên hệ: <strong>" + recruiterEmail + "</strong></p>"
+//                    + "<p>Sđt liên hệ: <strong>" + recruiterPhone + "</strong></p>"
+//                    + "<p><strong>Trân trọng</strong></p>" + "</body></html>";
+//
+//            helper.setText(emailContent, true);
+//
+//            javaMailSender.send(mimeMessage);
+//        } catch (MessagingException e) {
+//            System.out.println("Lỗi khi gửi email!!!");
+//            e.printStackTrace();
+//        }
+//    }
     @Async
-    public void sendInterviewInvitationEmail(String candidateEmail, String jobTitle, String company,String name, String recruiterEmail, String recruiterPhone) {
+    public void sendInterviewInvitationEmail(String candidateEmail, String jobTitle, String company, String name, String recruiterEmail, String recruiterPhone) {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -114,4 +143,5 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+
 }

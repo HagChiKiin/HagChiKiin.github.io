@@ -30,9 +30,7 @@ public class JobResponse {
 
     String detail;
 
-    int yoeFrom;
-
-    int yoeTo;
+        double yoe;
 
     Literacy literacy;
 

@@ -273,6 +273,8 @@
             </div>
         </div>
     </div>
+
+    <div th:replace="fragments/interview-modal :: interview-modal"></div>
 </div>
 
 <!-- jQuery -->
@@ -627,12 +629,44 @@
         if (newStatus === 'REJECTED') {
             button.removeClass('btn-primary btn-success').addClass('btn-danger');
         } else if (newStatus === 'INTERVIEW_SCHEDULED') {
+
+            $('#interview-modal').modal('show');
+
+            $('#save-interview').click(async () => {
+                const interviewTime = $('#interview-time').val();
+                const interviewLocation = $('#interview-location').val();
+
+                // Kiểm tra xem đã nhập đủ thông tin hay chưa
+                if (!interviewTime || !interviewLocation) {
+                    alert('Vui lòng nhập thông tin thời gian và địa điểm phỏng vấn.');
+                    return;
+                }
+
+                // Gửi yêu cầu cập nhật trạng thái và thông tin phỏng vấn lên máy chủ
+                $.ajax({
+                    url: `/api/v1/applications/update-status/${applicationId}`,
+                    type: 'POST',
+                    data: {
+                        status: 'INTERVIEW_SCHEDULED',
+                        interviewTime: interviewTime,
+                        interviewLocation: interviewLocation
+                    },
+                    success: function (response) {
+                        toastr.success('Hẹn phỏng vấn thành công');
+                        // Đóng modal
+                        $('#interview-modal').modal('hide');
+                    },
+                    error: function (error) {
+                        toastr.warning('Hẹn phỏng vấn thất bại');
+                    }
+                });
+            });
             button.removeClass('btn-primary btn-danger').addClass('btn-success');
+
         } else {
             button.removeClass('btn-danger btn-success').addClass('btn-primary');
         }
 
-        // Gửi yêu cầu cập nhật trạng thái lên máy chủ ở đây, ví dụ:
         $.ajax({
             url: `/api/v1/applications/update-status/${applicationId}`,
             type: 'POST',
@@ -644,6 +678,8 @@
                 toastr.warning("Cập nhật trạng thái thất bại")
             }
         });
+
+
     });
 
 

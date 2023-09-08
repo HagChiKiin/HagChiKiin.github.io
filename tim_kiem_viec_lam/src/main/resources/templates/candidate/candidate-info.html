@@ -157,7 +157,7 @@
 
 
                         <div class="rec-submit">
-                            <button type="button" class="btn-submit-recuitment mb-3 ml-3" name="">
+                            <button type="button" onclick="submit()" class="btn-submit-recuitment mb-3 ml-3" name="">
                                 <i class="fa fa-floppy-o pr-2"></i>Lưu Hồ Sơ
                             </button>
                         </div>
@@ -189,12 +189,12 @@
                                 Việc làm của bạn
                             </h3>
                             <ul>
-                                <li><a href="#">Số việc làm đã nộp: <strong th:text="${countApplications}"></strong></a>
+                                <li><a>Số việc làm đã nộp: <strong th:text="${countApplications}"></strong></a>
                                 </li>
 
                                 <li>
-                                    <a th:href="@{/applications/{id}(id=${users.id})}" target="_blank">
-                                        Việc làm đã ứng tuyển
+                                    <a th:href="@{/applications/{id}(id=${users.id})}" target="_blank" class="blue-text" style="color: blue">
+                                        Việc làm đã ứng tuyển ( Click vào đây )
                                     </a>
                                 </li>
                             </ul>
@@ -337,7 +337,7 @@
             $("#recruiter-avatar").attr("src", imageUrl);
         });
 
-        $('.btn-submit-recuitment').click(async function () {
+        async function submit() {
             $(this).prop('disabled', true);
 
             let isValidForm = $("#candidate-update-form").valid();
@@ -369,7 +369,7 @@
             } else {
                 updateUser(formData);
             }
-        });
+        }
 
         async function uploadImage(chosenFile) {
             try {

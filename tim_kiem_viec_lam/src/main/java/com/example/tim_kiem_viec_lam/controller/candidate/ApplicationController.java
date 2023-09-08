@@ -35,6 +35,26 @@ public class ApplicationController {
         return ResponseEntity.ok(null);
     }
 
+//    @PostMapping("/update-status/{id}")
+//    public ResponseEntity<?> updateApplicationStatus(@RequestParam("status") String status, @PathVariable Long id) {
+//        try {
+//            Application updatedApplication = applicationService.updateApplicationStatus(id, status);
+//
+//            if ("INTERVIEW_SCHEDULED".equals(status)) {
+//
+//                // Nếu trạng thái được cập nhật thành "hẹn phỏng vấn", gửi email mời phỏng vấn
+//                emailService.sendInterviewInvitationEmail(updatedApplication.getEmail(),
+//                        updatedApplication.getJob().getTitle(), updatedApplication.getJob().getRecruiter().getName(),updatedApplication.getName(),
+//                        updatedApplication.getJob().getRecruiter().getUser().getEmail(), updatedApplication.getJob().getRecruiter().getPhone()
+//                ,updatedApplication.getInterviewTime(), updatedApplication.getInterviewLocation());
+//            }
+//
+//            return ResponseEntity.ok("Cập nhật trạng thái thành công");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
+//        }
+//    }
+
     @PostMapping("/update-status/{id}")
     public ResponseEntity<?> updateApplicationStatus(@RequestParam("status") String status, @PathVariable Long id) {
         try {
