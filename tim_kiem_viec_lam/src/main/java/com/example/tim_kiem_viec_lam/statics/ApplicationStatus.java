@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum ApplicationStatus {
     NOT_REVIEW("Chưa xem"), // chưa xem
     REJECTED ("Từ chối"),  // từ chối
+    REVIEWED("Đã xem"), // đã xem
     INTERVIEW_SCHEDULED ("Hẹn phỏng vấn"); // hẹn phỏng vấn
 
     String name;

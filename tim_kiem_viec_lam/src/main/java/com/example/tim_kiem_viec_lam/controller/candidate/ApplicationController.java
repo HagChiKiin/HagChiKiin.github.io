@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @RestController
@@ -56,15 +58,45 @@ public class ApplicationController {
 //    }
 
     @PostMapping("/update-status/{id}")
-    public ResponseEntity<?> updateApplicationStatus(@RequestParam("status") String status, @PathVariable Long id) {
+    public ResponseEntity<?> updateApplicationStatus(
+            @RequestParam("status") String status,
+            @PathVariable Long id,
+            @RequestParam(value = "interviewTime", required = false) String interviewTimeStr, // Chấp nhận chuỗi thời gian
+            @RequestParam(value = "interviewLocation", required = false) String interviewLocation
+    ) {
         try {
-            Application updatedApplication = applicationService.updateApplicationStatus(id, status);
+            Application updatedApplication;
 
-            if ("INTERVIEW_SCHEDULED".equals(status)) {
-                // Nếu trạng thái được cập nhật thành "hẹn phỏng vấn", gửi email mời phỏng vấn
-                emailService.sendInterviewInvitationEmail(updatedApplication.getEmail(),
-                        updatedApplication.getJob().getTitle(), updatedApplication.getJob().getRecruiter().getName(),updatedApplication.getName(),
-                        updatedApplication.getJob().getRecruiter().getUser().getEmail(), updatedApplication.getJob().getRecruiter().getPhone());
+            LocalDateTime interviewTime = null; // Khởi tạo một giá trị mặc định là null
+
+            // Kiểm tra nếu trạng thái là "INTERVIEW_SCHEDULED" và interviewTimeStr không rỗng
+            if ("INTERVIEW_SCHEDULED".equals(status) && interviewTimeStr != null && !interviewTimeStr.isEmpty()) {
+                // Chuyển đổi chuỗi thời gian thành LocalDateTime
+                interviewTime = LocalDateTime.parse(interviewTimeStr, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            }
+
+            updatedApplication = applicationService.updateApplicationStatus(id, status, interviewTime, interviewLocation);
+
+            if ("INTERVIEW_SCHEDULED".equals(status) && interviewTime != null) {
+                // Nếu trạng thái được cập nhật thành "hẹn phỏng vấn" và interviewTime không null, gửi email mời phỏng vấn
+                emailService.sendInterviewInvitationEmail(
+                        updatedApplication.getEmail(),
+                        updatedApplication.getJob().getTitle(),
+                        updatedApplication.getJob().getRecruiter().getName(),
+                        updatedApplication.getName(),
+                        updatedApplication.getJob().getRecruiter().getUser().getEmail(),
+                        updatedApplication.getJob().getRecruiter().getPhone(),
+                        updatedApplication.getInterviewTime(),
+                        updatedApplication.getInterviewLocation()
+                );
+            } else if ("REJECTED".equals(status)) {
+                // Gửi email thông báo từ chối ứng viên khi trạng thái là "REJECTED"
+                emailService.sendRejectionEmail(
+                        updatedApplication.getEmail(),
+                        updatedApplication.getJob().getTitle(),
+                        updatedApplication.getJob().getRecruiter().getName(),
+                        updatedApplication.getName()
+                );
             }
 
             return ResponseEntity.ok("Cập nhật trạng thái thành công");
@@ -72,5 +104,6 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
         }
     }
+
 
 }

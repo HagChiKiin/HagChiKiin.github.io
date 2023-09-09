@@ -50,7 +50,7 @@ public class ApplicationService {
     }
 
 
-    public Application updateApplicationStatus(Long id, String newStatus) {
+    public Application updateApplicationStatus(Long id, String newStatus, LocalDateTime interviewTime, String interviewLocation) {
         Application application = applicationRepository.findById(id).orElse(null);
 
         if (application == null) {
@@ -58,6 +58,13 @@ public class ApplicationService {
         }
 
         application.setApplicationStatus(ApplicationStatus.valueOf(newStatus));
+
+        if ("INTERVIEW_SCHEDULED".equals(newStatus)) {
+            // Set interview time and location when status is "INTERVIEW_SCHEDULED"
+            application.setInterviewTime(interviewTime);
+            application.setInterviewLocation(interviewLocation);
+        }
+
         applicationRepository.save(application);
         return application;
     }

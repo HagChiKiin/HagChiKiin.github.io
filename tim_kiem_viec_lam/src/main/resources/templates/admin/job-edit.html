@@ -253,19 +253,12 @@
                             <th>Mô tả ngắn</th>
                             <th>Số điện thoại</th>
                             <th>Email</th>
-                            <!--                            <th>Status</th>-->
                             <th>Link CV</th>
                             <th>Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <!--                        <tr th:each="app : ${application}">-->
-                        <!--                            <td th:text="${app.name}"></td>-->
-                        <!--                            <td th:text="${app.phone}"></td>-->
-                        <!--                            <td th:text="${app.description}"></td>-->
-                        <!--                            <td><a th:href="${app.cv}" target="_blank">Xem chi tiết</a></td>-->
-                        <!--                        </tr>-->
                         </tbody>
 
                     </table>
@@ -605,10 +598,13 @@
             <td>${appli.description}</td>
             <td>${appli.phone}</td>
             <td>${appli.email}</td>
-            <td><a  href="${appli.cv}">Click vào để xem</a></td>
+           <td><a class="cv-link" href="${appli.cv}" data-application-id="${appli.id}">Click vào để xem</a></td>
             <td>
-            <select class="status-dropdown selectpicker" data-application-id="${appli.id}" data-style="${appli.applicationStatus === 'REJECTED' ? 'btn-danger' : (appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'btn-success' : 'btn-primary')}">
+            <select class="status-dropdown selectpicker" data-application-id="${appli.id}" data-style="${appli.applicationStatus === 'REJECTED' ?
+            'btn-danger' : (appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'btn-success' : (appli.applicationStatus === 'REVIEWED' ?
+                'btn-info' : 'btn-primary'))}">
                 <option value="NOT_REVIEW" ${appli.applicationStatus === 'NOT_REVIEW' ? 'selected' : ''}>Chưa xem</option>
+                <option value="REVIEWED" ${appli.applicationStatus === 'REVIEWED' ? 'selected' : ''}>Đã xem</option>
                 <option value="REJECTED" ${appli.applicationStatus === 'REJECTED' ? 'selected' : ''}>Từ chối</option>
                 <option value="INTERVIEW_SCHEDULED" ${appli.applicationStatus === 'INTERVIEW_SCHEDULED' ? 'selected' : ''}>Hẹn phỏng vấn</option>
             </select>
@@ -620,21 +616,32 @@
     $(document).ready(function () {
         $('.selectpicker').selectpicker();
     });
+
     $('.status-dropdown').change(function () {
         const applicationId = $(this).data('application-id');
         const newStatus = $(this).val();
-
         const button = $(this).closest('td').find('button');
 
-        if (newStatus === 'REJECTED') {
-            button.removeClass('btn-primary btn-success').addClass('btn-danger');
-        } else if (newStatus === 'INTERVIEW_SCHEDULED') {
-
+        if (newStatus === 'INTERVIEW_SCHEDULED') {
             $('#interview-modal').modal('show');
 
-            $('#save-interview').click(async () => {
+            $('.close-modal').click(function () {
+                $('#interview-modal').modal('hide');
+
+            });
+
+
+            $('#save-interview').off('click').on('click', async () => {
                 const interviewTime = $('#interview-time').val();
                 const interviewLocation = $('#interview-location').val();
+
+                const selectedDateTime = new Date(interviewTime);
+                const currentDateTime = new Date();
+
+                if (selectedDateTime < currentDateTime) {
+                    alert('Không thể chọn ngày và giờ trong quá khứ.');
+                    return;
+                }
 
                 // Kiểm tra xem đã nhập đủ thông tin hay chưa
                 if (!interviewTime || !interviewLocation) {
@@ -661,25 +668,59 @@
                     }
                 });
             });
-            button.removeClass('btn-primary btn-danger').addClass('btn-success');
 
+            button.removeClass('btn-primary btn-danger btn-info').addClass('btn-success');
         } else {
-            button.removeClass('btn-danger btn-success').addClass('btn-primary');
-        }
+            // Chỉ gửi yêu cầu AJAX khi trạng thái không phải là "Hẹn phỏng vấn"
+            $.ajax({
+                url: `/api/v1/applications/update-status/${applicationId}`,
+                type: 'POST',
+                data: { status: newStatus },
+                success: function (response) {
+                    toastr.success("Cập nhật trạng thái thành công");
+                },
+                error: function (error) {
+                    toastr.warning("Cập nhật trạng thái thất bại")
+                }
+            });
 
+            if (newStatus === 'REJECTED') {
+                button.removeClass('btn-primary btn-success btn-info').addClass('btn-danger');
+            } else if (newStatus === 'REVIEWED') {
+                button.removeClass('btn-danger btn-success btn-primary ').addClass('btn-info');
+            } else {
+                button.removeClass('btn-danger btn-success btn-info').addClass('btn-primary');
+            }
+        }
+    });
+
+    $('.cv-link').click(function (event) {
+        event.preventDefault(); // Ngăn chặn sự kiện mặc định
+
+        const applicationId = $(this).data('application-id');
+        const selectElement = $(`select[data-application-id="${applicationId}"]`);
+
+        // Thực hiện cập nhật trạng thái "Đã xem" lên máy chủ
         $.ajax({
             url: `/api/v1/applications/update-status/${applicationId}`,
             type: 'POST',
-            data: {status: newStatus},
+            data: { status: 'REVIEWED' },
             success: function (response) {
-                toastr.success("Cập nhật trạng thái thành công");
+                toastr.success('Cập nhật trạng thái thành công');
+
+                // Cập nhật trạng thái trên giao diện người dùng nếu cần thiết
+                selectElement.val('REVIEWED').selectpicker('refresh');
+                const button = selectElement.closest('td').find('button');
+                button.removeClass('btn-primary btn-danger btn-success btn-info').addClass('btn-info');
             },
             error: function (error) {
-                toastr.warning("Cập nhật trạng thái thất bại")
+                toastr.warning('Cập nhật trạng thái thất bại');
             }
         });
 
-
+        // Mở liên kết CV trong tab mới sau khi đã cập nhật trạng thái
+        const cvLink = $(this).attr('href');
+        window.open(cvLink, '_blank');
     });
 
 

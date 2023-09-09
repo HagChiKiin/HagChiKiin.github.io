@@ -74,7 +74,9 @@
                     <td th:text="${app.job.title}"></td>
                     <td th:text="${app.job.recruiter.name}"></td>
                     <td th:text="${app.applicationTime}"></td>
-                    <td th:style="${app.applicationStatus.name == 'Hẹn phỏng vấn' ? 'background-color:green; color:white;' : (app.applicationStatus.name == 'Từ chối' ? 'background-color:red; color:white;' : 'background-color:blue   ; color:white;')}">
+                    <td th:style="${app.applicationStatus.name == 'Hẹn phỏng vấn' ? 'background-color: green; color:white' :
+                                    (app.applicationStatus.name == 'Từ chối' ? 'background-color: #dc3545; color:white' :
+                                    (app.applicationStatus.name == 'Đã xem' ? 'background-color: #0dcaf0; color:white' : 'background-color: #0d6efd; color:white'))}">
                         <span th:text="${app.applicationStatus.name}"></span>
                     </td>
                 </tr>
