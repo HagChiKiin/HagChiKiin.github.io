@@ -79,6 +79,10 @@ public class JobService {
         return top3Jobs;
     }
 
+    public List<Job> getJobsByRecruiter(Recruiter recruiter, Long id) {
+        return jobRepository.findJobsByRecruiter(recruiter, id);
+    }
+
     public void createJob(JobRequest jobRequest) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -172,4 +176,6 @@ public class JobService {
         job.setJobStatus(JobStatus.valueOf(status));
         jobRepository.save(job);
     }
+
+
 }

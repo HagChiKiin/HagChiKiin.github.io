@@ -2,6 +2,7 @@ package com.example.tim_kiem_viec_lam.repository;
 
 import com.example.tim_kiem_viec_lam.entity.Job;
 import com.example.tim_kiem_viec_lam.entity.Otp;
+import com.example.tim_kiem_viec_lam.entity.Recruiter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -55,14 +56,13 @@ public interface JobRepository extends JpaRepository<Job, Long> {
             "ORDER BY RAND()")
     List<Job> findRandomJobsBySkillAndExcludeCurrentJob(@Param("skill") String skill, @Param("jobId") Long jobId);
 
-    @Query("SELECT j FROM Job j " +
-            "JOIN j.recruiter r " +
-            "WHERE j.jobStatus <> 'CLOSED' " +
-            "AND r.recruiterStatus <> 'LOCKED'" +
-            "ORDER BY RAND()")
+    @Query("SELECT j FROM Job j JOIN j.recruiter r " +
+            "WHERE j.jobStatus <> 'CLOSED' AND r.recruiterStatus <> 'LOCKED' ORDER BY RAND()")
     List<Job> findAllExceptClosedAndLocked();
-//
-//    @Query(value = "SELECT * FROM jobs WHERE skill LIKE %:skill% AND id <> :jobId ORDER BY RAND() LIMIT 3", nativeQuery = true)
-//    List<Job> findRandomJobsBySkillAndExcludeCurrentJob(@Param("skill") String skill, @Param("jobId") Long jobId);
+
+    @Query("SELECT j FROM Job j JOIN j.recruiter r " +
+            "WHERE j.recruiter = :recruiter AND j.jobStatus <>'CLOSED' AND r.recruiterStatus <> 'LOCKED' AND j.id <> :id")
+    List<Job> findJobsByRecruiter(@Param("recruiter") Recruiter recruite, @Param("id") Long id);
+
 
 }

@@ -182,8 +182,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="side-bar mb-3">
@@ -203,36 +201,26 @@
                                 <span th:text="${job.recruiter.address}">Trụ sở: 212 Phan Đăng Lưu - Hòa Cường Bắc - Hải Châu - Đà Nẵng </span>
                             </li>
                         </ul>
-
                         <div class="wrap-comp-info mb-2">
                             <a th:href="'https://'+${job.recruiter.contactInfo}" class="btn btn-primary btn-company">Xem
                                 thêm</a>
                         </div>
                     </div>
-
                     <div class="side-bar mb-3">
                         <h2 class="widget-title">
                             <span>Việc làm tương tự</span>
                         </h2>
-
-
                             <div class="job-tt-contain" th:each="job :${SimilarListJob}">
-
                                 <div class="job-tt-item">
                                     <a th:href="@{/jd-page/{id}(id=${job.id})}" class="thumb">
                                         <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}">
                                     </a>
-
                                     <div class="info">
                                         <a th:href="@{/jd-page/{id}(id=${job.id})}" class="jobname" th:text="${job.title}">
-
                                         </a>
                                         <a th:href="@{/jd-page/{id}(id=${job.id})}" class="company" th:text="${job.recruiter.name}"></a>
-
-
                                     </div>
                                 </div>
-
                             </div>
                     </div>
 
@@ -240,22 +228,16 @@
                         <h2 class="widget-title">
                             <span>Việc làm cùng công ty</span>
                         </h2>
-
-
-                        <div class="job-tt-contain" th:each="job :${SimilarListJob}">
-
+                        <div class="job-tt-contain" th:each="job :${jobSameCompany}">
                             <div class="job-tt-item">
                                 <a th:href="@{/jd-page/{id}(id=${job.id})}" class="thumb">
                                     <img th:src="'/api/v1/files/'+${job.recruiter.fileId.name}">
                                 </a>
-
                                 <div class="info">
                                     <a th:href="@{/jd-page/{id}(id=${job.id})}" class="jobname" th:text="${job.title}">
 
                                     </a>
                                     <a th:href="@{/jd-page/{id}(id=${job.id})}" class="company" th:text="${job.recruiter.name}"></a>
-
-
                                 </div>
                             </div>
 

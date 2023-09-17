@@ -138,6 +138,7 @@ public class HomeController {
         Job job = jobService.getJobById(id);
         String jobSkill = job.getSkill();
         List<Job> SimilarListJob = jobService.getSimilarJob(jobSkill, id);
+        List<Job> jobSameCompany = jobService.getJobsByRecruiter(job.getRecruiter(),id);
         Optional<Long> currentUserLoginId = SecurityUtils.getCurrentUserLoginId();
         currentUserLoginId.ifPresent(aLong -> model.addAttribute("users", aLong));
 
@@ -146,7 +147,7 @@ public class HomeController {
             Candidate candidate = candidateService.getCandidateByUserId(userId);
             model.addAttribute("candidate", candidate);
         }
-
+        model.addAttribute("jobSameCompany", jobSameCompany);
         model.addAttribute("SimilarListJob", SimilarListJob);
         model.addAttribute("application", job.getApplications());
         job.setApplications(null);
