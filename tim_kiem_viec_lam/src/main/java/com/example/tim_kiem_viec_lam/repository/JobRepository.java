@@ -64,12 +64,11 @@ public interface JobRepository extends JpaRepository<Job, Long> {
     List<Job> findRandomJobsBySkillAndExcludeCurrentJob(@Param("skill") String skill, @Param("jobId") Long jobId);
 
     @Query("SELECT j FROM Job j JOIN j.recruiter r " +
-            "WHERE j.jobStatus <> 'CLOSED' AND r.recruiterStatus <> 'LOCKED' ORDER BY RAND()")
+            "WHERE j.jobStatus <> 'CLOSED' AND r.recruiterStatus <> 'LOCKED' AND j.dueDateTime >= CURRENT_DATE ORDER BY RAND()")
     List<Job> findAllExceptClosedAndLocked();
 
     @Query("SELECT j FROM Job j JOIN j.recruiter r " +
-            "WHERE j.recruiter = :recruiter AND j.jobStatus <>'CLOSED' AND r.recruiterStatus <> 'LOCKED' AND j.id <> :id")
+            "WHERE j.recruiter = :recruiter AND j.jobStatus <>'CLOSED' AND r.recruiterStatus <> 'LOCKED' AND j.id <> :id AND j.dueDateTime >= CURRENT_DATE")
     List<Job> findJobsByRecruiter(@Param("recruiter") Recruiter recruiter, @Param("id") Long id);
-
 
 }
