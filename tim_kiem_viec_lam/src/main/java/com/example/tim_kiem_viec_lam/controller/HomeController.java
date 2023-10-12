@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -203,6 +204,14 @@ public class HomeController {
         model.addAttribute("applications", applications);
         return "candidate/application";
     }
+
+    @GetMapping("/chart")
+    public String getChart(Model model) {
+//        List<Recruiter> recruiterList = recruiterService.getTopJob();
+//        model.addAttribute("recruiterList", recruiterList);
+        return "admin/chart";
+    }
+
 
     @GetMapping("/splash")
     public String showSplashPage() {

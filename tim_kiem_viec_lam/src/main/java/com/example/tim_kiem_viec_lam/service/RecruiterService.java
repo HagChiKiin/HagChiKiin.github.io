@@ -110,5 +110,8 @@ public class RecruiterService {
                 .build();
     }
 
+//    public List<Recruiter> getTopJob() {
+//        return recruiterRepository.findTopByJob();
+//    }
 }
 

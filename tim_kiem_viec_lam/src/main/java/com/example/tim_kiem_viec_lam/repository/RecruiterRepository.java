@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,4 +26,10 @@ public interface RecruiterRepository extends JpaRepository<Recruiter, Long> {
             "LIMIT 8", nativeQuery = true)
     List<Recruiter> findTopRecruitersWithMostJobs();
 
+//    @Query(value = "SELECT r.id, r.name, COUNT(j.id) AS job_count " +
+//            "FROM recruiters r " +
+//            "LEFT JOIN jobs j ON r.id = j.recruiter_id " +
+//            "GROUP BY r.id, r.name " +
+//            "ORDER BY job_count DESC " , nativeQuery = true)
+//    List<Recruiter> findTopByJob();
 }
