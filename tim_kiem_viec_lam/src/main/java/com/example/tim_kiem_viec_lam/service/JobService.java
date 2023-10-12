@@ -63,7 +63,7 @@ public class JobService {
     }
 
     public List<Job> getAttractiveJobs() {
-        List<Job> top16Jobs = jobRepository.findTop16ByHighestSalaryFrom();
+        List<Job> top16Jobs = jobRepository.findTop16AttractiveJobs();
         if (top16Jobs.size() > 16) {
             top16Jobs = top16Jobs.subList(0, 16);
         }

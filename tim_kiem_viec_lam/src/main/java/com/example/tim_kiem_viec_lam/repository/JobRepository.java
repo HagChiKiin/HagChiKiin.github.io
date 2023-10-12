@@ -20,6 +20,7 @@ public interface JobRepository extends JpaRepository<Job, Long> {
             "JOIN j.recruiter r " +
             "WHERE j.jobStatus <> 'CLOSED' " +
             "AND r.recruiterStatus <> 'LOCKED' " +
+            "AND j.dueDateTime >= CURRENT_DATE " +
             "ORDER BY j.salaryTo DESC")
     List<Job> findTop10ByHighestSalary();
 
@@ -31,18 +32,23 @@ public interface JobRepository extends JpaRepository<Job, Long> {
             "JOIN j.recruiter r " +
             "WHERE j.jobStatus <> 'CLOSED' " +
             "AND r.recruiterStatus <> 'LOCKED' " +
+            "AND j.dueDateTime >= CURRENT_DATE " +
             "ORDER BY j.createdDateTime DESC")
     List<Job> findTop16ByNewestJobs();
 //
 //    @Query(value = "SELECT * FROM jobs ORDER BY created_date_time DESC LIMIT 16", nativeQuery = true)
 //    List<Job> findTop16ByNewestJobs();
 
-    @Query(value = "SELECT j FROM Job j " +
-            "JOIN j.recruiter r " +
-            "WHERE j.jobStatus <> 'CLOSED' " +
-            "AND r.recruiterStatus <> 'LOCKED' " +
-            "ORDER BY j.salaryFrom DESC")
-    List<Job> findTop16ByHighestSalaryFrom();
+    @Query(value = "SELECT j.*, COUNT(a.id) AS apply_count " +
+            "FROM jobs j " +
+            "JOIN recruiters r ON j.recruiter_id = r.id " +
+            "INNER JOIN applications a ON j.id = a.job_id " +
+            "WHERE j.job_status <> 'CLOSED' " +
+            "AND r.status <> 'LOCKED' " +
+            "AND j.due_DateTime >= CURRENT_DATE " +
+            "GROUP BY j.id " +
+            "ORDER BY apply_count DESC ", nativeQuery = true)
+    List<Job> findTop16AttractiveJobs();
 //
 //    @Query(value = "SELECT * FROM jobs ORDER BY salary_from DESC LIMIT 16", nativeQuery = true)
 //    List<Job> findTop16ByHighestSalaryFrom();
@@ -53,6 +59,7 @@ public interface JobRepository extends JpaRepository<Job, Long> {
             "AND r.recruiterStatus <> 'LOCKED' " +
             "AND (j.skill LIKE CONCAT('%', :skill, '%') OR j.skill LIKE :skill) " +
             "AND j.id <> :jobId " +
+            "AND j.dueDateTime >= CURRENT_DATE " +
             "ORDER BY RAND()")
     List<Job> findRandomJobsBySkillAndExcludeCurrentJob(@Param("skill") String skill, @Param("jobId") Long jobId);
 
@@ -62,7 +69,7 @@ public interface JobRepository extends JpaRepository<Job, Long> {
 
     @Query("SELECT j FROM Job j JOIN j.recruiter r " +
             "WHERE j.recruiter = :recruiter AND j.jobStatus <>'CLOSED' AND r.recruiterStatus <> 'LOCKED' AND j.id <> :id")
-    List<Job> findJobsByRecruiter(@Param("recruiter") Recruiter recruite, @Param("id") Long id);
+    List<Job> findJobsByRecruiter(@Param("recruiter") Recruiter recruiter, @Param("id") Long id);
 
 
 }
